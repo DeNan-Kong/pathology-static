@@ -4,6 +4,7 @@
     <img class="logo" src="../assets/images/logo.png">
     <p class="welcome">欢迎使用 vue</p>
     <div v-html="content"></div>
+    <el-button @click.native="startHacking">Let's do it</el-button>
   </div>
 </template>
 
@@ -23,6 +24,13 @@
       async getContent () {
         const response = await fetch('/api/hello');
         this.content = await response.text();
+      },
+      startHacking () {
+          this.$notify({
+            title: 'It Works',
+            message: 'We have laid the groundwork for you. Now it\'s your time to build something epic!',
+            duration: 6000
+          })
       }
     },
     mounted () {
