@@ -20,7 +20,7 @@
                                     <option></option>
                                 </select>
                             </form>
-                            <button  class="floatleft  but-his" v-on:click="getmodel">提取</button>
+                            <button  class="floatleft  but-his">提取</button>
                             <p  class="floatleft  p-three">病人ID:</p><input type="text"  class="floatleft input-id  radium"  ref="write2">
                             <p  class="floatleft  p-mark p-four">冰冻标识:</p><input type="text"  class="floatleft  radium input-mark"  ref="write3">
                         </div>
@@ -87,7 +87,8 @@
                         </div>
                         <div class="name-num-three">
                             <p class="floatleft p-one">联系信息:</p><input type="text"  class="floatleft   p-big  radium"  ref="write12">
-                            <p  class="floatleft  p-three">末次月经:</p><input type="text"  class="floatleft  p-margin  radium" >
+                            <p  class="floatleft  p-three">末次月经:</p>
+                            <calendar/>
                             <p  class="floatleft  p-four">绝经:</p>
                             <form  class="floatleft ">
                                 <select class="p-margin  radium-sup">
@@ -124,7 +125,8 @@
                                     <option>未知</option>
                                 </select>
                             </form>  
-                            <p  class="floatleft   p-four">送检日期:</p><input type="text"  class="floatleft p-margin radium ">
+                            <p  class="floatleft   p-four">送检日期:</p>
+                            <calendar/>
                         </div>
                         <div class="hospital-num-two">
                             <p class="floatleft p-one">病区:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write13">
@@ -191,15 +193,7 @@
                                 </select>
                             </form>  
                             <p  class="floatleft  p-four">接收日期:</p>
-                            <div class="block">
-                            <el-date-picker
-                                 class="floatleft  p-margin  radium" 
-                              v-model="value1"
-                              type="date"
-                              placeholder="选择日期"
-                              :picker-options="pickerOptions0">
-                            </el-date-picker>
-                            </div>
+                            <calendar/>
                             <!-- <input type="text"  class="floatleft p-margin radium "> -->
                         </div>
                         <div class="hospital-num-five">
@@ -236,6 +230,7 @@
             </div>
         </div>
         <searchtable/>
+        
     </div>
 </template>
 <style>
@@ -454,6 +449,7 @@
     import TopMenu from 'components/topmenu';
     import SearchTable from 'components/searchtable';
     import $ from "jQuery"
+    import Calendar from 'components/calendar';
     export default{
         data(){
             return{
@@ -467,6 +463,7 @@
         components:{
             "top-menu":TopMenu,
             "searchtable":SearchTable,
+            "calendar":Calendar
         },
         methods:{
             newproject:function(){

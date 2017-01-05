@@ -5,10 +5,11 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import App from './app';
+import $ from "jQuery"
 import routes from './routes';
 import storeOption from './store';
 import ElementUI from 'element-ui';
-import locale from 'element-ui/lib/locale/lang/zh-CN'
+import locale from 'element-ui/lib/locale/lang/zh-CN';
 
 // import 'element-ui/lib/theme-default/index.css';
 import './assets/css/bootstrap.min.css';

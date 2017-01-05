@@ -8,12 +8,9 @@ module.exports = {
   api: '/api/hello',
   response: function (req, res) {
     res.send(`
-      
-      <p>
-        You may also want to checkout
-        <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-        <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-      </p>
+      [{img: "1", style: "冰",num:"20160105",name:"小明",sex:"男",age:"120",one: "1", two: "冰",three:"20160105",four:"小明",five:"男",six:"120",seven: "1", eight: "冰",nine:"20160105"},
+      {img: "1", style: "冰",num:"20160105",name:"小明",sex:"男",age:"120",one: "1", two: "冰",three:"20160105",four:"小明",five:"男",six:"120",seven: "1", eight: "冰",nine:"20160105"},
+      {img: "1", style: "冰",num:"20160105",name:"小明",sex:"男",age:"120",one: "1", two: "冰",three:"20160105",four:"小明",five:"男",six:"120",seven: "1", eight: "冰",nine:"20160105"}]
     `);
   }
 }

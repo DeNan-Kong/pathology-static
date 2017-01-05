@@ -417,22 +417,46 @@ input[type='checkbox'] .checkbox-one{
 </style>
 <script>
 import {mapState} from 'vuex';
+import $ from "jQuery"
     export default{
         data(){
             return{
-                name: 'Vue.js'
+                name: 'Vue.js',
             }
         },
         methods:{
            async  gettablemessage(){
-            console.log("======")
                 const response = await fetch('/api/hello');
-                console.log(response)
-                console.log(response.people)
-                this.content = await response.text();
-                alert(this.content)
-            }
-    },
-       
-    }
+                if(response.ok){
+                    console.log("__________________");
+                    this.content = await response.text();
+                    console.log(this.content);
+                  
+                    var jsondata=JSON.parse(this.content);
+
+                    console.log(jsondata.length);
+                }
+                    }
+        //    gettablemessage:function(){
+        //     var self=this;
+        //      $.ajax({
+        //     url: 'api/hello/',
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     data:{
+              
+        //     },
+        //     cache: false,
+        //     error: function(error){
+        //         if(isMounted(self)){
+        //             self.setState({isLoading:false,loadErr:true});
+        //         }
+        //     },
+        //     success:function(error){
+        //         console.log("______")
+        //     }
+        // }
+        //    }
+                  },     
+                    }
 </script>
