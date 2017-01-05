@@ -1,4 +1,5 @@
 <template>
+    <div id="main">
     <div id="header" class="m_panel">
         <div class="container">
             <div class="row" ng-controller="NavbarCtrl">
@@ -16,7 +17,7 @@
 
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"  data-toggle="modal" data-target="#myModal"><a href="#">病例管理</a></li>
+                            <li class="active"  data-toggle="modal" data-target="#myModal"><a href="#">病历管理</a></li>
                             <li><a href="#">制片管理</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">图像管理 <b class="caret"></b></a>
@@ -67,25 +68,19 @@
                     </div>
                 </nav>
             </div>
-        </div>
+        </div>   
     </div>
+</div>
 </template>
 <style>
-  #header {
-    width: 100%;
-    height: 45px;
-    position: absolute;
-    top: 0;
-}
+
 </style>
 <script>
     export default{
         data(){
             return{
-
+                name: 'Vue.js'
             }
         },
-        components:{
-        }
-    }
+      }      
 </script>

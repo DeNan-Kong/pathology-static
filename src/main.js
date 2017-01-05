@@ -8,6 +8,8 @@ import App from './app';
 import routes from './routes';
 import storeOption from './store';
 import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/zh-CN'
+
 // import 'element-ui/lib/theme-default/index.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/main.css';
@@ -16,6 +18,8 @@ import './assets/css/main.css';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
+Vue.use(ElementUI, { locale });
+
 // Vue.use(ElementUI);
 
 // 创建一个路由对象用于管理页面的路由

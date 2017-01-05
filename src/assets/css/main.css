@@ -5,6 +5,47 @@ html,body{
     background-color: #edeef2;
     /*min-height:615px;*/
 }
+/*默认样式*/
+.floatleft{
+    float: left;
+}
+.p-one{
+    display:block;
+    width: 86px;
+    text-align: right;
+    float: left;
+    clear:both;
+}
+.p-two{
+    display:block;
+    width: 76px;
+    text-align: right;
+}
+.p-three{
+    display:block;
+    width: 89px;
+    text-align:right;
+}
+.p-four{
+    display:block;
+    width: 77px;
+    text-align:right;
+}
+.p-margin{
+    margin-left: 10px;
+    width: 155px
+}
+.p-big{
+    width:396px;
+    margin-left: 10px;
+}
+.radium{
+    border-radius:5px;
+    border:1px solid #cccccc;
+}
+input,select,textarea{
+    outline:medium;
+}
 /*复写bootstrap;*/
 label{
     font-weight: 400;
@@ -119,10 +160,15 @@ hr{
     background-color: #eee;
     color:#444;
 }
-
+.nav>li:hover{
+    border-bottom:3px solid #00bfe8
+}
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
     /*防止压缩列*/
-    min-width: 50px;
+    min-width: 70px;
+    text-align:center;
+    overflow:hidden;
+    padding:5px;
 
 }
 /*复写bootstrap;end*/
@@ -144,7 +190,7 @@ hr{
 #header{
     width: 100%;
     height: 45px;
-   position: absolute;
+    position: absolute;
     top: 0;
 }
 #main-box{
@@ -152,8 +198,6 @@ hr{
     top:45px;
     bottom: 10px;
     width: 100%;
-
-
 }
 #toolbar{
     height: 34px;
@@ -187,7 +231,6 @@ hr{
     padding-top: 5px;
     padding-bottom: 10px
 }
-
 #right_box{
     height: 100%;
     /*min-height: 415px;*/
@@ -224,11 +267,9 @@ hr{
 .dropdown:hover .menu-top {
     display: block;
 }
-
 .dropdown-submenu{
     position:relative;
 }
-
 .dropdown-submenu > .dropdown-menu{
     top:0;
     left:100%;
@@ -238,11 +279,9 @@ hr{
     -moz-border-radius:0 6px 6px 6px;
     border-radius:0 6px 6px 6px;
 }
-
 .dropdown-submenu:hover > .dropdown-menu{
     display:block;
 }
-
 .dropdown-submenu > a:after{
     display:block;
     content:" ";
@@ -256,15 +295,12 @@ hr{
     margin-top:5px;
     margin-right:-10px;
 }
-
 .dropdown-submenu:hover > a:after{
     border-left-color:#ffffff;
 }
-
 .dropdown-submenu .pull-left{
     float:none;
 }
-
 .dropdown-submenu.pull-left > .dropdown-menu{
     left:-100%;
     margin-left:10px;
@@ -272,7 +308,6 @@ hr{
     -moz-border-radius:6px 0 6px 6px;
     border-radius:6px 0 6px 6px;
 }
-
 .color-sample{
     width: 20px;
     height:20px;
@@ -328,7 +363,6 @@ hr{
 .bottom-btn{
     float: right;
     margin:10px;
-
 }
 .selected{
     background-color: #f7f8fa;
@@ -336,11 +370,9 @@ hr{
 table tr:hover{
     background-color: #f7f8fa;
 }
-
 .table-image{
     height: 20px;
 }
-
 /*!*中文布局*!*/
 .col-sm-label{
     float: left;
@@ -392,3 +424,10 @@ table tr:hover{
     /*width: 813px;*/
     /*margin-left:8px;*/
 /*}*/
+/*wmm*/
+#main{
+    height:700px;
+    width:100%;
+    font-size: 14px;
+}
+/*病例信息*/
