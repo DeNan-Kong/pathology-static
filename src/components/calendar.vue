@@ -1,6 +1,6 @@
  <template>
   <div>
- <div class="floatleft  p-margin  radium">
+ <div class="floatleft  p-margin ">
     <el-date-picker
       v-model="value1"
       type="date"
@@ -11,7 +11,15 @@
 </div>
 </template>
 <style>
-
+.el-date-editor.el-input{
+  width: 153px;
+  
+}
+.el-input__inner{
+  height: 24px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 </style>
 <script>
   export default {
@@ -27,3 +35,4 @@
     }
   };
 </script>
+

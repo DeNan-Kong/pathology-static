@@ -4,14 +4,17 @@
         <div  class="right-inner">
             
         <div class="right-top">
-            <p  class="right-top-one">申</p><p  class="right-top-two">登</p>
-            <p  class="right-top-three">取</p><p  class="right-top-four">制</p>
-            <p  class="right-top-five">暂</p><p  class="right-top-six">诊</p>
-            <p  class="right-top-seven">延</p><p  class="right-top-eight">审</p>
-            <p  class="right-top-nine">印</p>
+            <button id="rightbtnone" class="right-top-one shen" v-on:click="shenbtn">申</button><button id="rightbtntwo" class="right-top-two  deng" v-on:click="dengbtn">登</button>
+            <button id="rightbtnthr" class="right-top-three qu" v-on:click="qubtn">取</button><button id="rightbtnfou" class="right-top-four zhizi" v-on:click="zhibtn">制</button>
+            <button id="rightbtnfiv" class="right-top-five zan" v-on:click="zanbtn">暂</button><button id="rightbtnsix" class="right-top-six zhen" v-on:click="zhenbtn">诊</button>
+            <button id="rightbtnsev" class="right-top-seven yan" v-on:click="yanbtn">延</button><button id="rightbtneig" class="right-top-eight  shen2" v-on:click="shen2btn">审</button>
+            <button id="rightbtnnin" class="right-top-nine yin" v-on:click="yinbtn">印</button>
         </div>
         <br>
-        <div class="grop-search">
+        <div class="grop-search ">
+            <button class="grop-search-line grop-search-line1 floatleft" id="grop-search-line"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img" id="grop-search-img"></div></button>
+            <button  class="grop-search-btn grop-search-btn1 floatleft" v-on:click="toggle" id="grop-search-btn">组合查询</button>
+            <p  class="floatleft">按时间检索:</p>
              <form  class="floatleft ">
                 <select class="grop-search-sel  radium">
                     <option>当天</option>
@@ -21,8 +24,6 @@
                     <option>全部</option>
                 </select>
             </form>
-            <button  class="grop-search-btn" v-on:click="toggle">组合查询</button>
-            <br>
         </div>
         <div class="big-search">
             <input type="text"  class="floatleft big-search-input "  id="app">
@@ -301,10 +302,24 @@
                         <option>未知</option>
                     </select>
                 </form> 
-                <p  class="floatleft  age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄&nbsp;:&nbsp;</p>
+                <p  class="floatleft  age">年龄&nbsp;:&nbsp;</p>
                 <input  type="text"  class="bmobboxage  floatleft">
+                <form  class="floatleft">
+                    <select class="floatleft selectage">
+                        <option>岁</option>
+                        <option>女</option>
+                        <option>未知</option>
+                    </select>
+                </form> 
                 <p  class="floatleft  agezhi">至</p>
                 <input  type="text"  class="bmobboxage  floatleft">
+                <form  class="floatleft">
+                    <select class="floatleft selectage">
+                        <option>岁</option>
+                        <option>女</option>
+                        <option>未知</option>
+                    </select>
+                </form> 
             </div>
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">送检单位&nbsp;:&nbsp;<p>
@@ -354,7 +369,7 @@
         </div>
         <div class="bmobbox-bottom">
             <button class="bmobbox-btnone">查询</button>
-            <button class="bmobbox-btntwo">取消</button>
+            <button class="bmobbox-btntwo" @click="cancle">取消</button>
         </div>
     </div>
     
@@ -457,8 +472,8 @@
 }
 
 .agezhi{
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .bmobboxleft{
     width:70px;
@@ -466,7 +481,15 @@
     text-align: right;
 }
 .bmobboxage{
-    width:48px;
+    width:34px;
+    height: 24px;
+    border:1px solid #e5e5e5;
+    border-radius: 3px;
+   
+}
+.selectage{
+    margin-left: 3px;
+    width:36px;
     height: 24px;
     border:1px solid #e5e5e5;
     border-radius: 3px;
@@ -476,7 +499,7 @@
     height:660px;
     position:absolute;
     z-index: 10;
-    margin-top: -662px;
+    margin-top: -663px;
     margin-left: 538px;
     background: #fff;
     box-shadow: -3px 3px 5px rgba(0,0,0,0.15);
@@ -528,8 +551,7 @@
     margin-right:5px;
     overflow-x:scroll;
 }
-.right-top>p{
-    display: block;
+.right-top button{
     width:20px;
     height:20px;
     border-radius: 3px;
@@ -539,33 +561,72 @@
     color:#fff;
     font-size:14px;
     margin-left: 5px;
+    outline: none;
 }
 .right-top .right-top-one{
     background:#a366bd;
 }
+.shen{
+    background:#a366bd;
+  
+}
 .right-top .right-top-two{
     background:#4d7cbe;
+}
+.deng{
+    background:#4d7cbe;
+ 
 }
 .right-top .right-top-three{
     background:#6bc664;
 }
+.qu{
+    background:#6bc664;
+   
+}
 .right-top .right-top-four{
     background:#5acdce;
+}
+.zhizi{
+    background:#5acdce;
+ 
 }
 .right-top .right-top-five{
     background:#d99165;
 }
+.zan{
+    background:#d99165;
+
+}
 .right-top .right-top-six{
+    background:#e975c1;
+}
+.zhen{
     background:#e975c1;
 }
 .right-top .right-top-seven{
     background:#dc5b5b;
 }
+.insetcolor{
+    box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
+}
+.yan{
+    background:#dc5b5b;
+   
+}
 .right-top .right-top-eight{
     background:#dfd06d;
 }
+.shen2{
+    background:#dfd06d;
+   
+}
 .right-top .right-top-nine{
     background:#b0bec5;
+}
+.yin{
+    background:#b0bec5;
+   
 }
 .right-top{
     width:250px;
@@ -576,21 +637,63 @@
     height:30px;
     margin-top:-15px; 
 }
+.grop-search button{
+    outline: none;
+}
 .grop-search-sel{
     width: 67px;
     height:27px;
 }
 .grop-search-btn{
-    width:76px;
+    width:65px;
     height:27px;
-    background:#428bca;
-    margin-left: 15px;
-    border:1px solid #428bca;
+    margin-right:8px;
     color:#fff;
     border-radius:3px;
+    padding-right: 3px;
+    text-align: right;
+   
+}
+.grop-search-btn1{
+    background:#428bca;
+    border:1px solid #428bca;
+}
+.grop-search-btn2{
+    background:#57bdde;
+    border:1px solid #57bdde;
+}
+.grop-search-line{
+    width: 27px;
+    height: 27px;   
+    border-radius: 3px;
+}
+.grop-search-line1{
+    background:#428bca;
+}
+.grop-search-line2{
+    background:#57bdde;
+}
+.grop-search-img{
+    width: 27px;
+    height: 27px;    
+}
+.grop-search-img1{
+    background: url('../assets/images/combinationsearch.png')  -151px -10px no-repeat; 
+}
+.grop-search-img2{
+    background: url('../assets/images/combinationsearch.png')  -151px -51px no-repeat;
+}
+.grop-search p{
+    display:block;
+    height:27px;
+    line-height: 27px;
+    margin-right: 8px;
+
 }
 .big-search{
-     margin-top:5px;
+    width:250px;
+    height:30px;
+    margin-top:5px;
 }
 .big-search-input{
     width: 183px;
@@ -602,6 +705,7 @@
 .big-search-sel{
     width:66px;
     height:28px;
+    border:1px solid #ccc;
     border-left: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -609,7 +713,7 @@
 .select-search{
     width: 300px;
     height:30px;
-    margin-top: 15px;
+    margin-top: 10px;
     line-height:26px;
     font-size:14px;
 }
@@ -622,7 +726,7 @@ input[type='checkbox'] .checkbox-one{
     background:#fff;
 }
 .allmessage{
-    margin-right: 48px;
+    margin-right: 34px;
     margin-left: 7px;
 }
 .cannotsee{
@@ -681,17 +785,88 @@ import $ from "jQuery";
            //      }
            //          },
                 toggle:function(){
-                    console.log("toggle")
-                    $("#bmobbox").slideToggle(1000)
+                    $("#bmobbox").animate({marginLeft:"538px"},300).fadeToggle();
+                    if($("#grop-search-line").hasClass('grop-search-line1')){
+                        $("#grop-search-line").removeClass('grop-search-line1').addClass('grop-search-line2')
+                    }else{
+                        $("#grop-search-line").addClass('grop-search-line1').removeClass('grop-search-line2')
+                    }
+                    if($("#grop-search-img").hasClass('grop-search-img1')){
+                        $("#grop-search-img").removeClass('grop-search-img1').addClass('grop-search-img2')
+                    }else{
+                        $("#grop-search-img").addClass('grop-search-img1').removeClass('grop-search-img2')
+                    }
+                     if($("#grop-search-btn").hasClass('grop-search-btn1')){
+                        $("#grop-search-btn").removeClass('grop-search-btn1').addClass('grop-search-btn2')
+                    }else{
+                        $("#grop-search-btn").addClass('grop-search-btn1').removeClass('grop-search-btn2')
+                    }
                 },
                 changecheckbox:function(e){
                    var targetid=$(e.target).attr("id");
-                   console.log(targetid);
                     if($("#"+targetid).hasClass("bmobboximg")){
                     $("#"+targetid).removeClass("bmobboximg").addClass("bmobboximgtwo");
                     }else{
                     $("#"+targetid).removeClass("bmobboximgtwo").addClass("bmobboximg"); 
                     }
+                },
+                shenbtn:function(){
+                    if(!$("#rightbtnone").hasClass('insetcolor')){
+                       $("#rightbtnone").addClass('insetcolor');
+                       $("#rightbtnone").siblings().removeClass('insetcolor')
+                    }
+                },
+                dengbtn:function(){
+                    if(!$("#rightbtntwo").hasClass('insetcolor')){
+                       $("#rightbtntwo").addClass('insetcolor');
+                       $("#rightbtntwo").siblings().removeClass('insetcolor')
+                    }
+                },
+                qubtn:function(){
+                    if(!$("#rightbtnthr").hasClass('insetcolor')){
+                       $("#rightbtnthr").addClass('insetcolor');
+                       $("#rightbtnthr").siblings().removeClass('insetcolor')
+                    }
+                },
+                zhibtn:function(){
+                    if(!$("#rightbtnfou").hasClass('insetcolor')){
+                       $("#rightbtnfou").addClass('insetcolor');
+                       $("#rightbtnfou").siblings().removeClass('insetcolor')
+                    }
+                },
+                zanbtn:function(){
+                    if(!$("#rightbtnfiv").hasClass('insetcolor')){
+                       $("#rightbtnfiv").addClass('insetcolor');
+                       $("#rightbtnfiv").siblings().removeClass('insetcolor')
+                    }
+                },
+                zhenbtn:function(){
+                    if(!$("#rightbtnsix").hasClass('insetcolor')){
+                       $("#rightbtnsix").addClass('insetcolor');
+                       $("#rightbtnxis").siblings().removeClass('insetcolor')
+                    }
+                },
+                yanbtn:function(){
+                    if(!$("#rightbtnsev").hasClass('insetcolor')){
+                       $("#rightbtnsev").addClass('insetcolor');
+                       $("#rightbtnsev").siblings().removeClass('insetcolor')
+                    }
+                },
+                shen2btn:function(){
+                    if(!$("#rightbtneig").hasClass('insetcolor')){
+                       $("#rightbtneig").addClass('insetcolor');
+                       $("#rightbtneig").siblings().removeClass('insetcolor')
+                    }
+                },
+                yinbtn:function(){
+                    if(!$("#rightbtnnin").hasClass('insetcolor')){
+                       $("#rightbtnnin").addClass('insetcolor');
+                       $("#rightbtnnin").siblings().removeClass('insetcolor')
+                    }
+                },
+                cancle:function(){
+                    console.log("00000")
+                    $("#bmobbox").fadeOut(500)
                 }
                }
                     

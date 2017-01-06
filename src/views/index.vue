@@ -8,7 +8,7 @@
             </div>
             <div class="case-message">
                 <div class="case-tabs">
-                    <p  class="active">病例信息</p><p>病理图像</p><p>收费</p><p>相关诊断</p><br>
+                    <a  class="active" id="medicalInformation" v-on:click="medicalInformation">病历信息</a><a id="medicalImage" v-on:click="medicalImage">病理图像</a><a id="medicalPay" v-on:click="medicalPay">收费</a><a id="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
                 </div>
                 <div class="case-content">
                     <div class="case-num">
@@ -285,7 +285,7 @@
     height:660px;
     background:#fff;    
 }
-.case-tabs>p{
+.case-tabs>a{
     display:block;
     width:62px;
     height:22px;
@@ -294,9 +294,11 @@
     margin-left: 3px;
     text-align:center;
     line-height:22px;
-    color:#999999;
+    color:#999;
     border-bottom-right-radius:7px;
     border-bottom-left-radius:7px;
+    cursor: pointer;
+    text-decoration: none;
 }
 .case-tabs .active{
     background:#57bdde;
@@ -414,27 +416,29 @@
     margin-left: 20px;
 }
 .left-bottom .picture-img{
-    background: url('../assets/images/register.png')  -32px -3px no-repeat;
-    width:30px;
-    height:30px;
+    background: url('../assets/images/refresh.png.png')no-repeat;
+    width:26px;
+    height:26px;
+    border-radius: 3px;
     float: left;
 }
 .left-bottom .picture-img:hover{
     background: url('../assets/images/register.png')  -32px -35px no-repeat;
-    width:30px;
-    height:30px;
+    width:26px;
+    height:26px;
     cursor:pointer;
 }
 .left-bottom .refresh-img{
-    background: url('../assets/images/register.png')  -68px -3px no-repeat;
-    width:30px;
-    height:30px;
+    background: url('../assets/images/picture.png.png') no-repeat;
+    width:26px;
+    height:26px;
+    border-radius: 3px;
     float:left;
 }
 .left-bottom .refresh-img:hover{
     background: url('../assets/images/register.png')  -68px -35px no-repeat;
-    width:30px;
-    height:30px;
+    width:26px;
+    height:26px;
 }
 .big-search-img{
     margin-left: -240px;
@@ -482,8 +486,23 @@
             },
             refund:function(){
                 console.log("refund")
+            },
+            medicalInformation:function(){
+                $("#medicalInformation").addClass("active");
+                $("#medicalInformation").siblings().removeClass("active");
+            },
+            medicalImage:function(){
+                $("#medicalImage").addClass("active");
+                $("#medicalImage").siblings().removeClass("active");
+            },
+            medicalPay:function(){
+                $("#medicalPay").addClass("active");
+                $("#medicalPay").siblings().removeClass("active");
+            },
+            medicalCheck:function(){
+                $("#medicalCheck").addClass("active");
+                $("#medicalCheck").siblings().removeClass("active");
             }
-
     },
     value1: '',
 }
