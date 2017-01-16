@@ -41,8 +41,8 @@
             </form>
         </div>
         <div  class="select-search">
-            <div  class="floatleft  checkbox bmobboximg checkbox-one" id="e"  v-on:click="changecheckbox"></div><p  class="floatleft  allmessage">全库</p>
-            <div  class="floatleft checkbox bmobboximg checkbox-two" id="f"  v-on:click="changecheckbox"></div><p  class="floatleft  cannotsee">模糊</p>
+            <div  class="bmobboximg floatleft  checkbox g  checkbox-one" id="e"  v-on:click="changecheckbox7"></div><p  class="floatleft  allmessage">全库</p>
+            <div  class="bmobboximg floatleft checkbox  h checkbox-two" id="f"  v-on:click="changecheckbox8"></div><p  class="floatleft  cannotsee">模糊</p>
             <button  class="select-search-btn" v-on:click="find">提取</button>
         </div>
         <div   class="table-show">
@@ -283,14 +283,14 @@
                 <input  type="text"  class="bmobboxinput  floatleft">
                 <p  class="floatleft  zhi">至</p>
                 <input  type="text"  class="bmobboxinput  floatleft">
-                <div  class="floatleft bmobboximg"  id="h"  v-on:click="changecheckbox"></div>
+                <div  class="bmobboximg e floatleft"  id="h"  v-on:click="changecheckbox5"></div>
             </div>
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">报告日期&nbsp;:&nbsp;<p>
                 <input  type="text"  class="bmobboxinput  floatleft">
                 <p  class="floatleft  zhi">至</p>
                 <input  type="text"  class="bmobboxinput  floatleft">
-                <div  class="floatleft bmobboximg"  id="i"  v-on:click="changecheckbox"></div>
+                <div  class="bmobboximg f floatleft"  id="i"  v-on:click="changecheckbox6"></div>
                 
             </div>
             <div class="bmobboxone">
@@ -358,10 +358,10 @@
                 <input  type="text"  class="bmobboxinputlong2  floatleft">  
             </div>
             <div class="bmobboxtwo">
-                <div  class="floatleft bmobboximg" id="a"  v-on:click="changecheckbox"></div><p  class="floatleft">延期报告</p>
-                <div  class="floatleft bmobboximg" id="b"  v-on:click="changecheckbox"></div><p  class="floatleft">冰冻报告</p> 
-                <div  class="floatleft bmobboximg" id="c"  v-on:click="changecheckbox"></div><p  class="floatleft">补充报告</p> 
-                <div  class="floatleft bmobboximg" id="d"  v-on:click="changecheckbox"></div><p  class="floatleft">会诊报告</p>   
+                <div  class="bmobboximg  a floatleft"   v-on:click="changecheckbox1"></div><p  class="floatleft">延期报告</p>
+                <div  class="bmobboximg b floatleft"   v-on:click="changecheckbox2"></div><p  class="floatleft">冰冻报告</p> 
+                <div  class="bmobboximg c floatleft"   v-on:click="changecheckbox3"></div><p  class="floatleft">补充报告</p> 
+                <div  class="bmobboximg d floatleft"  v-on:click="changecheckbox4"></div><p  class="floatleft">会诊报告</p>   
             </div>
             <div class="example">
                 <p>说明：临床诊断、病理诊断、诊断关键词输入多个关键词时用“l”隔开</p>
@@ -599,6 +599,9 @@
 }
 .insetcolor{
     box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
+    -moz-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
+    -ms-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
+    -webkit-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
 }
 .yan{
     background:#dc5b5b;   
@@ -787,12 +790,60 @@ import Calendar from 'components/calendar';
                         $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                     }
                 },
-                changecheckbox:function(e){
-                   var targetid=$(e.target).attr("id");
-                    if($("#"+targetid).hasClass("bmobboximg")){
-                    $("#"+targetid).removeClass("bmobboximg").addClass("bmobboximgtwo");
+                changecheckbox1:function(e){
+                    if($(".a").hasClass("bmobboximg")){
+                    $(".a").removeClass("bmobboximg").addClass("bmobboximgtwo");
                     }else{
-                    $("#"+targetid).removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    $(".a").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox2:function(e){
+                    if($(".b").hasClass("bmobboximg")){
+                    $(".b").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".b").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox3:function(e){
+                    if($(".c").hasClass("bmobboximg")){
+                    $(".c").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".c").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox4:function(e){
+                    if($(".d").hasClass("bmobboximg")){
+                    $(".d").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".d").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox5:function(e){
+                    if($(".e").hasClass("bmobboximg")){
+                    $(".e").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".e").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox6:function(e){
+                    if($(".f").hasClass("bmobboximg")){
+                    $(".f").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".f").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox7:function(e){
+                    if($(".g").hasClass("bmobboximg")){
+                    $(".g").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".g").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    }
+                },
+                changecheckbox8:function(e){
+                    if($(".h").hasClass("bmobboximg")){
+                    $(".h").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                    }else{
+                    $(".h").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
                     }
                 },
                 shenbtn:function(){

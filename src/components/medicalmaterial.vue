@@ -197,7 +197,7 @@
 <style>
 
 .menus-img{
-   background: url('../assets/images/material.png')  -10px -20px no-repeat;
+   background: url('../assets/images/materials.png')  -10px -20px no-repeat;
    width:10px;
    height: 10px;
    margin-right: 5px;
@@ -221,21 +221,27 @@
   border: none;
 }
 .material-modify{
-  background: url('../assets/images/material.png')  -60px -8px no-repeat;
+  background: url('../assets/images/material.png')  -40px -5px no-repeat;
   width:26px;
   height: 26px;
   margin-right: 2px;
   margin-top: -23px;
+}
+.material-modify:hover{
+  background: url('../assets/images/material.png')  -40px -40px no-repeat;
 }
 .material-delete{
-  background: url('../assets/images/material.png')  -90px -8px no-repeat;
+  background: url('../assets/images/material.png')  -72px -5px no-repeat;
   width:26px;
   height: 26px;
   margin-right: 2px;
   margin-top: -23px;
 }
+.material-delete:hover{
+  background: url('../assets/images/material.png')  -72px -40px no-repeat;
+}
 .material-add{
-  background: url('../assets/images/material.png')  -29px -8px no-repeat;
+  background: url('../assets/images/material.png')  -8px -5px no-repeat;
   width:26px;
   height: 26px;
   margin-left: 164px;

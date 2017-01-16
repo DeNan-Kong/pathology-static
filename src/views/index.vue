@@ -122,13 +122,13 @@
     width: 100%;
 }
 #diagnostic{
-
+  
 }
 #materials{
    display: none;  
 }
 #register{
-   display: none;
+    display: none; 
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
