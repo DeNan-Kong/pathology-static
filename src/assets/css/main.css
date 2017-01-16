@@ -112,7 +112,6 @@ select.input-sm, select.form-group-sm .form-control{
     text-decoration: none;
     background-color: #2a3344;
 }
-
 .navbar-nav>li>a {
  padding-top: 15px;
  padding-bottom: 15px;
@@ -126,7 +125,6 @@ select.input-sm, select.form-group-sm .form-control{
     font-size: 18px;
     line-height: 20px;
 }
-
 hr{
     margin-top:10px;
     margin-bottom:10px;

@@ -4,16 +4,16 @@
         <div  class="right-inner">
             
         <div class="right-top">
-            <button id="rightbtnone" class="right-top-one shen" v-on:click="shenbtn">申</button><button id="rightbtntwo" class="right-top-two  deng" v-on:click="dengbtn">登</button>
-            <button id="rightbtnthr" class="right-top-three qu" v-on:click="qubtn">取</button><button id="rightbtnfou" class="right-top-four zhizi" v-on:click="zhibtn">制</button>
-            <button id="rightbtnfiv" class="right-top-five zan" v-on:click="zanbtn">暂</button><button id="rightbtnsix" class="right-top-six zhen" v-on:click="zhenbtn">诊</button>
-            <button id="rightbtnsev" class="right-top-seven yan" v-on:click="yanbtn">延</button><button id="rightbtneig" class="right-top-eight  shen2" v-on:click="shen2btn">审</button>
-            <button id="rightbtnnin" class="right-top-nine yin" v-on:click="yinbtn">印</button>
+            <button class="right-top-one shen  rightbtnone" v-on:click="shenbtn">申</button><button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">登</button>
+            <button  class="rightbtnthr right-top-three qu" v-on:click="qubtn">取</button><button  class="rightbtnfou right-top-four zhizi" v-on:click="zhibtn">制</button>
+            <button  class="rightbtnfiv right-top-five zan" v-on:click="zanbtn">暂</button><button  class="rightbtnsix right-top-six zhen" v-on:click="zhenbtn">诊</button>
+            <button  class="rightbtnsev right-top-seven yan" v-on:click="yanbtn">延</button><button  class="rightbtneig right-top-eight  shen2" v-on:click="shen2btn">审</button>
+            <button  class="rightbtnnin right-top-nine yin" v-on:click="yinbtn">印</button>
         </div>
         <br>
         <div class="grop-search ">
-            <button class="grop-search-line grop-search-line1 floatleft" id="grop-search-line"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img" id="grop-search-img"></div></button>
-            <button  class="grop-search-btn grop-search-btn1 floatleft" v-on:click="toggle" id="grop-search-btn">组合查询</button>
+            <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
+            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">组合查询</button>
             <p  class="floatleft">按时间检索:</p>
              <form  class="floatleft ">
                 <select class="grop-search-sel  radium">
@@ -273,7 +273,7 @@
             </div>
         </div>
     </div>
-    <div id="bmobbox">
+    <div class="bmobbox">
         <div class="bmobbox-top" >
             <p>组合查询</p>
         </div>
@@ -433,7 +433,6 @@
     line-height: 20px;
     display: block;
     margin-right:10px;
-
 }
 .bmobboxtwo{
     margin-top: 36px;
@@ -441,7 +440,6 @@
 }
 .bmobboxleft2{
     width:83px;
-
     text-align: right;
 }
 .bmobboxinputlong2{
@@ -454,8 +452,7 @@
     width:388px;
     height:24px;
     border-radius: 3px;
-    border:1px solid #e5e5e5;
-    
+    border:1px solid #e5e5e5;    
 }
 .bmobboxinputcom{
     width:142px;
@@ -470,14 +467,12 @@
     border-radius: 3px;
     border:1px solid #e5e5e5;
 }
-
 .agezhi{
     margin-left: 5px;
     margin-right: 5px;
 }
 .bmobboxleft{
     width:70px;
-
     text-align: right;
 }
 .bmobboxage{
@@ -494,11 +489,11 @@
     border:1px solid #e5e5e5;
     border-radius: 3px;
 }
-#bmobbox{
+.bmobbox{
     width:527px;
     height:660px;
     position:absolute;
-    z-index: 10;
+    z-index: 99999;
     margin-top: -663px;
     margin-left: 538px;
     background: #fff;
@@ -567,36 +562,31 @@
     background:#a366bd;
 }
 .shen{
-    background:#a366bd;
-  
+    background:#a366bd;  
 }
 .right-top .right-top-two{
     background:#4d7cbe;
 }
 .deng{
-    background:#4d7cbe;
- 
+    background:#4d7cbe; 
 }
 .right-top .right-top-three{
     background:#6bc664;
 }
 .qu{
-    background:#6bc664;
-   
+    background:#6bc664;   
 }
 .right-top .right-top-four{
     background:#5acdce;
 }
 .zhizi{
     background:#5acdce;
- 
 }
 .right-top .right-top-five{
     background:#d99165;
 }
 .zan{
     background:#d99165;
-
 }
 .right-top .right-top-six{
     background:#e975c1;
@@ -611,22 +601,19 @@
     box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
 }
 .yan{
-    background:#dc5b5b;
-   
+    background:#dc5b5b;   
 }
 .right-top .right-top-eight{
     background:#dfd06d;
 }
 .shen2{
-    background:#dfd06d;
-   
+    background:#dfd06d;   
 }
 .right-top .right-top-nine{
     background:#b0bec5;
 }
 .yin{
-    background:#b0bec5;
-   
+    background:#b0bec5;   
 }
 .right-top{
     width:250px;
@@ -651,8 +638,7 @@
     color:#fff;
     border-radius:3px;
     padding-right: 3px;
-    text-align: right;
-   
+    text-align: right;   
 }
 .grop-search-btn1{
     background:#428bca;
@@ -688,7 +674,6 @@
     height:27px;
     line-height: 27px;
     margin-right: 8px;
-
 }
 .big-search{
     width:250px;
@@ -760,12 +745,11 @@ input[type='checkbox'] .checkbox-one{
 <script>
 import {mapState} from 'vuex';
 import $ from "jQuery";
- import Calendar from 'components/calendar';
+import Calendar from 'components/calendar';
     export default{
         data(){
             return{
                 name: 'Vue.js',
-
             }
         },
         components:{
@@ -785,21 +769,22 @@ import $ from "jQuery";
            //      }
            //          },
                 toggle:function(){
-                    $("#bmobbox").animate({marginLeft:"538px"},300).fadeToggle();
-                    if($("#grop-search-line").hasClass('grop-search-line1')){
-                        $("#grop-search-line").removeClass('grop-search-line1').addClass('grop-search-line2')
+                    console.log("+++++++")
+                    $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
+                    if($(".grop-search-lines").hasClass('grop-search-line1')){
+                        $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
                     }else{
-                        $("#grop-search-line").addClass('grop-search-line1').removeClass('grop-search-line2')
+                        $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
                     }
-                    if($("#grop-search-img").hasClass('grop-search-img1')){
-                        $("#grop-search-img").removeClass('grop-search-img1').addClass('grop-search-img2')
+                    if($(".grop-search-imgs").hasClass('grop-search-img1')){
+                        $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
                     }else{
-                        $("#grop-search-img").addClass('grop-search-img1').removeClass('grop-search-img2')
+                        $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
                     }
-                     if($("#grop-search-btn").hasClass('grop-search-btn1')){
-                        $("#grop-search-btn").removeClass('grop-search-btn1').addClass('grop-search-btn2')
+                     if($(".grop-search-btns").hasClass('grop-search-btn1')){
+                        $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
                     }else{
-                        $("#grop-search-btn").addClass('grop-search-btn1').removeClass('grop-search-btn2')
+                        $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                     }
                 },
                 changecheckbox:function(e){
@@ -811,86 +796,82 @@ import $ from "jQuery";
                     }
                 },
                 shenbtn:function(){
-                    if(!$("#rightbtnone").hasClass('insetcolor')){
-                       $("#rightbtnone").addClass('insetcolor');
-                       $("#rightbtnone").siblings().removeClass('insetcolor')
+                    
+                    if(!$(".rightbtnone").hasClass('insetcolor')){
+                       $(".rightbtnone").addClass('insetcolor');
+                       $(".rightbtnone").siblings().removeClass('insetcolor')
                     }
                 },
                 dengbtn:function(){
-                    if(!$("#rightbtntwo").hasClass('insetcolor')){
-                       $("#rightbtntwo").addClass('insetcolor');
-                       $("#rightbtntwo").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtntwo").hasClass('insetcolor')){
+                       $(".rightbtntwo").addClass('insetcolor');
+                       $(".rightbtntwo").siblings().removeClass('insetcolor')
                     }
                 },
                 qubtn:function(){
-                    if(!$("#rightbtnthr").hasClass('insetcolor')){
-                       $("#rightbtnthr").addClass('insetcolor');
-                       $("#rightbtnthr").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtnthr").hasClass('insetcolor')){
+                       $(".rightbtnthr").addClass('insetcolor');
+                       $(".rightbtnthr").siblings().removeClass('insetcolor')
                     }
                 },
                 zhibtn:function(){
-                    if(!$("#rightbtnfou").hasClass('insetcolor')){
-                       $("#rightbtnfou").addClass('insetcolor');
-                       $("#rightbtnfou").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtnfou").hasClass('insetcolor')){
+                       $(".rightbtnfou").addClass('insetcolor');
+                       $(".rightbtnfou").siblings().removeClass('insetcolor')
                     }
                 },
                 zanbtn:function(){
-                    if(!$("#rightbtnfiv").hasClass('insetcolor')){
-                       $("#rightbtnfiv").addClass('insetcolor');
-                       $("#rightbtnfiv").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtnfiv").hasClass('insetcolor')){
+                       $(".rightbtnfiv").addClass('insetcolor');
+                       $(".rightbtnfiv").siblings().removeClass('insetcolor')
                     }
                 },
                 zhenbtn:function(){
-                    if(!$("#rightbtnsix").hasClass('insetcolor')){
-                       $("#rightbtnsix").addClass('insetcolor');
-                       $("#rightbtnxis").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtnsix").hasClass('insetcolor')){
+                       $(".rightbtnsix").addClass('insetcolor');
+                       $(".rightbtnxis").siblings().removeClass('insetcolor')
                     }
                 },
                 yanbtn:function(){
-                    if(!$("#rightbtnsev").hasClass('insetcolor')){
-                       $("#rightbtnsev").addClass('insetcolor');
-                       $("#rightbtnsev").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtnsev").hasClass('insetcolor')){
+                       $(".rightbtnsev").addClass('insetcolor');
+                       $(".rightbtnsev").siblings().removeClass('insetcolor')
                     }
                 },
                 shen2btn:function(){
-                    if(!$("#rightbtneig").hasClass('insetcolor')){
-                       $("#rightbtneig").addClass('insetcolor');
-                       $("#rightbtneig").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtneig").hasClass('insetcolor')){
+                       $(".rightbtneig").addClass('insetcolor');
+                       $(".rightbtneig").siblings().removeClass('insetcolor')
                     }
                 },
                 yinbtn:function(){
-                    if(!$("#rightbtnnin").hasClass('insetcolor')){
-                       $("#rightbtnnin").addClass('insetcolor');
-                       $("#rightbtnnin").siblings().removeClass('insetcolor')
+                    if(!$(".rightbtnnin").hasClass('insetcolor')){
+                       $(".rightbtnnin").addClass('insetcolor');
+                       $(".rightbtnnin").siblings().removeClass('insetcolor')
                     }
                 },
                 cancle:function(){
                     console.log("00000")
-                    $("#bmobbox").fadeOut(500)
+                    $(".bmobbox").fadeOut(500);
+                    if($(".grop-search-lines").hasClass('grop-search-line1')){
+                        $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
+                    }else{
+                        $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
+                    }
+                    if($(".grop-search-imgs").hasClass('grop-search-img1')){
+                        $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
+                    }else{
+                        $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
+                    }
+                     if($(".grop-search-btns").hasClass('grop-search-btn1')){
+                        $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
+                    }else{
+                        $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
+                    }
+                },
+                find:function(){
+                    console.log("ooooo")
                 }
                }
-                    
-        //    gettablemessage:function(){
-        //     var self=this;
-        //      $.ajax({
-        //     url: 'api/hello/',
-        //     type: 'POST',
-        //     dataType: 'json',
-        //     data:{
-              
-        //     },
-        //     cache: false,
-        //     error: function(error){
-        //         if(isMounted(self)){
-        //             self.setState({isLoading:false,loadErr:true});
-        //         }
-        //     },
-        //     success:function(error){
-        //         console.log("______")
-        //     }
-        // }
-        //    }
-                   
-                    };
-
+            };
 </script>
