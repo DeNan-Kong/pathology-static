@@ -114,6 +114,51 @@
         </div>
         <searchtable/>
      </div>
+     <div id="filmmaking">
+        <top-menu/>
+        <div  id="filmmaking-main">
+           <div class="filmmaking-main">
+               
+                    <div class="tabs-embedding">
+                        <div class="case-tabss">
+                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        </div>
+                        1
+                    </div>
+                    <div class="tabs-section">
+                        <div class="case-tabss">
+                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        </div>
+                        2
+                    </div>
+                    <div class="tabs-advice">
+                        <div class="case-tabss">
+                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        </div>
+                        3
+                    </div>
+                    <div class="tabs-filmmaking">
+                        <div class="case-tabss">
+                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        </div>
+                        <filmmaking/>
+                    </div>
+              
+           </div>    
+        </div>
+     </div>
  </div>
 </template>
 <style>
@@ -122,13 +167,16 @@
     width: 100%;
 }
 #diagnostic{
-  
+  display: none; 
 }
 #materials{
-   display: none;  
+    display: none;
 }
 #register{
-    display: none; 
+   display: none;
+}
+#filmmaking{
+ 
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
@@ -157,6 +205,48 @@
     width:26px;
     height:26px;
 }
+#filmmaking-main{
+    height: 660px;
+    background: #eceef2;
+    margin-top: -655px;
+}
+.filmmaking-main{
+    margin:6px;
+    background: #fff;
+    height: 650px;
+}
+.filmmaking-main-top .tabs-case{
+    width: 100%;
+    height:30px;
+    background: red;
+    min-width: 1340px;
+}
+.case-tabss>a{
+    display:block;
+    width: 7%;
+    height: 22px;
+    background:#d0eaf8;
+    float:left;
+    margin-left: 3px;
+    text-align:center;
+    line-height:22px;
+    color:#999;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.case-tabss .filmmakingactive{
+    background: #57bdde;
+     color: #fff;
+}
+.tabs-embedding,.tabs-section,.tabs-advice,.tabs-filmmaking{
+    width:100%;
+    height: 660px;
+}
+.tabs-section,.tabs-advice,.tabs-filmmaking{
+    display: none;
+}
 </style>
 <script>
     import TopMenu from 'components/topmenu';
@@ -166,6 +256,7 @@
     import Medicalmessage from 'components/medicalmessage';
     import Medicalmaterial from 'components/medicalmaterial';
     import Diagnostic from 'components/diagnostic';
+    import Filmmaking from 'components/filmmaking';
     export default{
         data(){
             return{
@@ -182,7 +273,8 @@
             "calendar":Calendar,
             "medicalmessage":Medicalmessage,
             "medicalmaterial":Medicalmaterial,
-            "diagnostic":Diagnostic
+            "diagnostic":Diagnostic,
+            "filmmaking":Filmmaking
         },
         methods:{
             medicalInformation:function(){
@@ -230,7 +322,41 @@
                 $('.case-message').css('display','none');
                 $('.tabs-img').css('display','none');
                 $(".tabs-materials").css('display','none');
+            },
+            embedding:function(){
+                $(".embedding").addClass("filmmakingactive");
+                $(".embedding").siblings().removeClass("filmmakingactive");
+                $('.tabs-embedding').css('display','block');
+                $('.tabs-section').css('display','none');
+                $('.tabs-advice').css('display','none');
+                $('.tabs-filmmaking').css('display','none');
+            },
+            section:function(){
+                $(".section").addClass("filmmakingactive");
+                $(".section").siblings().removeClass("filmmakingactive");
+                $('.tabs-section').css('display','block');
+                $('.tabs-embedding').css('display','none');
+                $('.tabs-advice').css('display','none');
+                $('.tabs-filmmaking').css('display','none');
+            },
+            advice:function(){
+                $(".advice").addClass("filmmakingactive");
+                $(".advice").siblings().removeClass("filmmakingactive");
+                $('.tabs-advice').css('display','block');
+                $('.tabs-section').css('display','none');
+                $('.tabs-embedding').css('display','none');
+                $('.tabs-filmmaking').css('display','none');
+            },
+            filmmaking:function(){
+                $(".filmmaking").addClass("filmmakingactive");
+                $(".filmmaking").siblings().removeClass("filmmakingactive");
+                $('.tabs-filmmaking').css('display','block');
+                $('.tabs-section').css('display','none');
+                $('.tabs-advice').css('display','none');
+                $('.tabs-embedding').css('display','none');
             }
+
+
     },
     value1: '',
 }

@@ -6,15 +6,12 @@
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
                         <img src="../assets/images/logo.png" id="logo">
-                        <!--<a class="navbar-brand" href="#">多级菜单导航</a>-->
                     </div>
                     <div class="header-icon-group" style="float:right;">
                         <img class="header-icon" src="../assets/images/setting.png" >
                         <img class="header-icon" src="../assets/images/help.png">
                         <img class="header-icon" src="../assets/images/logout.png" >
-
                     </div>
-
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"  data-toggle="modal" data-target="#myModal"><a href="#">病历管理</a></li>
@@ -47,10 +44,8 @@
                                                                     </li>
                                                                 </ul>
                                                             </li>
-
                                                         </ul>
                                                     </li>
-
                                                 </ul>
                                             </li>
                                             <li><a href="#">Level 2</a>
@@ -73,7 +68,9 @@
 </div>
 </template>
 <style>
-
+.container .row{
+    height: 45px;
+}
 </style>
 <script>
     export default{
