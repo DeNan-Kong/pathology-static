@@ -8,9 +8,7 @@ module.exports = {
   api: '/api/hello',
   response: function (req, res) {
     res.send(`
-      [{img: "1", style: "冰",num:"20160105",name:"小明",sex:"男",age:"120",one: "1", two: "冰",three:"20160105",four:"小明",five:"男",six:"120",seven: "1", eight: "冰",nine:"20160105"},
-      {img: "1", style: "冰",num:"20160105",name:"小明",sex:"男",age:"120",one: "1", two: "冰",three:"20160105",four:"小明",five:"男",six:"120",seven: "1", eight: "冰",nine:"20160105"},
-      {img: "1", style: "冰",num:"20160105",name:"小明",sex:"男",age:"120",one: "1", two: "冰",three:"20160105",four:"小明",five:"男",six:"120",seven: "1", eight: "冰",nine:"20160105"}]
+     [{"applicationid":"a-001","frozenNo":"fn-001","infobaseId":1,"orderId":1,"pathologyNo":"py-001","patient":{"birthday":1484582400000,"patientId":1,"patientName":"tom","patientUid":"pid-001"},"patientId":1,"patientNo":"pno-001","status":1},{"applicationid":"a-001","frozenNo":"fn-001","infobaseId":1,"orderId":2,"pathologyNo":"py-001","patient":{"birthday":1484582400000,"patientId":2,"patientName":"jack","patientUid":"pid-002"},"patientId":2,"patientNo":"pno-001","status":1}]
     `);
   }
 }

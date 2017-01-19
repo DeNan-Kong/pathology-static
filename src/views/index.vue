@@ -126,7 +126,7 @@
                             <a class="advice" v-on:click="advice">医嘱列表(10)</a>
                             <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                         </div>
-                        1
+                        <embedding/>
                     </div>
                     <div class="tabs-section">
                         <div class="case-tabss">
@@ -135,7 +135,7 @@
                             <a class="advice" v-on:click="advice">医嘱列表(10)</a>
                             <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                         </div>
-                        2
+                        <medicalsection/>
                     </div>
                     <div class="tabs-advice">
                         <div class="case-tabss">
@@ -144,7 +144,7 @@
                             <a class="advice" v-on:click="advice">医嘱列表(10)</a>
                             <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                         </div>
-                        3
+                        <advice/>
                     </div>
                     <div class="tabs-filmmaking">
                         <div class="case-tabss">
@@ -257,6 +257,9 @@
     import Medicalmaterial from 'components/medicalmaterial';
     import Diagnostic from 'components/diagnostic';
     import Filmmaking from 'components/filmmaking';
+    import Embedding from 'components/embedding';
+    import Medicalsection from 'components/medicalsection';
+    import Advice from 'components/advice';
     export default{
         data(){
             return{
@@ -274,7 +277,10 @@
             "medicalmessage":Medicalmessage,
             "medicalmaterial":Medicalmaterial,
             "diagnostic":Diagnostic,
-            "filmmaking":Filmmaking
+            "filmmaking":Filmmaking,
+            "embedding":Embedding,
+            "medicalsection":Medicalsection,
+            "advice":Advice
         },
         methods:{
             medicalInformation:function(){

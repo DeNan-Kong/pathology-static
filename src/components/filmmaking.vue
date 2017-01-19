@@ -18,7 +18,7 @@
                 <p class="floatleft top-p-six">至</p>
                 <calendar/>
                 <p class="floatleft top-p-five"><input type="radio" checked>24小时范围内</p>
-                <button class="floatleft top-btn">查询</button>
+                <button class="floatleft top-btn" @click="shuju">查询</button>
                 <p class="floatleft top-p-four rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
                 <p class="floatleft top-p-four rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>未染色</p>
                 <p class="floatleft top-p-four rightp"><span class="bmobboximg floatleft checkspan nocheck" @click="nocheck"></span>未核对</p>
@@ -49,6 +49,12 @@
                         <th  class="table-five">染色人</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr v-for="data in list">
+                        <td>{{data[0]}}</td>
+                        <td>{{data.applicationid}}</td>
+                    </tr>
+                </tbody>
                 </table>
             </div>
             <div class="filmmaking-adddelete">
@@ -191,11 +197,10 @@ margin-top: 8px;
     color:#fff;
     margin-left: 2%;
     line-height: normal;
-
 }
 .filmmaking-bottom p{
     display: block;
-    margin-left: 50%;
+    margin-left: 47%;
     line-height: 40px;
 }
 .filmmaking-bottom-btnlong{
@@ -203,7 +208,6 @@ margin-top: 8px;
 }
 .table-two{
     width: 2%;
-
 }
 .table-three{
     width:3%;
@@ -231,9 +235,6 @@ margin-top: 8px;
     margin-left: 2%;
     margin-top: 12px;
 }
-.table-three{
-
-}
 .tablecheck{
     margin:auto;
 }
@@ -255,7 +256,6 @@ import $ from "jQuery"
         },
         methods:{
             noprint:function(){
-                console.log("000")
             if($(".noprint").hasClass("bmobboximg")){
                 $(".noprint").removeClass("bmobboximg").addClass("bmobboximgtwo");
                 }else{
@@ -282,6 +282,23 @@ import $ from "jQuery"
                     }else{
                     $(".checkall").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
                     }   
+            },
+            shuju:function(){
+                var _self = this;
+                $.ajax({
+                            type: 'POST',
+                            url: '/api/hello',
+                            data:{
+                                id:0
+                            },
+                            success:function(data) {
+                                var len=data.length;
+                                console.log(data)
+                               var obj=JSON.parse(data);
+                                _self.list=obj.slice(0,len-1)
+                                console.log( _self.list)
+                            }
+                        });
             }
         }
     }

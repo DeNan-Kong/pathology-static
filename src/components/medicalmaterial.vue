@@ -37,7 +37,7 @@
         <button class="material-top-del radius  material-top-btn">删除</button>
     </div>
     <div class="material-middle">
-      <table class="table ">
+      <table class="table">
           <thead>
             <tr>
                 <th>任务来源</th>
