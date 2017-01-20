@@ -1,6 +1,6 @@
  <template>
   <div>
- <div class="floatleft  p-margin ">
+ <div class="floatleft  p-margin www">
     <el-date-picker
       v-model="value1"
       type="date"

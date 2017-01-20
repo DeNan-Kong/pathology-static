@@ -156,9 +156,6 @@
     border-radius: 3px;
     color:#fff;
 }
-.el-date-editor.el-input{
-margin-top: 8px;
-}
 .top-p-six{
     width:2%;
 }

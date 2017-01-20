@@ -244,7 +244,7 @@
   background: url('../assets/images/material.png')  -8px -5px no-repeat;
   width:26px;
   height: 26px;
-  margin-left: 164px;
+  margin-left: 180px;
   margin-right: 2px;
   margin-top: -23px;
 }
@@ -253,23 +253,23 @@
   margin-left: 10px;
 }
 .dictionary-input{
-  width: 248px;
+  width: 264px;
   height: 30px;
   border-bottom: 1px solid #ccc;
   border:none;
   background: #fff;
 }
 .checkdictionary{
-  right: 260px;
+  right: 276px;
   top:140px;
   border-bottom-left-radius: 3px;
 }
 .commondictionary{
-  right: 260px;
+  right: 276px;
   top:70px;
 }
 .mydictionary{ 
-  right: 260px;
+  right: 276px;
   top:0px;
   border-top-left-radius: 3px; 
 }
@@ -281,12 +281,15 @@
   line-height: 16px;
   text-align: center;
   cursor: pointer;
+  font-size: 12px;
+  color:#999;
 }
 .dictionary-active{
   background: #c6e4ee;
+  color:#666;
 }
 .material-middle-right{
-  width: 250px;
+  width: 266px;
   height: 535px;
   border: 1px solid #ccc;
   background: #f9f9f9;
@@ -315,7 +318,7 @@
     height:26px;
     border-radius: 3px;
     float:left;
-    margin-left: 20px;
+    margin-left: 6px;
 }
 .material-image .picture-img{
     background: url('../assets/images/refresh.png.png') no-repeat;

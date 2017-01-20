@@ -203,7 +203,7 @@
                     <p class="floatleft p-one">病史摘要:</p>
                     <textarea  class="floatleft ill-abstract radium "  ref="write16"></textarea>
                     <p class="floatleft p-one">手术所见:</p>
-                    <input type="text"  class="floatleft ill-see radium "  ref="write17">
+                    <textarea type="text"  class="floatleft ill-see radium "  ref="write17"></textarea>
                 </div>
             </div>
             <div  class="left-button">
@@ -241,14 +241,14 @@
     color:#fff;
 }
 .case-content{
-    width: 996px;
+    width: 1020px;
     height: 68px;
     margin-left:14px;
     border-bottom: 1px solid #e5e5e5; 
 }
 .case-num{
     height:66px;
-    width: 996px;
+    width: 1020px;
     margin-top: 25px;
 }
 .radium-sup{
@@ -307,21 +307,22 @@
     width: 111px;
 }
 .input-doctor{
-    width:650px;
+    width:659px;
     margin-left: 10px;
 }
 .ill-abstract{
-    width:890px;
-    height: 117px;
+    width:920px;
+    height: 100px;
     margin-left: 10px;
     margin-top: 5px;
     overflow-y: scroll;
 }
 .ill-see{
-    width: 890px;
-    height: 24px;
+    width: 920px;
+    height: 54px;
     margin-left: 10px;
     margin-top: 5px;
+    overflow-y: scroll;
 }
 .left-button button{
     background:#428bca;
@@ -331,7 +332,7 @@
     border-radius:3px;
     margin-top: 24px;
     float: right;
-    margin-right: 15px;
+    margin-left: 15px;
 }
 .left-button{
     width: 996px;
@@ -349,7 +350,7 @@
     width:88px;
 }
 .left-bottom .picture-img,.left-bottom .refresh-img{
-    margin-left: 20px;
+    margin-left: 6px;
 }
 .left-bottom .picture-img{
     background: url('../assets/images/refresh.png.png')no-repeat;
@@ -360,7 +361,7 @@
 }
 .big-search-img{
     margin-left: -240px;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 .left-button button:hover{
     background:#3577af;

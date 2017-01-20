@@ -2,7 +2,7 @@
     <div>
         <div class="embedding-contains">
             <div class="embedding-top">
-               <p class="floatleft embedding-four">病理号:</p>
+               <p class="floatleft embedding-bingnum">病理号:</p>
                <input type="text"  class="floatleft radius common embedding-six">
                <p class="floatleft embedding-five">取材医生:</p>
                <form  class="floatleft embedding-six">
@@ -11,21 +11,31 @@
                       <option>二</option>
                     </select>
                 </form>
-                <form class="embedding-fourseven floatleft">
-                    <p class="floatleft"><input type="radio" checked name="time" class="floatleft radio">24小时</p>
-                    <input type="radio" name="time" class="floatleft radio embedding-three"><p class="floatleft">取材日期:</p>
+                   <input type="radio" checked name="time" class="floatleft radio "><p class="floatleft embedding-four radioleft">24小时</p>
+                    <input type="radio" name="time" class="floatleft radio "><p class="floatleft embedding-five radioleft">取材日期:</p>
                     <calendar/>
-                    <input type="radio" name="time" class="floatleft radio embedding-three"><p class="floatleft">时间范围:</p>
+                    <input type="radio" name="time" class="floatleft radio"><p class="floatleft embedding-five radioleft">时间范围:</p>
                     <calendar/>
                     <p class="floatleft">至</p>
                     <calendar/>
+                <a href="" class="floatleft embedding-four">脱钙(0)</a>
+                <a href="" class="floatleft embedding-four">冰冻(0)</a>
+                <form  class="floatleft embedding-five">
+                    <select class="radius common ">
+                      <option>未打印</option>
+                      <option>已打印</option>
+                    </select>
                 </form>
-                <a href="" class="floatleft embedding-five">脱钙（0）</a>
-                <a href="" class="floatleft embedding-five">冰冻（0）</a>
-                <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
-                <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>已包埋</p>
-                <button class="floatleft embedding-four" @click="shuju">查询</button>
-                <button class="floatleft embedding-four" @click="shuju">默认</button>
+                <form  class="floatleft embedding-five">
+                    <select class="radius common ">
+                      <option>未包埋</option>
+                      <option>已包埋</option>
+                    </select>
+                </form>
+                <!-- <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
+                <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>已包埋</p> -->
+                <button class="floatleft embedding-three" @click="shuju">查询</button>
+                <button class="floatleft embedding-three" @click="shuju">默认</button>
             </div>
             <div class="embedding-table">
                  <table class="table">
@@ -47,8 +57,10 @@
                         <th  class="table-five">制片状态</th>
                         <th  class="table-seven">核对时间</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
             <div class="embedding-bottom">
                 <div class="floatleft embedding-bottom-one"><p class="floatleft">提前</p><input type="text" class="floatleft embedding-bottom-text"><p class="floatleft">天确定</p></div>
@@ -62,16 +74,14 @@
     </div>
 </template>
 <style>
-.embedding-contains .el-date-editor.el-input{
-    width: 87%;
-    margin-left: 0px;
+.embedding-top .el-date-editor.el-input{
+    margin-left: -15px;
 }
-body .embedding-top .p-margin{
-    margin-left: -11px;
-    width: 148px;
+.radioleft{
+    text-align: left;
 }
-body .embedding-top .embedding-contains .el-date-editor.el-input{
-    width: 86%;
+body div .embedding-contains .embedding-top .el-date-editor .el-input{
+    width: 123px;
 }
 .embedding-contains{
     margin: 6px 5px;
@@ -84,11 +94,14 @@ body .embedding-top .embedding-contains .el-date-editor.el-input{
     line-height: 38px;
     text-align: center;
 }
+.embedding-bingnum{
+    width: 3.5%;
+}
 .embedding-one{
     width: 1%;
 }
 .embedding-five{
-    width: 5%;
+    width: 4.5%;
 }
 .embedding-four{
     width: 4%;
@@ -96,11 +109,7 @@ body .embedding-top .embedding-contains .el-date-editor.el-input{
 .embedding-six{
     width: 6%;
 }
-.embedding-fourseven{
-    width: 47%;
-    height: 38px;
-}
-.embedding-fourseven .radio{
+.embedding-top .radio{
     margin-top: 13px;
 }
 .embedding-thre{
@@ -111,11 +120,14 @@ body .embedding-top .embedding-contains .el-date-editor.el-input{
     height:24px;
     background: #428bca;
     border-radius: 3px;
-    margin-left:3px;
+    margin-left:5px;
     margin-top: 7px;
     line-height: 24px;
     color:#fff;
 }
+.embedding-top button:hover{
+    background: #3577af;
+    }
 .embedding-table{
     width: 100%;
     height: 528px;
@@ -137,6 +149,9 @@ body .embedding-top .embedding-contains .el-date-editor.el-input{
     text-align: center;
     margin-left: 2%;
 }
+.embedding-bottom button:hover{
+    background: #3577af;
+}
 .embedding-bottom p{
     display: block;
 }
@@ -144,9 +159,9 @@ body .embedding-top .embedding-contains .el-date-editor.el-input{
     margin-left: 51%;
 }
 .embedding-bottom-text{
-    width: 28px;
-    height: 28px;
-    margin: 6px;
+    width: 22px;
+    height: 22px;
+    margin: 7px;
 }
 .embedding-bottom-two{
     margin-left:20px;

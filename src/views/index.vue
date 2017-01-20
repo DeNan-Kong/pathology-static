@@ -167,16 +167,16 @@
     width: 100%;
 }
 #diagnostic{
-  display: none; 
-}
-#materials{
-    display: none;
-}
-#register{
    display: none;
 }
+#materials{
+   display: none;   
+}
+#register{
+ display: none;
+}
 #filmmaking{
- 
+  
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
@@ -219,7 +219,7 @@
     width: 100%;
     height:30px;
     background: red;
-    min-width: 1340px;
+    min-width: 1330px;
 }
 .case-tabss>a{
     display:block;
@@ -239,6 +239,9 @@
 .case-tabss .filmmakingactive{
     background: #57bdde;
      color: #fff;
+}
+#middle-left .medicalPay{
+    width: 38px;
 }
 .tabs-embedding,.tabs-section,.tabs-advice,.tabs-filmmaking{
     width:100%;

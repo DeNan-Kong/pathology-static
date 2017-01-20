@@ -42,6 +42,10 @@
         <p class="floatleft">送检院别：</p><span class="floatleft  diagnostic-message-span2">本院</span><p class="floatleft">送检科室：</p><span class="floatleft  diagnostic-message-span2">外一科</span><p class="floatleft">送检医生：</p><span class="floatleft  diagnostic-message-span2">李医生</span><p class="floatleft">送检材料：</p><span class="floatleft  diagnostic-message-span2">宫颈刮片</span>
         <p class="floatleft">临床诊断：</p>
       </div>
+      <div  class="diagnostic-message-picture">
+        <p>附图</p>
+
+      </div>
       <div class="diagnostic-message-text">
         <p>肉眼检查</p>
         <textarea></textarea>
@@ -50,10 +54,7 @@
         <p>病理诊断</p>
         <textarea></textarea>
       </div>
-      <div  class="diagnostic-message-picture">
-        <p>附图</p>
-
-      </div>
+      
       <div  class="diagnostic-message-bottom">
         <div class="diagnostic-one floatleft">
           <p  class="floatleft">病&nbsp;理&nbsp;医&nbsp;生：</p><span  class="floatleft">李雄丽</span>
@@ -247,7 +248,10 @@
   width:490px;
   height: 30px;
 }
-
+.diagnostic-right-search2 img{
+  margin-top: 7px;
+  margin-left: 3px;
+}
 .diagnostic-message-bottom{
   width:660px;
   height: 180px;
@@ -381,8 +385,9 @@
   top:38px;
 }
 .diagnostic-right-iptmesssage{
+  margin-top: 10px;
   width:324px;
-  height: 170px;
+  height: 180px;
   margin-top: 380px;
   margin-left: -10px;
 }
@@ -425,12 +430,12 @@ body .iptmesssage-p-long{
 .diagnostic-right-a a{
   display: block;
   width: 80px;
-  height: 26px;
+  height: 32px;
   text-decoration: underline;
   color: #2eacd5;
 }
 .diagnostic-right-a .rightnone{
-  width: 57px;
+  width: 77px;
 }
 .diagnostic-right-bottom{
   width:310px;

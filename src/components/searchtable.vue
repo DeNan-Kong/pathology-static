@@ -45,12 +45,13 @@
             <div  class="bmobboximg floatleft checkbox  h checkbox-two" id="f"  v-on:click="changecheckbox8"></div><p  class="floatleft  cannotsee">模糊</p>
             <button  class="select-search-btn" v-on:click="find">提取</button>
         </div>
+        <div class="clear"></div>
         <div   class="table-show">
             <table class="table ">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        
+                        <th class="table-show-one"></th>
                         <th  class="th-three">病理号</th>
                         <th>姓名</th>
                         <th>性别</th>
@@ -68,8 +69,8 @@
                 </thead>
                 <tbody>
                     <tr >
-                        <td><!-- <img src="../image/imagehistory.png" class="table-image"> --></td>
-                        <td  ></td>
+                        <td class="table-show-one"><!-- <img src="../image/imagehistory.png" class="table-image"> --></td>
+        
                         <td>3001</td>
                         <td>张华</td>
                         <td>男</td>
@@ -82,8 +83,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr class="selected">
-                        <td></td>
-                        <td>7</td>
+                       
+                        <td class="table-show-one">7</td>
                         <td class="blue-bg">3002</td>
                         <td>小强</td>
                         <td>男</td>
@@ -96,8 +97,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                   
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -110,8 +111,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                     
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -124,8 +125,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                       
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -138,8 +139,8 @@
                         <td>20106235261</td>
                     </tr>
                      <tr >
-                        <td><!-- <img src="../image/imagehistory.png" class="table-image"> --></td>
-                        <td>冰</td>
+                        
+                        <td class="table-show-one">冰</td>
                         <td>3001</td>
                         <td>张华</td>
                         <td>男</td>
@@ -152,8 +153,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr class="selected">
-                        <td></td>
-                        <td>7</td>
+                       
+                        <td class="table-show-one">7</td>
                         <td class="blue-bg">3002</td>
                         <td>小强</td>
                         <td>男</td>
@@ -166,8 +167,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                  
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -180,8 +181,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                       
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -194,8 +195,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                    
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -208,8 +209,8 @@
                         <td>20106235261</td>
                     </tr>
                      <tr >
-                        <td><!-- <img src="../image/imagehistory.png" class="table-image"> --></td>
-                        <td>冰</td>
+                        
+                        <td class="table-show-one">冰</td>
                         <td>3001</td>
                         <td>张华</td>
                         <td>男</td>
@@ -222,8 +223,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr class="selected">
-                        <td></td>
-                        <td>7</td>
+                     
+                        <td class="table-show-one">7</td>
                         <td class="blue-bg">3002</td>
                         <td>小强</td>
                         <td>男</td>
@@ -236,8 +237,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+                  
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -250,8 +251,8 @@
                         <td>20106235261</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>冰</td>
+               
+                        <td class="table-show-one">冰</td>
                         <td>3003</td>
                         <td>小王</td>
                         <td>男</td>
@@ -280,17 +281,17 @@
         <div class="bmobbox-body">
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">送检日期&nbsp;:&nbsp;<p>
-                <input  type="text"  class="bmobboxinput  floatleft">
+                 <calendar/>
                 <p  class="floatleft  zhi">至</p>
-                <input  type="text"  class="bmobboxinput  floatleft">
-                <div  class="bmobboximg e floatleft"  id="h"  v-on:click="changecheckbox5"></div>
+               <calendar/>
+                <div  class="bmobboximg e floatleft teshudate" v-on:click="changecheckbox5"></div>
             </div>
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">报告日期&nbsp;:&nbsp;<p>
-                <input  type="text"  class="bmobboxinput  floatleft">
+                <calendar/>
                 <p  class="floatleft  zhi">至</p>
-                <input  type="text"  class="bmobboxinput  floatleft">
-                <div  class="bmobboximg f floatleft"  id="i"  v-on:click="changecheckbox6"></div>
+                <calendar/>
+                <div  class="bmobboximg f floatleft teshudate" v-on:click="changecheckbox6"></div>
                 
             </div>
             <div class="bmobboxone">
@@ -417,6 +418,9 @@
     color:#2eacd5;
     padding:0px;
 }
+.teshudate{
+    margin-left: 15px;
+}
 .bmobboximg{
     width: 20px;
     height: 20px;
@@ -532,10 +536,17 @@
     margin-right: 25px;
 }
 .zhi{
-    margin-right: 25px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.table-show{
+    width:100%;
+    min-width:255px;
+    height: 425px;
+    overflow: scroll;
 }
 .table-show .table th:first-child,.table-show .table td:first-child{
-    width:30px;
+    width:48px;
 }
 #middle-right{
     margin-top: -650px;
@@ -689,6 +700,7 @@
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     border:1px solid #ccc;
+    padding-left:30px;
 }
 .big-search-sel{
     width:66px;
@@ -743,6 +755,9 @@ input[type='checkbox'] .checkbox-one{
 }
 .urgecolor{
     color:#c94646;
+}
+body .table-show-one{
+    width: 48px;
 }
 </style>
 <script>
