@@ -1,40 +1,39 @@
- <template>
+<template>
 <div>
    <div class="embedding-contains">
       <div class="section-top advice-top">
-         <p class="floatleft advice-three">病理号:</p>
-         <input type="text"  class="floatleft radius common embedding-six">
-          
-              <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft embedding-three section-top-p">24小时</p>
-              <input type="radio" name="time" class="floatleft radio "><p class="floatleft section-four">申请日期:</p>
-              <calendar/>
-              <input type="radio" name="time" class="floatleft radio "><p class="floatleft section-three">时间范围:</p>
-              <calendar/>
-              <p class="floatleft  zzz">至</p>
-              <calendar/>
-              <p class="floatleft embedding-threefive">医嘱类型：</p>
-              <form  class="floatleft embedding-six">
-                  <select class="radius common ">
-                    <option>欧阳娜娜</option>
-                    <option>二</option>
-                  </select>
-              </form>
-              <p class="floatleft embedding-threefive">医嘱状态：</p>
-              <form  class="floatleft embedding-five">
-                  <select class="radius common ">
-                    <option>已医嘱</option>
-                    <option>未医嘱</option>
-                  </select>
-              </form>
-              <p class="floatleft">收费状态：</p>
-              <form  class="floatleft embedding-five">
-                  <select class="radius common ">
-                    <option>已收费</option>
-                    <option>未收费</option>
-                  </select>
-              </form>
-              <button class="floatleft section-top-btn">查询</button>
-              <button class="floatleft section-top-btn">默认</button>
+          <p class="floatleft advice-three">病理号:</p>
+          <input type="text"  class="floatleft radius common embedding-six">
+          <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft embedding-three section-top-p">24小时</p>
+          <input type="radio" name="time" class="floatleft radio "><p class="floatleft section-four">申请日期:</p>
+          <calendar/>
+          <input type="radio" name="time" class="floatleft radio "><p class="floatleft section-three">时间范围:</p>
+          <calendar/>
+          <p class="floatleft  zzz">至</p>
+          <calendar/>
+          <p class="floatleft embedding-threefive">医嘱类型：</p>
+          <form  class="floatleft embedding-six">
+              <select class="radius common ">
+                <option>免疫组化</option>
+                <option>已执行</option>
+              </select>
+          </form>
+          <p class="floatleft embedding-threefive">医嘱状态：</p>
+          <form  class="floatleft embedding-five">
+              <select class="radius common ">
+                <option>未执行</option>
+                <option>已执行</option>
+              </select>
+          </form>
+          <p class="floatleft">收费状态：</p>
+          <form  class="floatleft embedding-five">
+              <select class="radius common ">
+                <option>已收费</option>
+                <option>未收费</option>
+              </select>
+          </form>
+          <button class="floatleft section-top-btn">查询</button>
+          <button class="floatleft section-top-btn">默认</button>
       </div>
       <div class="section-table">
         <table class="table">
@@ -57,9 +56,9 @@
                   <th  class="table-five">执行人</th>
                   <th  class="table-five">执行时间</th>
               </tr>
-              </thead>
-              <tbody>
-              </tbody>
+          </thead>
+          <tbody>
+          </tbody>
         </table>    
         </div>
         <div class="section-bottom">
@@ -88,7 +87,6 @@
   margin-top: 12px;
   margin-left: 1px;
 }
-
 .advice-top .section-top-btn{
    width: 3%;
     height:24px;
@@ -121,7 +119,7 @@ thead{
   line-height: 36px;
 }
 .section-bottom-one{
-  margin-left: 71%;
+  margin-left: 66%;
 }
 .section-bottom input{
   width:20px;

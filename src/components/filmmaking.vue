@@ -4,24 +4,35 @@
             <div class="filmmaking-top">
                 <p class="floatleft top-p-one">病理号:</p>
                 <input type="text"  class="floatleft top-ipt radius common"> 
-                 <p class="floatleft top-p-two">分组:</p>
+                 <p class="floatleft top-p-three">任务来源:</p>
                  <form  class="floatleft top-form">
                     <select class="radius common ">
-                      <option>一</option>
+                      <option>免疫组化</option>
                       <option>二</option>
                     </select>
                 </form>
-                <p class="floatleft top-p-three">制片时间:</p>
+                <input type="radio" checked name="filmmakingdate" class="floatleft filmmakingradio"><p class="floatleft top-p-two radioleft">24小时</p>
+                <input type="radio" class="floatleft filmmakingradio" name="filmmakingdate">
+                <p class="floatleft top-p-form radioleft">制片时间:</p>
                 <calendar/>
-                <p class="floatleft top-p-four">时间范围:</p>
+                <input type="radio" class="floatleft filmmakingradio" name="filmmakingdate">
+                <p class="floatleft top-p-form radioleft">时间范围:</p>
                 <calendar/>
                 <p class="floatleft top-p-six">至</p>
                 <calendar/>
-                <p class="floatleft top-p-five"><input type="radio" checked>24小时范围内</p>
+                 <form  class="floatleft top-p-four">
+                    <select class="radius common ">
+                      <option>未打印</option>
+                      <option>已打印</option>
+                    </select>
+                </form>
+                 <form  class="floatleft top-p-four">
+                    <select class="radius common ">
+                      <option>未核对</option>
+                      <option>已核对</option>
+                    </select>
+                </form>
                 <button class="floatleft top-btn" @click="shuju">查询</button>
-                <p class="floatleft top-p-four rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
-                <p class="floatleft top-p-four rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>未染色</p>
-                <p class="floatleft top-p-four rightp"><span class="bmobboximg floatleft checkspan nocheck" @click="nocheck"></span>未核对</p>
             </div>
             <div class="filmmaking-table">
                 <table class="table">
@@ -121,6 +132,16 @@
     line-height: 40px;
     text-align: center;
 } 
+.filmmaking-top .radioleft{
+    text-align: left;
+}
+.filmmaking-top .p-margin{
+    margin-top: 8px;
+}
+.filmmaking-top .filmmakingradio{
+    margin-top: 13px;
+    margin-left: 3px;
+}
 .top-p-one{
     width: 4%;
 } 
@@ -128,19 +149,20 @@
     width: 8%;
 }
 .top-p-two{
-    width: 3%;
+    width: 3.5%;
 }
 .filmmaking-top .rightp{
     text-align: left;
 }
 .top-form{
-    width: 3%;
+    width: 6.2%;
 }
 .top-p-three{
-    width: 5%;
+    width: 4.7%;
 }
 .top-p-four{
-    width: 6%;
+    width: 5.5%;
+    text-align: center;
 } 
 .top-p-five{
     width: 8%;

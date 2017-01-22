@@ -7,14 +7,17 @@
                <p class="floatleft embedding-five">取材医生:</p>
                <form  class="floatleft embedding-six">
                     <select class="radius common ">
-                      <option>欧阳娜娜</option>
-                      <option>二</option>
+                        <option>欧阳娜娜</option>
+                        <option>二</option>
                     </select>
                 </form>
-                   <input type="radio" checked name="time" class="floatleft radio "><p class="floatleft embedding-four radioleft">24小时</p>
-                    <input type="radio" name="time" class="floatleft radio "><p class="floatleft embedding-five radioleft">取材日期:</p>
+                    <input type="radio" checked name="time" class="floatleft radio ">
+                    <p class="floatleft embedding-four radioleft">24小时</p>
+                    <input type="radio" name="time" class="floatleft radio ">
+                    <p class="floatleft embedding-five radioleft">取材日期:</p>
                     <calendar/>
-                    <input type="radio" name="time" class="floatleft radio"><p class="floatleft embedding-five radioleft">时间范围:</p>
+                    <input type="radio" name="time" class="floatleft radio">
+                    <p class="floatleft embedding-five radioleft">时间范围:</p>
                     <calendar/>
                     <p class="floatleft">至</p>
                     <calendar/>
@@ -22,8 +25,8 @@
                 <a href="" class="floatleft embedding-four">冰冻(0)</a>
                 <form  class="floatleft embedding-five">
                     <select class="radius common ">
-                      <option>未打印</option>
-                      <option>已打印</option>
+                       <option>未打印</option>
+                       <option>已打印</option>
                     </select>
                 </form>
                 <form  class="floatleft embedding-five">
@@ -34,31 +37,34 @@
                 </form>
                 <!-- <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
                 <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>已包埋</p> -->
-                <button class="floatleft embedding-three" @click="shuju">查询</button>
-                <button class="floatleft embedding-three" @click="shuju">默认</button>
+                <button class="floatleft embedding-three" >查询</button>
+                <button class="floatleft embedding-three" >默认</button>
             </div>
-            <div class="embedding-table">
+            <div class="embedding-table" id="s">
                  <table class="table">
                     <thead>
-                    <tr>
-                        <th class="table-three"><p class="bmobboximg tablecheck checkall" @click="checkall"></p></th>
-                        <th  class="table-eight">病理号</th>
-                        <th class="table-six">任务来源</th>
-                        <th class="table-six">材块号</th>
-                        <th  class="table-five">姓名</th>
-                        <th  class="table-three">性别</th>
-                        <th  class="table-three">年龄</th>
-                        <th  class="table-five">取材部位</th>
-                        <th  class="table-five">材块数</th>
-                        <th  class="table-seven">取材医生</th>
-                        <th  class="table-five">取材日期</th>
-                        <th  class="table-five">材块核对</th>
-                        <th  class="table-five">打印状态</th>
-                        <th  class="table-five">制片状态</th>
-                        <th  class="table-seven">核对时间</th>
-                    </tr>
+                        <tr>
+                            <th class="table-three"><p class="bmobboximg tablecheck checkall" @click="checkall"></p></th>
+                            <th  class="table-eight">病理号</th>
+                            <th class="table-six">任务来源</th>
+                            <th class="table-six">材块号</th>
+                            <th  class="table-five">姓名</th>
+                            <th  class="table-three">性别</th>
+                            <th  class="table-three">年龄</th>
+                            <th  class="table-five">取材部位</th>
+                            <th  class="table-five">材块数</th>
+                            <th  class="table-seven">取材医生</th>
+                            <th  class="table-five">取材日期</th>
+                            <th  class="table-five">材块核对</th>
+                            <th  class="table-five">打印状态</th>
+                            <th  class="table-five">制片状态</th>
+                            <th  class="table-seven">核对时间</th>
+                        </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-em">
+                        <tr  >
+                            
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -170,14 +176,56 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
 <script>
 import $ from "jQuery"
 import Calendar from 'components/calendar';
+import Vue from 'vue';
     export default{
         data(){
+           
             return{
-                msg:'hello vue'
+                commits: null,
+                apiURL:"/api/hello"
             }
         },
         components:{
            "calendar":Calendar, 
+        },
+        created(){ // 生命周期 created,获取数据
+          this.fetchData()
+        },
+        watch: {  // 观测变化,可以是值也可以是方法
+             
+            },
+        methods:{
+            fetchData:function(){
+                var xhr = new XMLHttpRequest()
+                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                xhr.open('GET', this.apiURL)
+                xhr.onload = function () {
+                self.commits = JSON.parse(xhr.responseText);
+                console.log(self.commits)
+                console.log(self.commits.length)
+                var len=self.commits.length;
+                console.log(self.commits[0].applicationid)
+                for(var i=0;i<len;i++){
+                    var ll="<tr><td>"+self.commits[i].applicationid+"</tr></td>"
+                   $(".table-em").append(ll);
+                }
         }
+        xhr.send()
     }
+    //  async fetchData(){
+    // const response = await fetch('/api/hello');
+    //             if(response.ok){
+    //                 console.log("__________________");
+    //                 this.content = await response.text();
+    //                 var self=this;
+    //                 console.log(this.content);
+                  
+    //                self.commits=JSON.parse(this.content);
+
+    //                 console.log(self.commits.length);
+    //                 console.log(self.commits[0].applicationid)
+    //             }
+    //         }
+}
+};
 </script>

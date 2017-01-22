@@ -34,7 +34,7 @@
         </div>
         <searchtable/>
     </div>
-     <div id="materials">
+    <div id="materials">
         <top-menu/>
         <div  id="middle-left">
             <div class="middle-message">
@@ -118,44 +118,42 @@
         <top-menu/>
         <div  id="filmmaking-main">
            <div class="filmmaking-main">
-               
-                    <div class="tabs-embedding">
-                        <div class="case-tabss">
-                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
-                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                        </div>
-                        <embedding/>
+                <div class="tabs-embedding">
+                    <div class="case-tabss">
+                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <div class="tabs-section">
-                        <div class="case-tabss">
-                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
-                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                        </div>
-                        <medicalsection/>
+                    <embedding/>
+                </div>
+                <div class="tabs-section">
+                    <div class="case-tabss">
+                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <div class="tabs-advice">
-                        <div class="case-tabss">
-                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
-                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                        </div>
-                        <advice/>
+                    <medicalsection/>
+                </div>
+                <div class="tabs-advice">
+                    <div class="case-tabss">
+                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <div class="tabs-filmmaking">
-                        <div class="case-tabss">
-                            <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                            <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                            <a class="advice" v-on:click="advice">医嘱列表(10)</a>
-                            <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                        </div>
-                        <filmmaking/>
+                    <advice/>
+                </div>
+                <div class="tabs-filmmaking">
+                    <div class="case-tabss">
+                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-              
+                    <filmmaking/>
+                </div>
            </div>    
         </div>
      </div>
@@ -173,10 +171,10 @@
    display: none;   
 }
 #register{
- display: none;
+  display: none;
 }
 #filmmaking{
-  
+ 
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
@@ -238,7 +236,7 @@
 }
 .case-tabss .filmmakingactive{
     background: #57bdde;
-     color: #fff;
+    color: #fff;
 }
 #middle-left .medicalPay{
     width: 38px;
@@ -364,8 +362,6 @@
                 $('.tabs-advice').css('display','none');
                 $('.tabs-embedding').css('display','none');
             }
-
-
     },
     value1: '',
 }

@@ -2,17 +2,16 @@
 <div>
    <div class="embedding-contains">
       <div class="section-top">
-         <p class="floatleft embedding-four">病理号:</p>
-         <input type="text"  class="floatleft radius common embedding-six">
-          
-              <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft section-three section-top-p">24小时</p>
-              <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four">取材日期:</p>
-              <calendar/>
-              <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four">时间范围:</p>
-              <calendar/>
-              <p class="floatleft  zzz">至</p>
-              <calendar/>
-              <button class="floatleft section-top-btn">查询</button>
+          <p class="floatleft embedding-four">病理号:</p>
+          <input type="text"  class="floatleft radius common embedding-six">
+          <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft section-three section-top-p">24小时</p>
+          <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four">取材日期:</p>
+          <calendar/>
+          <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four">时间范围:</p>
+          <calendar/>
+          <p class="floatleft  zzz">至</p>
+          <calendar/>
+          <button class="floatleft section-top-btn">查询</button>
       </div>
       <div class="section-table">
         <table class="table">
@@ -29,9 +28,9 @@
                   <th  class="table-five">包埋日期</th>
                   <th  class="table-seven">切片数</th>
               </tr>
-              </thead>
-              <tbody>
-              </tbody>
+            </thead>
+            <tbody>
+            </tbody>
         </table>    
         </div>
         <div class="section-bottom">
@@ -68,7 +67,7 @@
 }
 .section-four{
   width: 4.5%;
-  text-align: center;
+  text-align: left;
 }
 thead{
   height: 31px;
@@ -101,7 +100,6 @@ thead{
 .ection-bottom-two{
   margin-left: 2%;
 }
-
 .ection-bottom-btn{
   width:76px;
   height: 36px;
