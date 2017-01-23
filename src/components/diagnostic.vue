@@ -37,40 +37,38 @@
        <p class="diagnostic-middle-font">病理检查报告单</p>
        <span class="diagnostic-middle-span">病检号：CC131224000</span>
      </div>
-      <div class="diagnostic-message">
-        <p  class="floatleft">姓名：</p><span class="floatleft  diagnostic-message-span">组织常规</span><p class="floatleft">性别：</p><span class="floatleft  diagnostic-message-span">女</span><p class="floatleft">年龄：</p><span class="floatleft  diagnostic-message-span">76</span><p class="floatleft">收到时间：</p><span class="floatleft  diagnostic-message-span">2016.09.07</span>
-        <p class="floatleft">送检院别：</p><span class="floatleft  diagnostic-message-span2">本院</span><p class="floatleft">送检科室：</p><span class="floatleft  diagnostic-message-span2">外一科</span><p class="floatleft">送检医生：</p><span class="floatleft  diagnostic-message-span2">李医生</span><p class="floatleft">送检材料：</p><span class="floatleft  diagnostic-message-span2">宫颈刮片</span>
-        <p class="floatleft">临床诊断：</p>
+    <div class="diagnostic-message">
+      <p  class="floatleft">姓名：</p><span class="floatleft  diagnostic-message-span">组织常规</span><p class="floatleft">性别：</p><span class="floatleft  diagnostic-message-span">女</span><p class="floatleft">年龄：</p><span class="floatleft  diagnostic-message-span">76</span><p class="floatleft">收到时间：</p><span class="floatleft  diagnostic-message-span">2016.09.07</span>
+      <p class="floatleft">送检院别：</p><span class="floatleft  diagnostic-message-span2">本院</span><p class="floatleft">送检科室：</p><span class="floatleft  diagnostic-message-span2">外一科</span><p class="floatleft">送检医生：</p><span class="floatleft  diagnostic-message-span2">李医生</span><p class="floatleft">送检材料：</p><span class="floatleft  diagnostic-message-span2">宫颈刮片</span>
+      <p class="floatleft">临床诊断：</p>
+    </div>
+    <div  class="diagnostic-message-picture">
+      <p>附图</p>
+    </div>
+    <div class="diagnostic-message-text">
+      <p>肉眼检查</p>
+      <textarea></textarea>
+      <p>镜下所见</p>
+      <textarea></textarea>
+      <p>病理诊断</p>
+      <textarea></textarea>
+    </div>
+    <div  class="diagnostic-message-bottom">
+      <div class="diagnostic-one floatleft">
+        <p  class="floatleft">病&nbsp;理&nbsp;医&nbsp;生：</p><span  class="floatleft">李雄丽</span>
       </div>
-      <div  class="diagnostic-message-picture">
-        <p>附图</p>
-
+        <p  class="floatleft diagnostic-two">诊&nbsp;断&nbsp;日&nbsp;期：</p><span  class="floatleft">2017.01.01</span>
+      <div class="clear"></div>
+      <div class="diagnostic-three" >
+        <p  class="floatleft ">上&nbsp;级&nbsp;医&nbsp;师：</p><span  class="floatleft">李伟</span>
       </div>
-      <div class="diagnostic-message-text">
-        <p>肉眼检查</p>
-        <textarea></textarea>
-        <p>镜下所见</p>
-        <textarea></textarea>
-        <p>病理诊断</p>
-        <textarea></textarea>
+      <div class="clear"></div>
+      <div class="diagnostic-three">
+        <p  class="floatleft"><strong>*此报告仅供临床参考，如有不符请及时联系！</strong></p>
       </div>
-      
-      <div  class="diagnostic-message-bottom">
-        <div class="diagnostic-one floatleft">
-          <p  class="floatleft">病&nbsp;理&nbsp;医&nbsp;生：</p><span  class="floatleft">李雄丽</span>
-        </div>
-          <p  class="floatleft diagnostic-two">诊&nbsp;断&nbsp;日&nbsp;期：</p><span  class="floatleft">2017.01.01</span>
-        <div class="clear"></div>
-        <div class="diagnostic-three" >
-            <p  class="floatleft ">上&nbsp;级&nbsp;医&nbsp;师：</p><span  class="floatleft">李伟</span>
-        </div>
-        <div class="clear"></div>
-        <div class="diagnostic-three">
-            <p  class="floatleft"><strong>*此报告仅供临床参考，如有不符请及时联系！</strong></p>
-        </div>
-         <div class="clear"></div>
-        <p  class="floatleft"><strong>*电话：024-86291312</stron</p>
-      </div>
+      <div class="clear"></div>
+      <p  class="floatleft"><strong>*电话：024-86291312</stron</p>
+    </div>
   </div>
   <div class="diagnostic-right">
     <div class="diagnostic-right-top">
@@ -94,7 +92,7 @@
           <div class="dictionary-search2">
             <ul>
               <li>肿物通用
-              <p class="menus-img"><p>
+                <p class="menus-img"><p>
               </li>
               <li>通用2
                 <p class="menus-img"><p>
@@ -106,7 +104,7 @@
                 <p class="menus-img"><p>
               </li>
               <li>肺组织
-                  <p class="menus-img"><p>
+                <p class="menus-img"><p>
               </li>
               <li>胃
                 <p class="menus-img"><p>
@@ -259,8 +257,7 @@
 .diagnostic-middle-top{
   width: 664px;
   height: 125px;
-  border-bottom: 1px solid #000;
-  
+  border-bottom: 1px solid #000;  
   line-height: 50px;
 }
 .diagnostic-message{

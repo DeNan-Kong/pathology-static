@@ -37,14 +37,16 @@
                 </form>
                 <!-- <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
                 <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>已包埋</p> -->
-                <button class="floatleft embedding-three" >查询</button>
-                <button class="floatleft embedding-three" >默认</button>
+                <button class="floatleft embedding-three">查询</button>
+                <button class="floatleft embedding-three">默认</button>
+                <div>   
+</div> 
             </div>
             <div class="embedding-table" id="s">
                  <table class="table">
                     <thead>
                         <tr>
-                            <th class="table-three"><p class="bmobboximg tablecheck checkall" @click="checkall"></p></th>
+                            <th class="table-three"><p class="bmobboximg tablecheck checkall embeddingcheckall" id="0" @click="embeddingcheckall"></p></th>
                             <th  class="table-eight">病理号</th>
                             <th class="table-six">任务来源</th>
                             <th class="table-six">材块号</th>
@@ -62,8 +64,23 @@
                         </tr>
                     </thead>
                     <tbody class="table-em">
-                        <tr  >
-                            
+                        <tr v-for="item in items">
+                            <td><p  class='bmobboximg tablecheck checkall first checkone' 
+                                @click="embeddingcheck" :id="item.id"></p></td>
+                            <td>{{item.patient.patientId}}</td>
+                            <td>{{item.patient.task}}</td>
+                            <td>{{item.patient.cainum}}</td>
+                            <td>{{item.patient.cainum}}</td>
+                            <td>{{item.patient.sex}}</td>
+                            <td>{{item.patient.age}}</td>
+                            <td>{{item.patient.position}}</td>
+                            <td>{{item.patient.kuainum}}</td>
+                            <td>{{item.patient.doctor}}</td>
+                            <td>{{item.patient.date}}</td>
+                            <td>{{item.patient.check}}</td>
+                            <td>{{item.patient.statu}}</td>
+                            <td>{{item.patient.zhistatus}}</td>
+                            <td>{{item.patient.checktime}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -139,6 +156,7 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
     height: 528px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+    overflow-y:scroll; 
 }
 .embedding-bottom{
     width: 100%;
@@ -181,7 +199,7 @@ import Vue from 'vue';
         data(){
            
             return{
-                commits: null,
+                items: null,
                 apiURL:"/api/hello"
             }
         },
@@ -196,22 +214,35 @@ import Vue from 'vue';
             },
         methods:{
             fetchData:function(){
+                var items=null;
                 var xhr = new XMLHttpRequest()
                 var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
-                xhr.open('GET', this.apiURL)
+                xhr.open('POST', this.apiURL)
                 xhr.onload = function () {
-                self.commits = JSON.parse(xhr.responseText);
-                console.log(self.commits)
-                console.log(self.commits.length)
-                var len=self.commits.length;
-                console.log(self.commits[0].applicationid)
-                for(var i=0;i<len;i++){
-                    var ll="<tr><td>"+self.commits[i].applicationid+"</tr></td>"
-                   $(".table-em").append(ll);
-                }
+                self.items = JSON.parse(xhr.responseText);
+                console.log(self.items)
         }
         xhr.send()
-    }
+    },
+    embeddingcheck:function(e){
+        var checkid=$(e.target).attr("id");
+        console.log(checkid)
+        if($("#"+checkid).hasClass('bmobboximg')){
+        $("#"+checkid).removeClass("bmobboximg").addClass("bmobboximgtwo");
+        }else{
+        $("#"+checkid).addClass("bmobboximg").removeClass("bmobboximgtwo");
+            }
+       },
+    embeddingcheckall:function(){
+        if($('.embeddingcheckall').hasClass('bmobboximg')){
+            $(".embeddingcheckall").removeClass("bmobboximg").addClass("bmobboximgtwo");
+            $(".checkone").removeClass("bmobboximg").addClass("bmobboximgtwo");
+            }else{
+            $(".embeddingcheckall").removeClass("bmobboximgtwo").addClass("bmobboximg");
+            $(".checkone").addClass("bmobboximg").removeClass("bmobboximgtwo"); 
+                }
+        }    
+       }
     //  async fetchData(){
     // const response = await fetch('/api/hello');
     //             if(response.ok){
@@ -226,6 +257,6 @@ import Vue from 'vue';
     //                 console.log(self.commits[0].applicationid)
     //             }
     //         }
-}
+
 };
 </script>
