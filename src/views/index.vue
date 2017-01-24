@@ -120,39 +120,39 @@
            <div class="filmmaking-main">
                 <div class="tabs-embedding">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
                         <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <embedding/>
+                    <embedding :item="(lists)" :get-datas="fetchData" />
                 </div>
                 <div class="tabs-section">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
                         <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <medicalsection/>
+                    <medicalsection :list="(lists)" />
                 </div>
                 <div class="tabs-advice">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
                         <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <advice/>
+                    <advice :nums="(lists)" />
                 </div>
                 <div class="tabs-filmmaking">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="embedding">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="section">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="advice">医嘱列表(10)</a>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
                         <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
                     </div>
-                    <filmmaking/>
+                    <filmmaking :datas="(lists)"/>
                 </div>
            </div>    
         </div>
@@ -264,9 +264,15 @@
     export default{
         data(){
             return{
+                aa:10,
                 pickerOptions0: {
                disabledDate(time) {
                  return time.getTime() < Date.now() - 8.64e7;
+                 this.state={
+            
+                lists:[],//初始白名单为空
+                
+                };
             }
         }
     }
@@ -294,7 +300,6 @@
                 $('.tabs-check').css('display','none');
             },
             medicalMaterials:function(){
-                console.log("-------")
                 $(".medicalMaterials").addClass("active");
                 $(".medicalMaterials").siblings().removeClass("active");
                 $('.tabs-materials').css('display','block');
@@ -330,30 +335,6 @@
                 $('.tabs-img').css('display','none');
                 $(".tabs-materials").css('display','none');
             },
-            embedding:function(){
-                $(".embedding").addClass("filmmakingactive");
-                $(".embedding").siblings().removeClass("filmmakingactive");
-                $('.tabs-embedding').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-            },
-            section:function(){
-                $(".section").addClass("filmmakingactive");
-                $(".section").siblings().removeClass("filmmakingactive");
-                $('.tabs-section').css('display','block');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-            },
-            advice:function(){
-                $(".advice").addClass("filmmakingactive");
-                $(".advice").siblings().removeClass("filmmakingactive");
-                $('.tabs-advice').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-            },
             filmmaking:function(){
                 $(".filmmaking").addClass("filmmakingactive");
                 $(".filmmaking").siblings().removeClass("filmmakingactive");
@@ -361,8 +342,62 @@
                 $('.tabs-section').css('display','none');
                 $('.tabs-advice').css('display','none');
                 $('.tabs-embedding').css('display','none');
-            }
-    },
-    value1: '',
+                var xhr = new XMLHttpRequest()
+                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                xhr.open('POST', '/api/hello')
+                xhr.onload = function () {
+                self.lists=JSON.parse(xhr.responseText);
+              }
+              xhr.send()
+            },
+            fetchSectionData:function(){
+                $(".section").addClass("filmmakingactive");
+                $(".section").siblings().removeClass("filmmakingactive");
+                $('.tabs-section').css('display','block');
+                $('.tabs-embedding').css('display','none');
+                $('.tabs-advice').css('display','none');
+                $('.tabs-filmmaking').css('display','none');
+                var xhr = new XMLHttpRequest()
+                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                xhr.open('POST', '/api/hello')
+                xhr.onload = function () {
+                self.lists = JSON.parse(xhr.responseText);
+              }
+              xhr.send()
+            },
+            fetchData:function(){
+                $(".embedding").addClass("filmmakingactive");
+                $(".embedding").siblings().removeClass("filmmakingactive");
+                $('.tabs-embedding').css('display','block');
+                $('.tabs-section').css('display','none');
+                $('.tabs-advice').css('display','none');
+                $('.tabs-filmmaking').css('display','none');
+                var items=null;
+                var xhr = new XMLHttpRequest()
+                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                xhr.open('POST','/api/hello' )
+                xhr.onload = function () {
+                self.lists = JSON.parse(xhr.responseText);
+                }
+                xhr.send()
+            },
+            fetchAdviceData:function(){
+                $(".advice").addClass("filmmakingactive");
+                $(".advice").siblings().removeClass("filmmakingactive");
+                $('.tabs-advice').css('display','block');
+                $('.tabs-section').css('display','none');
+                $('.tabs-embedding').css('display','none');
+                $('.tabs-filmmaking').css('display','none');
+                var xhr = new XMLHttpRequest()
+                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                xhr.open('POST', '/api/hello')
+                xhr.onload = function () {
+                self.lists=JSON.parse(xhr.responseText);
+              }
+              xhr.send()
+            },
+
+    }
+    
 }
 </script>

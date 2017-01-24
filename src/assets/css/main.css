@@ -51,6 +51,15 @@ button{
 input,select,textarea{
     outline:medium;
 }
+.textleft{
+    text-align: left;
+}
+.textright{
+    text-align: right;
+}
+.textcenter{
+    text-align: center;
+}
 /*复写bootstrap;*/
 label{
     font-weight: 400;

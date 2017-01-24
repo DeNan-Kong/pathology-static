@@ -5,7 +5,7 @@
                <p class="floatleft embedding-bingnum">病理号:</p>
                <input type="text"  class="floatleft radius common embedding-six">
                <p class="floatleft embedding-five">取材医生:</p>
-               <form  class="floatleft embedding-six">
+               <form  class="floatleft embedding-six textleft">
                     <select class="radius common ">
                         <option>欧阳娜娜</option>
                         <option>二</option>
@@ -35,18 +35,16 @@
                       <option>已包埋</option>
                     </select>
                 </form>
-                <!-- <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan noprint"  @click="noprint"></span>未打印</p>
-                <p class="floatleft embedding-six rightp"><span class="bmobboximg floatleft checkspan nocolor" @click="nocolor"></span>已包埋</p> -->
                 <button class="floatleft embedding-three">查询</button>
                 <button class="floatleft embedding-three">默认</button>
                 <div>   
-</div> 
+                </div> 
             </div>
             <div class="embedding-table" id="s">
                  <table class="table">
                     <thead>
                         <tr>
-                            <th class="table-three"><p class="bmobboximg tablecheck checkall embeddingcheckall" id="0" @click="embeddingcheckall"></p></th>
+                            <th class="table-three"><p class="noselectbox tablecheck checkall embeddingcheckall" id="0" @click="embeddingcheckall"></p></th>
                             <th  class="table-eight">病理号</th>
                             <th class="table-six">任务来源</th>
                             <th class="table-six">材块号</th>
@@ -64,34 +62,35 @@
                         </tr>
                     </thead>
                     <tbody class="table-em">
-                        <tr v-for="item in items">
-                            <td><p  class='bmobboximg tablecheck checkall first checkone' 
+                        <tr v-for="it in item">
+                            <td><p  class='noselectbox tablecheck checkall first checkone' 
                                 @click="embeddingcheck" :id="item.id"></p></td>
-                            <td>{{item.patient.patientId}}</td>
-                            <td>{{item.patient.task}}</td>
-                            <td>{{item.patient.cainum}}</td>
-                            <td>{{item.patient.cainum}}</td>
-                            <td>{{item.patient.sex}}</td>
-                            <td>{{item.patient.age}}</td>
-                            <td>{{item.patient.position}}</td>
-                            <td>{{item.patient.kuainum}}</td>
-                            <td>{{item.patient.doctor}}</td>
-                            <td>{{item.patient.date}}</td>
-                            <td>{{item.patient.check}}</td>
-                            <td>{{item.patient.statu}}</td>
-                            <td>{{item.patient.zhistatus}}</td>
-                            <td>{{item.patient.checktime}}</td>
+                            <td>{{it.patient.patientId}}</td>
+                            <td>{{it.patient.task}}</td>
+                            <td>{{it.patient.cainum}}</td>
+                            <td>{{it.patient.cainum}}</td>
+                            <td>{{it.patient.sex}}</td>
+                            <td>{{it.patient.age}}</td>
+                            <td>{{it.patient.position}}</td>
+                            <td>{{it.patient.kuainum}}</td>
+                            <td>{{it.patient.doctor}}</td>
+                            <td>{{it.patient.date}}</td>
+                            <td>{{it.patient.check}}</td>
+                            <td>{{it.patient.statu}}</td>
+                            <td>{{it.patient.zhistatus}}</td>
+                            <td>{{it.patient.checktime}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="embedding-bottom">
-                <div class="floatleft embedding-bottom-one"><p class="floatleft">提前</p><input type="text" class="floatleft embedding-bottom-text"><p class="floatleft">天确定</p></div>
-                <p class="floatleft embedding-bottom-two">当前制片数：4</p>
+                <p class="floatleft embedding-bottom-p">当前待包埋数：4</p>
+                <p class="floatleft embedding-bottom-two embedding-bottom-p">材块数：4</p>
+                <div class="floatleft embedding-bottom-div"><p class="floatleft">提前</p><input type="text" class="floatleft embedding-bottom-text"><p class="floatleft">天确定</p></div>
+                <button class="floatleft">材块核对</button>
                 <button class="floatleft">标签打印</button>
-                <button class="floatleft">HE染色</button>
-                <button class="floatleft">玻片核对</button>
-                <button class="floatleft">移交表单打印</button>
+                <button class="floatleft">包埋确认</button>
+                <button class="floatleft">移交打印表</button>
             </div>
         </div>
     </div>
@@ -150,7 +149,7 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
 }
 .embedding-top button:hover{
     background: #3577af;
-    }
+}
 .embedding-table{
     width: 100%;
     height: 528px;
@@ -179,13 +178,19 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
 .embedding-bottom p{
     display: block;
 }
-.embedding-bottom-one{
-    margin-left: 51%;
-}
 .embedding-bottom-text{
     width: 22px;
     height: 22px;
     margin: 7px;
+}
+.embedding-bottom-div{
+    margin-left: 1.5%;
+}
+.embedding-bottom-p{
+    margin-left: 43%;
+    color:#2eacd5;
+    text-decoration: underline;
+    cursor: pointer;
 }
 .embedding-bottom-two{
     margin-left:20px;
@@ -203,6 +208,7 @@ import Vue from 'vue';
                 apiURL:"/api/hello"
             }
         },
+        props: ['item'],
         components:{
            "calendar":Calendar, 
         },
@@ -219,27 +225,25 @@ import Vue from 'vue';
                 var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
                 xhr.open('POST', this.apiURL)
                 xhr.onload = function () {
-                self.items = JSON.parse(xhr.responseText);
-                console.log(self.items)
+                self.item = JSON.parse(xhr.responseText);
         }
         xhr.send()
     },
     embeddingcheck:function(e){
         var checkid=$(e.target).attr("id");
-        console.log(checkid)
-        if($("#"+checkid).hasClass('bmobboximg')){
-        $("#"+checkid).removeClass("bmobboximg").addClass("bmobboximgtwo");
+        if($("#"+checkid).hasClass('selectbox')){
+        $("#"+checkid).removeClass("selectbox").addClass("noselectbox");
         }else{
-        $("#"+checkid).addClass("bmobboximg").removeClass("bmobboximgtwo");
+        $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
             }
        },
     embeddingcheckall:function(){
-        if($('.embeddingcheckall').hasClass('bmobboximg')){
-            $(".embeddingcheckall").removeClass("bmobboximg").addClass("bmobboximgtwo");
-            $(".checkone").removeClass("bmobboximg").addClass("bmobboximgtwo");
+        if($('.embeddingcheckall').hasClass('selectbox')){
+            $(".embeddingcheckall").removeClass("selectbox").addClass("noselectbox");
+            $(".checkone").removeClass("selectbox").addClass("noselectbox");
             }else{
-            $(".embeddingcheckall").removeClass("bmobboximgtwo").addClass("bmobboximg");
-            $(".checkone").addClass("bmobboximg").removeClass("bmobboximgtwo"); 
+            $(".embeddingcheckall").removeClass("noselectbox").addClass("selectbox");
+            $(".checkone").addClass("selectbox").removeClass("noselectbox"); 
                 }
         }    
        }

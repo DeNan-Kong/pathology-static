@@ -2,30 +2,40 @@
 <div>
    <div class="embedding-contains">
       <div class="section-top advice-top">
-          <p class="floatleft advice-three">病理号:</p>
-          <input type="text"  class="floatleft radius common embedding-six">
-          <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft embedding-three section-top-p">24小时</p>
-          <input type="radio" name="time" class="floatleft radio "><p class="floatleft section-four">申请日期:</p>
+          <form  class="floatleft advice-three textcenter">
+              <select class="radiu common">
+                <option>病理号</option>
+                <option>住院号</option>
+                <option>门诊号</option>
+                <option>冰冻号</option>
+                <option>姓名</option>
+                <option>申请号</option>
+                <option>病人ID</option>
+              </select>
+          </form>
+          <input type="text"  class="floatleft radius common embedding-six" style="padding-left:3px;">
+          <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft advice-three  textcenter">24小时</p>
+          <input type="radio" name="time" class="floatleft radio "><p class="floatleft advice-four textcenter">申请日期:</p>
           <calendar/>
-          <input type="radio" name="time" class="floatleft radio "><p class="floatleft section-three">时间范围:</p>
+          <input type="radio" name="time" class="floatleft radio "><p class="floatleft advice-four textcenter">时间范围:</p>
           <calendar/>
-          <p class="floatleft  zzz">至</p>
+          <p class="floatleft">至</p>
           <calendar/>
-          <p class="floatleft embedding-threefive">医嘱类型：</p>
-          <form  class="floatleft embedding-six">
+          <p class="floatleft advice-five textcenter">医嘱类型：</p>
+          <form  class="floatleft advice-form">
               <select class="radius common ">
                 <option>免疫组化</option>
                 <option>已执行</option>
               </select>
           </form>
-          <p class="floatleft embedding-threefive">医嘱状态：</p>
+          <p class="floatleft advice-five textcenter">医嘱状态：</p>
           <form  class="floatleft embedding-five">
               <select class="radius common ">
                 <option>未执行</option>
                 <option>已执行</option>
               </select>
           </form>
-          <p class="floatleft">收费状态：</p>
+          <p class="floatleft advice-five textcenter">收费状态：</p>
           <form  class="floatleft embedding-five">
               <select class="radius common ">
                 <option>已收费</option>
@@ -34,12 +44,13 @@
           </form>
           <button class="floatleft section-top-btn">查询</button>
           <button class="floatleft section-top-btn">默认</button>
+          <!-- <p>{{nums}}</p> -->
       </div>
       <div class="section-table">
         <table class="table">
            <thead>
               <tr>
-                  <th class="table-three"><p class="bmobboximg tablecheck checkall" @click="checkall"></p></th>
+                  <th class="table-three"><p class="noselectbox tablecheck checkall"></p></th>
                   <th  class="table-three">病理号</th>
                   <th  class="table-five">姓名</th>
                   <th class="table-six">医嘱类型</th>
@@ -58,11 +69,29 @@
               </tr>
           </thead>
           <tbody>
+              <tr v-for="ss in nums">
+                  <td><p  class='noselectbox tablecheck checkall first'></p></td>
+                  <td>{{ss.patient.patientId}}</td>
+                  <td>{{ss.patient.name}}</td>
+                  <td>{{ss.patient.cainum}}</td>
+                  <td>{{ss.patient.cainum}}</td>
+                  <td>{{ss.patient.sex}}</td>
+                  <td>{{ss.patient.age}}</td>
+                  <td>{{ss.patient.position}}</td>
+                  <td>{{ss.patient.kuainum}}</td>
+                  <td>{{ss.patient.doctor}}</td>
+                  <td>{{ss.patient.date}}</td>
+                  <td>{{ss.patient.check}}</td>
+                  <td>{{ss.patient.statu}}</td>
+                  <td>{{ss.patient.zhistatus}}</td>
+                  <td>{{ss.patient.name}}</td>
+                  <td>{{ss.patient.checktime}}</td>
+              </tr>
           </tbody>
         </table>    
         </div>
         <div class="section-bottom">
-          <p class="floatleft section-bottom-one">当前医嘱数:(12)</p>
+          <p class="floatleft section-bottom-one">当前医嘱数:12</p>
           <button class="floatleft ection-bottom-btn">收费确认</button>
           <button class="floatleft ection-bottom-btn">医嘱执行</button>
           <button class="floatleft ection-bottom-btn">工作单打印</button>
@@ -72,8 +101,27 @@
 </div>
 </template>
 <style>
+.radiu{
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.embedding-contains button:hover{
+  background: #3577af; 
+}
 .advice-threefive{
   width: 3.5%;
+}
+.advice-three{
+  width:3.4%;
+}
+.advice-four{
+  width:4.5%;
+}
+.advice-five{
+  width: 5.25%;
+}
+.advice-form{
+  width: 5.8%;
 }
 .section-top{
   width: 100%;
@@ -146,11 +194,26 @@ import Calendar from 'components/calendar';
   export default {
     data() {
       return {
-        
+        lists:null
       }
     },
+    props: ['nums'],
     components:{
             "calendar":Calendar,
         },
+    created(){ // 生命周期 created,获取数据
+        this.fetchAdviceData()
+    },
+   methods:{
+      fetchAdviceData:function(){
+        var xhr = new XMLHttpRequest()
+        var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+        xhr.open('POST', '/api/hello')
+        xhr.onload = function () {
+        self.nums=JSON.parse(xhr.responseText);
+      }
+      xhr.send()
+    }
+    }
   };
 </script>

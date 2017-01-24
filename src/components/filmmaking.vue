@@ -38,9 +38,8 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="table-three "><p class="bmobboximg tablecheck checkall" @click="checkall"></p></th>
+                        <th class="table-three "><p class="noselectbox tablecheck checkall" @click="checkall"></p></th>
                         <th  class="table-eight">病理号</th>
-                        <th class="table-six">病理来源</th>
                         <th class="table-six">任务来源</th>
                         <th class="table-five">制片子号</th>
                         <th  class="table-five">制片说明</th>
@@ -48,30 +47,69 @@
                         <th  class="table-three">性别</th>
                         <th  class="table-three">年龄</th>
                         <th  class="table-five">申请人</th>
+                        <th  class="table-three">收费情况</th>
+                        <th  class="table-five">收费时间</th>
                         <th  class="table-five">制片人</th>
                         <th  class="table-seven">制片时间</th>
                         <th  class="table-five">制片状态</th>
                         <th  class="table-five">打印状态</th>
-                        <th  class="table-five">制片说明</th>
                         <th  class="table-five">玻片核对</th>
                         <th  class="table-seven">核对时间</th>
                         <th  class="table-three">切片评级</th>
                         <th  class="table-five">评级人</th>
                         <th  class="table-five">染色人</th>
+                        <th  class="table-five">染色时间</th>
+                        <th  class="table-five">取材医生</th>
+                        <th  class="table-five">包埋人</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="data in list">
-                        <td>{{data[0]}}</td>
-                        <td>{{data.applicationid}}</td>
+                    <tr v-for="data in datas">
+                        <td><p  class='noselectbox tablecheck checkall first'></p></td>
+                        <td>{{data.patient.patientId}}</td>
+                        <td>{{data.patient.task}}</td>
+                        <td>{{data.patient.cainum}}</td>
+                        <td>{{data.patient.cainum}}</td>
+                        <td>{{data.patient.name}}</td>
+                        <td>{{data.patient.sex}}</td>
+                        <td>{{data.patient.age}}</td>
+                        <td>{{data.patient.name}}</td>
+                        <td>{{data.patient.position}}</td>
+                        <td>{{data.patient.kuainum}}</td>
+                        <td>{{data.patient.doctor}}</td>
+                        <td>{{data.patient.date}}</td>
+                        <td>{{data.patient.check}}</td>
+                        <td>{{data.patient.statu}}</td>
+                        <td>{{data.patient.zhistatus}}</td>
+                        <td>{{data.patient.checktime}}</td>
+                        <td>{{data.patient.date}}</td>
+                        <td>{{data.patient.check}}</td>
+                        <td>{{data.patient.statu}}</td>
+                        <td>{{data.patient.zhistatus}}</td>
+                        <td>{{data.patient.checktime}}</td>
+                        <td>{{data.patient.name}}</td>
                     </tr>
                 </tbody>
                 </table>
             </div>
             <div class="filmmaking-adddelete">
-               <p class="floatleft top-p-one">病理号:</p>
-               <input type="text"  class="floatleft top-ipt radius common">
-               <p class="floatleft top-p-seven">任务来源:</p>
+                <p class="floatleft top-p-seven">任务来源:</p>
+               <form  class="floatleft top-p-three">
+                    <select class="radius common ">
+                      <option>免疫组化</option>
+                      <option>二</option>
+                    </select>
+                </form>
+                <p class="floatleft top-p-four">制片时间:</p>
+                <calendar/>
+                <p class="floatleft top-p-three">制片人:</p>
+               <form  class="floatleft top-p-three">
+                    <select class="radius common ">
+                      <option>免疫组化</option>
+                      <option>二</option>
+                    </select>
+                </form>
+                <p class="floatleft top-p-seven">制片说明:</p>
                <form  class="floatleft top-p-three">
                     <select class="radius common ">
                       <option>免疫组化</option>
@@ -85,28 +123,14 @@
                       <option>二</option>
                     </select>
                 </form> 
-                <p class="floatleft top-p-seven">制片说明:</p>
-               <form  class="floatleft top-p-three">
-                    <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
-                    </select>
-                </form>
-                <p class="floatleft top-p-three">制片人:</p>
-               <form  class="floatleft top-p-three">
-                    <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
-                    </select>
-                </form>
-                <p class="floatleft top-p-four">制片时间:</p>
-                <calendar/>
+               <p class="floatleft top-p-one">病理号:</p>
+               <input type="text"  class="floatleft top-ipt radius common">
                 <button class="floatleft add-btn ">添加</button>
                 <button class="floatleft delete-btn">删除</button>
             </div>
             <div class="clear"></div>
             <div class="filmmaking-bottom">
-                <p class="floatleft">当前制片数：<span>(4)</span></p>
+                <p class="floatleft">当前制片数：4</p>
                 <button class="floatleft filmmaking-bottom-btn">标签打印</button>
                 <button class="floatleft filmmaking-bottom-btn">HE染色</button>
                 <button class="floatleft filmmaking-bottom-btn">玻片核对</button>
@@ -116,17 +140,20 @@
     </div>
 </template>
 <style>
- .filmmaking-main{
+.filmmaking-main button:hover{
+    background: #3577af; 
+}
+.filmmaking-main{
     margin-top: 5px;
     height: 660px;
- }
- .filmmaking-contains{
+}
+.filmmaking-contains{
     margin: 10 auto;
     height: 620px;
- } 
- .filmmaking-top{
+} 
+.filmmaking-top{
     height: 40px;
- }
+}
 .filmmaking-top p{
     display: block;
     line-height: 40px;
@@ -270,36 +297,19 @@ import $ from "jQuery"
                
             }
         },
+        props: ['datas'],
         components:{
            "calendar":Calendar
         },
+        created(){ // 生命周期 created,获取数据
+          this.filmmaking()
+        },
         methods:{
-            noprint:function(){
-            if($(".noprint").hasClass("bmobboximg")){
-                $(".noprint").removeClass("bmobboximg").addClass("bmobboximgtwo");
-                }else{
-                $(".noprint").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
-                }
-            },
-            nocolor:function(){
-            if($(".nocolor").hasClass("bmobboximg")){
-                $(".nocolor").removeClass("bmobboximg").addClass("bmobboximgtwo");
-                }else{
-                $(".nocolor").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
-                }
-            },
-            nocheck:function(){
-             if($(".nocheck").hasClass("bmobboximg")){
-                    $(".nocheck").removeClass("bmobboximg").addClass("bmobboximgtwo");
-                    }else{
-                    $(".nocheck").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
-                    }   
-            },
             checkall:function(){
-                if($(".checkall").hasClass("bmobboximg")){
-                    $(".checkall").removeClass("bmobboximg").addClass("bmobboximgtwo");
+                if($(".checkall").hasClass("selectbox")){
+                    $(".checkall").removeClass("selectbox").addClass("noselectbox");
                     }else{
-                    $(".checkall").removeClass("bmobboximgtwo").addClass("bmobboximg"); 
+                    $(".checkall").removeClass("noselectbox").addClass("selectbox"); 
                     }   
             },
             shuju:function(){
@@ -318,7 +328,16 @@ import $ from "jQuery"
                                 console.log( _self.list)
                             }
                         });
-            }
+            },
+            filmmaking:function(){
+                var xhr = new XMLHttpRequest()
+                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                xhr.open('POST', '/api/hello')
+                xhr.onload = function () {
+                self.datas=JSON.parse(xhr.responseText);
+              }
+              xhr.send()
+            },
         }
     }
 </script>
