@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="all">
      <div id="register">
         <top-menu/>
         <div  id="middle-left">
@@ -157,9 +157,40 @@
            </div>    
         </div>
      </div>
+     <div id="cytology">
+        <top-menu/>
+        <div  id="middle-left">
+            <div class="middle-message">
+                <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
+                <p>冰冻&nbsp;&nbsp;常规</p>
+            </div>
+            <div class="case-message">
+                <div class="case-tabs">
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
+                </div>
+            <medicalmessage/>
+            </div>
+            <div  class="tabs-img">
+                <div class="case-tabs">
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
+                </div>
+            <cytology/>    
+            </div>
+            <div  class="tabs-pay">
+                <div class="case-tabs">
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
+                </div>
+                
+            </div>
+        </div>
+        <searchtable/>
+    </div>
  </div>
 </template>
 <style>
+.all{
+
+}
 #register,#materials,#diagnostic{
     font-size: 14px;
     width: 100%;
@@ -174,7 +205,10 @@
   display: none;
 }
 #filmmaking{
- 
+ display: none;
+}
+#cytology{
+
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
@@ -248,6 +282,16 @@
 .tabs-section,.tabs-advice,.tabs-filmmaking{
     display: none;
 }
+#cytology .medicalcytology{
+    width: 74px;
+}
+#cytology .cytologyimg{
+    width: 66px;
+}
+#cytology .active{
+    background: #57bdde;
+    color: #fff;
+}
 </style>
 <script>
     import TopMenu from 'components/topmenu';
@@ -261,6 +305,7 @@
     import Embedding from 'components/embedding';
     import Medicalsection from 'components/medicalsection';
     import Advice from 'components/advice';
+    import Cytology from 'components/cytology';
     export default{
         data(){
             return{
@@ -287,7 +332,8 @@
             "filmmaking":Filmmaking,
             "embedding":Embedding,
             "medicalsection":Medicalsection,
-            "advice":Advice
+            "advice":Advice,
+            "cytology":Cytology
         },
         methods:{
             medicalInformation:function(){

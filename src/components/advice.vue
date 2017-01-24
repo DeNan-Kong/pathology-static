@@ -206,13 +206,14 @@ import Calendar from 'components/calendar';
     },
    methods:{
       fetchAdviceData:function(){
+        var send={'id':8,'name':'xiaoming'}
         var xhr = new XMLHttpRequest()
         var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
         xhr.open('POST', '/api/hello')
         xhr.onload = function () {
         self.nums=JSON.parse(xhr.responseText);
       }
-      xhr.send()
+      xhr.send(send)
     }
     }
   };

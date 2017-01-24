@@ -354,9 +354,9 @@
   list-style: none;
   cursor: pointer;
 }
-.dictionary-search2 ul li:first-child{
+/*.dictionary-search2 ul li:first-child{
   margin-top: 10px;
-}
+}*/
 .dictionary-search2  p{
   display: block;
   width: 10px;
