@@ -42,7 +42,7 @@
         </div>
         <div  class="select-search">
             <div  class="noselectbox floatleft  checkbox g  checkbox-one" id="e"  v-on:click="changecheckbox7"></div><p  class="floatleft  allmessage">全库</p>
-            <div  class="noselectbox floatleft checkbox  h checkbox-two" id="f"  v-on:click="changecheckbox8"></div><p  class="floatleft  cannotsee">模糊</p>
+            <div  class="noselectbox floatleft checkbox  h checkbox-two" id="f"  v-on:click="changecheckbox8"></div><p  class="floatleft">模糊</p>
             <button  class="select-search-btn" v-on:click="find">提取</button>
         </div>
         <div class="clear"></div>
@@ -497,7 +497,7 @@
     width:527px;
     height:660px;
     position:absolute;
-    z-index: 99999;
+    z-index: 9;
     margin-top: -663px;
     margin-left: 538px;
     background: #fff;
@@ -736,6 +736,7 @@ input[type='checkbox'] .checkbox-one{
 .select-search-btn{
     width:43px;
     height:24px;
+    margin-left: 60px;
     background:#428bca;
     border:1px solid #428bca;
     color:#fff;
@@ -758,6 +759,9 @@ input[type='checkbox'] .checkbox-one{
 }
 body .table-show-one{
     width: 48px;
+}
+.middle-right .right-bottom .activecolor{
+    color:#c94646; 
 }
 </style>
 <script>

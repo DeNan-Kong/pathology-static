@@ -1,5 +1,8 @@
 <template>
     <div class="all">
+    <div id="loginpage">
+        <login/>
+    </div>
      <div id="register">
         <top-menu/>
         <div  id="middle-left">
@@ -188,12 +191,12 @@
  </div>
 </template>
 <style>
-.all{
-
-}
 #register,#materials,#diagnostic{
     font-size: 14px;
     width: 100%;
+}
+#loginpage{
+   display: none; 
 }
 #diagnostic{
    display: none;
@@ -202,13 +205,13 @@
    display: none;   
 }
 #register{
-  display: none;
+   display: none;
 }
 #filmmaking{
- display: none;
+   display: none; 
 }
 #cytology{
-
+      
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
@@ -306,6 +309,7 @@
     import Medicalsection from 'components/medicalsection';
     import Advice from 'components/advice';
     import Cytology from 'components/cytology';
+    import Login from 'components/login';
     export default{
         data(){
             return{
@@ -333,7 +337,8 @@
             "embedding":Embedding,
             "medicalsection":Medicalsection,
             "advice":Advice,
-            "cytology":Cytology
+            "cytology":Cytology,
+            "login":Login
         },
         methods:{
             medicalInformation:function(){
