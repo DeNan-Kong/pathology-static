@@ -12,7 +12,7 @@ const rootPath = '';
 
 // 页面路由
 const routes = [
-  {path: '', redirect: {name: 'home'}},
+  {path: '', redirect: {name: 'index'}},
   {path: '/hello', component: Hello, name: 'hello'},
     {path: '/index', component: Index, name: 'index'},
     {path: '/home', component: Index, name: 'home'}

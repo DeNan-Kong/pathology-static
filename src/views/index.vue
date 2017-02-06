@@ -177,13 +177,13 @@
                 <div class="case-tabs">
                     <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
                 </div>
-            <cytology/>    
+            <cytology/>
             </div>
             <div  class="tabs-pay">
                 <div class="case-tabs">
                     <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
                 </div>
-                
+
             </div>
         </div>
         <searchtable/>
