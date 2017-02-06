@@ -137,18 +137,17 @@
                     <p class="floatleft  p-three">标本类型:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>组织</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{ item.name }}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft p-four">标本情况:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in specimen">
-                                {{ item.name }}
-                            </option>
-
+                            <option>良好</option>
+                            <option>重切</option>
+                            <option>深切</option>
                         </select>
                     </form>
                 </div>
@@ -471,7 +470,7 @@
                         return time.getTime() < Date.now() - 8.64e7;
                     }
                 },
-                specimen:null
+                initialData:{}
             }
         },
         components: {
@@ -484,9 +483,8 @@
             async loadData () {
                 const response = await fetch('/register/load');
                 const json = await response.text();
-                debugger;
                 const data = JSON.parse(json);
-                this.specimen = data.specimen;
+                this.initialData = data;
             },
             newproject: function () {
                 $("textarea").val('');
