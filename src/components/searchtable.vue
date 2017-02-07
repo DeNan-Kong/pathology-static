@@ -43,19 +43,18 @@
         <div  class="select-search">
             <div  class="noselectbox floatleft  checkbox g  checkbox-one" id="e"  v-on:click="changecheckbox7"></div><p  class="floatleft  allmessage">全库</p>
             <div  class="noselectbox floatleft checkbox  h checkbox-two" id="f"  v-on:click="changecheckbox8"></div><p  class="floatleft">模糊</p>
-            <button  class="select-search-btn" v-on:click="find">提取</button>
+            <button  class="select-search-btn" @click="find">提取</button>
         </div>
         <div class="clear"></div>
         <div   class="table-show">
             <table class="table ">
                 <thead>
                     <tr>
-                        
                         <th class="table-show-one"></th>
                         <th  class="th-three">病理号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>年龄</th>
+                        <th class="th-three">姓名</th>
+                        <th class="th-three">性别</th>
+                        <th class="th-three">年龄</th>
                         <th  class="th-three">住院号</th>
                         <th  class="th-three">送检单位</th>
                         <th  class="th-three">送检科室</th>
@@ -67,12 +66,13 @@
                         <th  class="th-three">报告日期</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr >
-                        <td class="table-show-one"><!-- <img src="../image/imagehistory.png" class="table-image"> --></td>
-        
-                        <td>3001</td>
-                        <td>张华</td>
+                <tbody >
+                       <!-- <img src="../image/imagehistory.png" class="table-image"> -->
+                    <tr  v-for="hh in hhs">
+                        <td @click="showrelate"><img src="../assets/images/copy.png.png"></td>
+                        <td>{{hh.patient.patientId}}</td>
+                        <td>{{hh.patient.task}}</td>
+                        <!-- <td>小强</td>
                         <td>男</td>
                         <td>23</td>
                         <td>20106235261</td>
@@ -80,190 +80,9 @@
                         <td>20106235261</td>
                         <td>20106235261</td>
                         <td>20106235261</td>
-                        <td>20106235261</td>
+                        <td>20106235261</td> -->
                     </tr>
-                    <tr class="selected">
-                       
-                        <td class="table-show-one">7</td>
-                        <td class="blue-bg">3002</td>
-                        <td>小强</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-                   
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-                     
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-                       
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                     <tr >
-                        
-                        <td class="table-show-one">冰</td>
-                        <td>3001</td>
-                        <td>张华</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr class="selected">
-                       
-                        <td class="table-show-one">7</td>
-                        <td class="blue-bg">3002</td>
-                        <td>小强</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-                  
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-                       
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
                     
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                     <tr >
-                        
-                        <td class="table-show-one">冰</td>
-                        <td>3001</td>
-                        <td>张华</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr class="selected">
-                     
-                        <td class="table-show-one">7</td>
-                        <td class="blue-bg">3002</td>
-                        <td>小强</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-                  
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
-                    <tr>
-               
-                        <td class="table-show-one">冰</td>
-                        <td>3003</td>
-                        <td>小王</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                    </tr>
                 </tbody>
                 </table>
             </div>
@@ -373,10 +192,16 @@
             <button class="bmobbox-btntwo" @click="cancle">取消</button>
         </div>
     </div>
-    
+    <div class="relatelist">
+        <relatetable :relationshow="method"/>
+    </div>    
 </div>
 </template>
 <style>
+.relateimg{
+    width: 20px;
+    background:url('../assets/images/copy.png.png') no-repeat;
+}
 .checkbox{
     width: 20px;
     height: 20px;
@@ -551,11 +376,12 @@
 #middle-right{
     margin-top: -650px;
     margin-left:1066px;
-    height:700px;
+    height:698px;
     padding:10px;
+    min-width: 255px;
     background:#fff;
     margin-right:5px;
-    overflow-x:scroll;
+    overflow-x:auto;
 }
 .right-top button{
     width:20px;
@@ -763,19 +589,39 @@ body .table-show-one{
 .middle-right .right-bottom .activecolor{
     color:#c94646; 
 }
+.relatelist{
+    width: 674px;
+    height: 416px;
+    background:#fff;
+    margin-left:392px;
+    margin-top:-530px;
+    position:relative;
+    z-index: 10;
+    box-shadow: -3px -3px 3px  rgba(4,4,4,0.3);
+    -moz-box-shadow: -3px -3px 3px  rgba(4,4,4,0.3);
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
 </style>
 <script>
 import {mapState} from 'vuex';
 import $ from "jQuery";
 import Calendar from 'components/calendar';
+import Relatetable from 'components/relatetable';
     export default{
         data(){
             return{
                 name: 'Vue.js',
             }
         },
+        props: ['hhs','tableshow'],
+        
         components:{
-            "calendar":Calendar
+            "calendar":Calendar,
+            "relatetable":Relatetable
+        },
+        created(){ // 生命周期 created,获取数据
+          this.searchtable()
         },
         methods:{
            // async  find(){
@@ -791,7 +637,6 @@ import Calendar from 'components/calendar';
            //      }
            //          },
                 toggle:function(){
-                    console.log("+++++++")
                     $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
                     if($(".grop-search-lines").hasClass('grop-search-line1')){
                         $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
@@ -809,6 +654,7 @@ import Calendar from 'components/calendar';
                         $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                     }
                 },
+
                 changecheckbox1:function(e){
                     if($(".a").hasClass("selectbox")){
                     $(".a").removeClass("selectbox").addClass("noselectbox");
@@ -921,7 +767,6 @@ import Calendar from 'components/calendar';
                     }
                 },
                 cancle:function(){
-                    console.log("00000")
                     $(".bmobbox").fadeOut(500);
                     if($(".grop-search-lines").hasClass('grop-search-line1')){
                         $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
@@ -941,6 +786,27 @@ import Calendar from 'components/calendar';
                 },
                 find:function(){
                     console.log("ooooo")
+                },
+                searchtable:function(){
+                  var self=this;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/hello',
+                        data:{
+                            id:0
+                        },
+                        success:function(data) {    
+                            self.hhs=JSON.parse(data);
+                            console.log( self.hhs)
+                        }
+                    });
+                },
+                showrelate:function(){
+                    $('.relatelist').toggle()
+                },
+                method:function(){
+                    this.tableshow();
+                    $('.relatelist').hide()
                 }
                }
             };

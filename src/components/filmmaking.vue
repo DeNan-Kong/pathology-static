@@ -331,7 +331,7 @@ import $ from "jQuery"
             },
             filmmaking:function(){
                 var xhr = new XMLHttpRequest()
-                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                var self = this 
                 xhr.open('POST', '/api/hello')
                 xhr.onload = function () {
                 self.datas=JSON.parse(xhr.responseText);

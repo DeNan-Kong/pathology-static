@@ -8,7 +8,7 @@
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;满意</p>
                   <input type="radio" class="floatleft cytology-col-radio" name="satisfaction">
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;基本满意</p>
-                  <input type="radio" class="floatleft cytology-col-radio" name="satisfaction">
+                  <input type="radio" class="floatleft cytology-col-radio radioo" name="satisfaction">
                   <p class="floatleft cytology-nosatisfaction">&nbsp;&nbsp;不满意</p>
                   <form class="floatleft cytology-form">
                       <select class="cytology-form">
@@ -156,61 +156,8 @@
                     <div class="material-delete  floatleft"></div>
                   </div>
                   <div class="dictionary-search2 cytology-background list">
-                    <ul>
-                      <li><a href="#" class="inactive">乳腺</a>
-                      </li>
-                      <li id="qq"><a href="#" class="inactive" id="zhongwu" @click="menushow">肿物通用</a>
-                          <ul style="display: block">
-                            <li><a href="#">故事</a></li>
-                            <li><a href="#">Vectors </a></li>
-                            <li><a href="#">Photoshop </a></li>
-                            <li><a href="#">Fonts </a></li>
-                          </ul>
-                      </li>
-                      <li id="mm">
-                        <a href="#" class="inactive" >乳腺</a>
-                      </li>
-                      <!-- <li><a href="#" class="inactive" id="chang" @click="menushow">肠</a>
-                        <ul >
-                            <li><a href="#">故事</a></li>
-                            <li><a href="#">Vectors </a></li>
-                            <li><a href="#">Photoshop </a></li>
-                            <li><a href="#">Fonts </a></li>
-                          </ul>
-                      <li><a href="#" class="ina
-                      ctive">乳腺</a>
-                      </li>
-                      <li><a href="#" class="inactive">乳腺</a>
-                      </li>
-                      <li><a href="#" class="inactive" id="ruxian" @click="menushow">乳腺</a>
-                        <ul style="display: none">
-                            <li><a href="#">故事</a></li>
-                            <li><a href="#">Vectors </a></li>
-                            <li><a href="#">Photoshop </a></li>
-                            <li><a href="#">Fonts </a></li>
-                          </ul>
-                      </li>
-                      <li><a href="#" class="inactive">乳腺</a>
-                      </li>
-                      <li><a href="#" class="inactive">脾脏</a>
-                      </li>
-                      <li><a href="#" class="inactive">肾标本</a>
-                      </li>
-                      <li><a href="#" class="inactive">乳腺</a>
-                      </li>
-                      <li><a href="#" class="inactive">肺组织</a>
-                      </li>
-                      <li><a href="#" class="inactive">胃</a>
-                      </li>
-                      <li><a href="#" class="inactive">全组织+双附件</a>
-                      </li>
-                      <li><a href="#" class="inactive">全组织+双附件</a>
-                      </li>
-                      <li><a href="#" class="inactive">脾脏</a>
-                      </li>
-                      <li><a href="#" class="inactive">肾标本</a>
-                      </li> -->
-                    </ul>
+                    <treelist/>
+                    
                   </div>
                 </div>
           </div>
@@ -229,7 +176,9 @@
     </div>
 </template>
 <style>
-
+.radioo{
+  opacity: 0;
+}
 .pic-ref .picture-img{
     background: url('../assets/images/refresh.png.png')no-repeat;
     width:26px;
@@ -238,6 +187,12 @@
     float: left;
     margin-top: 6px;
     margin-left: 10px;
+}
+.pic-ref .picture-img:hover{
+  background: url('../assets/images/register.png')  -32px -35px no-repeat;
+}
+.pic-ref .refresh-img:hover{
+    background: url('../assets/images/register.png')  -68px -35px no-repeat;
 }
 .pic-ref .refresh-img{
     margin-top: 6px;
@@ -445,6 +400,8 @@
 </style>
 <script>
     import $ from "jQuery";
+    import Treelist from "components/treelist";
+    
     export default{
         data(){
             return{
@@ -452,7 +409,8 @@
             }
         },
         components:{
-            
+
+           "treelist":Treelist 
         },
         methods:{
             cytologyselect:function(e){
@@ -463,6 +421,10 @@
                 $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
                 }
             },
+            newproject:function(){
+                $("textarea").val('');
+                $("input").val(''); 
+            },
             menushow:function(e){
               var selectid=$(e.target).attr("id");
               console.log($("#"+selectid).parent('li').next('li').attr("id"))
@@ -470,7 +432,7 @@
               if($("#"+selectid).siblings('ul').css('display')=='none'){
               $("#"+selectid).parent('li').siblings('li').removeClass('inactives');
               $("#"+selectid).addClass('inactives');
-              // $("#"+selectid).parent('li').next('li').attr("id").css('top',($('#'+selectid).parent('li').children('ul').children().length)*30+'px' );
+              $("#"+selectid).parent('li').next('li').attr("id").css('top',($('#'+selectid).parent('li').children('ul').children().length)*30+'px' );
               $("#"+selectid).siblings('ul').slideDown(100).children('li');
               if($("#"+selectid).parents('li').siblings('li').children('ul').css('display')=='block'){
                 $("#"+selectid).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');

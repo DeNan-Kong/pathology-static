@@ -90,7 +90,8 @@
             <div class="material-delete  floatleft"></div>
           </div>
           <div class="dictionary-search2">
-            <ul>
+             <treelist/>
+            <!-- <ul>
               <li>肿物通用
                 <p class="menus-img"><p>
               </li>
@@ -118,7 +119,7 @@
               <li>肾标本
                 <p class="menus-img"><p>
               </li>
-            </ul>
+            </ul> -->
           </div>
       </div>
       <div  class="diagnostic-right-iptmesssage">
@@ -200,7 +201,7 @@
   height: 28px;
 }
 .diagnostic-top{
-  width:439px;
+  width:449px;
   height: 30px;
   float: left;
   margin-left: 264px;
@@ -221,7 +222,7 @@
 .diagnostic-top-p{
   display: block;
   width: 58px;
-  margin-left: 12px;
+  margin-left: 22px;
   margin-top: 5px;
   margin-right: 2px;
 }
@@ -230,12 +231,12 @@
   margin-left: 2px;
 }
 .diagnostic-middle{
-  width:700px;
+  width:710px;
   height: 630px;
   border:2px solid #eceef2;
   margin-left: 4px;
   margin-top: 12px;
-  padding: 18px;
+  padding: 12px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -348,6 +349,10 @@
   background: url('../assets/images/material.png')  -6px -40px no-repeat;
   cursor:pointer;
   }
+.dictionary-search2{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .dictionary-search2 ul li{
   margin-left: -30px;
   height: 30px;
@@ -504,6 +509,7 @@ body .iptmesssage-p-long{
 </style>
 <script>
 import Calendar from 'components/calendar';
+import Treelist from "components/treelist";
   export default {
     data() {
       return {
@@ -513,6 +519,7 @@ import Calendar from 'components/calendar';
     },
     components:{
             "calendar":Calendar,
+             "treelist":Treelist
         },
     methods:{
       mydictionary2:function(){

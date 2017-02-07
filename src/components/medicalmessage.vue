@@ -185,7 +185,6 @@
                     </form>  
                     <p  class="floatleft  p-four">接收日期:</p>
                     <calendar/>
-                    <!-- <input type="text"  class="floatleft p-margin radium "> -->
                 </div>
                 <div class="hospital-num-five">
                     <p class="floatleft p-one">临床诊断:</p>
@@ -196,8 +195,7 @@
                             <option>未知</option>
                         </select>
                     </form> 
-                    <!-- <input type="text"  class="floatleft  input-doctor  radium"  ref="write"> -->
-                    <p  class="floatleft  p-four">术间手术:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write15">
+                    <p  class="floatleft  p-four">术间电话:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write15">
                 </div>
                  <div class="hospital-num-six">
                     <p class="floatleft p-one">病史摘要:</p>
@@ -207,14 +205,14 @@
                 </div>
             </div>
             <div  class="left-button">
-                <button  class="left-button-two"  v-on:click="refund" >退单</button>
-                <button  class="left-button-two"  v-on:click="print">打印</button> 
-                <button  class="left-button-two" v-on:click="save">保存</button>
-                <button  class="left-button-five" v-on:click="newsave">保存且新建</button>
-                <button  class="left-button-two" v-on:click="newproject">新建</button>    
+                <button  class="left-button-two"  @click="refund">清除</button>
+                <button  class="left-button-two"  @click="print">打印</button> 
+                <button  class="left-button-two" @click="save">保存</button>
+                <button  class="left-button-five" @click="newsave">保存且新建</button>
+                <button  class="left-button-two" @click="newproject">新建</button>    
             </div>
             <div class="left-bottom">
-                <div  class="picture-img" v-on:click="newproject"></div> 
+                <div  class="picture-img" @click="refresh"></div> 
                 <div  class="refresh-img"></div>    
             </div>
         </div>
@@ -315,14 +313,12 @@
     height: 100px;
     margin-left: 10px;
     margin-top: 5px;
-    overflow-y: scroll;
 }
 .ill-see{
     width: 920px;
     height: 54px;
     margin-left: 10px;
     margin-top: 5px;
-    overflow-y: scroll;
 }
 .left-button button{
     background:#428bca;
@@ -365,7 +361,6 @@
 }
 .left-button button:hover{
     background:#3577af;
-    border:1px solid #3577af;
 }
 .table-show .th-three{
     width:66px;
@@ -433,6 +428,10 @@
         },
         methods:{
            newproject:function(){
+                $("textarea").val('');
+                $("input").val(''); 
+            },
+            refresh:function(){
                 $("textarea").val('');
                 $("input").val(''); 
             },

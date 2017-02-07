@@ -12,30 +12,30 @@
             </div>
             <div class="case-message">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check" v-on:click="medicalCheck"><div class="floatleft"> 相关诊断</div><p class="closebtn floatleft" @click="closebtn"></p></a><br>
                 </div>
                 <medicalmessage/>
             </div>
             <div  class="tabs-img">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check" v-on:click="medicalCheck"><div class="floatleft"> 相关诊断</div><p class="closebtn floatleft" @click="closebtn"></p></a><br>
                 </div>
                 123
             </div>
             <div  class="tabs-pay">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check"  v-on:click="medicalCheck"><div class="floatleft"> 相关诊断</div><p class="closebtn floatleft" @click="closebtn"></p></a><br>
                 </div>
                 456
             </div>
             <div  class="tabs-check">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check" v-on:click="medicalCheck"><div class="floatleft"> 相关诊断</div><p class="closebtn floatleft" @click="closebtn"></p></a><br>
                 </div>
-                789
+                <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable/>
+        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
     </div>
     <div id="materials">
         <top-menu/>
@@ -191,28 +191,36 @@
  </div>
 </template>
 <style>
+.all{
+    min-width: 1340px;
+}
 #register,#materials,#diagnostic{
     font-size: 14px;
     width: 100%;
+    min-width:1340px;
 }
 #loginpage{
    display: none; 
 }
 #diagnostic{
-   display: none;
+  display: none;
 }
 #materials{
    display: none;   
 }
 #register{
-   display: none;
+   
 }
 #filmmaking{
    display: none; 
 }
 #cytology{
-      
+   display: none;    
 }
+#register .register_check{
+    display: none;
+}
+
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;
     margin:6px 7px;
@@ -224,9 +232,6 @@
 }
 .left-bottom .picture-img:hover{
     background: url('../assets/images/register.png')  -32px -35px no-repeat;
-    width:26px;
-    height:26px;
-    cursor:pointer;
 }
 .left-bottom .refresh-img{
     background: url('../assets/images/picture.png.png') no-repeat;
@@ -237,8 +242,6 @@
 }
 .left-bottom .refresh-img:hover{
     background: url('../assets/images/register.png')  -68px -35px no-repeat;
-    width:26px;
-    height:26px;
 }
 #filmmaking-main{
     height: 660px;
@@ -294,6 +297,20 @@
 #cytology .active{
     background: #57bdde;
     color: #fff;
+}
+.closebtn{
+    display: block;
+     background: url('../assets/images/materials.png') no-repeat  -120px -8px;
+     width:8px;
+     height:20px;
+     margin: 0;
+     margin-left: 8px;
+     margin-top: -3px;
+}
+body #register .register_check{
+   width:86px; 
+   text-align: left;
+   padding:0px 5px;
 }
 </style>
 <script>
@@ -409,7 +426,7 @@
                 $('.tabs-advice').css('display','none');
                 $('.tabs-filmmaking').css('display','none');
                 var xhr = new XMLHttpRequest()
-                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
+                var self = this  
                 xhr.open('POST', '/api/hello')
                 xhr.onload = function () {
                 self.lists = JSON.parse(xhr.responseText);
@@ -432,6 +449,18 @@
                 }
                 xhr.send()
             },
+            method:function(){
+               console.log("0000")
+                $('.register_check').css('display','block');
+                 $(".medicalCheck").addClass("active");
+                $(".medicalCheck").siblings().removeClass("active");
+                $('.tabs-check').css('display','block');
+                $('.tabs-pay').css('display','none');
+                $('.case-message').css('display','none');
+                $('.tabs-img').css('display','none');
+                $(".tabs-materials").css('display','none');
+
+            },
             fetchAdviceData:function(){
                 $(".advice").addClass("filmmakingactive");
                 $(".advice").siblings().removeClass("filmmakingactive");
@@ -447,8 +476,10 @@
               }
               xhr.send()
             },
-
-    }
-    
+            closebtn:function(){
+                $('.tabscheck').hide();
+                $('.register_check').hide();
+            }
+    }   
 }
 </script>
