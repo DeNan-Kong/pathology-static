@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
+    "dev-proxy": "node build/dev-proxy.js",
     "build": "node build/build.js",
     "build-server": "node build/build-server.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
@@ -17,7 +18,8 @@
     "vue": "^2.0.1",
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^1.0.0",
+    "jquery": "^1.12.4"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
