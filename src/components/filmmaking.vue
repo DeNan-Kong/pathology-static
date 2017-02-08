@@ -35,7 +35,8 @@
                 <button class="floatleft top-btn" @click="shuju">查询</button>
             </div>
             <div class="filmmaking-table">
-                <table class="table">
+                <filmmakingtable/>
+                <!-- <table class="table">
                     <thead>
                     <tr>
                         <th class="table-three "><p class="noselectbox tablecheck checkall" @click="checkall"></p></th>
@@ -90,7 +91,7 @@
                         <td>{{data.patient.name}}</td>
                     </tr>
                 </tbody>
-                </table>
+                </table> -->
             </div>
             <div class="filmmaking-adddelete">
                 <p class="floatleft top-p-seven">任务来源:</p>
@@ -213,7 +214,6 @@
     height: 500px;
     border-top:1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    overflow-y: scroll; 
 }
 .filmmaking-adddelete{
     width: 100%;
@@ -290,6 +290,7 @@ body .filmmaking-table .table{
 </style>
 <script>
 import Calendar from 'components/calendar';
+import Filmmakingtable from 'components/filmmakingtable';
 import $ from "jQuery"
     export default{
         data(){
@@ -299,7 +300,8 @@ import $ from "jQuery"
         },
         props: ['datas'],
         components:{
-           "calendar":Calendar
+           "calendar":Calendar,
+           "filmmakingtable":Filmmakingtable
         },
         created(){ // 生命周期 created,获取数据
           this.filmmaking()

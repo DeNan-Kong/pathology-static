@@ -47,7 +47,8 @@
           <!-- <p>{{nums}}</p> -->
       </div>
       <div class="section-table">
-        <table class="table">
+        <advicetable/>
+        <!-- <table class="table">
            <thead>
               <tr>
                   <th class="table-three"><p class="noselectbox tablecheck checkall"></p></th>
@@ -88,7 +89,7 @@
                   <td>{{ss.patient.checktime}}</td>
               </tr>
           </tbody>
-        </table>    
+        </table>  -->   
         </div>
         <div class="section-bottom">
           <p class="floatleft section-bottom-one">当前医嘱数:12</p>
@@ -191,6 +192,7 @@ thead{
 <script>
 import $ from "jQuery"
 import Calendar from 'components/calendar';
+import Advicetable from 'components/advicetable';
   export default {
     data() {
       return {
@@ -200,6 +202,7 @@ import Calendar from 'components/calendar';
     props: ['nums'],
     components:{
             "calendar":Calendar,
+            "advicetable":Advicetable
         },
     created(){ // 生命周期 created,获取数据
         this.fetchAdviceData()

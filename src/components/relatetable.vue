@@ -89,10 +89,22 @@
         <td class="el-table_1_column_40">
           <div class="cell">12</div>
         </td>
+      
         <td class="gutter">
         </td>
       </tr>
-      </td></tr></tbody></table></div><div class="el-table__column-resize-proxy" style="display: none;"></div><div class="resize-triggers"><div class="expand-trigger"><div style="width: 673px; height: 400px;"></div></div><div class="contract-trigger"></div></div></div>  
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="el-table__column-resize-proxy" style="display: none;"></div>
+<div class="resize-triggers"><div class="expand-trigger">
+  <div style="width: 673px; height: 400px;"></div>
+</div>
+<div class="contract-trigger"></div>
+</div>
+</div>  
 </div>
 </template>
 <style>

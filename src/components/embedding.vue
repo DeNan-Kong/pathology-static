@@ -41,7 +41,8 @@
                 </div> 
             </div>
             <div class="embedding-table" id="s">
-                 <table class="table">
+                <embeddingtable/>
+                 <!-- <table class="table">
                     <thead>
                         <tr>
                             <th class="table-three"><p class="noselectbox tablecheck checkall embeddingcheckall" id="0" @click="embeddingcheckall"></p></th>
@@ -81,7 +82,7 @@
                             <td>{{it.patient.checktime}}</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </div>
             <div class="embedding-bottom">
                 <p class="floatleft embedding-bottom-p">当前待包埋数：4</p>
@@ -155,7 +156,6 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
     height: 528px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    overflow-y:scroll; 
 }
 .embedding-bottom{
     width: 100%;
@@ -199,6 +199,7 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
 <script>
 import $ from "jQuery"
 import Calendar from 'components/calendar';
+import Embeddingtable from 'components/embeddingtable';
 import Vue from 'vue';
     export default{
         data(){
@@ -210,7 +211,8 @@ import Vue from 'vue';
         },
         props: ['item'],
         components:{
-           "calendar":Calendar, 
+           "calendar":Calendar,
+           "embeddingtable":Embeddingtable 
         },
         created(){ // 生命周期 created,获取数据
           this.fetchData()

@@ -193,7 +193,7 @@
         methods: {
             login: function () {
                 let app = window.__lendApp__;
-                app.$router.push({path: '/register'});
+                app.$router.push({path:'/register'});
             }
         }
     };

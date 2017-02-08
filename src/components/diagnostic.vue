@@ -89,7 +89,7 @@
             <div class="material-modify  floatleft"></div>
             <div class="material-delete  floatleft"></div>
           </div>
-          <div class="dictionary-search2">
+          <div class="dictionary_search">
              <treelist/>
             <!-- <ul>
               <li>肿物通用
@@ -349,7 +349,9 @@
   background: url('../assets/images/material.png')  -6px -40px no-repeat;
   cursor:pointer;
   }
-.dictionary-search2{
+.dictionary_search{
+  width: 298px;
+  height: 286px;
   overflow-y: scroll;
   overflow-x: hidden;
 }

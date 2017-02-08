@@ -1,8 +1,7 @@
 <template>
     <div> 
     <div  id="middle-right">
-        <div  class="right-inner">
-            
+        <div  class="right-inner">    
         <div class="right-top">
             <button class="right-top-one shen  rightbtnone" v-on:click="shenbtn">申</button><button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">登</button>
             <button  class="rightbtnthr right-top-three qu" v-on:click="qubtn">取</button><button  class="rightbtnfou right-top-four zhizi" v-on:click="zhibtn">制</button>
@@ -46,45 +45,95 @@
             <button  class="select-search-btn" @click="find">提取</button>
         </div>
         <div class="clear"></div>
-        <div   class="table-show">
-            <table class="table ">
-                <thead>
-                    <tr>
-                        <th class="table-show-one"></th>
-                        <th  class="th-three">病理号</th>
-                        <th class="th-three">姓名</th>
-                        <th class="th-three">性别</th>
-                        <th class="th-three">年龄</th>
-                        <th  class="th-three">住院号</th>
-                        <th  class="th-three">送检单位</th>
-                        <th  class="th-three">送检科室</th>
-                        <th  class="th-three">标本名称</th>
-                        <th  class="th-three">临床诊断</th>
-                        <th  class="th-three">诊断意见</th>
-                        <th  class="th-three">主诊医生</th>
-                        <th  class="th-three">送检日期</th>
-                        <th  class="th-three">报告日期</th>
-                    </tr>
-                </thead>
-                <tbody >
-                       <!-- <img src="../image/imagehistory.png" class="table-image"> -->
-                    <tr  v-for="hh in hhs">
-                        <td @click="showrelate"><img src="../assets/images/copy.png.png"></td>
-                        <td>{{hh.patient.patientId}}</td>
-                        <td>{{hh.patient.task}}</td>
-                        <!-- <td>小强</td>
-                        <td>男</td>
-                        <td>23</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td>
-                        <td>20106235261</td> -->
-                    </tr>
-                    
-                </tbody>
-                </table>
+        <div   class="table-show" >
+            <el-table :data="hhs" border style="width: 100%" height="400" >
+            <el-table-column label="" width="53" fixed>
+              <template scope="scope">
+               <!--  <el-popover trigger="hover" placement="top">
+                <p>相关诊断</p> -->
+                <div slot="reference" class="name-wrapper">
+                <el-tooltip class="item"  content="相关诊断" placement="top">
+      
+                <el-tag><div size="small" @click="showrelate" >
+                    <img src="../assets/images/copy.png.png"></div>
+                </el-tag>
+    </el-tooltip>
+                
+          </div>
+        </el-popover>
+              </template>
+            </el-table-column>
+             <el-table-column label="" width="20" fixed>
+              <template scope="scope">
+                <div></div>
+              </template>
+            </el-table-column>
+            <el-table-column label="病理号" width="94" fixed> 
+              <template scope="scope" >
+                <span  style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="姓名" width="66" fixed>
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.patient.task}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="性别" width="74">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.frozenNo }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="年龄" width="74">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="住院号" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="送检单位" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="送检科室" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="标本名称" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="临床诊断" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="诊断意见" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="主诊医生" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="送检日期" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="报告日期" width="114">
+              <template scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+              </template>
+            </el-table-column> 
+          </el-table>   
             </div>
             <div class="right-bottom">
                 <p  class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
@@ -198,6 +247,13 @@
 </div>
 </template>
 <style>
+ body .table-show .el-tag{
+    background-color:transparent;
+    height: 30px;
+}
+ body .table-show .el-popover{
+    width: 10px;
+}
 .relateimg{
     width: 20px;
     background:url('../assets/images/copy.png.png') no-repeat;
@@ -368,7 +424,6 @@
     width:100%;
     min-width:255px;
     height: 425px;
-    overflow: scroll;
 }
 .table-show .table th:first-child,.table-show .table td:first-child{
     width:48px;
@@ -393,7 +448,6 @@
     color:#fff;
     font-size:14px;
     margin-left: 5px;
-    outline: none;
 }
 .right-top .right-top-one{
     background:#a366bd;
@@ -437,8 +491,7 @@
 .insetcolor{
     box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
     -moz-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
-    -ms-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
-    -webkit-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
+    border:2px solid #20eedd;
 }
 .yan{
     background:#dc5b5b;   
@@ -564,11 +617,13 @@ input[type='checkbox'] .checkbox-one{
     height:24px;
     margin-left: 60px;
     background:#428bca;
-    border:1px solid #428bca;
     color:#fff;
     border-radius: 3px;
     line-height:20px;
     text-align:center;
+}
+.select-search-btn:hover{
+    background:#3577af;
 }
 .right-bottom>p{
     display:block;
@@ -590,6 +645,7 @@ body .table-show-one{
     color:#c94646; 
 }
 .relatelist{
+    display: none;
     width: 674px;
     height: 416px;
     background:#fff;
@@ -602,6 +658,15 @@ body .table-show-one{
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+.grop-search button:hover{
+
+}
+body #relatetable .el-table .cell,.el-table__header-wrapper{
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  padding: 0px;
+}  
 </style>
 <script>
 import {mapState} from 'vuex';
@@ -609,11 +674,63 @@ import $ from "jQuery";
 import Calendar from 'components/calendar';
 import Relatetable from 'components/relatetable';
     export default{
-        data(){
-            return{
-                name: 'Vue.js',
-            }
-        },
+       data() {
+      return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }]
+      }
+    },
         props: ['hhs','tableshow'],
         
         components:{
@@ -624,190 +741,179 @@ import Relatetable from 'components/relatetable';
           this.searchtable()
         },
         methods:{
-           // async  find(){
-           //      const response = await fetch('/api/hello');
-           //      if(response.ok){
-           //          console.log("__________________");
-           //          this.content = await response.text();
-           //          console.log(this.content);
-                  
-           //          var jsondata=JSON.parse(this.content);
-
-           //          console.log(jsondata.length);
-           //      }
-           //          },
-                toggle:function(){
-                    $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
-                    if($(".grop-search-lines").hasClass('grop-search-line1')){
-                        $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
-                    }else{
-                        $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
-                    }
-                    if($(".grop-search-imgs").hasClass('grop-search-img1')){
-                        $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
-                    }else{
-                        $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
-                    }
-                     if($(".grop-search-btns").hasClass('grop-search-btn1')){
-                        $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
-                    }else{
-                        $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
-                    }
-                },
-
-                changecheckbox1:function(e){
-                    if($(".a").hasClass("selectbox")){
-                    $(".a").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".a").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox2:function(e){
-                    if($(".b").hasClass("selectbox")){
-                    $(".b").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".b").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox3:function(e){
-                    if($(".c").hasClass("selectbox")){
-                    $(".c").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".c").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox4:function(e){
-                    if($(".d").hasClass("selectbox")){
-                    $(".d").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".d").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox5:function(e){
-                    if($(".e").hasClass("selectbox")){
-                    $(".e").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".e").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox6:function(e){
-                    if($(".f").hasClass("selectbox")){
-                    $(".f").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".f").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox7:function(e){
-                    if($(".g").hasClass("selectbox")){
-                    $(".g").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".g").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                changecheckbox8:function(e){
-                    if($(".h").hasClass("selectbox")){
-                    $(".h").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".h").removeClass("noselectbox").addClass("selectbox"); 
-                    }
-                },
-                shenbtn:function(){
-                    
-                    if(!$(".rightbtnone").hasClass('insetcolor')){
-                       $(".rightbtnone").addClass('insetcolor');
-                       $(".rightbtnone").siblings().removeClass('insetcolor')
-                    }
-                },
-                dengbtn:function(){
-                    if(!$(".rightbtntwo").hasClass('insetcolor')){
-                       $(".rightbtntwo").addClass('insetcolor');
-                       $(".rightbtntwo").siblings().removeClass('insetcolor')
-                    }
-                },
-                qubtn:function(){
-                    if(!$(".rightbtnthr").hasClass('insetcolor')){
-                       $(".rightbtnthr").addClass('insetcolor');
-                       $(".rightbtnthr").siblings().removeClass('insetcolor')
-                    }
-                },
-                zhibtn:function(){
-                    if(!$(".rightbtnfou").hasClass('insetcolor')){
-                       $(".rightbtnfou").addClass('insetcolor');
-                       $(".rightbtnfou").siblings().removeClass('insetcolor')
-                    }
-                },
-                zanbtn:function(){
-                    if(!$(".rightbtnfiv").hasClass('insetcolor')){
-                       $(".rightbtnfiv").addClass('insetcolor');
-                       $(".rightbtnfiv").siblings().removeClass('insetcolor')
-                    }
-                },
-                zhenbtn:function(){
-                    if(!$(".rightbtnsix").hasClass('insetcolor')){
-                       $(".rightbtnsix").addClass('insetcolor');
-                       $(".rightbtnxis").siblings().removeClass('insetcolor')
-                    }
-                },
-                yanbtn:function(){
-                    if(!$(".rightbtnsev").hasClass('insetcolor')){
-                       $(".rightbtnsev").addClass('insetcolor');
-                       $(".rightbtnsev").siblings().removeClass('insetcolor')
-                    }
-                },
-                shen2btn:function(){
-                    if(!$(".rightbtneig").hasClass('insetcolor')){
-                       $(".rightbtneig").addClass('insetcolor');
-                       $(".rightbtneig").siblings().removeClass('insetcolor')
-                    }
-                },
-                yinbtn:function(){
-                    if(!$(".rightbtnnin").hasClass('insetcolor')){
-                       $(".rightbtnnin").addClass('insetcolor');
-                       $(".rightbtnnin").siblings().removeClass('insetcolor')
-                    }
-                },
-                cancle:function(){
-                    $(".bmobbox").fadeOut(500);
-                    if($(".grop-search-lines").hasClass('grop-search-line1')){
-                        $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
-                    }else{
-                        $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
-                    }
-                    if($(".grop-search-imgs").hasClass('grop-search-img1')){
-                        $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
-                    }else{
-                        $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
-                    }
-                     if($(".grop-search-btns").hasClass('grop-search-btn1')){
-                        $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
-                    }else{
-                        $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
-                    }
-                },
-                find:function(){
-                    console.log("ooooo")
-                },
-                searchtable:function(){
-                  var self=this;
-                    $.ajax({
-                        type: 'POST',
-                        url: '/api/hello',
-                        data:{
-                            id:0
-                        },
-                        success:function(data) {    
-                            self.hhs=JSON.parse(data);
-                            console.log( self.hhs)
-                        }
-                    });
-                },
-                showrelate:function(){
-                    $('.relatelist').toggle()
-                },
-                method:function(){
-                    this.tableshow();
-                    $('.relatelist').hide()
+            toggle:function(){
+                $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
+                if($(".grop-search-lines").hasClass('grop-search-line1')){
+                    $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
+                }else{
+                    $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
                 }
-               }
-            };
+                if($(".grop-search-imgs").hasClass('grop-search-img1')){
+                    $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
+                }else{
+                    $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
+                }
+                 if($(".grop-search-btns").hasClass('grop-search-btn1')){
+                    $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
+                }else{
+                    $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
+                }
+            },
+
+            changecheckbox1:function(e){
+                if($(".a").hasClass("selectbox")){
+                $(".a").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".a").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox2:function(e){
+                if($(".b").hasClass("selectbox")){
+                $(".b").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".b").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox3:function(e){
+                if($(".c").hasClass("selectbox")){
+                $(".c").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".c").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox4:function(e){
+                if($(".d").hasClass("selectbox")){
+                $(".d").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".d").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox5:function(e){
+                if($(".e").hasClass("selectbox")){
+                $(".e").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".e").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox6:function(e){
+                if($(".f").hasClass("selectbox")){
+                $(".f").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".f").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox7:function(e){
+                if($(".g").hasClass("selectbox")){
+                $(".g").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".g").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            changecheckbox8:function(e){
+                if($(".h").hasClass("selectbox")){
+                $(".h").removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $(".h").removeClass("noselectbox").addClass("selectbox"); 
+                }
+            },
+            shenbtn:function(){    
+                if(!$(".rightbtnone").hasClass('insetcolor')){
+                   $(".rightbtnone").addClass('insetcolor');
+                   $(".rightbtnone").siblings().removeClass('insetcolor')
+                }
+            },
+            dengbtn:function(){
+                if(!$(".rightbtntwo").hasClass('insetcolor')){
+                   $(".rightbtntwo").addClass('insetcolor');
+                   $(".rightbtntwo").siblings().removeClass('insetcolor')
+                }
+            },
+            qubtn:function(){
+                if(!$(".rightbtnthr").hasClass('insetcolor')){
+                   $(".rightbtnthr").addClass('insetcolor');
+                   $(".rightbtnthr").siblings().removeClass('insetcolor')
+                }
+            },
+            zhibtn:function(){
+                if(!$(".rightbtnfou").hasClass('insetcolor')){
+                   $(".rightbtnfou").addClass('insetcolor');
+                   $(".rightbtnfou").siblings().removeClass('insetcolor')
+                }
+            },
+            zanbtn:function(){
+                if(!$(".rightbtnfiv").hasClass('insetcolor')){
+                   $(".rightbtnfiv").addClass('insetcolor');
+                   $(".rightbtnfiv").siblings().removeClass('insetcolor')
+                }
+            },
+            zhenbtn:function(){
+                if(!$(".rightbtnsix").hasClass('insetcolor')){
+                   $(".rightbtnsix").addClass('insetcolor');
+                   $(".rightbtnsix").siblings().removeClass('insetcolor')
+                }
+            },
+            yanbtn:function(){
+                if(!$(".rightbtnsev").hasClass('insetcolor')){
+                   $(".rightbtnsev").addClass('insetcolor');
+                   $(".rightbtnsev").siblings().removeClass('insetcolor')
+                }
+            },
+            shen2btn:function(){
+                if(!$(".rightbtneig").hasClass('insetcolor')){
+                   $(".rightbtneig").addClass('insetcolor');
+                   $(".rightbtneig").siblings().removeClass('insetcolor')
+                }
+            },
+            yinbtn:function(){
+                if(!$(".rightbtnnin").hasClass('insetcolor')){
+                   $(".rightbtnnin").addClass('insetcolor');
+                   $(".rightbtnnin").siblings().removeClass('insetcolor')
+                }
+            },
+            cancle:function(){
+                $(".bmobbox").fadeOut(500);
+                if($(".grop-search-lines").hasClass('grop-search-line1')){
+                    $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
+                }else{
+                    $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
+                }
+                if($(".grop-search-imgs").hasClass('grop-search-img1')){
+                    $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
+                }else{
+                    $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
+                }
+                 if($(".grop-search-btns").hasClass('grop-search-btn1')){
+                    $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
+                }else{
+                    $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
+                }
+            },
+            find:function(){
+            
+            },
+            searchtable:function(){
+              var self=this;
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/hello',
+                    data:{
+                        id:0
+                    },
+                    success:function(data) {    
+                        self.hhs=JSON.parse(data);
+                    }
+                });
+            },
+            showrelate:function(){
+                $('.relatelist').toggle()
+            },
+            method:function(){
+                this.tableshow();
+                $('.relatelist').hide()
+            },
+            handleEdit:function(index, row) {
+                console.log(index, row);
+              },
+           }
+        };
 </script>

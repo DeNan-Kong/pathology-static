@@ -1,82 +1,5 @@
 <template>
     <div class="all">
-    <div id="loginpage">
-        <login/>
-    </div>
-     <div id="register">
-        <top-menu/>
-        <div  id="middle-left">
-            <div class="middle-message">
-                <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                <p>冰冻&nbsp;&nbsp;常规</p>
-            </div>
-            <div class="case-message">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
-                </div>
-                <medicalmessage/>
-            </div>
-            <div  class="tabs-img">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></a><br>
-                </div>
-                123
-            </div>
-            <div  class="tabs-pay">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange"  v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
-                </div>
-                456
-            </div>
-            <div  class="tabs-check">
-                <div class="case-tabs">
-                    <a class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
-                </div>
-                <div class="tabscheck">789</div>
-            </div>
-        </div>
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
-    </div>
-    <div id="materials">
-        <top-menu/>
-        <div  id="middle-left">
-            <div class="middle-message">
-                <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                <p>冰冻&nbsp;&nbsp;常规</p>
-            </div>
-            <div class="case-message">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>    
-                </div>
-                <medicalmessage/>
-            </div>
-            <div  class="tabs-materials">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
-                </div>
-                <medicalmaterial/>
-            </div>
-            <div  class="tabs-img">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
-                </div>
-                123
-            </div>
-            <div  class="tabs-pay">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
-                </div>
-                456
-            </div>
-            <div  class="tabs-check">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
-                </div>
-                789
-            </div>
-        </div>
-        <searchtable/>
-     </div>
      <div id="diagnostic">
         <top-menu/>
         <div  id="middle-left">
@@ -117,105 +40,16 @@
         </div>
         <searchtable/>
      </div>
-     <div id="filmmaking">
-        <top-menu/>
-        <div  id="filmmaking-main">
-           <div class="filmmaking-main">
-                <div class="tabs-embedding">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                    </div>
-                    <embedding :item="(lists)" :get-datas="fetchData" />
-                </div>
-                <div class="tabs-section">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                    </div>
-                    <medicalsection :list="(lists)" />
-                </div>
-                <div class="tabs-advice">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                    </div>
-                    <advice :nums="(lists)" />
-                </div>
-                <div class="tabs-filmmaking">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
-                    </div>
-                    <filmmaking :datas="(lists)"/>
-                </div>
-           </div>    
-        </div>
-     </div>
-     <div id="cytology">
-        <top-menu/>
-        <div  id="middle-left">
-            <div class="middle-message">
-                <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                <p>冰冻&nbsp;&nbsp;常规</p>
-            </div>
-            <div class="case-message">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
-                </div>
-            <medicalmessage/>
-            </div>
-            <div  class="tabs-img">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
-                </div>
-            <cytology/>
-            </div>
-            <div  class="tabs-pay">
-                <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
-                </div>
-
-            </div>
-        </div>
-        <searchtable/>
-    </div>
  </div>
 </template>
 <style>
 .all{
     min-width: 1340px;
 }
-#register,#materials,#diagnostic{
+#diagnostic{
     font-size: 14px;
     width: 100%;
     min-width:1340px;
-}
-#loginpage{
-   display: none; 
-}
-#diagnostic{
-  display: none;
-}
-#materials{
-   display: none;   
-}
-#register{
-   
-}
-#filmmaking{
-   display: none; 
-}
-#cytology{
-   display: none;    
 }
 .case-message,.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     width: 1052px;

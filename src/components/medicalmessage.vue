@@ -3,19 +3,19 @@
         <div class="case-content">
             <div class="case-num">
                 <div class="case-num-one">
-                    <p class="floatleft p-one">HIS识别码:</p><input type="text" class="floatleft  input-his  radium"
-                                                                 ref="write1">
-                    <form class="floatleft sel-his">
+                    <p class="floatleft p-one">HIS识别码:</p><input type="text" class="floatleft  input-his  radium" ref="write1">
+                    <form class="floatleft sel-his" >
                         <select>
-                            <option>住院号</option>
-                            <option></option>
+                            <option v-for="item in initialData.specimenTypeList"> 
+                                {{ item.name }}
+                            </option>
                         </select>
                     </form>
                     <button class="floatleft  but-his">提取</button>
-                    <p class="floatleft  p-three">病人ID:</p><input type="text" class="floatleft input-id  radium"
-                                                                  ref="write2">
-                    <p class="floatleft  p-mark p-four">冰冻标识:</p><input type="text" class="floatleft  radium input-mark"
-                                                                        ref="write3">
+                    <p class="floatleft  p-three">病人ID:</p><input type="text" class="floatleft input-id  radium" ref="write2">
+                    <p class="floatleft  p-mark p-four">冰冻标识:</p>
+                    <input type="text" class="floatleft  radium input-mark" ref="write3">
+                    <button class="arrow"></button>
                 </div>
                 <br>
                 <div class="case-num-two">
@@ -35,29 +35,26 @@
                     <p class="floatleft  p-two">性别:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>男</option>
-                            <option>女</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-three">年龄:</p>
                     <input type="text" class="floatleft input-age radium" ref="write8">
                     <form class="floatleft ">
                         <select class="sel-sup  radium-sup">
-                            <option>岁</option>
-                            <option>月</option>
-                            <option>天</option>
-                            <option>时</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft   p-four">民族:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>汉族</option>
-                            <option>回族</option>
-                            <option>维吾尔族</option>
-                            <option>苗族</option>
-                            <option>其他</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                 </div>
@@ -65,24 +62,21 @@
                     <p class="floatleft p-one">婚否:</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup">
-                            <option>是</option>
-                            <option>否</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-two">职业:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>教师</option>
-                            <option>医生</option>
-                            <option>程序员</option>
-                            <option>公务员</option>
-                            <option>其他</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">手机号码:</p><input type="text" class="floatleft p-margin radium"
-                                                                  ref="write10">
-                    <p class="floatleft   p-four">身份证号:</p><input type="text" class="floatleft p-margin radium "
-                                                                  ref="write11">
+                    <p class="floatleft  p-three">手机号码:</p><input type="text" class="floatleft p-margin radium" ref="write10">
+                    <p class="floatleft   p-four">身份证号:</p><input type="text" class="floatleft p-margin radium" ref="write11">
                 </div>
                 <div class="name-num-three">
                     <p class="floatleft p-one">联系信息:</p><input type="text" class="floatleft   p-big  radium"
@@ -92,9 +86,9 @@
                     <p class="floatleft  p-four">绝经:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>是</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
 
@@ -105,25 +99,25 @@
                     <p class="floatleft p-one">送检单位:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>北医三院</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-two">送检科室:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>手术室</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-three">送检医生:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>李伟</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft   p-four">送检日期:</p>
@@ -145,9 +139,9 @@
                     <p class="floatleft p-four">标本情况:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>良好</option>
-                            <option>重切</option>
-                            <option>深切</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                 </div>
@@ -155,25 +149,25 @@
                     <p class="floatleft p-one">标本名称:</p>
                     <form class="floatleft ">
                         <select class="p-big  radium-sup">
-                            <option>大体</option>
-                            <option>小体</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-three">不合格原因:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>切错</option>
-                            <option>未接收</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-four">标本接收:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>已接收</option>
-                            <option>未接收</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                 </div>
@@ -181,9 +175,9 @@
                     <p class="floatleft p-one">费别:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option>自费</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.specimenTypeList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-two">收费:</p><input type="text" class="floatleft  p-margin  radium"
@@ -208,7 +202,7 @@
                             <option>未知</option>
                         </select>
                     </form> 
-                    <p  class="floatleft  p-four">术间电话:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write15">
+                    <p  class="floatleft  p-four ">术间电话:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write15">
                 </div>
                 <div class="hospital-num-six">
                     <p class="floatleft p-one">病史摘要:</p>
@@ -277,14 +271,26 @@
     height:23px;
     margin-left: 14px;
 }
+.arrow{
+    width: 24px;
+    height: 24px;
+    background:url('../assets/images/arrow.png')no-repeat -8px -6px;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+.arrow:hover{
+    background:url('../assets/images/arrow.png')no-repeat -39px -6px;
+}
 .but-his{
     width:58px;
     height:24px; 
     margin-left:9px;
     background:#428bca;
-    border:1px solid #428bca;
     border-radius:3px;
     color:#fff;
+}
+.but-his:hover{
+    background:#3577af;
 }
 .input-id{
     margin-left: 9px;
@@ -292,7 +298,7 @@
     height:24px;    
 }
 .input-mark{
-    width:155px;
+    width:125px;
     margin-left: 13px;
 }
 .case-num-one,.case-num-two,.name-num-one,.name-num-two,.name-num-three{
@@ -337,7 +343,6 @@
     background:#428bca;
     color:#fff;
     height:34px;
-    border:1px solid #428bca;
     border-radius:3px;
     margin-top: 24px;
     float: right;
@@ -357,6 +362,7 @@
 }
 .left-button-five{
     width:88px;
+
 }
 .left-bottom .picture-img,.left-bottom .refresh-img{
     margin-left: 6px;
@@ -442,7 +448,16 @@
         },
         methods: {
             async loadData () {
-                const response = await fetch('/register/load');
+                const response = await fetch('/register/load',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+                        firstParam: 'yourValue',
+                        secondParam: 'yourOtherValue'
+                    })
+                });
                 const json = await response.text();
                 const data = JSON.parse(json);
                 this.initialData = data;

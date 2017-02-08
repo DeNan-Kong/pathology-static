@@ -15,7 +15,8 @@
           
       </div>
       <div class="section-table">
-        <table class="table">
+        <sectiontable/>
+        <!-- <table class="table">
            <thead>
               <tr>
                   <th class="table-three"><p class="noselectbox tablecheck checkall sectioncheckall" @click="sectioncheckall"></p></th>
@@ -46,7 +47,7 @@
                   <td>{{l.patient.cainum}}</td>
               </tr>
             </tbody>
-        </table>    
+        </table>  -->   
         </div>
         <div class="section-bottom">
           <p class="floatleft section-bottom-one">当前待切片数:12</p>
@@ -98,7 +99,6 @@ thead{
   height: 528px;
   border-top: 1px solid #ccc;
   border-bottom:1px solid #ccc;
-  overflow-y:scroll; 
 }
 .section-bottom{
   height: 48px;
@@ -136,6 +136,8 @@ thead{
 <script>
 import $ from "jQuery"
 import Calendar from 'components/calendar';
+import Sectiontable from 'components/sectiontable';
+
   export default {
     data() {
       return {
@@ -145,6 +147,7 @@ import Calendar from 'components/calendar';
     props: ['list'],
     components:{
           "calendar":Calendar,
+          "sectiontable":Sectiontable
     },
     created(){ // 生命周期 created,获取数据
         this.fetchSectionData()

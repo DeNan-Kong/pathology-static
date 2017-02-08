@@ -37,30 +37,7 @@
         <button class="material-top-del radius  material-top-btn">删除</button>
     </div>
     <div class="material-middle">
-      <table class="table">
-          <thead>
-            <tr>
-                <th>任务来源</th>
-                <th>材块号</th>
-                <th>取材部位</th>
-                <th>材块数</th>
-                <th>单位</th>
-                <th>取材医生</th>
-                <th  class="th-three">取材日期</th>
-                <th  class="th-three">制片状态</th>
-                <th  class="th-three">材块核对</th>
-                <th  class="th-three">包埋</th>
-                <th  class="th-three">临床诊断</th>
-                <th  class="th-three">诊断意见</th>
-                <th  class="th-three">主诊医生</th>
-                <th  class="th-three">送检日期</th>
-                <th  class="th-three">报告日期</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-     </table>
+      <materialtable/>
     </div>
     <div class="material-information">
       <div class="informationone">
@@ -127,7 +104,8 @@
           <div class="material-delete  floatleft"></div>
         </div>
         <div class="dictionary-search">
-          <ul>
+          <materiallist/>
+          <!-- <ul>
             <li>肿物通用
             <p class="menus-img"><p>
             </li>
@@ -173,7 +151,7 @@
             <li>胰腺及脾
               <p class="menus-img"><p>
             </li>
-          </ul>
+          </ul> -->
         </div>
     </div>
   </div>
@@ -203,6 +181,11 @@
    margin-right: 5px;
    margin-top: -16px;
 }
+.dictionary-search{
+  width: 264px;
+  height: 500px;
+  overflow-y: scroll;
+}
 .dictionary-search ul li{
   margin-left: -30px;
   height: 30px;
@@ -227,6 +210,12 @@
   margin-right: 2px;
   margin-top: -23px;
 }
+button:hover{
+  background:#3577af;
+}
+.material-bottom button:hover{
+  background:#3577af;
+}
 .material-modify:hover{
   background: url('../assets/images/material.png')  -40px -40px no-repeat;
 }
@@ -247,6 +236,10 @@
   margin-left: 180px;
   margin-right: 2px;
   margin-top: -23px;
+}
+.material-add:hover{
+  background: url('../assets/images/material.png')  -8px -40px no-repeat;
+  cursor:pointer;
 }
 .material-middle-right img{
   margin-top: 6px;
@@ -422,7 +415,6 @@
   margin-left: 14px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc; 
-  overflow:scroll;
   color:#333333;
 }
 .material-information{
@@ -490,9 +482,11 @@ textarea{
 }
 </style>
 <script>
-    import $ from "jQuery"
-    import Calendar from 'components/calendar';
-    import Medicalmessage from 'components/medicalmessage';
+  import $ from "jQuery"
+  import Calendar from 'components/calendar';
+  import Materialtable from 'components/materialtable';
+  import Medicalmessage from 'components/medicalmessage';
+  import Materiallist from 'components/materiallist';
   export default {
     data() {
       return {
@@ -503,6 +497,8 @@ textarea{
      components:{
            "calendar":Calendar,
            "medicalmessage":Medicalmessage, 
+           "materialtable":Materialtable,
+           "materiallist":Materiallist
         },
         methods:{
         }
