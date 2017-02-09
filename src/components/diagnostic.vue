@@ -72,13 +72,13 @@
   </div>
   <div class="diagnostic-right">
     <div class="diagnostic-right-top">
-      <div  class="mydictionary2 dictionary  dictionary-active" @click="mydictionary2">
+      <div  class="mydictionary2 dictionary  dictionary-active">
         <p>我的词典</p>
       </div>
-      <div  class="commondictionary2  dictionary"  @click="commondictionary2">
+      <div  class="commondictionary2  dictionary">
         <p>常用词典</p>
       </div>
-      <div  class="checkdictionary2  dictionary" @click="checkdictionary2">
+      <div  class="checkdictionary2  dictionary">
         <p>检查模板</p>
       </div>
       <div  class="diagnostic-right-search2">
@@ -194,6 +194,7 @@
 <style>
 .index{
   position: relative;
+  color:#333;
 }
 .border{
   border: 1px solid #ccc;
@@ -314,7 +315,7 @@
 .diagnostic-message-picture{
   width:660px;
   height: 180px;
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid #333;
   margin-bottom: 10px;
 }
 .diagnostic-right-top{
@@ -361,9 +362,6 @@
   list-style: none;
   cursor: pointer;
 }
-/*.dictionary-search2 ul li:first-child{
-  margin-top: 10px;
-}*/
 .dictionary-search2  p{
   display: block;
   width: 10px;
@@ -458,6 +456,7 @@ body .iptmesssage-p-long{
   background: url('../assets/images/check.png')  -4px -40px no-repeat;
   margin-right: 7px;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-two{
   background: url('../assets/images/check.png')  -40px -4px no-repeat;
@@ -465,6 +464,7 @@ body .iptmesssage-p-long{
 .checkpic-two:hover{
   background: url('../assets/images/check.png')  -40px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-thr{
   background: url('../assets/images/check.png')  -70px -4px no-repeat;
@@ -472,6 +472,7 @@ body .iptmesssage-p-long{
 .checkpic-thr:hover{
   background: url('../assets/images/check.png')  -70px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-four{
   background: url('../assets/images/check.png')  -104px -4px no-repeat;
@@ -479,6 +480,7 @@ body .iptmesssage-p-long{
 .checkpic-four:hover{
   background: url('../assets/images/check.png')  -104px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-five{
   background: url('../assets/images/check.png')  -136px -4px no-repeat;
@@ -486,6 +488,7 @@ body .iptmesssage-p-long{
 .checkpic-five:hover{
   background: url('../assets/images/check.png')  -136px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-six{
   background: url('../assets/images/check.png')  -168px -4px no-repeat;
@@ -493,6 +496,7 @@ body .iptmesssage-p-long{
 .checkpic-six:hover{
   background: url('../assets/images/check.png')  -168px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-sev{
   background: url('../assets/images/check.png')  -200px -4px no-repeat;
@@ -500,6 +504,7 @@ body .iptmesssage-p-long{
 .checkpic-sev:hover{
   background: url('../assets/images/check.png')  -200px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 .checkpic-eig{
   background: url('../assets/images/check.png')  -232px -4px no-repeat;
@@ -507,6 +512,7 @@ body .iptmesssage-p-long{
 .checkpic-eig:hover{
   background: url('../assets/images/check.png')  -232px -40px no-repeat;
   margin-top: 3px;
+  cursor: pointer;
 }
 </style>
 <script>

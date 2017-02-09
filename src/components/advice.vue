@@ -19,7 +19,7 @@
           <calendar/>
           <input type="radio" name="time" class="floatleft radio "><p class="floatleft advice-four textcenter">时间范围:</p>
           <calendar/>
-          <p class="floatleft">至</p>
+          <p class="floatleft embeddingzhi textcenter">至</p>
           <calendar/>
           <p class="floatleft advice-five textcenter">医嘱类型：</p>
           <form  class="floatleft advice-form">
@@ -102,6 +102,9 @@
 </div>
 </template>
 <style>
+body .advice-top .radio{
+  margin-left: 10px;
+}
 .radiu{
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
@@ -199,7 +202,7 @@ import Advicetable from 'components/advicetable';
         lists:null
       }
     },
-    props: ['nums'],
+    props: [],
     components:{
             "calendar":Calendar,
             "advicetable":Advicetable

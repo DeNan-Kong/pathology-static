@@ -9,36 +9,36 @@
             </div>
             <div class="case-message">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>    
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>    
                 </div>
                 <medicalmessage/>
             </div>
             <div  class="tabs-materials">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
                 <medicalmaterial/>
             </div>
             <div  class="tabs-img">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
                 123
             </div>
             <div  class="tabs-pay">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
                 456
             </div>
             <div  class="tabs-check">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">收费</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
-                789
+                <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable/>
+        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
      </div>
  </div>
 </template>
@@ -89,21 +89,6 @@
     background: red;
     min-width: 1330px;
 }
-.case-tabss>a{
-    display:block;
-    width: 7%;
-    height: 22px;
-    background:#d0eaf8;
-    float:left;
-    margin-left: 3px;
-    text-align:center;
-    line-height:22px;
-    color:#999;
-    border-bottom-right-radius:5px;
-    border-bottom-left-radius:5px;
-    cursor: pointer;
-    text-decoration: none;
-}
 .case-tabss .filmmakingactive{
     background: #57bdde;
     color: #fff;
@@ -118,17 +103,7 @@
 .tabs-section,.tabs-advice,.tabs-filmmaking{
     display: none;
 }
-#cytology .medicalcytology{
-    width: 74px;
-}
-#cytology .cytologyimg{
-    width: 66px;
-}
-#cytology .active{
-    background: #57bdde;
-    color: #fff;
-}
-body #register .closebtn{
+body #materials .closebtn{
     display: block;
     background: url('../assets/images/relatecheck.png') no-repeat  -4px -2px;
     width:78px;
@@ -137,7 +112,7 @@ body #register .closebtn{
     margin-left: 3px;
     margin-top: 0px;
 }
-body #register .closebtnchange{
+body #materials .closebtnchange{
     background: url('../assets/images/relatecheck.png') no-repeat  -4px -26px;
     width:78px;
     height:22px;
@@ -146,7 +121,10 @@ body #register .closebtnchange{
     margin-top: 0px;
     display: none; 
 }
-#register .close{
+body #materials .register_check{
+    background-color: transparent;
+}
+#materials .close{
     display: block;
     width: 20px;
     height: 22px;
@@ -161,13 +139,6 @@ import {mapState} from 'vuex';
     import Calendar from 'components/calendar';
     import Medicalmessage from 'components/medicalmessage';
     import Medicalmaterial from 'components/medicalmaterial';
-    import Diagnostic from 'components/diagnostic';
-    import Filmmaking from 'components/filmmaking';
-    import Embedding from 'components/embedding';
-    import Medicalsection from 'components/medicalsection';
-    import Advice from 'components/advice';
-    import Cytology from 'components/cytology';
-    import Login from 'components/login';
     export default{
         data(){
             return{
@@ -192,13 +163,6 @@ import {mapState} from 'vuex';
             "calendar":Calendar,
             "medicalmessage":Medicalmessage,
             "medicalmaterial":Medicalmaterial,
-            "diagnostic":Diagnostic,
-            "filmmaking":Filmmaking,
-            "embedding":Embedding,
-            "medicalsection":Medicalsection,
-            "advice":Advice,
-            "cytology":Cytology,
-            "login":Login
         },
         methods:{
             medicalInformation:function(){
@@ -227,6 +191,11 @@ import {mapState} from 'vuex';
                 $('.tabs-check').css('display','none');
                 $(".medicalCheck").addClass("closebtn");
                 $(".medicalCheck").removeClass("closebtnchange");
+                if($('.aaaa').css('display','block')){
+                   $('.register_check').css('display','none') 
+               }else{
+                $('.closebtnchange').css('display','block')
+               }
             },
             medicalImage:function(){
                 $(".medicalImage").addClass("active");
@@ -271,36 +240,6 @@ import {mapState} from 'vuex';
                 $(".medicalCheck").addClass("closebtnchange");
                 $(".medicalCheck").removeClass("closebtn");
             },
-            filmmaking:function(){
-                $(".filmmaking").addClass("filmmakingactive");
-                $(".filmmaking").siblings().removeClass("filmmakingactive");
-                $('.tabs-filmmaking').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-embedding').css('display','none');
-                var xhr = new XMLHttpRequest()
-                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.lists=JSON.parse(xhr.responseText);
-              }
-              xhr.send()
-            },
-            fetchSectionData:function(){
-                $(".section").addClass("filmmakingactive");
-                $(".section").siblings().removeClass("filmmakingactive");
-                $('.tabs-section').css('display','block');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-                var xhr = new XMLHttpRequest()
-                var self = this  
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.lists = JSON.parse(xhr.responseText);
-              }
-              xhr.send()
-            },
             fetchData:function(){
                 $(".embedding").addClass("filmmakingactive");
                 $(".embedding").siblings().removeClass("filmmakingactive");
@@ -319,7 +258,8 @@ import {mapState} from 'vuex';
             },
             method:function(){
                 $('.register_check').css('display','block');
-                $(".medicalCheck").addClass("closebtnchange").removeClass("closebtn");
+                $(".medicalCheck").addClass("closebtnchange")
+                $(".medicalCheck").removeClass("closebtn");
                 $(".medicalCheck").siblings().removeClass("active");
                 $('.tabs-check').css('display','block');
                 $('.tabs-pay').css('display','none');
@@ -327,7 +267,6 @@ import {mapState} from 'vuex';
                 $('.tabs-img').css('display','none');
                 $(".tabs-materials").css('display','none');
                 $(".aaaa").css('display','none');
-
             },
             fetchAdviceData:function(){
                 $(".advice").addClass("filmmakingactive");

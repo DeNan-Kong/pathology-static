@@ -8,7 +8,8 @@
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;满意</p>
                   <input type="radio" class="floatleft cytology-col-radio" name="satisfaction">
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;基本满意</p>
-                  <input type="radio" class="floatleft cytology-col-radio radioo" name="satisfaction">
+                  <input type="radio" class="floatleft cytology-col-radio" name="satisfaction">
+                  <span class="demo--radioInput"></span>
                   <p class="floatleft cytology-nosatisfaction">&nbsp;&nbsp;不满意</p>
                   <form class="floatleft cytology-form">
                       <select class="cytology-form">
@@ -21,7 +22,7 @@
               <div class="clear"></div>
               <div class="cytology-rows">
                   <p class="floatleft cytology-cols">细胞量:</p>
-                  <input type="radio" class="floatleft cytology-col-one cytology-col-radio" name="satisfaction">
+                  <input type="radio" class="floatleft cytology-col-one cytology-col-radio" name="cellnum">
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;>2000</p>
                   <input type="radio" class="floatleft cytology-col-radio" name="cellnum">
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;<2000</p>
@@ -33,7 +34,7 @@
               <div class="clear"></div>
               <div class="cytology-rows">
                   <p class="floatleft cytology-cols">炎症反应:</p>
-                  <input type="radio" class="floatleft cytology-col-one cytology-col-radio" name="satisfaction">
+                  <input type="radio" class="floatleft cytology-col-one cytology-col-radio" name="rection">
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;轻度</p>
                   <input type="radio" class="floatleft cytology-col-radio" name="rection">
                   <p class="floatleft cytology-col-two">&nbsp;&nbsp;中度</p>
@@ -96,8 +97,7 @@
                   <p class="floatleft cytology-cols">诊断批注:</p>
                   <input type="text" class="floatleft cytology-pizhu">
                   <p class="floatleft cytology-cols">诊断符合：</p>
-                  <input type="text" class="floatleft cytology-ipt-four">
-                 
+                  <input type="text" class="floatleft cytology-ipt-four">  
               </div>
               <div class="clear"></div>
               <div class="cytology-rows">
@@ -156,8 +156,7 @@
                     <div class="material-delete  floatleft"></div>
                   </div>
                   <div class="dictionary-search2 cytology-background list">
-                    <treelist/>
-                    
+                    <treelist/>  
                   </div>
                 </div>
           </div>
@@ -179,6 +178,8 @@
 .radioo{
   opacity: 0;
 }
+input[type='radio']
+{background-color:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:100%;display:inline-block;height:16px;margin-right:10px;margin-top:-1px;vertical-align:middle;width:16px;line-height:1}
 .pic-ref .picture-img{
     background: url('../assets/images/refresh.png.png')no-repeat;
     width:26px;
@@ -252,7 +253,6 @@
     border-radius: 3px;
     border:1px solid #ccc;
     margin-left: 5px;
-    overflow-y: scroll;
 }
 .cytology-rows-eyesee{
     height: 74px;
@@ -266,7 +266,6 @@
     border-radius: 3px;
     border:1px solid #ccc;
     margin-left: 5px;
-    overflow-y: scroll;
 }
 .cytology-addadvice{
     height: 24px;
@@ -341,13 +340,6 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.cytology-background ul li{
-    /*width:260px;
-    height: 30px;
-    line-height: 30px;*/
-   /* margin-left: -40px;
-    padding-left: 5px;*/
-}
 .cytology-background ul li:hover{
     background:#f5f5f5;
 }
@@ -357,7 +349,6 @@
 .cytology-dictionarytext{
     width:168px;
 }
-
 .list ul li{
     border-bottom:0;
     height: 30px;
@@ -381,22 +372,6 @@
 .list ul li .inactives{
     background:url('../assets/images/on.png') no-repeat 224px center;
 } 
-.list ul li ul li{
-    border-left:0;
-    border-right:0;
-    height: 30px;
-    line-height: 30px;
-}
-.list ul li ul li ul{
-    display: none;
-}
-.list ul li ul li a{
-    padding-left:20px;
-}
-.list ul li ul li ul li a{
-    color:#316a91;
-    padding-left:30px;
-}
 </style>
 <script>
     import $ from "jQuery";
@@ -409,7 +384,6 @@
             }
         },
         components:{
-
            "treelist":Treelist 
         },
         methods:{
@@ -425,32 +399,6 @@
                 $("textarea").val('');
                 $("input").val(''); 
             },
-            menushow:function(e){
-              var selectid=$(e.target).attr("id");
-              console.log($("#"+selectid).parent('li').next('li').attr("id"))
-              console.log(($("#"+selectid).parent('li').children('ul').children().length))
-              if($("#"+selectid).siblings('ul').css('display')=='none'){
-              $("#"+selectid).parent('li').siblings('li').removeClass('inactives');
-              $("#"+selectid).addClass('inactives');
-              $("#"+selectid).parent('li').next('li').attr("id").css('top',($('#'+selectid).parent('li').children('ul').children().length)*30+'px' );
-              $("#"+selectid).siblings('ul').slideDown(100).children('li');
-              if($("#"+selectid).parents('li').siblings('li').children('ul').css('display')=='block'){
-                $("#"+selectid).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
-                $("#"+selectid).parents('li').siblings('li').children('ul').slideUp(100);
-              }
-            }else{
-              //控制自身变成+号
-              $("#"+selectid).removeClass('inactives');
-              //控制自身菜单下子菜单隐藏
-              $("#"+selectid).siblings('ul').slideUp(100);
-              //控制自身子菜单变成+号
-              $("#"+selectid).siblings('ul').children('li').children('ul').parent('li').children('a').addClass('inactives');
-              //控制自身菜单下子菜单隐藏
-              $("#"+selectid).siblings('ul').children('li').children('ul').slideUp(100);
-              //控制同级菜单只保持一个是展开的（-号显示）
-              $("#"+selectid).siblings('ul').children('li').children('a').removeClass('inactives');
-            }
-            }
         }
     }
 </script>

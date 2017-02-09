@@ -53,84 +53,83 @@
                 <p>相关诊断</p> -->
                 <div slot="reference" class="name-wrapper">
                 <el-tooltip class="item"  content="相关诊断" placement="top">
-      
-                <el-tag><div size="small" @click="showrelate" >
+                <el-tag>
+                <div  @click="showrelate" >
                     <img src="../assets/images/copy.png.png"></div>
                 </el-tag>
-    </el-tooltip>
-                
-          </div>
-        </el-popover>
-              </template>
+                </el-tooltip>    
+                </div>
+            </el-popover>
+            </template>
             </el-table-column>
              <el-table-column label="" width="20" fixed>
               <template scope="scope">
                 <div></div>
               </template>
             </el-table-column>
-            <el-table-column label="病理号" width="94" fixed> 
+            <el-table-column label="病理号" width="114" fixed> 
               <template scope="scope" >
-                <span  style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="姓名" width="66" fixed>
+            <el-table-column label="姓名" width="72" fixed>
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.patient.task}}</span>
+                <span>{{ scope.row.patient.task}}</span>
               </template>
             </el-table-column>
-            <el-table-column label="性别" width="74">
+            <el-table-column label="性别" width="40">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.frozenNo }}</span>
+                <span>{{ scope.row.frozenNo }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="年龄" width="74">
+            <el-table-column label="年龄" width="40">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="住院号" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="送检单位" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="送检科室" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="标本名称" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="临床诊断" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="诊断意见" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="主诊医生" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="送检日期" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column>
             <el-table-column label="报告日期" width="114">
               <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid }}</span>
               </template>
             </el-table-column> 
           </el-table>   
@@ -238,7 +237,7 @@
         </div>
         <div class="bmobbox-bottom">
             <button class="bmobbox-btnone">查询</button>
-            <button class="bmobbox-btntwo" @click="cancle">取消</button>
+            <button class="bmobbox-btntwo">取消</button>
         </div>
     </div>
     <div class="relatelist">
@@ -253,6 +252,19 @@
 }
  body .table-show .el-popover{
     width: 10px;
+}
+ .el-table tr{
+    
+    text-overflow:ellipsis;
+}
+body .el-table .cell{
+    color:#333;
+    padding: 0px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    white-space:nowrap; 
+    text-overflow:ellipsis;
 }
 .relateimg{
     width: 20px;

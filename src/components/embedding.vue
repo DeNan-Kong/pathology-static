@@ -19,7 +19,7 @@
                     <input type="radio" name="time" class="floatleft radio">
                     <p class="floatleft embedding-five radioleft">时间范围:</p>
                     <calendar/>
-                    <p class="floatleft">至</p>
+                    <p class="floatleft embeddingzhi">至</p>
                     <calendar/>
                 <a href="" class="floatleft embedding-four">脱钙(0)</a>
                 <a href="" class="floatleft embedding-four">冰冻(0)</a>
@@ -97,6 +97,20 @@
     </div>
 </template>
 <style>
+.embedding-top .common{
+    margin-top: 6px;
+}
+.embedding-contains input[type='radio']{
+    margin-right: 2px;
+}
+.embedding-top .embedding-top .el-date-editor.el-input{
+    margin-left: 0px;
+}
+.embeddingzhi{
+    display: block;
+    width: 2%;
+    height: 38px;
+}
 .embedding-top .el-date-editor.el-input{
     margin-left: -15px;
 }
@@ -133,7 +147,7 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
     width: 6%;
 }
 .embedding-top .radio{
-    margin-top: 13px;
+    margin-top: 11px;
 }
 .embedding-thre{
     width: 3%;
@@ -160,7 +174,7 @@ body div .embedding-contains .embedding-top .el-date-editor .el-input{
 .embedding-bottom{
     width: 100%;
     height: 36px;
-    margin-top: 5px;
+    margin-top: 16px;
     line-height: 36px;
 }
 .embedding-bottom button{
@@ -209,7 +223,7 @@ import Vue from 'vue';
                 apiURL:"/api/hello"
             }
         },
-        props: ['item'],
+        props: [],
         components:{
            "calendar":Calendar,
            "embeddingtable":Embeddingtable 

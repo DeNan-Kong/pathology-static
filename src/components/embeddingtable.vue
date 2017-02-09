@@ -2,108 +2,108 @@
   <el-table
     :data="tableData"
     border
+     style="width:100%;min-width:1340px;"
     height="520">
     <el-table-column
       type="selection"
-      width="55">
+      style="width:3%">
     </el-table-column>
     <el-table-column
       label="病理号"
-      fixed
-      width="180">
+      style="width:6%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="任务来源"
-      width="180">
+      style="width:6%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="材块号"
-      width="180">
+      style="width:4%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="姓名"
-      width="180">
+      style="width:5%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="性别"
-      width="180">
+      style="width:3%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="年龄"
-      width="180">
+      style="width:3%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="取材部位"
-      width="180">
+      style="width:5%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="材块数"
-      width="180">
+      style="width:3%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="取材医生"
-      width="180">
+      style="width:7%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="取材日期"
-      width="180">
+      style="width:7%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="材块核对"
-      width="180">
+      style="width:6%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="打印状态"
-      width="180">
+      style="width:6%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="制片状态"
-      width="180">
+      style="width:6%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="核对时间"
-      width="180">
+      style="width:7%">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
   </el-table>

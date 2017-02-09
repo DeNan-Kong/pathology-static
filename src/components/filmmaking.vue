@@ -94,48 +94,48 @@
                 </table> -->
             </div>
             <div class="filmmaking-adddelete">
-                <p class="floatleft top-p-seven">任务来源:</p>
-               <form  class="floatleft top-p-three">
+                <p class="floatleft top-p-seven textright">任务来源:</p>
+               <form  class="floatleft top-p-four">
                     <select class="radius common ">
                       <option>免疫组化</option>
                       <option>二</option>
                     </select>
                 </form>
-                <p class="floatleft top-p-four">制片时间:</p>
+                <p class="floatleft top-p-four  textright">制片时间:</p>
                 <calendar/>
-                <p class="floatleft top-p-three">制片人:</p>
+                <p class="floatleft top-p-three textright">制片人:</p>
+               <form  class="floatleft top-p-four">
+                    <select class="radius common ">
+                      <option>免疫组化</option>
+                      <option>二</option>
+                    </select>
+                </form>
+                <p class="floatleft top-p-four  textright">制片说明:</p>
                <form  class="floatleft top-p-three">
                     <select class="radius common ">
                       <option>免疫组化</option>
                       <option>二</option>
                     </select>
                 </form>
-                <p class="floatleft top-p-seven">制片说明:</p>
-               <form  class="floatleft top-p-three">
-                    <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
-                    </select>
-                </form>
-                <p class="floatleft top-p-two">序号:</p> 
+                <p class="floatleft top-p-three  textright">序号:</p> 
                 <form  class="floatleft top-p-four">
                     <select class="radius">
                       <option>免疫组化</option>
                       <option>二</option>
                     </select>
                 </form> 
-               <p class="floatleft top-p-one">病理号:</p>
+               <p class="floatleft top-p-three textright">病理号:</p>
                <input type="text"  class="floatleft top-ipt radius common">
-                <button class="floatleft add-btn ">添加</button>
-                <button class="floatleft delete-btn">删除</button>
+                <button class="floatright add-btn ">添加</button>
+                <button class="floatright delete-btn">删除</button>
             </div>
             <div class="clear"></div>
             <div class="filmmaking-bottom">
-                <p class="floatleft">当前制片数：4</p>
-                <button class="floatleft filmmaking-bottom-btn">标签打印</button>
-                <button class="floatleft filmmaking-bottom-btn">HE染色</button>
-                <button class="floatleft filmmaking-bottom-btn">玻片核对</button>
-                <button class="floatleft filmmaking-bottom-btnlong filmmaking-bottom-btn">移交表单打印</button>
+                <button class="floatright filmmaking-bottom-btnlong filmmaking-bottom-btn">移交表单打印</button>
+                <button class="floatright filmmaking-bottom-btn">玻片核对</button>
+                <button class="floatright filmmaking-bottom-btn">HE染色</button>
+                <button class="floatright filmmaking-bottom-btn">标签打印</button>
+                 <p class="floatright"><a href="#">当前制片数：4</a></p>
             </div>
         </div>
     </div>
@@ -175,6 +175,7 @@
 } 
 .top-ipt{
     width: 8%;
+    margin-left: 3px;
 }
 .top-p-two{
     width: 3.5%;
@@ -187,10 +188,11 @@
 }
 .top-p-three{
     width: 4.7%;
+    margin-left: 5px;
 }
 .top-p-four{
-    width: 5.5%;
-    text-align: center;
+    width: 5.6%;
+    margin-left: 5px;
 } 
 .top-p-five{
     width: 8%;
@@ -199,7 +201,7 @@
     width:7%;
 }
 .top-btn{
-    width:4%;
+    width:54px;
     height: 24px;
     background:#428bca; 
     margin-top: 8px;
@@ -216,41 +218,42 @@
     border-bottom: 1px solid #ccc;
 }
 .filmmaking-adddelete{
+    margin-top: 15px;
     width: 100%;
     height: 40px;
     line-height: 40px;
-    text-align: center;
 }
 .add-btn,.delete-btn{
-    width:4%;
+    width:58px;
     height: 24px;
     background:#428bca; 
     margin-top: 8px;
     border-radius: 3px;
     color:#fff;
-    margin-left: 2%;
+    margin-right: 10px;
     line-height: normal;
 }
 .filmmaking-bottom{
     height: 40px;
 }
 .filmmaking-bottom-btn{
-    width: 5%;
+    width: 76px;
     height: 32px;
     background:#428bca; 
     margin-top: 3px;
     border-radius: 3px;
     color:#fff;
-    margin-left: 2%;
+    margin-left: 1.6%;
     line-height: normal;
 }
 .filmmaking-bottom p{
+    width:110px;
     display: block;
-    margin-left: 47%;
     line-height: 40px;
 }
 .filmmaking-bottom-btnlong{
-    width: 7%;
+    width:110px;
+    margin-right: 10px;
 }
 .table-two{
     width: 2%;
@@ -298,7 +301,7 @@ import $ from "jQuery"
                
             }
         },
-        props: ['datas'],
+        props: [],
         components:{
            "calendar":Calendar,
            "filmmakingtable":Filmmakingtable

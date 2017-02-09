@@ -59,14 +59,14 @@
     </el-table-column>
     <el-table-column
       label="包埋日期"
-      width="180">
+      width="190">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="制片状态"
-      width="180">
+      width="190">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>

@@ -157,13 +157,13 @@
   </div>
   <div  class="material-bottom">
         <div  class="material-button">
-                <button  class="left-button-two  material-button-one"  v-on:click="refund" >补取医嘱</button>
-                <button  class="left-button-two"  v-on:click="print">检查模板</button> 
-                <button  class="left-button-two" v-on:click="save">冰冻切块</button>
-                <button  class="left-button-five" v-on:click="newsave">材料核对</button>
-                <button  class="left-button-two" v-on:click="newproject">暂存</button>
-                <button  class="left-button-five" v-on:click="newsave">打印</button>
-                <button  class="left-button-two" v-on:click="newproject">保存</button>    
+                <button  class="left-button-two  material-button-one">补取医嘱</button>
+                <button  class="left-button-two">检查模板</button> 
+                <button  class="left-button-two">冰冻切块</button>
+                <button  class="left-button-five" >材料核对</button>
+                <button  class="left-button-two">暂存</button>
+                <button  class="left-button-five">打印</button>
+                <button  class="left-button-two">保存</button>    
         </div>
         <div class="material-image">
             <div  class="picture-img" v-on:click="newproject"></div> 
@@ -479,6 +479,8 @@ textarea{
   height: 125px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  overflow: auto;
+  resize:none;
 }
 </style>
 <script>
@@ -501,6 +503,23 @@ textarea{
            "materiallist":Materiallist
         },
         methods:{
+          refund:function(){
+
+          },
+          print:function(){
+
+          },
+          save:function(){
+
+          },
+          newsave:function(){
+
+          },
+          newproject:function(){
+
+          },
+
+
         }
   };
 </script>

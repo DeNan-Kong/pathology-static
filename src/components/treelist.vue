@@ -3,6 +3,12 @@
   <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
 </div>
 </template>
+<style type="text/css">
+  .el-tree-node__content{
+    height: 32px;
+    line-height: 32px;
+  }
+</style>
 <script>
   export default {
     data() {

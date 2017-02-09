@@ -15,10 +15,20 @@
   width: 153px;
   
 }
+body .embedding-top .el-date-editor.el-input{
+    margin-left: -5px;
+}
 .el-input__inner{
   height: 24px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+body .embedding-contains .el-date-editor.el-input{
+  width:132px;
+}
+body .embedding-contains .p-margin{
+  margin-left: 0px;
+  width:132px;
 }
 </style>
 <script>

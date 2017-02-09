@@ -7,9 +7,7 @@
     <el-button @click.native="startHacking">Let's do it</el-button>
   </div>
 </template>
-
 <script>
-
   import {mapState} from 'vuex';
   import cTitle from 'components/title';
 

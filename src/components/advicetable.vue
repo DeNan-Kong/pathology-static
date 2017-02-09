@@ -9,7 +9,7 @@
     </el-table-column>
     <el-table-column
       label="病理号"
-      width="180"
+      width="150"
       fixed>
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
@@ -17,7 +17,7 @@
     </el-table-column>
     <el-table-column
       label="姓名"
-      width="180"
+      width="150"
       fixed>
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
@@ -25,14 +25,14 @@
     </el-table-column>
     <el-table-column
       label="医嘱类型"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="住院号"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
@@ -46,28 +46,28 @@
     </el-table-column>
     <el-table-column
       label="材块号"
-      width="180">
+      width="120">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="切片数"
-      width="180">
+      width="120">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="标记物"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="申请医生"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
@@ -81,7 +81,7 @@
     </el-table-column>
     <el-table-column
       label="收费情况"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
@@ -95,14 +95,14 @@
     </el-table-column>
     <el-table-column
       label="医嘱状态"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="执行人"
-      width="180">
+      width="150">
       <template scope="scope">
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>

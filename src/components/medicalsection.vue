@@ -9,7 +9,7 @@
           <calendar/>
           <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four textcenter">时间范围:</p>
           <calendar/>
-          <p class="floatleft  zzz">至</p>
+          <p class="floatleft  embeddingzhi textcenter">至</p>
           <calendar/>
           <button class="floatleft section-top-btn">查询</button>
           
@@ -144,7 +144,7 @@ import Sectiontable from 'components/sectiontable';
           lists:null
       }
     },
-    props: ['list'],
+    props: [],
     components:{
           "calendar":Calendar,
           "sectiontable":Sectiontable

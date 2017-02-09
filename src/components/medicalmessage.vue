@@ -4,8 +4,8 @@
             <div class="case-num">
                 <div class="case-num-one">
                     <p class="floatleft p-one">HIS识别码:</p><input type="text" class="floatleft  input-his  radium" ref="write1">
-                    <form class="floatleft sel-his" >
-                        <select>
+                    <form class="floatleft" >
+                        <select class="sel-his">
                             <option v-for="item in initialData.specimenTypeList"> 
                                 {{ item.name }}
                             </option>
@@ -52,7 +52,7 @@
                     <p class="floatleft   p-four">民族:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.nationList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -62,7 +62,7 @@
                     <p class="floatleft p-one">婚否:</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.maritalStatusList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -70,7 +70,7 @@
                     <p class="floatleft  p-two">职业:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.professionList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -91,7 +91,6 @@
                             </option>
                         </select>
                     </form>
-
                 </div>
             </div>
             <div class="case-hospital">
@@ -99,7 +98,7 @@
                     <p class="floatleft p-one">送检单位:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.inspectUnitList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -107,7 +106,7 @@
                     <p class="floatleft  p-two">送检科室:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.inspectDepartmentList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -115,7 +114,7 @@
                     <p class="floatleft  p-three">送检医生:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.submittingPhysicianList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -139,7 +138,7 @@
                     <p class="floatleft p-four">标本情况:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.specimenSituationList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -149,7 +148,7 @@
                     <p class="floatleft p-one">标本名称:</p>
                     <form class="floatleft ">
                         <select class="p-big  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.specimenNameList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -165,7 +164,7 @@
                     <p class="floatleft  p-four">标本接收:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.specimenReceiveList">
                                 {{item.name}}
                             </option>
                         </select>
@@ -175,19 +174,18 @@
                     <p class="floatleft p-one">费别:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                            <option v-for="item in initialData.chargeTypeList">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-two">收费:</p><input type="text" class="floatleft  p-margin  radium"
-                                                              ref="write9">
-                    <p class="floatleft  p-three">取材医生:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option>小明</option>
-                            <option>否</option>
-                            <option>未知</option>
+                    <p class="floatleft p-two">收费:</p><input type="text" class="floatleft p-margin  radium" ref="write9">
+                    <p class="floatleft p-three">取材医生:</p>
+                    <form class="floatleft">
+                        <select class="p-margin radium-sup">
+                            <option v-for="item in initialData.sampleDoctorList">
+                                {{item.name}}
+                            </option>
                         </select>
                     </form>
                     <p class="floatleft  p-four">接收日期:</p>
@@ -197,9 +195,7 @@
                     <p class="floatleft p-one">临床诊断:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium  input-doctor">
-                            <option>是</option>
-                            <option>否</option>
-                            <option>未知</option>
+                            <option v-for="item in initialData.clinicalDiagnosisList"> {{item.name}}</option>
                         </select>
                     </form> 
                     <p  class="floatleft  p-four ">术间电话:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write15">
@@ -212,11 +208,11 @@
                 </div>
             </div>
             <div  class="left-button">
-                <button  class="left-button-two"  @click="refund">清除</button>
-                <button  class="left-button-two"  @click="print">打印</button> 
-                <button  class="left-button-two" @click="save">保存</button>
+                <button  class="left-button-two"  @click="refund">清&nbsp;除</button>
+                <button  class="left-button-two"  @click="print">打&nbsp;印</button> 
+                <button  class="left-button-two" @click="save">保&nbsp;存</button>
                 <button  class="left-button-five" @click="newsave">保存且新建</button>
-                <button  class="left-button-two" @click="newproject">新建</button>    
+                <button  class="left-button-two" @click="newproject">新&nbsp;建</button>    
             </div>
             <div class="left-bottom">
                 <div  class="picture-img" @click="refresh"></div> 
@@ -257,7 +253,7 @@
     margin-top: 25px;
 }
 .radium-sup{
-    border-radius:5px;
+    border-radius:3px;
     border-color:#cccccc; 
 }
 .input-his{
@@ -270,6 +266,8 @@
     width:80px;
     height:23px;
     margin-left: 14px;
+    border:1px solid #cccccc;
+     border-radius:3px;
 }
 .arrow{
     width: 24px;

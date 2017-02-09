@@ -9,36 +9,36 @@
             </div>
             <div class="case-message">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>    
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>    
                 </div>
                <medicalmessage/>
             </div>
             <div  class="tabs-materials">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
              <diagnostic/> 
             </div>
             <div  class="tabs-img">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
                 123
             </div>
             <div  class="tabs-pay">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
                 456
             </div>
             <div  class="tabs-check">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck" v-on:click="medicalCheck">相关诊断</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalMaterials"  v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
-                789
+                <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable/>
+        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
      </div>
  </div>
 </template>
@@ -128,7 +128,7 @@
     background: #57bdde;
     color: #fff;
 }
-body #register .closebtn{
+body #diagnostic .closebtn{
     display: block;
     background: url('../assets/images/relatecheck.png') no-repeat  -4px -2px;
     width:78px;
@@ -137,7 +137,10 @@ body #register .closebtn{
     margin-left: 3px;
     margin-top: 0px;
 }
-body #register .closebtnchange{
+body #diagnostic .register_check{
+    background-color: transparent;
+}
+body #diagnostic .closebtnchange{
     background: url('../assets/images/relatecheck.png') no-repeat  -4px -26px;
     width:78px;
     height:22px;
@@ -146,7 +149,7 @@ body #register .closebtnchange{
     margin-top: 0px;
     display: none; 
 }
-#register .close{
+#diagnostic .close{
     display: block;
     width: 20px;
     height: 22px;
@@ -227,6 +230,11 @@ body #register .closebtnchange{
                 $('.tabs-check').css('display','none');
                 $(".medicalCheck").addClass("closebtn");
                 $(".medicalCheck").removeClass("closebtnchange");
+                 if($('.aaaa').css('display','block')){
+                   $('.register_check').css('display','none') 
+               }else{
+                $('.closebtnchange').css('display','block')
+               }
             },
             medicalImage:function(){
                 $(".medicalImage").addClass("active");
@@ -270,6 +278,11 @@ body #register .closebtnchange{
                 $(".tabs-materials").css('display','none');
                 $(".medicalCheck").addClass("closebtnchange");
                 $(".medicalCheck").removeClass("closebtn");
+                 if($('.aaaa').css('display','block')){
+                   $('.register_check').css('display','none') 
+               }else{
+                $('.closebtnchange').css('display','block')
+               }
             },
             filmmaking:function(){
                 $(".filmmaking").addClass("filmmakingactive");

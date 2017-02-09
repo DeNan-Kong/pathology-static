@@ -9,23 +9,29 @@
             </div>
             <div class="case-message">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
             <medicalmessage/>
             </div>
             <div  class="tabs-img">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
             <cytology/>
             </div>
             <div  class="tabs-pay">
                 <div class="case-tabs">
-                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><br>
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
             </div>
+            <div  class="tabs-check">
+                <div class="case-tabs">
+                    <a  class="active  medicalInformation"  v-on:click="medicalInformation">病历信息</a><a class="medicalImage medicalcytology" v-on:click="medicalImage">细胞学诊断</a><a class="medicalPay cytologyimg" v-on:click="medicalPay">病理图像</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
+                </div>
+                <div class="tabscheck">789</div>
+            </div>
         </div>
-        <searchtable/>
+        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
     </div>
  </div>
 </template>
@@ -110,7 +116,7 @@
     background: #57bdde;
     color: #fff;
 }
-body #register .closebtn{
+body #cytology .closebtn{
     display: block;
     background: url('../assets/images/relatecheck.png') no-repeat  -4px -2px;
     width:78px;
@@ -119,7 +125,7 @@ body #register .closebtn{
     margin-left: 3px;
     margin-top: 0px;
 }
-body #register .closebtnchange{
+body #cytology .closebtnchange{
     background: url('../assets/images/relatecheck.png') no-repeat  -4px -26px;
     width:78px;
     height:22px;
@@ -128,7 +134,7 @@ body #register .closebtnchange{
     margin-top: 0px;
     display: none; 
 }
-#register .close{
+#cytology .close{
     display: block;
     width: 20px;
     height: 22px;
@@ -144,12 +150,7 @@ body #register .closebtnchange{
     import Medicalmessage from 'components/medicalmessage';
     import Medicalmaterial from 'components/medicalmaterial';
     import Diagnostic from 'components/diagnostic';
-    import Filmmaking from 'components/filmmaking';
-    import Embedding from 'components/embedding';
-    import Medicalsection from 'components/medicalsection';
-    import Advice from 'components/advice';
     import Cytology from 'components/cytology';
-    import Login from 'components/login';
     export default{
         data(){
             return{
@@ -166,7 +167,7 @@ body #register .closebtnchange{
     }
         },
         created(){ // 生命周期 created,获取数据
-          this.first()
+       
         },
         components:{
             "top-menu":TopMenu,
@@ -175,12 +176,7 @@ body #register .closebtnchange{
             "medicalmessage":Medicalmessage,
             "medicalmaterial":Medicalmaterial,
             "diagnostic":Diagnostic,
-            "filmmaking":Filmmaking,
-            "embedding":Embedding,
-            "medicalsection":Medicalsection,
-            "advice":Advice,
             "cytology":Cytology,
-            "login":Login
         },
         methods:{
             medicalInformation:function(){
@@ -198,17 +194,6 @@ body #register .closebtnchange{
                }else{
                 $('.closebtnchange').css('display','block')
                }
-            },
-            medicalMaterials:function(){
-                $(".medicalMaterials").addClass("active");
-                $(".medicalMaterials").siblings().removeClass("active");
-                $('.tabs-materials').css('display','block');
-                $('.case-message').css('display','none');
-                $('.tabs-img').css('display','none');
-                $('.tabs-pay').css('display','none');
-                $('.tabs-check').css('display','none');
-                $(".medicalCheck").addClass("closebtn");
-                $(".medicalCheck").removeClass("closebtnchange");
             },
             medicalImage:function(){
                 $(".medicalImage").addClass("active");
@@ -252,36 +237,11 @@ body #register .closebtnchange{
                 $(".tabs-materials").css('display','none');
                 $(".medicalCheck").addClass("closebtnchange");
                 $(".medicalCheck").removeClass("closebtn");
-            },
-            filmmaking:function(){
-                $(".filmmaking").addClass("filmmakingactive");
-                $(".filmmaking").siblings().removeClass("filmmakingactive");
-                $('.tabs-filmmaking').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-embedding').css('display','none');
-                var xhr = new XMLHttpRequest()
-                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.lists=JSON.parse(xhr.responseText);
-              }
-              xhr.send()
-            },
-            fetchSectionData:function(){
-                $(".section").addClass("filmmakingactive");
-                $(".section").siblings().removeClass("filmmakingactive");
-                $('.tabs-section').css('display','block');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-                var xhr = new XMLHttpRequest()
-                var self = this  
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.lists = JSON.parse(xhr.responseText);
-              }
-              xhr.send()
+                if($('.aaaa').css('display','block')){
+                   $('.register_check').css('display','none') 
+               }else{
+                $('.closebtnchange').css('display','block')
+               }
             },
             fetchData:function(){
                 $(".embedding").addClass("filmmakingactive");
@@ -311,28 +271,10 @@ body #register .closebtnchange{
                 $(".aaaa").css('display','none');
 
             },
-            fetchAdviceData:function(){
-                $(".advice").addClass("filmmakingactive");
-                $(".advice").siblings().removeClass("filmmakingactive");
-                $('.tabs-advice').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-                var xhr = new XMLHttpRequest()
-                var self = this 
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.lists=JSON.parse(xhr.responseText);
-              }
-              xhr.send()
-            },
             closebtn:function(){
                 $('.tabscheck').hide();
                 $('.register_check').hide();
             },
-            first:function(){
-                 $(".aaaa").css('display','block');
-            }
     }   
 }
 </script>

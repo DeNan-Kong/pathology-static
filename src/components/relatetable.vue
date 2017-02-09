@@ -66,7 +66,7 @@
     <tbody>
       <tr class="relateclick" @click="relateclick">
         <td class="el-table_1_column_33">
-          <div class="cell">20181029280667</div>
+          <div class="cell" style="height: 30px;">20181029280667</div>
         </td>
         <td class="el-table_1_column_34">
           <div class="cell">CT</div>
@@ -113,7 +113,14 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
   font-weight: normal;
   text-align: center;
   padding: 0px;
-}  
+} 
+body .el-table__fixed-header-wrapper thead div, .el-table__header-wrapper thead div{
+  color:#333;
+  font-weight: normal;
+}
+body .el-table .cell, .el-table th>div{
+  padding: auto 0px;
+} 
 </style>
 <script>
 export default {
