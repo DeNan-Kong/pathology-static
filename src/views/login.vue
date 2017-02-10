@@ -10,23 +10,27 @@
                         <img src="../assets/images/folder.png" class="image-folder">
                     </div>
                     <select class="folder-select">
-                        <option>登记页面</option>
-                        <option>诊断页面</option>
-                        <option>制片页面</option>
+                        <option v-for="item in initialData.workstationList">
+                            {{item.name}}
+                        </option>
                     </select>
                 </div>
                 <div class="login-img">
                     <div class="login-folder">
                         <img src="../assets/images/username.png" class="image-folder">
                     </div>
-                    <input class="folder-select" placeholder="用户名">
+
+                    <input v-validate="'required'" name="userName"
+                           class="folder-select" type="text" v-model="bindData.userName"
+                           placeholder="用户名">
                 </div>
                 <div class="login-img">
                     <div class="login-folder">
                         <img src="../assets/images/password.png" class="image-folder">
                     </div>
-                    <input class="folder-select" placeholder="密码" type="password">
+                    <input v-validate="'required'" name="password" class="folder-select" v-model="bindData.password" placeholder="密码" type="password">
                 </div>
+
                 <div class="login-btn">
                     <button class="loginin" v-on:click="login">登录</button>
                     <button class="loginout">退出</button>
@@ -188,13 +192,58 @@
 <script>
     export default {
         data() {
-            return {};
+            return {
+                initialData: {},
+                bindData: {
+                    workstation: '',
+                    userName: '',
+                    password: ''
+                }
+
+            };
         },
         methods: {
+            async loadData(){
+                const response = await fetch('/login/load', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data: this.data
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.initialData = data;
+            },
             login: function () {
-                let app = window.__lendApp__;
-                app.$router.push({path:'/register'});
+                this.$validator.validateAll().then(success => {
+                }).then(failing => {
+                }, rejected => {
+                });
+
+                if (this.errors.any()) {
+
+                    const error = this.errors.errors[0];
+                    this.$message({
+                        message: error.msg,
+                        type: 'error'
+                    });
+
+debugger;
+                    document.getElementsByName(error.field)[0].focus();
+                    return;
+                }
+                // handle error
+
+
+                /*
+                 this.$router.push({path:'/register'});*/
             }
+        },
+        mounted () {
+            this.loadData();
         }
     };
 </script>
