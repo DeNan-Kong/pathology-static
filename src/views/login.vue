@@ -1,10 +1,10 @@
 <template>
     <div>
         <div id="loginmain" class="hmias-common">
-            <div class="hmias hmias-common">HMIAS</div>
-            <div class="hmias-p hmias-common">2000W高清晰度彩色医学图文分析管理系统</div>
+            <div class="hmias hmias-common">{{$t('login.title')}}</div>
+            <div class="hmias-p hmias-common">{{$t('login.description')}}</div>
             <div id="login" class="hmias-common">
-                <div class="login-p">用户登录</div>
+                <div class="login-p">{{$t('login.sub_title')}}</div>
                 <div class="login-img">
                     <div class="login-folder">
                         <img src="../assets/images/folder.png" class="image-folder">
@@ -23,7 +23,7 @@
                                 :value="errors.has('userName')">
                         <input v-validate="'required'" name="userName"
                                class="folder-select" type="text" v-model="bindData.userName"
-                               placeholder="用户名">
+                               v-bind:placeholder="$t('login.user_name')">
                     </el-tooltip>
                 </div>
 
@@ -36,7 +36,7 @@
                                 :value="errors.has('password')">
                         <input v-validate="'required'" name="password"
                                class="folder-select" type="password" v-model="bindData.password"
-                               placeholder="密码">
+                               v-bind:placeholder="$t('login.password')" >
                     </el-tooltip>
                 </div>
 
@@ -205,7 +205,9 @@
     export default {
         data() {
             return {
-                initialData: {},
+                initialData: {
+                    password:""
+                },
                 bindData: {
                     workstation: '',
                     userName: '',
@@ -235,6 +237,7 @@
                 }, rejected => {
                 });
 
+                this.errors.first('userName');
                 if (this.errors.any() == false) {
                     alert('123');
                 }
