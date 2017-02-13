@@ -4,7 +4,6 @@
     <el-date-picker
       v-model="value1"
       type="date"
-      placeholder="选择日期"
       :picker-options="pickerOptions0">
     </el-date-picker>
   </div>
@@ -40,9 +39,10 @@ body .embedding-contains .p-margin{
             return time.getTime() < Date.now() - 8.64e7;
           }
         },
-        value1: ''
+        value1: new Date()
       };
-    }
+    },
+    prop:['today']
   };
 </script>
 
