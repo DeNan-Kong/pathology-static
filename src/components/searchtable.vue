@@ -3,17 +3,20 @@
     <div  id="middle-right">
         <div  class="right-inner">    
         <div class="right-top">
-            <button class="right-top-one shen  rightbtnone" v-on:click="shenbtn">申</button><button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">登</button>
+            <!-- <button class="right-top-one shen  rightbtnone" v-on:click="shenbtn">申</button> --><button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">登</button>
             <button  class="rightbtnthr right-top-three qu" v-on:click="qubtn">取</button><button  class="rightbtnfou right-top-four zhizi" v-on:click="zhibtn">制</button>
             <button  class="rightbtnfiv right-top-five zan" v-on:click="zanbtn">暂</button><button  class="rightbtnsix right-top-six zhen" v-on:click="zhenbtn">诊</button>
             <button  class="rightbtnsev right-top-seven yan" v-on:click="yanbtn">延</button><button  class="rightbtneig right-top-eight  shen2" v-on:click="shen2btn">审</button>
             <button  class="rightbtnnin right-top-nine yin" v-on:click="yinbtn">印</button>
+             <el-checkbox-group v-model="checkList">
+                <el-checkbox label="全库"></el-checkbox>
+            </el-checkbox-group>
         </div>
         <br>
         <div class="grop-search ">
             <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
             <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">组合查询</button>
-            <p  class="floatleft">按时间检索:</p>
+            <p  class="floatleft">送检时间:</p>
              <form  class="floatleft ">
                 <select class="grop-search-sel  radium">
                     <option>当天</option>
@@ -38,15 +41,12 @@
                     <option>病人ID</option>
                 </select>
             </form>
+            <button  class="select-search-btn floatleft" @click="find">提取</button>
         </div>
-        <div  class="select-search">
-            <div  class="noselectbox floatleft  checkbox g  checkbox-one" id="e"  v-on:click="changecheckbox7"></div><p  class="floatleft  allmessage">全库</p>
-            <div  class="noselectbox floatleft checkbox  h checkbox-two" id="f"  v-on:click="changecheckbox8"></div><p  class="floatleft">模糊</p>
-            <button  class="select-search-btn" @click="find">提取</button>
-        </div>
+        
         <div class="clear"></div>
         <div   class="table-show" >
-            <el-table :data="searchTableData" border style="width: 100%" height="400">
+            <el-table :data="searchTableData.mm" border style="width: 100%" height="400">
             <el-table-column label="" width="53" fixed>
               <template scope="scope">
                <!--  <el-popover trigger="hover" placement="top">
@@ -55,7 +55,7 @@
                 <el-tooltip class="item"  content="相关诊断" placement="top">
                 <el-tag>
                 <div >
-                    <p class="relateimgon  relateclick"  @click="showrelate" :id='scope.row.patient.patientId'></p>
+                    <p class="relateimgon  relateclick"  @click="showrelate" :id='scope.row.patient.birthday'></p>
                 </div>
                 </el-tag>
                 </el-tooltip>    
@@ -71,7 +71,7 @@
             </el-table-column>
             <el-table-column label="病理号" width="114" fixed> 
               <template scope="scope" >
-                <span>{{ scope.row.patient.birthday}}</span>
+                <span>{{ scope.row.patient.inhospitalId}}</span>
               </template>
             </el-table-column>
             <el-table-column label="姓名" width="72" fixed>
@@ -160,8 +160,7 @@
                 <calendar/>
                 <p  class="floatleft  zhi">至</p>
                 <calendar/>
-                <div  class="noselectbox f floatleft teshudate" v-on:click="changecheckbox6"></div>
-                
+                <div  class="noselectbox f floatleft teshudate" v-on:click="changecheckbox6"></div>    
             </div>
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;:&nbsp;<p>
@@ -228,10 +227,16 @@
                 <input  type="text"  class="bmobboxinputlong2  floatleft">  
             </div>
             <div class="bmobboxtwo">
-                <div  class="noselectbox  a floatleft"   v-on:click="changecheckbox1"></div><p  class="floatleft">延期报告</p>
+                <el-checkbox-group v-model="bmobCheckList">
+                    <el-checkbox label="延期报告"></el-checkbox>
+                    <el-checkbox label="冰冻报告"></el-checkbox>
+                    <el-checkbox label="补充报告"></el-checkbox>
+                    <el-checkbox label="会诊报告"></el-checkbox>
+                </el-checkbox-group>
+                <!-- <div  class="noselectbox  a floatleft"   v-on:click="changecheckbox1"></div><p  class="floatleft">延期报告</p>
                 <div  class="noselectbox b floatleft"   v-on:click="changecheckbox2"></div><p  class="floatleft">冰冻报告</p> 
                 <div  class="noselectbox c floatleft"   v-on:click="changecheckbox3"></div><p  class="floatleft">补充报告</p> 
-                <div  class="noselectbox d floatleft"  v-on:click="changecheckbox4"></div><p  class="floatleft">会诊报告</p>   
+                <div  class="noselectbox d floatleft"  v-on:click="changecheckbox4"></div><p  class="floatleft">会诊报告</p> -->   
             </div>
             <div class="example">
                 <p>说明：临床诊断、病理诊断、诊断关键词输入多个关键词时用“l”隔开</p>
@@ -449,6 +454,7 @@ body .el-table .cell{
     width:100%;
     min-width:255px;
     height: 425px;
+    margin-top: 15px;
 }
 .table-show .table th:first-child,.table-show .table td:first-child{
     width:48px;
@@ -472,7 +478,7 @@ body .el-table .cell{
     text-align:center;
     color:#fff;
     font-size:14px;
-    margin-left: 5px;
+    margin-left: 4px;
 }
 .right-top .right-top-one{
     background:#a366bd;
@@ -552,7 +558,7 @@ body .el-table .cell{
 .grop-search-btn{
     width:65px;
     height:27px;
-    margin-right:8px;
+    margin-right:22px;
     color:#fff;
     border-radius:3px;
     padding-right: 3px;
@@ -599,7 +605,7 @@ body .el-table .cell{
     margin-top:5px;
 }
 .big-search-input{
-    width: 183px;
+    width: 135px;
     height:28px;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -621,6 +627,15 @@ body .el-table .cell{
     line-height:26px;
     font-size:14px;
 }
+.right-top .el-checkbox-group{
+    width: 50px;
+    float: left;
+    margin-left: 5px;
+}
+.select-search .el-checkbox-group{
+    width: 200px;
+    float: left;
+}
 .checkbox-one,.checkbox-two{
     width:20px;
     height:20px;
@@ -640,12 +655,13 @@ input[type='checkbox'] .checkbox-one{
 .select-search-btn{
     width:43px;
     height:24px;
-    margin-left: 60px;
+    margin-left: 5px;
     background:#428bca;
     color:#fff;
     border-radius: 3px;
     line-height:20px;
     text-align:center;
+    margin-top: 3px;
 }
 .select-search-btn:hover{
     background:#3577af;
@@ -701,24 +717,26 @@ import Relatetable from 'components/relatetable';
     export default{
        data() {
       return {
-       relateListDatas:{}
+       checkList: [],
+       relateListDatas:{},
+       searchTableData:{},
+       bmobCheckList:[]
       }
+    }, 
+    components:{
+        "calendar":Calendar,
+        "relatetable":Relatetable
     },
-        props: ['tableshow'],
-        
-        components:{
-            "calendar":Calendar,
-            "relatetable":Relatetable
-        },
-        created(){ // 生命周期 created,获取数据
-          this.searchTableData()
-        },
+    props:['tableshow'],
+    created(){
+         this.searchTable();
+    },
         methods:{
             async relateListData () {
             const response = await fetch('/api/hello',{ 
                 method: 'POST',
                 headers: { 
-                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                    "Content-type": "application/json; charset=UTF-8" 
                 }, 
                 body: JSON.stringify({ 
                     firstParam: 'yourValue',
@@ -728,21 +746,20 @@ import Relatetable from 'components/relatetable';
             const data = JSON.parse(json);
             this.relateListDatas = data;
             },
-            async searchTableData () {
+            async searchTable () {
                 const response = await fetch('/api/hello',{ 
                     method: 'POST',
                     headers: { 
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-                        firstParam: 'yourValue',
-                        secondParam: 'yourOtherValue'
+
                     })
                 });
                 const json = await response.text();
                  const data = JSON.parse(json);
                 this.searchTableData = data;
-                console.log(this.searchTableData)
+                
             },
             toggle:function(){
                 $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
@@ -762,35 +779,6 @@ import Relatetable from 'components/relatetable';
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                 }
             },
-
-            changecheckbox1:function(e){
-                if($(".a").hasClass("selectbox")){
-                $(".a").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".a").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            changecheckbox2:function(e){
-                if($(".b").hasClass("selectbox")){
-                $(".b").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".b").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            changecheckbox3:function(e){
-                if($(".c").hasClass("selectbox")){
-                $(".c").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".c").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            changecheckbox4:function(e){
-                if($(".d").hasClass("selectbox")){
-                $(".d").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".d").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
             changecheckbox5:function(e){
                 if($(".e").hasClass("selectbox")){
                 $(".e").removeClass("selectbox").addClass("noselectbox");
@@ -803,26 +791,6 @@ import Relatetable from 'components/relatetable';
                 $(".f").removeClass("selectbox").addClass("noselectbox");
                 }else{
                 $(".f").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            changecheckbox7:function(e){
-                if($(".g").hasClass("selectbox")){
-                $(".g").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".g").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            changecheckbox8:function(e){
-                if($(".h").hasClass("selectbox")){
-                $(".h").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".h").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            shenbtn:function(){    
-                if(!$(".rightbtnone").hasClass('insetcolor')){
-                   $(".rightbtnone").addClass('insetcolor');
-                   $(".rightbtnone").siblings().removeClass('insetcolor')
                 }
             },
             dengbtn:function(){
@@ -894,23 +862,8 @@ import Relatetable from 'components/relatetable';
             find:function(){
             
             },
-            // searchtable:function(){
-            //   var self=this;
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: '/api/hello',
-            //         data:{
-            //             id:0
-            //         },
-            //         success:function(data) {    
-            //             self.hhs=JSON.parse(data);
-            //         }
-            //     });
-            // },
-            
             showrelate:function(e){
                 var vvv=$(e.target).attr('id')
-                console.log(vvv)
                 if($('.relateclick').hasClass('.relateimgon')){
                     console.log("000")
                     $('.relatelist').hide()
@@ -929,6 +882,10 @@ import Relatetable from 'components/relatetable';
             handleEdit:function(index, row) {
                 console.log(index, row);
               },
+            mounted () {
+            this.searchTableData();
+            console.log("???")
+        },
            }
         };
 </script>

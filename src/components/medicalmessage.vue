@@ -120,7 +120,7 @@
                         </select>
                     </form>
                     <p class="floatleft   p-four">送检日期:</p>
-                    <calendar/>
+                    <calendar :today="(today)"/>
                 </div>
                 <div class="hospital-num-two">
                     <p class="floatleft p-one">病&nbsp;&nbsp;&nbsp;区:</p><input type="text" class="floatleft  p-margin  radium"
@@ -430,13 +430,13 @@
     export default{
         data(){
             return {
-                pickerOptions0: {
-                    disabledDate(time) {
-                        return time.getTime() < Date.now() - 8.64e7;
-                    }
-                },
-                initialData:{}
+                initialData:{},
+                today:{}
             }
+        },
+        created(){
+        // this.getNowDate()
+        console.log("kkk")
         },
         components: {
             // "top-menu": TopMenu,
@@ -459,7 +459,18 @@
                 const json = await response.text();
                 const data = JSON.parse(json);
                 this.initialData = data;
+                
             },
+            // async getNowDate(){
+            //     const date = new Date();
+            //     const year=  new Date().getFullYear();
+            //     const f= date.getMonth()+1;
+            //     const month=new Date().getMonth()+1<10?"0"+new Date().getMonth()+1:new Date().getMonth()+1;
+            //     const h= date.getDate();
+            //     const day=h<10?"0"+h:h;
+            //     const today=new Date().getFullYear()+"-"+new Date().getMonth()+1<10?"0"+new Date().getMonth()+1:new Date().getMonth()+1;
+            //     return today
+            // },
             newproject: function () {
                 $("textarea").val('');
                 $("input").val('');
@@ -483,7 +494,9 @@
             }
         },
         mounted () {
-            this.loadData();
+            this.loadData(),
+            // this.getNowDate();
+            console.log("date")
         }
     }
 </script>

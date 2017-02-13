@@ -65,7 +65,7 @@
     <col name="el-table_1_column_39" width="111">
     <col name="el-table_1_column_40" width="90">
     <tbody>
-      <tr class="relateclick" @click="relateclick" v-for="list in relationdate">
+      <tr class="relateclick" @click="relateclick" v-for="list in relationdate.mm">
         <td class="el-table_1_column_33">
           <div class="cell" style="height: 30px;">{{list.inhospitalId}}</div>
         </td>

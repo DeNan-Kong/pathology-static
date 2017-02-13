@@ -32,7 +32,7 @@
                 <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable :searchTableData="searchTableData" :get-datas="fetchData" :tableshow="method"/>
+        <searchtable :searchTableData="(searchTableData)" :get-datas="fetchData" :tableshow="method"/>
     </div>
  </div>
 </template>
@@ -158,6 +158,7 @@ body #register .closebtnchange{
         data(){
             return{
                 aa:10,
+                searchTableData:{},
                 pickerOptions0: {
                disabledDate(time) {
                  return time.getTime() < Date.now() - 8.64e7;
@@ -171,6 +172,10 @@ body #register .closebtnchange{
         },
         created(){ // 生命周期 created,获取数据
           this.first()
+           this.searchTableData()
+        },
+        mounted(){
+            this.searchTableData()
         },
         components:{
             "top-menu":TopMenu,
@@ -193,6 +198,7 @@ body #register .closebtnchange{
                 const json = await response.text();
                 const data = JSON.parse(json);
                 this.searchTableData = data;
+                console.log(this.searchTableData)
             },
             medicalInformation:function(){
                 $(".medicalInformation").addClass("active");
@@ -324,9 +330,6 @@ body #register .closebtnchange{
                 self.lists=JSON.parse(xhr.responseText);
               }
               xhr.send()
-            },
-            searchTableData:function(){
-
             },
             closebtn:function(){
                 $('.tabscheck').hide();

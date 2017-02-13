@@ -4,30 +4,33 @@
     <div class="material-top">
         <form  class="material-select-one floatleft material-margin">
             <select class="radius common">
-              <option>常规</option>
-              <option>大体</option>
-              <option>组织</option>
-              <option>冰冻</option>
+              <option v-for="item in allMaterialData.taskSourceList">{{item.name}}</option>
             </select>
         </form>
-        <input type="text"  class="material-top-input floatleft  radius common"> 
+         <form  class="floatleft ">
+            <select class="radius common material-top-input">
+              <option v-for="item in allMaterialData.materialNoList">{{
+                item.name
+              }}</option>
+            </select>
+        </form>
+        <!-- <input type="text"  class="material-top-input floatleft  radius common">  -->
          <form  class="material-top-two floatleft ">
-            <select class="radius common">
-              <option>条目一</option>
-              <option>条目二</option>
+            <select class="radius common material-top-two">
+              <option v-for="item in materialInitialData.nodeList">{{
+                item.name
+              }}</option>
             </select>
         </form>
         <input type="text"  class="material-top-ipttwo floatleft  radius common">
         <form  class="material-top-three floatleft ">
             <select class="threeradius common">
-              <option>块</option>
-              <option>个</option>
+              <option v-for="item in allMaterialData.quantityUnitList">{{item.name}}</option>
             </select>
         </form> 
         <form  class="material-top-four floatleft ">
             <select class="radius common">
-              <option>李医生</option>
-              <option>王医生</option>
+              <option v-for="item in allMaterialData.sampleDoctorList">{{item.name}}</option>
             </select>
         </form>
         <div class="material-top-date">
@@ -35,11 +38,10 @@
         </div>
         <button class="material-top-add radius  material-top-btn">添加</button>
         <button class="material-top-del radius  material-top-btn">删除</button>
-        <p>{{materialInitialData}}</p>
     </div>
     <div class="material-middle">
         <el-table
-        :data="materialInitialData"
+        
         border
         style="width: 100%" height="272">
         <el-table-column
@@ -103,22 +105,19 @@
         <p class="floatleft information-biao">标本处理：</p>
         <form  class="floatleft  ">
             <select class="radius  information-sel-one  information-sel">
-              <option>块</option>
-              <option>个</option>
+              <option v-for="item in allMaterialData.specimenHandleList">{{}}</option>
             </select>
         </form> 
         <p class="floatleft">存放位置：</p>
         <form  class="floatleft">
             <select class="radius  information-sel information-sel-two">
-              <option>一区</option>
-              <option>二区</option>
+              <option v-for="item in allMaterialData.saveLocationList">{{}}</option>
             </select>
         </form> 
         <p class="floatleft">记录人：</p>
         <form  class="floatleft">
             <select class="radius  information-sel">
-              <option>李伟</option>
-              <option>刘丽</option>
+              <option v-for="item in allMaterialData.noterList">{{item.name}}</option>
             </select>
         </form> 
       </div>
@@ -135,8 +134,7 @@
         <p class="floatleft chooseinput">选择通道：</p>
         <form  class="floatleft  ">
             <select class="radius informationtwo-sel-two informationtwo-sel">
-              <option>通道一</option>
-              <option>通道二</option>
+              <option v-for="item in allMaterialData.passageWayList">{{}}</option>
             </select>
         </form>
         <button class=" radius  informationtwo-btn">标签打印</button>
@@ -373,7 +371,8 @@
   margin-left: 22px;  
 }
 .material-top-two{
-  margin-left: 22px;
+  width:116px;
+  margin-left: 6px;
   width: 68px;
 }
 .material-margin{
@@ -498,12 +497,9 @@ textarea{
   export default {
      data() {
       return {
-                pickerOptions0: {
-                    disabledDate(time) {
-                        return time.getTime() < Date.now() - 8.64e7;
-                    }
-                },
-                materialPartsList:{}
+                materialPartsList:{},
+                materialInitialData:{},
+                allMaterialData:{}
             }
     },
      // props: ['materialInitialData','get'],
@@ -517,20 +513,19 @@ textarea{
         },
         methods:{
           async loadMaterialData () {
-                console.log("lllll")
                 const response = await fetch('/material/load',{ 
                     method: 'POST',
                     headers: { 
-                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                        "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-                        firstParam: 'yourValue',
-                        secondParam: 'yourOtherValue'
                     })
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                this.materialInitialData = data;
+                this.allMaterialData=data;
+                this.materialInitialData = data.materialPartsList;
+                console.log(this.materialInitialData)
             },
           refund:function(){
 

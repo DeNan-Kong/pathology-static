@@ -38,7 +38,7 @@
                 <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
+        <searchtable  :get-datas="fetchData" :tableshow="method" />
      </div>
  </div>
 </template>
@@ -175,19 +175,12 @@ body #diagnostic .closebtnchange{
         data(){
             return{
                 aa:10,
-                pickerOptions0: {
-               disabledDate(time) {
-                 return time.getTime() < Date.now() - 8.64e7;
-                 this.state={
-            
-                lists:[],//初始白名单为空
-                };
-            }
-        }
+                searchTableData:{},
     }
         },
         created(){ // 生命周期 created,获取数据
           this.first()
+          // this.searchTableData()
         },
         components:{
             "top-menu":TopMenu,
@@ -212,8 +205,7 @@ body #diagnostic .closebtnchange{
                 $('.tabs-img').css('display','none');
                 $('.tabs-pay').css('display','none');
                 $('.tabs-check').css('display','none');
-                $(".medicalCheck").addClass("closebtn");
-                $(".medicalCheck").removeClass("closebtnchange");
+                $(".medicalCheck").addClass("closebtn").removeClass("closebtnchange");
                 if($('.aaaa').css('display','block')){
                    $('.register_check').css('display','none') 
                }else{
