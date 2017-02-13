@@ -1,4 +1,5 @@
 <template>
+
   <div id="relatetable">
  <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition" style="width: 100%; height: 400px;">
   <div class="hidden-columns">
@@ -64,30 +65,30 @@
     <col name="el-table_1_column_39" width="111">
     <col name="el-table_1_column_40" width="90">
     <tbody>
-      <tr class="relateclick" @click="relateclick">
+      <tr class="relateclick" @click="relateclick" v-for="list in relationdate">
         <td class="el-table_1_column_33">
-          <div class="cell" style="height: 30px;">20181029280667</div>
+          <div class="cell" style="height: 30px;">{{list.inhospitalId}}</div>
         </td>
         <td class="el-table_1_column_34">
-          <div class="cell">CT</div>
+          <div class="cell"></div>
         </td>
         <td class="el-table_1_column_35">
-          <div class="cell">王小虎</div>
+          <div class="cell">{{list.patient.patientName}}</div>
         </td>
         <td class="el-table_1_column_36">
-          <div class="cell">56</div>
+          <div class="cell"></div>
         </td>
         <td class="el-table_1_column_37">
-          <div class="cell">女</div>
+          <div class="cell"></div>
         </td>
         <td class="el-table_1_column_38">
-          <div class="cell">2015/05/03</div>
+          <div class="cell"></div>
         </td>
         <td class="el-table_1_column_39">
           <div class="cell"></div>
         </td>
         <td class="el-table_1_column_40">
-          <div class="cell">12</div>
+          <div class="cell"></div>
         </td>
       
         <td class="gutter">
@@ -129,7 +130,7 @@ export default {
         
       };
     },
-    props: ['relationshow'],
+    props: ['relationshow','relationdate'],
     methods:{
       relateclick:function(){
           this.relationshow()

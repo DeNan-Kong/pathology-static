@@ -46,7 +46,7 @@
         </div>
         <div class="clear"></div>
         <div   class="table-show" >
-            <el-table :data="hhs" border style="width: 100%" height="400" >
+            <el-table :data="searchTableData" border style="width: 100%" height="400">
             <el-table-column label="" width="53" fixed>
               <template scope="scope">
                <!--  <el-popover trigger="hover" placement="top">
@@ -54,8 +54,9 @@
                 <div slot="reference" class="name-wrapper">
                 <el-tooltip class="item"  content="相关诊断" placement="top">
                 <el-tag>
-                <div  @click="showrelate" >
-                    <img src="../assets/images/copy.png.png"></div>
+                <div >
+                    <p class="relateimgon  relateclick"  @click="showrelate" :id='scope.row.patient.patientId'></p>
+                </div>
                 </el-tag>
                 </el-tooltip>    
                 </div>
@@ -64,32 +65,33 @@
             </el-table-column>
              <el-table-column label="" width="20" fixed>
               <template scope="scope">
-                <div></div>
+                <div>
+                </div>
               </template>
             </el-table-column>
             <el-table-column label="病理号" width="114" fixed> 
               <template scope="scope" >
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.patient.birthday}}</span>
               </template>
             </el-table-column>
             <el-table-column label="姓名" width="72" fixed>
               <template scope="scope">
-                <span>{{ scope.row.patient.task}}</span>
+                <span>{{ scope.row.patient.patientName}}</span>
               </template>
             </el-table-column>
             <el-table-column label="性别" width="40">
               <template scope="scope">
-                <span>{{ scope.row.frozenNo }}</span>
+                <span></span>
               </template>
             </el-table-column>
             <el-table-column label="年龄" width="40">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span></span>
               </template>
             </el-table-column>
             <el-table-column label="住院号" width="114">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.inhospitalId }}</span>
               </template>
             </el-table-column>
             <el-table-column label="送检单位" width="114">
@@ -109,27 +111,27 @@
             </el-table-column>
             <el-table-column label="临床诊断" width="114">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid}}</span>
               </template>
             </el-table-column>
             <el-table-column label="诊断意见" width="114">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid}}</span>
               </template>
             </el-table-column>
             <el-table-column label="主诊医生" width="114">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid}}</span>
               </template>
             </el-table-column>
             <el-table-column label="送检日期" width="114">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid}}</span>
               </template>
             </el-table-column>
             <el-table-column label="报告日期" width="114">
               <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
+                <span>{{ scope.row.applicationid}}</span>
               </template>
             </el-table-column> 
           </el-table>   
@@ -241,7 +243,7 @@
         </div>
     </div>
     <div class="relatelist">
-        <relatetable :relationshow="method"/>
+        <relatetable :relationshow="method" :relationdate="(relateListDatas)" />
     </div>    
 </div>
 </template>
@@ -266,9 +268,20 @@ body .el-table .cell{
     white-space:nowrap; 
     text-overflow:ellipsis;
 }
-.relateimg{
-    width: 20px;
-    background:url('../assets/images/copy.png.png') no-repeat;
+.relateimgon{
+    display: block;
+    width: 22px;
+    height: 24px;
+    background:url('../assets/images/register.png') no-repeat 0 -3px;
+}
+.relateimgout{
+    display: block;
+    width: 22px;
+    height: 24px;
+    background:url('../assets/images/register.png') no-repeat 0 -37px;
+}
+.relateimgout:hover,.relateimgon:hover{
+    cursor:pointer;
 }
 .checkbox{
     width: 20px;
@@ -688,71 +701,49 @@ import Relatetable from 'components/relatetable';
     export default{
        data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+       relateListDatas:{}
       }
     },
-        props: ['hhs','tableshow'],
+        props: ['tableshow'],
         
         components:{
             "calendar":Calendar,
             "relatetable":Relatetable
         },
         created(){ // 生命周期 created,获取数据
-          this.searchtable()
+          this.searchTableData()
         },
         methods:{
+            async relateListData () {
+            const response = await fetch('/api/hello',{ 
+                method: 'POST',
+                headers: { 
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                }, 
+                body: JSON.stringify({ 
+                    firstParam: 'yourValue',
+                })
+            });
+            const json = await response.text();
+            const data = JSON.parse(json);
+            this.relateListDatas = data;
+            },
+            async searchTableData () {
+                const response = await fetch('/api/hello',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/json; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+                        firstParam: 'yourValue',
+                        secondParam: 'yourOtherValue'
+                    })
+                });
+                const json = await response.text();
+                 const data = JSON.parse(json);
+                this.searchTableData = data;
+                console.log(this.searchTableData)
+            },
             toggle:function(){
                 $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
                 if($(".grop-search-lines").hasClass('grop-search-line1')){
@@ -903,21 +894,33 @@ import Relatetable from 'components/relatetable';
             find:function(){
             
             },
-            searchtable:function(){
-              var self=this;
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/hello',
-                    data:{
-                        id:0
-                    },
-                    success:function(data) {    
-                        self.hhs=JSON.parse(data);
-                    }
-                });
-            },
-            showrelate:function(){
-                $('.relatelist').toggle()
+            // searchtable:function(){
+            //   var self=this;
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: '/api/hello',
+            //         data:{
+            //             id:0
+            //         },
+            //         success:function(data) {    
+            //             self.hhs=JSON.parse(data);
+            //         }
+            //     });
+            // },
+            
+            showrelate:function(e){
+                var vvv=$(e.target).attr('id')
+                console.log(vvv)
+                if($('.relateclick').hasClass('.relateimgon')){
+                    console.log("000")
+                    $('.relatelist').hide()
+                    $('.relateclick').removeClass('.relateimgon').addClass('.relateimgout')
+                }else{
+                     console.log("111")
+                    $('.relatelist').show()
+                    $('.relateclick').removeClass('.relateimgout').addClass('.relateimgon')
+                }
+                this.relateListData ()
             },
             method:function(){
                 this.tableshow();

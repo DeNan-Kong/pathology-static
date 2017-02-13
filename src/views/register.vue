@@ -32,7 +32,7 @@
                 <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
+        <searchtable :searchTableData="searchTableData" :get-datas="fetchData" :tableshow="method"/>
     </div>
  </div>
 </template>
@@ -179,6 +179,21 @@ body #register .closebtnchange{
             "medicalmessage":Medicalmessage,
         },
         methods:{
+            async searchTableData () {
+                const response = await fetch('/api/hello',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+                        firstParam: 'yourValue',
+                        secondParam: 'yourOtherValue'
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.searchTableData = data;
+            },
             medicalInformation:function(){
                 $(".medicalInformation").addClass("active");
                 $(".medicalInformation").siblings().removeClass("active");
@@ -310,13 +325,17 @@ body #register .closebtnchange{
               }
               xhr.send()
             },
+            searchTableData:function(){
+
+            },
             closebtn:function(){
                 $('.tabscheck').hide();
                 $('.register_check').hide();
             },
             first:function(){
                  $(".aaaa").css('display','block');
-            }
+            },
+
     }   
 }
 </script>

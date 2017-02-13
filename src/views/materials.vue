@@ -146,17 +146,17 @@ import {mapState} from 'vuex';
                 pickerOptions0: {
                disabledDate(time) {
                  return time.getTime() < Date.now() - 8.64e7;
-                 this.state={
-            
-                lists:[],//初始白名单为空
-                };
-            }
-        }
+                            },
+                
+        },
+        materialInitialData:{},
+         materialPartsList:{}
     }
         },
         created(){ // 生命周期 created,获取数据
           this.first()
         },
+
         components:{
             "top-menu":TopMenu,
             "searchtable":SearchTable,
@@ -267,6 +267,7 @@ import {mapState} from 'vuex';
                 $('.tabs-img').css('display','none');
                 $(".tabs-materials").css('display','none');
                 $(".aaaa").css('display','none');
+
             },
             fetchAdviceData:function(){
                 $(".advice").addClass("filmmakingactive");

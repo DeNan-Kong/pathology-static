@@ -18,7 +18,7 @@ const rootPath = '';
 
 // 页面路由
 const routes = [
-    {path: '', redirect: {name: 'register'}},
+    {path: '', redirect: {name: 'diagnose'}},
     {path: '/login', component: Login, name: 'login'},
     {path: '/register', component: Register, name: 'register'},
     {path: '/materials', component: Materials, name: 'materials'},

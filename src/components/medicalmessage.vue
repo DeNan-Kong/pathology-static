@@ -30,9 +30,9 @@
             </div>
             <div class="case-name">
                 <div class="name-num-one">
-                    <p class="p-one floatleft">姓名:</p><input type="text" class="floatleft  p-margin  radium"
+                    <p class="p-one floatleft">姓&nbsp;&nbsp;&nbsp;名:</p><input type="text" class="floatleft  p-margin  radium"
                                                              ref="write7">
-                    <p class="floatleft  p-two">性别:</p>
+                    <p class="floatleft  p-two">性&nbsp;&nbsp;&nbsp;别:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
                             <option v-for="item in initialData.specimenTypeList">
@@ -40,7 +40,7 @@
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">年龄:</p>
+                    <p class="floatleft  p-three">年&nbsp;&nbsp;&nbsp;龄:</p>
                     <input type="text" class="floatleft input-age radium" ref="write8">
                     <form class="floatleft ">
                         <select class="sel-sup  radium-sup">
@@ -49,7 +49,7 @@
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft   p-four">民族:</p>
+                    <p class="floatleft   p-four">民&nbsp;&nbsp;&nbsp;族:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
                             <option v-for="item in initialData.nationList">
@@ -59,7 +59,7 @@
                     </form>
                 </div>
                 <div class="name-num-two">
-                    <p class="floatleft p-one">婚否:</p>
+                    <p class="floatleft p-one">婚&nbsp;&nbsp;&nbsp;否:</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup">
                             <option v-for="item in initialData.maritalStatusList">
@@ -67,7 +67,7 @@
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-two">职业:</p>
+                    <p class="floatleft  p-two">职&nbsp;&nbsp;&nbsp;业:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
                             <option v-for="item in initialData.professionList">
@@ -83,7 +83,7 @@
                                                                ref="write12">
                     <p class="floatleft  p-three">末次月经:</p>
                     <calendar/>
-                    <p class="floatleft  p-four">绝经:</p>
+                    <p class="floatleft  p-four">绝&nbsp;&nbsp;&nbsp;经:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
                             <option v-for="item in initialData.specimenTypeList">
@@ -123,9 +123,9 @@
                     <calendar/>
                 </div>
                 <div class="hospital-num-two">
-                    <p class="floatleft p-one">病区:</p><input type="text" class="floatleft  p-margin  radium"
+                    <p class="floatleft p-one">病&nbsp;&nbsp;&nbsp;区:</p><input type="text" class="floatleft  p-margin  radium"
                                                              ref="write13">
-                    <p class="floatleft  p-two">床号:</p><input type="text" class="floatleft  p-margin  radium"
+                    <p class="floatleft  p-two">床&nbsp;&nbsp;&nbsp;号:</p><input type="text" class="floatleft  p-margin  radium"
                                                               ref="write14">
                     <p class="floatleft  p-three">标本类型:</p>
                     <form class="floatleft ">
@@ -171,7 +171,7 @@
                     </form>
                 </div>
                 <div class="hospital-num-four">
-                    <p class="floatleft p-one">费别:</p>
+                    <p class="floatleft p-one">费&nbsp;&nbsp;&nbsp;别:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup">
                             <option v-for="item in initialData.chargeTypeList">
@@ -179,7 +179,7 @@
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft p-two">收费:</p><input type="text" class="floatleft p-margin  radium" ref="write9">
+                    <p class="floatleft p-two">收&nbsp;&nbsp;&nbsp;费:</p><input type="text" class="floatleft p-margin  radium" ref="write9">
                     <p class="floatleft p-three">取材医生:</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup">

@@ -35,9 +35,67 @@
         </div>
         <button class="material-top-add radius  material-top-btn">添加</button>
         <button class="material-top-del radius  material-top-btn">删除</button>
+        <p>{{materialInitialData}}</p>
     </div>
     <div class="material-middle">
-      <materialtable/>
+        <el-table
+        :data="materialInitialData"
+        border
+        style="width: 100%" height="272">
+        <el-table-column
+          type="selection"
+          width="50">
+        </el-table-column>
+        <el-table-column
+          label="任务来源"
+          width="100" >
+          <template scope="scope">
+            <span style="margin-left: 10px">{{scope.row.clevel }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="材块号"
+          width="86">
+          <template scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="取材部位"
+          width="100">
+          <template scope="scope">
+            <span style="margin-left: 10px">{{scope.row.clevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="材块数"
+          width="86">
+          <template scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="单位"
+          width="76">
+          <template scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="取材医生"
+          width="98">
+          <template scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="取材日期"
+          width="98">
+          <template scope="scope">
+            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
     <div class="material-information">
       <div class="informationone">
@@ -83,8 +141,7 @@
         </form>
         <button class=" radius  informationtwo-btn">标签打印</button>
         <textarea></textarea>
-      </div>
-      
+      </div>  
     </div>
     <div  class="mydictionary dictionary  dictionary-active">
       <p>我的词典</p>
@@ -105,53 +162,6 @@
         </div>
         <div class="dictionary-search">
           <materiallist/>
-          <!-- <ul>
-            <li>肿物通用
-            <p class="menus-img"><p>
-            </li>
-            <li>通用2
-              <p class="menus-img"><p>
-            </li>
-            <li>肠
-              <p class="menus-img"><p>
-            </li>
-            <li>乳腺
-              <p class="menus-img"><p>
-            </li>
-            <li>肺组织
-                <p class="menus-img"><p>
-            </li>
-            <li>胃
-              <p class="menus-img"><p>
-            </li>
-            <li>全组织+双附件
-              <p class="menus-img"><p>
-            </li>
-            <li>脾脏
-              <p class="menus-img"><p>
-            </li>
-            <li>肾标本
-              <p class="menus-img"><p>
-            </li>
-            <li>肝组织
-              <p class="menus-img"><p>
-            </li>
-            <li>食道
-              <p class="menus-img"><p>
-            </li>
-            <li>胰腺
-              <p class="menus-img"><p>
-            </li>
-            <li>胰腺及脾
-              <p class="menus-img"><p>
-            </li>
-            <li>胰腺
-              <p class="menus-img"><p>
-            </li>
-            <li>胰腺及脾
-              <p class="menus-img"><p>
-            </li>
-          </ul> -->
         </div>
     </div>
   </div>
@@ -210,10 +220,7 @@
   margin-right: 2px;
   margin-top: -23px;
 }
-button:hover{
-  background:#3577af;
-}
-.material-bottom button:hover{
+.material-main button:hover{
   background:#3577af;
 }
 .material-modify:hover{
@@ -486,23 +493,45 @@ textarea{
 <script>
   import $ from "jQuery"
   import Calendar from 'components/calendar';
-  import Materialtable from 'components/materialtable';
   import Medicalmessage from 'components/medicalmessage';
   import Materiallist from 'components/materiallist';
   export default {
-    data() {
+     data() {
       return {
-        
-        value1: ''
-      };
+                pickerOptions0: {
+                    disabledDate(time) {
+                        return time.getTime() < Date.now() - 8.64e7;
+                    }
+                },
+                materialPartsList:{}
+            }
     },
+     // props: ['materialInitialData','get'],
      components:{
            "calendar":Calendar,
            "medicalmessage":Medicalmessage, 
-           "materialtable":Materialtable,
            "materiallist":Materiallist
         },
+        mounted(){ // 生命周期 created,获取数据
+          this.loadMaterialData();
+        },
         methods:{
+          async loadMaterialData () {
+                console.log("lllll")
+                const response = await fetch('/material/load',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+                        firstParam: 'yourValue',
+                        secondParam: 'yourOtherValue'
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.materialInitialData = data;
+            },
           refund:function(){
 
           },
@@ -518,7 +547,10 @@ textarea{
           newproject:function(){
 
           },
-
+        mounted(){
+          console.log("++++")
+            this.loadMaterialData();
+        }
 
         }
   };
