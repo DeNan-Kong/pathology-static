@@ -5,7 +5,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import App from './app';
-import $ from "jQuery"
+import $jQuery from "jQuery"
 import routes from './routes';
 import storeOption from './store';
 import ElementUI from 'element-ui';
@@ -13,10 +13,18 @@ import locale from 'element-ui/lib/locale/lang/zh-CN';
 import 'element-ui/lib/theme-default/index.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/main.css';
+import VeeValidate from 'vee-validate';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(ElementUI, { locale });
+Vue.use(VeeValidate, {
+    locale: 'ar',
+    dictionary: { // dictionary object
+    }
+});
+
+
 
 // 创建一个路由对象用于管理页面的路由
 const router = new VueRouter({
@@ -24,12 +32,19 @@ const router = new VueRouter({
   routes: routes
 });
 
+
+// Register a global custom directive called v-focus
+
+
 // 创建一个 store 对象用于管理应用状态
 const store = new Vuex.Store(storeOption);
 
-window.__lendApp__ = new Vue({
+let app= new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
 });
+
+app.$jQuery = $jQuery;
+window.__lendApp__ = app;
