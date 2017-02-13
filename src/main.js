@@ -13,8 +13,10 @@ import ElementUI_Locale from 'element-ui/lib/locale/lang/zh-CN';
 import 'element-ui/lib/theme-default/index.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/main.css';
-import VeeValidate from 'vee-validate';
-import validatorCn  from './assets/strings/locale/zh-cn/validator.js';
+// import VeeValidate from 'vee-validate';
+import VeeValidate from './assets/js/vee-validate';
+import validatorMessages  from './assets/strings/locale/zh-cn/validator-messages.js';
+import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attributes.js';
 import VueI18n  from 'vue-i18n';
 
 
@@ -59,7 +61,6 @@ var localeHelper = {
         });
         const json = await response.text();
         const result = JSON.parse(json);
-
         // set lang
         Vue.config.lang = 'cn';
         Vue.locale('cn', result);
@@ -73,7 +74,8 @@ Vue.use(VeeValidate, {
     locale: 'cn',
     dictionary: { // dictionary object
         cn: {   // locale key
-            messages: validatorCn
+            messages: validatorMessages,
+            attributes:validatorAttributes
         }
     }
 });
