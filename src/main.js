@@ -13,10 +13,10 @@ import ElementUI_Locale from 'element-ui/lib/locale/lang/zh-CN';
 import 'element-ui/lib/theme-default/index.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/main.css';
-// import VeeValidate from 'vee-validate';
-import VeeValidate from './assets/js/vee-validate';
+import VeeValidate from 'vee-validate';
 import validatorMessages  from './assets/strings/locale/zh-cn/validator-messages.js';
 import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attributes.js';
+import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
 
 
@@ -26,47 +26,8 @@ Vue.use(VueRouter);
 Vue.use(VueI18n);
 // ready translated locales
 
-/*
-var locales = {
-    en: {
-        login: {
-            user_name: "user name",
-            password: 'password',
-            login: "login"
-        }
-    },
-    cn: {
-        login: {
-            title: "",
-            description: "海纳病理管理系统",
-            sub_title: "用户登录",
-            user_name: "用户名",
-            password: '密码',
-            login: "登录",
-            exit: "退出",
-            user_management: "用户管理"
-        }
-    }
-};*/
-
-var localeHelper = {
-    async load(){
-        const response = await fetch('/locale/message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-            })
-        });
-        const json = await response.text();
-        const result = JSON.parse(json);
-        // set lang
-        Vue.config.lang = 'cn';
-        Vue.locale('cn', result);
-    }
-};
-localeHelper.load();
+Vue.config.lang = 'cn';
+Vue.locale('cn', labelMessages);
 
 // set locales
 Vue.use(ElementUI, {ElementUI_Locale});

@@ -1,4 +1,4 @@
-cn = {
+export default{
     login: {
         title: "",
         description: "海纳病理管理系统",
