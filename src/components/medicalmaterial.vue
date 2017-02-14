@@ -22,6 +22,7 @@
               }}</option>
             </select>
         </form>
+        <!-- <Cascader :data="data" :value.sync="value1"></Cascader> -->
         <input type="text"  class="material-top-ipttwo floatleft  radius common">
         <form  class="material-top-three floatleft ">
             <select class="threeradius common">
@@ -141,13 +142,13 @@
         <textarea></textarea>
       </div>  
     </div>
-    <div  class="mydictionary dictionary  dictionary-active">
+    <div  class="mydictionary dictionary  dictionary-active"  @click="myDictionary">
       <p>我的词典</p>
     </div>
-    <div  class="commondictionary  dictionary">
+    <div  class="commondictionary  dictionary" @click="commonDictionary">
       常用词典
     </div>
-    <div  class="checkdictionary  dictionary">
+    <div  class="checkdictionary  dictionary" @click="checkDictionary">
       检查模板
     </div>
     <div  class="material-middle-right">
@@ -158,8 +159,14 @@
           <div class="material-modify  floatleft"></div>
           <div class="material-delete  floatleft"></div>
         </div>
-        <div class="dictionary-search">
+        <div class="dictionary-search" v-show="mydictionary">
           <materiallist/>
+        </div>
+        <div class="commondictionary-search" v-show="commondictionary">
+          <commondictionary/>
+        </div>
+        <div class="checkdictionary-search" v-show="checkdictionary">
+          <checkdictionary/>
         </div>
     </div>
   </div>
@@ -181,7 +188,6 @@
   </div>
 </template>
 <style>
-
 .menus-img{
    background: url('../assets/images/materials.png')  -10px -20px no-repeat;
    width:10px;
@@ -189,7 +195,7 @@
    margin-right: 5px;
    margin-top: -16px;
 }
-.dictionary-search{
+.dictionary-search,.commondictionary-search,.checkdictionary-search{
   width: 264px;
   height: 500px;
   overflow-y: scroll;
@@ -265,6 +271,10 @@
 .commondictionary{
   right: 276px;
   top:70px;
+}
+.dictionary:hover{
+  background: #c6e4ee;
+  color:#666;
 }
 .mydictionary{ 
   right: 276px;
@@ -490,23 +500,30 @@ textarea{
 }
 </style>
 <script>
-  import $ from "jQuery"
+  import $ from "jQuery";
   import Calendar from 'components/calendar';
   import Medicalmessage from 'components/medicalmessage';
   import Materiallist from 'components/materiallist';
+  import Commondictionary from 'components/commondictionary';
+  import Checkdictionary from 'components/checkdictionary';
   export default {
      data() {
       return {
                 materialPartsList:{},
                 materialInitialData:{},
-                allMaterialData:{}
+                allMaterialData:{},
+                mydictionary:true,
+                commondictionary:false,
+                checkdictionary:false
             }
     },
      // props: ['materialInitialData','get'],
      components:{
            "calendar":Calendar,
            "medicalmessage":Medicalmessage, 
-           "materiallist":Materiallist
+           "materiallist":Materiallist,
+           "commondictionary":Commondictionary,
+           "checkdictionary":Checkdictionary
         },
         mounted(){ // 生命周期 created,获取数据
           this.loadMaterialData();
@@ -527,6 +544,27 @@ textarea{
                 this.materialInitialData = data.materialPartsList;
                 console.log(this.materialInitialData)
             },
+          myDictionary:function(){
+            this.commondictionary=false;
+            this.mydictionary=true;
+            this.checkdictionary=false;
+            $(".mydictionary").addClass('dictionary-active');
+            $(".mydictionary").siblings().removeClass('dictionary-active');
+          },
+          commonDictionary:function(){
+            this.commondictionary=true;
+            this.mydictionary=false;
+            this.checkdictionary=false;
+            $(".commondictionary").addClass('dictionary-active');
+            $(".commondictionary").siblings().removeClass('dictionary-active');
+          },
+          checkDictionary:function(){
+            this.commondictionary=false;
+            this.mydictionary=false;
+            this.checkdictionary=true;
+            $(".checkdictionary").addClass('dictionary-active');
+            $(".checkdictionary").siblings().removeClass('dictionary-active');
+          },
           refund:function(){
 
           },
@@ -543,7 +581,6 @@ textarea{
 
           },
         mounted(){
-          console.log("++++")
             this.loadMaterialData();
         }
 

@@ -4,9 +4,10 @@
             <div class="case-num">
                 <div class="case-num-one">
                     <p class="floatleft p-one">HIS识别码:</p><input type="text" class="floatleft  input-his  radium" ref="write1">
-                    <form class="floatleft" >
-                        <select class="sel-his">
-                            <option v-for="item in initialData.specimenTypeList"> 
+                    <form class="floatleft " >
+                        <select class="sel-his null">
+                            <option v-for="item in initialData.hisCodeList" 
+                            :id="item.id"> 
                                 {{ item.name }}
                             </option>
                         </select>
@@ -14,45 +15,45 @@
                     <button class="floatleft  but-his">提取</button>
                     <p class="floatleft  p-three">病人ID:</p><input type="text" class="floatleft input-id  radium" ref="write2">
                     <p class="floatleft  p-mark p-four">冰冻标识:</p>
-                    <input type="text" class="floatleft  radium input-mark" ref="write3">
+                    <input type="text" class="floatleft  radium input-mark null" ref="write3">
                     <button class="arrow"></button>
                 </div>
                 <br>
                 <div class="case-num-two">
-                    <p class="floatleft p-one">病理号:</p><input type="text" class="floatleft  p-margin  radium">
-                    <p class="floatleft  p-two">申请号:</p><input type="text" class="floatleft  p-margin  radium"
+                    <p class="floatleft p-one">病理号:</p><input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo">
+                    <p class="floatleft  p-two">申请号:</p><input type="text" class="floatleft  p-margin  radium null applicationNo"
                                                                ref="write4">
-                    <p class="floatleft  p-three">门诊号:</p><input type="text" class="floatleft p-margin radium"
+                    <p class="floatleft  p-three">门诊号:</p><input type="text" class="floatleft p-margin radium null patientNo"
                                                                  ref="write5">
-                    <p class="floatleft   p-four">住院号:</p><input type="text" class="floatleft p-margin radium "
+                    <p class="floatleft   p-four">住院号:</p><input type="text" class="floatleft p-margin radium null inhospitalId"
                                                                  ref="write6">
                 </div>
             </div>
             <div class="case-name">
                 <div class="name-num-one">
-                    <p class="p-one floatleft">姓&nbsp;&nbsp;&nbsp;名:</p><input type="text" class="floatleft  p-margin  radium"
+                    <p class="p-one floatleft">姓&nbsp;&nbsp;&nbsp;名:</p><input type="text" class="floatleft  p-margin  radium null patientName"
                                                              ref="write7">
                     <p class="floatleft  p-two">性&nbsp;&nbsp;&nbsp;别:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                        <select class="p-margin  radium-sup null sex">
+                            <option v-for="item in initialData.sexList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft  p-three">年&nbsp;&nbsp;&nbsp;龄:</p>
-                    <input type="text" class="floatleft input-age radium" ref="write8">
+                    <input type="text" class="floatleft input-age radium null agenum" ref="write8">
                     <form class="floatleft ">
-                        <select class="sel-sup  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                        <select class="sel-sup  radium-sup null">
+                            <option v-for="item in initialData.ageUnitList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft   p-four">民&nbsp;&nbsp;&nbsp;族:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.nationList">
+                        <select class="p-margin  radium-sup null nationlist">
+                            <option v-for="item in initialData.nationList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -61,32 +62,32 @@
                 <div class="name-num-two">
                     <p class="floatleft p-one">婚&nbsp;&nbsp;&nbsp;否:</p>
                     <form class="floatleft ">
-                        <select class="p-margin radium-sup">
-                            <option v-for="item in initialData.maritalStatusList">
+                        <select class="p-margin radium-sup null maritalStatusId">
+                            <option v-for="item in initialData.maritalStatusList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft  p-two">职&nbsp;&nbsp;&nbsp;业:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.professionList">
+                        <select class="p-margin  radium-sup null professionId">
+                            <option v-for="item in initialData.professionList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">手机号码:</p><input type="text" class="floatleft p-margin radium" ref="write10">
-                    <p class="floatleft   p-four">身份证号:</p><input type="text" class="floatleft p-margin radium" ref="write11">
+                    <p class="floatleft  p-three">手机号码:</p><input type="text" class="floatleft p-margin radium null phone" ref="write10">
+                    <p class="floatleft   p-four">身份证号:</p><input type="text" class="floatleft p-margin radium null idCard" ref="write11">
                 </div>
                 <div class="name-num-three">
-                    <p class="floatleft p-one">联系信息:</p><input type="text" class="floatleft   p-big  radium"
+                    <p class="floatleft p-one">联系信息:</p><input type="text" class="floatleft   p-big  radium null address"
                                                                ref="write12">
                     <p class="floatleft  p-three">末次月经:</p>
                     <calendar/>
                     <p class="floatleft  p-four">绝&nbsp;&nbsp;&nbsp;经:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                        <select class="p-margin  radium-sup null pausimenia">
+                            <option v-for="item in initialData.pausimeniaList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -94,27 +95,27 @@
                 </div>
             </div>
             <div class="case-hospital">
-                <div class="hospital-num-one">
+                <div class="hospital-num-one hospital-num">
                     <p class="floatleft p-one">送检单位:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.inspectUnitList">
+                        <select class="p-margin  radium-sup null inspectUnitId">
+                            <option v-for="item in initialData.inspectUnitList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft  p-two">送检科室:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.inspectDepartmentList">
+                        <select class="p-margin  radium-sup null inspectDepartmentId">
+                            <option v-for="item in initialData.inspectDepartmentList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft  p-three">送检医生:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.submittingPhysicianList">
+                        <select class="p-margin  radium-sup null submittingPhysicianId">
+                            <option v-for="item in initialData.submittingPhysicianList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -122,68 +123,68 @@
                     <p class="floatleft   p-four">送检日期:</p>
                     <calendar :today="(today)"/>
                 </div>
-                <div class="hospital-num-two">
-                    <p class="floatleft p-one">病&nbsp;&nbsp;&nbsp;区:</p><input type="text" class="floatleft  p-margin  radium"
+                <div class="hospital-num-two hospital-num">
+                    <p class="floatleft p-one">病&nbsp;&nbsp;&nbsp;区:</p><input type="text" class="floatleft  p-margin  radium null ward"
                                                              ref="write13">
-                    <p class="floatleft  p-two">床&nbsp;&nbsp;&nbsp;号:</p><input type="text" class="floatleft  p-margin  radium"
+                    <p class="floatleft  p-two">床&nbsp;&nbsp;&nbsp;号:</p><input type="text" class="floatleft  p-margin  radium null sickbedNo"
                                                               ref="write14">
                     <p class="floatleft  p-three">标本类型:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                        <select class="p-margin  radium-sup null specimenTypeId">
+                            <option v-for="item in initialData.specimenTypeList" :id="item.id">
                                 {{ item.name }}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft p-four">标本情况:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenSituationList">
+                        <select class="p-margin  radium-sup null specimenSituationId">
+                            <option v-for="item in initialData.specimenSituationList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                 </div>
-                <div class="hospital-num-three">
+                <div class="hospital-num-three hospital-num">
                     <p class="floatleft p-one">标本名称:</p>
                     <form class="floatleft ">
-                        <select class="p-big  radium-sup">
-                            <option v-for="item in initialData.specimenNameList">
+                        <select class="p-big  radium-sup null specimenNameId">
+                            <option v-for="item in initialData.specimenNameList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">不合格原因:</p>
+                    <p class="floatleft  p-three unqualifiedCauseId">不合格原因:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenTypeList">
+                        <select class="p-margin  radium-sup null">
+                            <option v-for="item in initialData.unqualifiedCauseList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                     <p class="floatleft  p-four">标本接收:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.specimenReceiveList">
+                        <select class="p-margin  radium-sup null specimenReceiveId">
+                            <option v-for="item in initialData.specimenReceiveList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                 </div>
-                <div class="hospital-num-four">
+                <div class="hospital-num-four hospital-num">
                     <p class="floatleft p-one">费&nbsp;&nbsp;&nbsp;别:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup">
-                            <option v-for="item in initialData.chargeTypeList">
+                        <select class="p-margin  radium-sup null chargeTypeId">
+                            <option v-for="item in initialData.chargeTypeList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft p-two">收&nbsp;&nbsp;&nbsp;费:</p><input type="text" class="floatleft p-margin  radium" ref="write9">
+                    <p class="floatleft p-two">收&nbsp;&nbsp;&nbsp;费:</p><input type="text" class="floatleft p-margin  radium charge" ref="write9">
                     <p class="floatleft p-three">取材医生:</p>
                     <form class="floatleft">
-                        <select class="p-margin radium-sup">
-                            <option v-for="item in initialData.sampleDoctorList">
+                        <select class="p-margin radium-sup null sampleDoctorId">
+                            <option v-for="item in initialData.sampleDoctorList" :id="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -191,20 +192,20 @@
                     <p class="floatleft  p-four">接收日期:</p>
                     <calendar/>
                 </div>
-                <div class="hospital-num-five">
+                <div class="hospital-num-five hospital-num">
                     <p class="floatleft p-one">临床诊断:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium  input-doctor">
-                            <option v-for="item in initialData.clinicalDiagnosisList"> {{item.name}}</option>
+                        <select class="p-margin  radium  input-doctor null clinicalDiagnosisId">
+                            <option v-for="item in initialData.clinicalDiagnosisList" :id="item.id"> {{item.name}}</option>
                         </select>
                     </form> 
-                    <p  class="floatleft  p-four ">术间电话:</p><input type="text"  class="floatleft  p-margin  radium"  ref="write15">
+                    <p  class="floatleft  p-four ">术间电话:</p><input type="text"  class="floatleft  p-margin  radium null operatingRoomPhone"  ref="write15">
                 </div>
                 <div class="hospital-num-six">
                     <p class="floatleft p-one">病史摘要:</p>
-                    <textarea class="floatleft ill-abstract radium " ref="write16"></textarea>
+                    <textarea class="floatleft ill-abstract radium null medicalHistory" ref="write16"></textarea>
                     <p class="floatleft p-one">手术所见:</p>
-                    <textarea type="text" class="floatleft ill-see radium " ref="write17"></textarea>
+                    <textarea type="text" class="floatleft ill-see radium null operativeFindings" ref="write17"></textarea>
                 </div>
             </div>
             <div  class="left-button">
@@ -261,6 +262,11 @@
     height:24px;
     margin-left: 10px;
     border:1px solid #cccccc;
+}
+.hospital-num{
+    width:1024px;
+    height: 28px;
+    margin-top: 3px;
 }
 .sel-his{
     width:80px;
@@ -431,12 +437,9 @@
         data(){
             return {
                 initialData:{},
-                today:{}
+                today:{},
+                pathologyNo:null
             }
-        },
-        created(){
-        // this.getNowDate()
-        console.log("kkk")
         },
         components: {
             // "top-menu": TopMenu,
@@ -446,10 +449,10 @@
         },
         methods: {
             async loadData () {
-                const response = await fetch('/register/load',{ 
+                const response = await fetch('/api/hello',{ 
                     method: 'POST',
                     headers: { 
-                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                        "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
                         firstParam: 'yourValue',
@@ -458,40 +461,84 @@
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                this.initialData = data;
+                this.initialData = data;    
+            },
+            async newproject(){
+                $(".null").val('');
+                const response = await fetch('/api/hello',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/json; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+            
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                // this.pathologyNo = data;
+            },
+            async newsave(){
+                const patientUid=$('.input-id').val();
+                const frozenNo=$('.input-mark').val();
+                const pathologynum=$('.pathologyNum').val();
+                const applicationNo=$('.applicationNo').val();
+                const patientNo=$('.patientNo').val();
+                const inhospitalId=$('.inhospitalId').val();
+                const patientName=$('.patientName').val();
+                const sex=$('.sex').val();
+                const agenum=$('.agenum').val();
+                const age=$('.sel-his option:checked').attr('id');
+                const nationList=$('.nationlist option:checked').attr('id');
+                const maritalStatusId=$('.maritalStatusId option:checked').attr('id');
+                const professionId=$('.professionId option:checked').attr('id');
+                const phone=$('.phone').val();
+                const idCard=$('.idCard').val();
+                const address=$('.address').val();
+                // const lmp=$('.lmp').val();
+                const pausimenia=$('.pausimenia option:checked').attr('id');
+                const inspectUnitId=$('.inspectUnitId option:checked').attr('id');
+                const inspectDepartmentId=$('.inspectDepartmentId option:checked').attr('id');
+                const submittingPhysicianId=$('.submittingPhysicianId option:checked').attr('id');
+                const ward=$('.ward').val();
+                const sickbedNo=$('.sickbedNo').val();
+                const specimenTypeId=$('.specimenTypeId option:checked').attr('id');
+                const specimenSituationId=$('.specimenSituationId option:checked').attr('id');
+                const specimenNameId=$('.specimenNameId option:checked').attr('id');
+                const unqualifiedCauseId=$('.unqualifiedCauseId option:checked').attr('id');
+                const specimenReceiveId=$('.specimenReceiveId  option:checked').attr('id');
+                const chargeTypeId=$('.chargeTypeId option:checked').attr('id');
+                const charge=$('.charge').val();
+                const sampleDoctorId=$('.sampleDoctorId option:checked').attr('id');
+                // const receiveDate=$('.receiveDate').val();
+                const clinicalDiagnosisId=$('.clinicalDiagnosisId option:checked').attr('id');
+                const operatingRoomPhone=$('.operatingRoomPhone').val();
+                const medicalHistory=$('.medicalHistory').val();
+                const operativeFindings=$('.operativeFindings').val();
                 
+            
+                const response = await fetch('/api/hello',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/json; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+            
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.pathologyN = data;
             },
-            // async getNowDate(){
-            //     const date = new Date();
-            //     const year=  new Date().getFullYear();
-            //     const f= date.getMonth()+1;
-            //     const month=new Date().getMonth()+1<10?"0"+new Date().getMonth()+1:new Date().getMonth()+1;
-            //     const h= date.getDate();
-            //     const day=h<10?"0"+h:h;
-            //     const today=new Date().getFullYear()+"-"+new Date().getMonth()+1<10?"0"+new Date().getMonth()+1:new Date().getMonth()+1;
-            //     return today
-            // },
-            newproject: function () {
-                $("textarea").val('');
-                $("input").val('');
+            async refund(){
+                $(".null").val('');
             },
-            refresh:function(){
-                $("textarea").val('');
-                $("input").val(''); 
-            },
-            newsave:function(){
-                $("textarea").val('');
-                $("input").val('');
-            },
-            save: function () {
+            async save(){
                 console.log("save")
             },
-            print: function () {
+            async print(){
                 console.log("print")
             },
-            refund: function () {
-                console.log("refund")
-            }
         },
         mounted () {
             this.loadData(),

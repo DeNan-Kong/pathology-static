@@ -19,11 +19,7 @@
             <p  class="floatleft">送检时间:</p>
              <form  class="floatleft ">
                 <select class="grop-search-sel  radium">
-                    <option>当天</option>
-                    <option>一天内</option>
-                    <option>两天内</option>
-                    <option>十天内</option>
-                    <option>全部</option>
+                    <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
                 </select>
             </form>
         </div>
@@ -32,13 +28,8 @@
             <img src="../assets/images/search.png.png"   class="big-search-img">
             <form  class="floatleft ">
                 <select class="big-search-sel  ">
-                    <option>病理号</option>
-                    <option>住院号</option>
-                    <option>门诊号</option>
-                    <option>冰冻号</option>
-                    <option>姓名</option>
-                    <option>申请号</option>
-                    <option>病人ID</option>
+                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>
+                    
                 </select>
             </form>
             <button  class="select-search-btn floatleft" @click="find">提取</button>
@@ -46,7 +37,7 @@
         
         <div class="clear"></div>
         <div   class="table-show" >
-            <el-table :data="searchTableData.mm" border style="width: 100%" height="400">
+            <el-table :data="tabledatas.orderlist" border style="width: 100%" height="400">
             <el-table-column label="" width="53" fixed>
               <template scope="scope">
                <!--  <el-popover trigger="hover" placement="top">
@@ -71,7 +62,7 @@
             </el-table-column>
             <el-table-column label="病理号" width="114" fixed> 
               <template scope="scope" >
-                <span>{{ scope.row.patient.inhospitalId}}</span>
+                <span>{{ scope.row.pathologyNo}}</span>
               </template>
             </el-table-column>
             <el-table-column label="姓名" width="72" fixed>
@@ -81,12 +72,12 @@
             </el-table-column>
             <el-table-column label="性别" width="40">
               <template scope="scope">
-                <span></span>
+                <span>{{ scope.row.patient.sex}}</span>
               </template>
             </el-table-column>
             <el-table-column label="年龄" width="40">
               <template scope="scope">
-                <span></span>
+                <span>{{ scope.row.patient.age}}</span>
               </template>
             </el-table-column>
             <el-table-column label="住院号" width="114">
@@ -720,7 +711,8 @@ import Relatetable from 'components/relatetable';
        checkList: [],
        relateListDatas:{},
        searchTableData:{},
-       bmobCheckList:[]
+       bmobCheckList:[],
+       tabledatas:{}
       }
     }, 
     components:{
@@ -729,7 +721,8 @@ import Relatetable from 'components/relatetable';
     },
     props:['tableshow'],
     created(){
-         this.searchTable();
+          this.tableData();
+          this.searchTable ();   
     },
         methods:{
             async relateListData () {
@@ -745,6 +738,21 @@ import Relatetable from 'components/relatetable';
             const json = await response.text();
             const data = JSON.parse(json);
             this.relateListDatas = data;
+            },
+            async tableData () {
+            const response = await fetch('/api/test',{ 
+                method: 'POST',
+                headers: { 
+                   "Content-type": "application/json; charset=UTF-8" 
+                }, 
+                body: JSON.stringify({ 
+                    firstParam: 'yourValue',
+                })
+            });
+         const json = await response.text();
+            const data = JSON.parse(json);
+            this.tabledatas = data;
+            console.log(this.tabledatas)
             },
             async searchTable () {
                 const response = await fetch('/api/hello',{ 
@@ -884,7 +892,7 @@ import Relatetable from 'components/relatetable';
               },
             mounted () {
             this.searchTableData();
-            console.log("???")
+
         },
            }
         };

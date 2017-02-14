@@ -16,12 +16,15 @@ import './assets/css/main.css';
 import VeeValidate from 'vee-validate';
 import validatorCn  from './assets/strings/locale/zh-cn/validator.js';
 import VueI18n  from 'vue-i18n';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
 
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 // install plugin
 Vue.use(VueI18n);
+Vue.use(iView);
 // ready translated locales
 
 /*

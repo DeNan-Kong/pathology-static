@@ -32,7 +32,7 @@
                 <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable :searchTableData="(searchTableData)" :get-datas="fetchData" :tableshow="method"/>
+        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
     </div>
  </div>
 </template>
@@ -172,10 +172,7 @@ body #register .closebtnchange{
         },
         created(){ // 生命周期 created,获取数据
           this.first()
-           this.searchTableData()
-        },
-        mounted(){
-            this.searchTableData()
+           // this.searchTableData()
         },
         components:{
             "top-menu":TopMenu,

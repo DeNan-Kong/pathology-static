@@ -1,5 +1,6 @@
 <template>
     <div>
+      <div>
         <div class="cytology-content">
             <div class="cytology-bodyleft">
               <div class="cytology-rows">
@@ -173,6 +174,7 @@
           </div>
        </div> 
     </div>
+    
 </template>
 <style>
 .radioo{
