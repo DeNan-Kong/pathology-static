@@ -18,10 +18,6 @@ import validatorMessages  from './assets/strings/locale/zh-cn/validator-messages
 import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attributes.js';
 import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
-import iView from 'iview';
-import 'iview/dist/styles/iview.css'; 
-
-
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -35,6 +31,7 @@ Vue.locale('cn', labelMessages);
 
 // set locales
 Vue.use(ElementUI, {ElementUI_Locale});
+
 Vue.use(VeeValidate, {
     locale: 'cn',
     dictionary: { // dictionary object

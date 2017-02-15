@@ -1,48 +1,59 @@
 <template>
-    <div>
-        <div>
-            <textarea rows="10" cols="50" v-model="data">
-
-            </textarea>
-        </div>
-        <div>
-            <input type="button" value="提交" v-on:click="submit"/>
-        </div>
-    </div>
+    <Cascader :data="data" :value.sync="value1"></Cascader>
 </template>
-
-
 <script>
-
-    export default{
-        data(){
+    export default {
+        data () {
             return {
-                data: ""
+                value1: [],
+                data: [{
+                    value: 'beijing',
+                    label: '北京',
+                    children: [
+                        {
+                            value: 'gugong',
+                            label: '故宫'
+                        },
+                        {
+                            value: 'tiantan',
+                            label: '天坛'
+                        },
+                        {
+                            value: 'wangfujing',
+                            label: '王府井'
+                        }
+                    ]
+                }, {
+                    value: 'jiangsu',
+                    label: '江苏',
+                    children: [
+                        {
+                            value: 'nanjing',
+                            label: '南京',
+                            children: [
+                                {
+                                    value: 'fuzimiao',
+                                    label: '夫子庙',
+                                }
+                            ]
+                        },
+                        {
+                            value: 'suzhou',
+                            label: '苏州',
+                            children: [
+                                {
+                                    value: 'zhuozhengyuan',
+                                    label: '拙政园',
+                                },
+                                {
+                                    value: 'shizilin',
+                                    label: '狮子林',
+                                }
+                            ]
+                        }
+                    ],
+                }]
             }
-        },
-        components: {},
-        methods: {
-            async submit(){
-                /*
-                 const response = fetch('/register/load');
-                 const json = await response.text();*/
-                const response = await fetch('/dict/import', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        data: this.data
-                    })
-                });
-                const json = await response.text();
-                alert(json);
-
-            }
-        },
-
-        mounted () {
-
         }
     }
 </script>

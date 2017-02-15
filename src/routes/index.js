@@ -12,13 +12,14 @@ const Diagnose = r => require(['views/diagnose'], r);
 const Production = r => require(['views/production'], r);
 const Cell = r => require(['views/cell'], r);
 const NotFound = r => require(['views/notfound'], r);
+const Test = r => require(['views/test'], r);
 
 // 根目录
 const rootPath = '';
 
 // 页面路由
 const routes = [
-    {path: '', redirect: {name: 'diagnose'}},
+    {path: '', redirect: {name: 'login'}},
     {path: '/login', component: Login, name: 'login'},
     {path: '/register', component: Register, name: 'register'},
     {path: '/materials', component: Materials, name: 'materials'},
@@ -27,7 +28,8 @@ const routes = [
     {path: '/cell', component: Cell, name: 'cell'},
     {path: '/hello', component: Hello, name: 'hello'},
     {path: '/index', component: Index, name: 'index'},
-    {path: '/home', component: Home, name: 'home'}
+    {path: '/home', component: Home, name: 'home'},
+    {path: '/test', component: Test, name: 'test'}
 ].map(route => {
     route.path = rootPath + route.path;
     return route;

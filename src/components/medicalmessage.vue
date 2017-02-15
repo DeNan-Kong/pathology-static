@@ -27,8 +27,12 @@
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
-                                   class="pathologyNum p-margin  radium" type="text" v-model="pathologyno">
+                                   class="pathologyNum p-margin  radium" type="text" v-model="bindData.pathologyNo">
                         </el-tooltip>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
                     </div>
 
                     <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
@@ -44,8 +48,14 @@
             </div>
             <div class="case-name">
                 <div class="name-num-one">
-                    <p class="p-one floatleft">姓&nbsp;&nbsp;&nbsp;名:</p><input type="text" class="floatleft  p-margin  radium null patientName"
-                                                             ref="write7">
+                    <p class="p-one floatleft">姓&nbsp;&nbsp;&nbsp;名:</p>
+                    <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft"
+                                :value="errors.has('firstName')">
+                        <input v-validate="'required'" name="firstName" type="text" class="floatleft  p-margin  radium null patientName"
+                                                             ref="write7" v-model="bindData.firstName">
+
+                    </el-tooltip>
+
                     <p class="floatleft  p-two">性&nbsp;&nbsp;&nbsp;别:</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup null sex">
@@ -451,6 +461,7 @@
             return {
                 initialData:{},
                 bindData: {
+<<<<<<< HEAD
                     "applicationNo": "a10001",
             "chargeTypeId": 1,
             "frozenNo": "f10001",
@@ -475,6 +486,11 @@
             "specimenNameId": 2,
             "specimenTypeId": 1,
             "status": 1
+=======
+                    userName: '',
+                    pathologyNo: '',
+                    firstName:''
+>>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
                 },
                 today:{},
             }
@@ -582,14 +598,21 @@
             }
         
         },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
             print: function () {
                 console.log("print");
         },
             refresh: function () {
                 console.log("refresh");
             }
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
         },
         mounted () {
             this.loadData()
