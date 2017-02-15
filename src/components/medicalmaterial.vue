@@ -15,14 +15,14 @@
             </select>
         </form>
         <!-- <input type="text"  class="material-top-input floatleft  radius common">  -->
-        <!--  <form  class="material-top-two floatleft ">
+        <form  class="material-top-two floatleft ">
             <select class="radius common material-top-two">
               <option v-for="item in materialInitialData.nodeList">{{
                 item.name
               }}</option>
             </select>
-        </form> -->
-        <Cascader :data="datass" :value.sync="value1"></Cascader>
+        </form>
+       <!--  <Cascader :data="datass" :value.sync="value1"></Cascader> -->
         <input type="text"  class="material-top-ipttwo floatleft  radius common">
         <form  class="material-top-three floatleft ">
             <select class="threeradius common">
@@ -160,7 +160,7 @@
           <div class="material-delete  floatleft"></div>
         </div>
         <div class="dictionary-search" v-show="mydictionary">
-          <materiallist/>
+          <materiallist />
         </div>
         <div class="commondictionary-search" v-show="commondictionary">
           <commondictionary/>
@@ -512,6 +512,7 @@ textarea{
                 materialPartsList:{},
                 materialInitialData:{},
                 allMaterialData:{},
+                mydictionaryData:{},
                 mydictionary:true,
                 commondictionary:false,
                 checkdictionary:false,
@@ -591,7 +592,8 @@ textarea{
                 const data = JSON.parse(json);
                 self.allMaterialData=data;
                 self.materialInitialData = data.materialPartsList;
-                console.log(self.materialInitialData)
+                self.mydictionaryData=data.materialPartsList.nodeList;
+                console.log(self.mydictionaryData)
             },
           myDictionary:function(){
             this.commondictionary=false;

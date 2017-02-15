@@ -75,7 +75,7 @@
       <div  class="mydictionary2 dictionary  dictionary-active">
         <p>我的词典</p>
       </div>
-      <div  class="commondictionary2  dictionary">
+      <div  class="uaualdictionary  dictionary">
         <p>常用词典</p>
       </div>
       <div  class="checkdictionary2  dictionary">
@@ -241,6 +241,10 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.uaualdictionary{
+  right: 310px;
+    top: 40px;
+}
 .diagnostic-message-bottom p,.diagnostic-message-bottom span{
   display: block;
 }
@@ -375,7 +379,7 @@
 }
 .checkdictionary2{
   right: 310px;
-  top:106px;
+  top:110px;
   border-bottom-left-radius: 3px;
 }
 .checkdictionary2:hover,.commondictionary2:hover,.mydictionary2:hover{

@@ -22,10 +22,10 @@
                 <div class="case-num-two">
                     <p class="floatleft p-one">病理号:</p>
                     <div class="floatleft">
-                    <el-tooltip manual="true" content="errors.first('pathologyNo')" placement="top" effect="light"
-                                value="errors.has('pathologyNo')">
+                    <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
+                                :value="errors.has('pathologyNo')">
                         <input v-validate="'required'" name="pathologyNo"
-                               lass="pathologyNum floatleft  p-margin  radium" type="text" v-model="pathologyno"
+                               class="pathologyNum floatleft  p-margin  radium" type="text"  v-model="pathologyno" 
                             >
                     </el-tooltip>
                     </div>
@@ -560,9 +560,10 @@
         print:function(){
                 console.log("print")
             },
-        },
+        
         refresh:function(){
 
+        },
         },
         mounted () {
             this.loadData()
