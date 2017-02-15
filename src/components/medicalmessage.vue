@@ -20,7 +20,18 @@
                 </div>
                 <br>
                 <div class="case-num-two">
-                    <p class="floatleft p-one">病理号:</p><input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo">
+                    <p class="floatleft p-one">病理号:</p>
+                    <div class="floatleft">
+                    <el-tooltip manual="true" content="errors.first('pathologyNo')" placement="top" effect="light"
+                                value="errors.has('pathologyNo')">
+                        <input v-validate="'required'" name="pathologyNo"
+                               lass="pathologyNum floatleft  p-margin  radium" type="text" v-model="pathologyno"
+                            >
+                    </el-tooltip>
+                    </div>
+                    <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
+
+
                     <p class="floatleft  p-two">申请号:</p><input type="text" class="floatleft  p-margin  radium null applicationNo"
                                                                ref="write4">
                     <p class="floatleft  p-three">门诊号:</p><input type="text" class="floatleft p-margin radium null patientNo"
@@ -437,18 +448,20 @@
         data(){
             return {
                 initialData:{},
+                bindData: {
+                    userName: ''
+                },
                 today:{},
-                pathologyNo:null
             }
         },
         components: {
-            // "top-menu": TopMenu,
             "searchtable": SearchTable,
             "calendar": Calendar,
             "medicalmessage": Medicalmessage
         },
         methods: {
             async loadData () {
+                const self=this;
                 const response = await fetch('/api/hello',{ 
                     method: 'POST',
                     headers: { 
@@ -461,10 +474,11 @@
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                this.initialData = data;    
+                self.initialData = data;    
             },
             async newproject(){
                 $(".null").val('');
+                const self=this;
                 const response = await fetch('/api/hello',{ 
                     method: 'POST',
                     headers: { 
@@ -476,7 +490,7 @@
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                // this.pathologyNo = data;
+                self.pathologyNo = data;
             },
             async newsave(){
                 const patientUid=$('.input-id').val();
@@ -515,8 +529,6 @@
                 const operatingRoomPhone=$('.operatingRoomPhone').val();
                 const medicalHistory=$('.medicalHistory').val();
                 const operativeFindings=$('.operativeFindings').val();
-                
-            
                 const response = await fetch('/api/hello',{ 
                     method: 'POST',
                     headers: { 
@@ -528,22 +540,32 @@
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                this.pathologyN = data;
+                this.pathologyno = data;
             },
-            async refund(){
+        refund:function(){
                 $(".null").val('');
             },
-            async save(){
-                console.log("save")
-            },
-            async print(){
+        save:function(){
+            this.$validator.validateAll().then(success => {
+            }).then(failing => {
+            }, rejected => {
+            });
+
+            this.errors.first('pathologyNo');
+            if (this.errors.any() == false) {
+                alert('123');
+            }
+        
+        },
+        print:function(){
                 console.log("print")
             },
         },
+        refresh:function(){
+
+        },
         mounted () {
-            this.loadData(),
-            // this.getNowDate();
-            console.log("date")
+            this.loadData()
         }
     }
 </script>

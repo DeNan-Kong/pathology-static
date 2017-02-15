@@ -5,6 +5,7 @@
             <div class="hmias-p hmias-common">{{$t('login.description')}}</div>
             <div id="login" class="hmias-common">
                 <div class="login-p">{{$t('login.sub_title')}}</div>
+                
                 <div class="login-img">
                     <div class="login-folder">
                         <img src="../assets/images/folder.png" class="image-folder">

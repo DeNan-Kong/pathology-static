@@ -15,14 +15,14 @@
             </select>
         </form>
         <!-- <input type="text"  class="material-top-input floatleft  radius common">  -->
-         <form  class="material-top-two floatleft ">
+        <!--  <form  class="material-top-two floatleft ">
             <select class="radius common material-top-two">
               <option v-for="item in materialInitialData.nodeList">{{
                 item.name
               }}</option>
             </select>
-        </form>
-        <!-- <Cascader :data="data" :value.sync="value1"></Cascader> -->
+        </form> -->
+        <Cascader :data="datass" :value.sync="value1"></Cascader>
         <input type="text"  class="material-top-ipttwo floatleft  radius common">
         <form  class="material-top-three floatleft ">
             <select class="threeradius common">
@@ -514,10 +514,58 @@ textarea{
                 allMaterialData:{},
                 mydictionary:true,
                 commondictionary:false,
-                checkdictionary:false
+                checkdictionary:false,
+                value1: [],
+                datass: [{
+                    value: 'beijing',
+                    label: '北京',
+                    children: [
+                        {
+                            value: 'gugong',
+                            label: '故宫'
+                        },
+                        {
+                            value: 'tiantan',
+                            label: '天坛'
+                        },
+                        {
+                            value: 'wangfujing',
+                            label: '王府井'
+                        }
+                    ]
+                }, {
+                    value: 'jiangsu',
+                    label: '江苏',
+                    children: [
+                        {
+                            value: 'nanjing',
+                            label: '南京',
+                            children: [
+                                {
+                                    value: 'fuzimiao',
+                                    label: '夫子庙',
+                                }
+                            ]
+                        },
+                        {
+                            value: 'suzhou',
+                            label: '苏州',
+                            children: [
+                                {
+                                    value: 'zhuozhengyuan',
+                                    label: '拙政园',
+                                },
+                                {
+                                    value: 'shizilin',
+                                    label: '狮子林',
+                                }
+                            ]
+                        }
+                    ],
+                }]
             }
     },
-     // props: ['materialInitialData','get'],
+      // props: ['materialInitialData','get'],
      components:{
            "calendar":Calendar,
            "medicalmessage":Medicalmessage, 
@@ -525,11 +573,12 @@ textarea{
            "commondictionary":Commondictionary,
            "checkdictionary":Checkdictionary
         },
-        mounted(){ // 生命周期 created,获取数据
+        created(){ // 生命周期 created,获取数据
           this.loadMaterialData();
         },
         methods:{
           async loadMaterialData () {
+                const self=this;
                 const response = await fetch('/material/load',{ 
                     method: 'POST',
                     headers: { 
@@ -540,14 +589,15 @@ textarea{
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                this.allMaterialData=data;
-                this.materialInitialData = data.materialPartsList;
-                console.log(this.materialInitialData)
+                self.allMaterialData=data;
+                self.materialInitialData = data.materialPartsList;
+                console.log(self.materialInitialData)
             },
           myDictionary:function(){
             this.commondictionary=false;
             this.mydictionary=true;
             this.checkdictionary=false;
+            console.log(this.mydictionary)
             $(".mydictionary").addClass('dictionary-active');
             $(".mydictionary").siblings().removeClass('dictionary-active');
           },
@@ -555,13 +605,18 @@ textarea{
             this.commondictionary=true;
             this.mydictionary=false;
             this.checkdictionary=false;
+             console.log(this.commondictionary)
+             console.log(this.mydictionary)
             $(".commondictionary").addClass('dictionary-active');
             $(".commondictionary").siblings().removeClass('dictionary-active');
           },
           checkDictionary:function(){
+            console.log("check")
             this.commondictionary=false;
             this.mydictionary=false;
             this.checkdictionary=true;
+             console.log(this.checkdictionary)
+             console.log(this.mydictionary)
             $(".checkdictionary").addClass('dictionary-active');
             $(".checkdictionary").siblings().removeClass('dictionary-active');
           },
@@ -580,9 +635,9 @@ textarea{
           newproject:function(){
 
           },
-        mounted(){
-            this.loadMaterialData();
-        }
+        // mounted(){
+        //     this.loadMaterialData();
+        // }
 
         }
   };
