@@ -21,14 +21,15 @@
                 <br>
                 <div class="case-num-two">
                     <p class="floatleft p-one">病理号:</p>
+
                     <div class="floatleft">
-                    <el-tooltip manual="true" content="errors.first('pathologyNo')" placement="top" effect="light"
-                                value="errors.has('pathologyNo')">
-                        <input v-validate="'required'" name="pathologyNo"
-                               lass="pathologyNum floatleft  p-margin  radium" type="text" v-model="pathologyno"
-                            >
-                    </el-tooltip>
+                        <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
+                                    :value="errors.has('pathologyNo')">
+                            <input v-validate="'required'" name="pathologyNo"
+                                   class="pathologyNum p-margin  radium" type="text" v-model="pathologyno">
+                        </el-tooltip>
                     </div>
+
                     <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
 
 
@@ -221,14 +222,14 @@
             </div>
             <div  class="left-button">
                 <button  class="left-button-two"  @click="refund">清&nbsp;除</button>
-                <button  class="left-button-two"  @click="print">打&nbsp;印</button> 
+                <button class="left-button-two" @click="print">打&nbsp;印</button>
                 <button  class="left-button-two" @click="save">保&nbsp;存</button>
                 <button  class="left-button-five" @click="newsave">保存且新建</button>
-                <button  class="left-button-two" @click="newproject">新&nbsp;建</button>    
+                <button class="left-button-two" @click="newproject">新&nbsp;建</button>
             </div>
             <div class="left-bottom">
-                <div  class="picture-img" @click="refresh"></div> 
-                <div  class="refresh-img"></div>    
+                <div class="picture-img" @click="refresh"></div>
+                <div class="refresh-img"></div>
             </div>
         </div>
     </div>
@@ -542,10 +543,10 @@
                 const data = JSON.parse(json);
                 this.pathologyno = data;
             },
-        refund:function(){
+            refund: function () {
                 $(".null").val('');
             },
-        save:function(){
+            save: function () {
             this.$validator.validateAll().then(success => {
             }).then(failing => {
             }, rejected => {
@@ -557,12 +558,12 @@
             }
         
         },
-        print:function(){
-                console.log("print")
-            },
+            print: function () {
+                console.log("print");
         },
-        refresh:function(){
-
+            refresh: function () {
+                console.log("refresh");
+            }
         },
         mounted () {
             this.loadData()
