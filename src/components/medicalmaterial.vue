@@ -160,7 +160,7 @@
           <div class="material-delete  floatleft"></div>
         </div>
         <div class="dictionary-search" v-show="mydictionary">
-          <materiallist />
+          <materiallist :mydictionaryData="(mydictionaryData)"/>
         </div>
         <div class="commondictionary-search" v-show="commondictionary">
           <commondictionary/>

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div>
+      <div id="cytologyone">
         <div class="cytology-content">
             <div class="cytology-bodyleft">
               <div class="cytology-rows">
@@ -174,9 +174,24 @@
           </div>
        </div> 
     </div>
-    
+    <div id="cytologytwo">
+      <cytologytwo/>
+    </div>
+    <div id="cytologythree">
+      
+    </div>
+    <div id="cytologyfour">
+      
+    </div>
+    <div id="cytologyfive">
+      
+    </div>
+    </div>
 </template>
 <style>
+#cytologyone,#cytologythree,#cytologyfour,#cytologyfive{
+  display: none;
+}
 .radioo{
   opacity: 0;
 }
@@ -332,6 +347,7 @@ input[type='radio']
 }
 .cytology-addimg{
     margin-left: 196px;
+
 }
 .cytology-input{
     width:280px;
@@ -350,6 +366,8 @@ input[type='radio']
 }
 .cytology-dictionarytext{
     width:168px;
+    margin-top: 7px;
+    border: none;
 }
 .list ul li{
     border-bottom:0;
@@ -378,7 +396,7 @@ input[type='radio']
 <script>
     import $ from "jQuery";
     import Treelist from "components/treelist";
-    
+    import Cytologytwo from "components/cytologytwo";
     export default{
         data(){
             return{
@@ -386,7 +404,8 @@ input[type='radio']
             }
         },
         components:{
-           "treelist":Treelist 
+           "treelist":Treelist,
+           "cytologytwo":Cytologytwo 
         },
         methods:{
             cytologyselect:function(e){

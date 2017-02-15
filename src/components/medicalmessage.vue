@@ -23,20 +23,12 @@
                     <p class="floatleft p-one">病理号:</p>
 
                     <div class="floatleft">
-<<<<<<< HEAD
-                    <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
-                                :value="errors.has('pathologyNo')">
-                        <input v-validate="'required'" name="pathologyNo"
-                               class="pathologyNum floatleft  p-margin  radium" type="text"  v-model="pathologyno" 
-                            >
-                    </el-tooltip>
-=======
+
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
                                    class="pathologyNum p-margin  radium" type="text" v-model="pathologyno">
                         </el-tooltip>
->>>>>>> 180fb03aad08c1846f2c36dff37e72d75a8648eb
                     </div>
 
                     <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
@@ -459,7 +451,30 @@
             return {
                 initialData:{},
                 bindData: {
-                    userName: ''
+                    "applicationNo": "a10001",
+            "chargeTypeId": 1,
+            "frozenNo": "f10001",
+            "infobaseId": 30000001,
+            "inhospitalId": "123231",
+            "inspectDate": "2017-02-13 10:15:25",
+            "inspectDepartmentId": 4,
+            "inspectUnitId": 1,
+            "orderId": 8,
+            "pathologyNo": "p10001",
+            "patient": {
+                "age": 5,
+                "ageUnit": 1,
+                "birthday": "2017-01-17 00:00:00",
+                "patientId": 1,
+                "patientName": "tkong",
+                "patientUid": "pid-001",
+                "sex": 1
+            },
+            "patientId": 1,
+            "patientNo": "p10001",
+            "specimenNameId": 2,
+            "specimenTypeId": 1,
+            "status": 1
                 },
                 today:{},
             }
@@ -567,22 +582,14 @@
             }
         
         },
-<<<<<<< HEAD
-        print:function(){
-                console.log("print")
-            },
-        
-        refresh:function(){
 
-=======
             print: function () {
                 console.log("print");
         },
             refresh: function () {
                 console.log("refresh");
             }
->>>>>>> 180fb03aad08c1846f2c36dff37e72d75a8648eb
-        },
+       
         },
         mounted () {
             this.loadData()
