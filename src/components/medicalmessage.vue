@@ -29,10 +29,6 @@
                             <input v-validate="'required'" name="pathologyNo"
                                    class="pathologyNum p-margin  radium" type="text" v-model="bindData.pathologyNo">
                         </el-tooltip>
-<<<<<<< HEAD
-=======
-
->>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
                     </div>
 
                     <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
@@ -461,7 +457,7 @@
             return {
                 initialData:{},
                 bindData: {
-<<<<<<< HEAD
+
                     "applicationNo": "a10001",
             "chargeTypeId": 1,
             "frozenNo": "f10001",
@@ -485,12 +481,12 @@
             "patientNo": "p10001",
             "specimenNameId": 2,
             "specimenTypeId": 1,
-            "status": 1
-=======
+            "status": 1,
+
                     userName: '',
                     pathologyNo: '',
                     firstName:''
->>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
+
                 },
                 today:{},
             }
@@ -598,21 +594,12 @@
             }
         
         },
-<<<<<<< HEAD
-
-=======
->>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
             print: function () {
                 console.log("print");
         },
             refresh: function () {
                 console.log("refresh");
             }
-<<<<<<< HEAD
-       
-=======
-
->>>>>>> 71b9ba67e4118df22e39cb1db463b68b989baae2
         },
         mounted () {
             this.loadData()
