@@ -180,10 +180,8 @@
                 <button  class="left-button-five">打印</button>
                 <button  class="left-button-two">保存</button>    
         </div>
-        <div class="material-image">
-            <div  class="picture-img" v-on:click="newproject"></div> 
-            <div  class="refresh-img"></div>        
-        </div>
+          <div  class="picture-img" v-on:click="newproject"></div> 
+          <div  class="refresh-img"></div>        
     </div>
   </div>
 </template>
@@ -309,35 +307,15 @@
   width: 1052px;
   position: relative;
 }
-.material-image .picture-img:hover{
-    background: url('../assets/images/register.png')  -32px -35px no-repeat;
-    width:26px;
-    height:26px;
-    cursor:pointer;
-}
-.material-image .refresh-img:hover{
-    background: url('../assets/images/register.png')  -68px -35px no-repeat;
-    width:26px;
-    height:26px;
-}
-.refresh-img{
-    background: url('../assets/images/picture.png.png') no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float:left;
-    margin-left: 6px;
-}
-.material-image .picture-img{
-    background: url('../assets/images/refresh.png.png') no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float: left;
-}
 .material-image{
   margin-top: -41px;
   margin-left: 34px;
+}
+.material-bottom .refresh-img,.material-bottom .picture-img{
+  bottom:20px;
+}
+.material-bottom .refresh-img{
+  left:56px;
 }
 .material-bottom{
   width: 1052px;

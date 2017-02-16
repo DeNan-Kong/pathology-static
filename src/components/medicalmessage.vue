@@ -5,7 +5,7 @@
                 <div class="case-num-one">
                     <p class="floatleft p-one">HIS识别码:</p><input type="text" class="floatleft  input-his  radium" ref="write1">
                     <form class="floatleft " >
-                        <select class="sel-his null">
+                        <select class="sel-his null" :value="bindData.id">
                             <option v-for="item in initialData.hisCodeList" 
                             :id="item.id"> 
                                 {{ item.name }}
@@ -54,7 +54,7 @@
 
                     <p class="floatleft  p-two">性&nbsp;&nbsp;&nbsp;别:</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null sex">
+                        <select class="p-margin  radium-sup null sex" :value="bindData.id">
                             <option v-for="item in initialData.sexList" :id="item.id">
                                 {{item.name}}
                             </option>
@@ -242,6 +242,9 @@
     </div>
 </template>
 <style>
+.left-bottom .refresh-img{
+    margin-left: 5px;
+}
 .case-tabs>a{
     display:block;
     width:62px;
@@ -387,16 +390,6 @@
     width:88px;
 
 }
-.left-bottom .picture-img,.left-bottom .refresh-img{
-    margin-left: 6px;
-}
-.left-bottom .picture-img{
-    background: url('../assets/images/refresh.png.png')no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float: left;
-}
 .big-search-img{
     margin-left: -240px;
     margin-top: 8px;
@@ -530,49 +523,13 @@
                 self.pathologyNo = data;
             },
             async newsave(){
-                const patientUid=$('.input-id').val();
-                const frozenNo=$('.input-mark').val();
-                const pathologynum=$('.pathologyNum').val();
-                const applicationNo=$('.applicationNo').val();
-                const patientNo=$('.patientNo').val();
-                const inhospitalId=$('.inhospitalId').val();
-                const patientName=$('.patientName').val();
-                const sex=$('.sex').val();
-                const agenum=$('.agenum').val();
-                const age=$('.sel-his option:checked').attr('id');
-                const nationList=$('.nationlist option:checked').attr('id');
-                const maritalStatusId=$('.maritalStatusId option:checked').attr('id');
-                const professionId=$('.professionId option:checked').attr('id');
-                const phone=$('.phone').val();
-                const idCard=$('.idCard').val();
-                const address=$('.address').val();
-                // const lmp=$('.lmp').val();
-                const pausimenia=$('.pausimenia option:checked').attr('id');
-                const inspectUnitId=$('.inspectUnitId option:checked').attr('id');
-                const inspectDepartmentId=$('.inspectDepartmentId option:checked').attr('id');
-                const submittingPhysicianId=$('.submittingPhysicianId option:checked').attr('id');
-                const ward=$('.ward').val();
-                const sickbedNo=$('.sickbedNo').val();
-                const specimenTypeId=$('.specimenTypeId option:checked').attr('id');
-                const specimenSituationId=$('.specimenSituationId option:checked').attr('id');
-                const specimenNameId=$('.specimenNameId option:checked').attr('id');
-                const unqualifiedCauseId=$('.unqualifiedCauseId option:checked').attr('id');
-                const specimenReceiveId=$('.specimenReceiveId  option:checked').attr('id');
-                const chargeTypeId=$('.chargeTypeId option:checked').attr('id');
-                const charge=$('.charge').val();
-                const sampleDoctorId=$('.sampleDoctorId option:checked').attr('id');
-                // const receiveDate=$('.receiveDate').val();
-                const clinicalDiagnosisId=$('.clinicalDiagnosisId option:checked').attr('id');
-                const operatingRoomPhone=$('.operatingRoomPhone').val();
-                const medicalHistory=$('.medicalHistory').val();
-                const operativeFindings=$('.operativeFindings').val();
                 const response = await fetch('/api/hello',{ 
                     method: 'POST',
                     headers: { 
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-            
+                            bindData
                     })
                 });
                 const json = await response.text();
@@ -583,6 +540,7 @@
                 $(".null").val('');
             },
             save: function () {
+                console.log(this.bindData);
             this.$validator.validateAll().then(success => {
             }).then(failing => {
             }, rejected => {
@@ -603,6 +561,7 @@
         },
         mounted () {
             this.loadData()
+
         }
     }
 </script>

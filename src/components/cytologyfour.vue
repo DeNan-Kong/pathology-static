@@ -1,24 +1,26 @@
 <template>
     <div>
-        <div class="cytology-content">
-            <div class="cytology-row">
-               <span class="floatleft color">1、标本类型&nbsp;：&nbsp;</span>
+      <div class="cytology-content">
+        <div class="cytology-row">
+               <span class="floatleft color">1、标本满意度&nbsp;：&nbsp;</span>
                <input type="radio" class="floatleft cytology-col-radio" name="cytologytype">
-               <p class="floatleft cytologysecond-p">&nbsp;&nbsp;涂片</p>
+               <p class="floatleft cytologysecond-p">&nbsp;&nbsp;满意</p>
                <input type="radio" class="floatleft cytology-col-radio" name="cytologytype">
-               <p class="floatleft cytologysecond-p">&nbsp;&nbsp;液基</p>
+               <p class="floatleft cytologysecond-p">&nbsp;&nbsp;基本满意</p>
                <input type="radio" class="floatleft cytology-col-radio" name="cytologytype">
-               <p class="floatleft cytologysecond-p">&nbsp;&nbsp;其他</p>
-               <span class="floatleft color">检测方法&nbsp;：&nbsp;</span>
-               <form class="floatleft">
-                    <select class="cytologysecond-form">
-                        <option></option>
-                    </select>
+               <p class="floatleft cytologysecond-p">&nbsp;&nbsp;不满意</p>
+               <form class="floatleft ">
+                  <select class="cytology-form cytology-form">
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
                 </form>
+                <el-checkbox v-model="checked" class="floatleft">需重新取样</el-checkbox>
             </div>
             <div class="clear"></div>
             <div class="cytology-row">
-               <span class="floatleft color">2、标本质量&nbsp;：&nbsp;</span>
+               <span class="floatleft color">2、细胞量&nbsp;：&nbsp;</span>
                <input type="radio" class="floatleft cytology-col-radio" name="cytologytype">
                <p class="floatleft cytologysecond-p">&nbsp;&nbsp;满意</p>
                <input type="radio" class="floatleft cytology-col-radio" name="cytologytype">
@@ -31,8 +33,7 @@
                 <input type="radio" class="floatleft cytology-col-radio" name="cellno">
                 <p class="floatleft cytologysecond-p">&nbsp;&nbsp;<5000个细胞</p>
                <span class="floatleft color">说明&nbsp;：&nbsp;</span>
-               <input class="cytologysecond-form floatleft">
-               
+               <input class="cytologysecond-form floatleft">  
             </div>
             <div class="clear"></div>
             <div class="cytology-row">
@@ -122,120 +123,27 @@
             </div>
             <div class="cytologysecond-bottom">
                 <button>保存结果</button>
-                <button>打印报告</button>    
+                <button>打印报告</button>   
             </div>
             <div  class="picture-img"></div> 
             <div  class="refresh-img"></div>
-        </div>
+      </div>  
     </div>
 </template>
 <style>
-body{
-   background-color: #edeef2; 
-}
-.cytology-content{
-    width: 1026px;
-    height: 570px;     
-    margin:10px auto;
-    color:#333;
-    font-size:14px;
-}
-.cytology-row{
-    width: 100%;
-    height: 28px;    
-    margin-bottom: 2px;
-    line-height: 28px;
-}
-.cytology-row .color{
-    color:#4d7cbe;
-}
-.cytology-row input{
-    margin-top: 3px;
-}
-.cytology-row input[type='radio']{
-    margin-top: 7px;
-}
-.cytology-row p{
-    margin-bottom: 0px;
-    margin-right: 20px;
-}
-.cytologysecond-form{
-    width:252px;
-    height: 25px;
-    outline: none;
-    border: none;
-    border:1px solid #ccc;
-    border-radius: 3px;
-}
-.cytology-row .el-checkbox__inner::after{
-    box-sizing: content-box;
-    content: "";
-    border: 2px solid #000;
-    border-left: 0;
-    border-top: 0;
-    height: 8px;
-    left: 5px;
-    position: absolute;
-    top: 1px;
-    -ms-transform: rotate(45deg) scaleY(0);
-    transform: rotate(45deg) scaleY(0);
-    width: 4px;
-    transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
-    -ms-transform-origin: center;
-    transform-origin: center;
-}  
-.cytology-row .el-checkbox__input.is-checked .el-checkbox__inner {
-    background-color: #fff;
-    border-color: #ccc;
-}
-.cytology-row .el-checkbox__input.is-focus .el-checkbox__inner,.cytology-row .el-checkbox__input.is-hover .el-checkbox__inner,.cytology-row .el-checkbox__input .el-checkbox__inner{
-    border-color: #ccc;
-}
-.cytology-row-check{
-    padding-left: 25px;
-}
-.cytologysecond-textarea textarea{
-    width: 980px;
-    height: 100px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-left:25px;
-    margin-bottom: 5px;
-}
-.cytologysecond-input{
-    width:126px;
-    height: 24px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 30px;
-}
-.cytologysecond-bottom button{
-    width:74px;
-    height: 36px;
-    background: #428bca;
-    outline: none;
-    color: #fff;
-    border-radius: 3px;
-    float: right;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-.cytologysecond-bottom button:hover{
-     background:#3577af;
-}
-.cytology-content .refresh-img{
-    left: 53px;
+.cytology-form{
+  margin-right: 55px;
 }
 </style>
 <script>
     export default{
         data(){
             return{
-               
+                
             }
         },
         components:{
-            
+           
         }
     }
 </script>
