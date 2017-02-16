@@ -184,12 +184,12 @@
       <cytologyfour/>
     </div>
     <div id="cytologyfive">
-      
+      <cytologyfive/>
     </div>
     </div>
 </template>
 <style>
-#cytologyone,#cytologytwo,#cytologythree,#cytologyfive{
+#cytologyone,#cytologytwo,#cytologythree,#cytologyfour{
   display: none;
 }
 .radioo{
@@ -395,6 +395,7 @@ input[type='radio']{
     import Cytologytwo from "components/cytologytwo";
     import Cytologythree from "components/cytologythree";
     import Cytologyfour from "components/cytologyfour";
+    import Cytologyfive from "components/cytologyfive";
     export default{
         data(){
             return{
@@ -405,7 +406,8 @@ input[type='radio']{
            "treelist":Treelist,
            "cytologytwo":Cytologytwo,
            "cytologythree":Cytologythree,
-           "cytologyfour":Cytologyfour 
+           "cytologyfour":Cytologyfour,
+           "cytologyfive":Cytologyfive 
         },
         methods:{
             cytologyselect:function(e){

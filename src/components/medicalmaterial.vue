@@ -196,6 +196,7 @@
 .dictionary-search,.commondictionary-search,.checkdictionary-search{
   width: 264px;
   height: 500px;
+  border: 1px solid #ccc;
   overflow-y: scroll;
 }
 .dictionary-search ul li{
@@ -297,7 +298,6 @@
 .material-middle-right{
   width: 266px;
   height: 535px;
-  border: 1px solid #ccc;
   background: #f9f9f9;
   position: absolute;
   right: 10px;
@@ -475,6 +475,24 @@ textarea{
   border-radius: 3px;
   overflow: auto;
   resize:none;
+}
+ .dictionary-search::-webkit-scrollbar-track,.commondictionary-search::-webkit-scrollbar-track,.checkdictionary-search::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+} 
+ .dictionary-search::-webkit-scrollbar,.commondictionary-search::-webkit-scrollbar,.checkdictionary-search::-webkit-scrollbar{
+    width: 10px;
+    height: 12px;
+    background-color: #F5F5F5;
+}
+ .dictionary-search::-webkit-scrollbar-thumb,.commondictionary-search::-webkit-scrollbar-thumb,.checkdictionary-search::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
+.el-tree{
+  border:none;
 }
 </style>
 <script>
