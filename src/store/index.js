@@ -3,12 +3,15 @@
  */
 
 export default {
-  state: {
-    message: ''
-  },
+    state: {
+        count: 0,
+        error: {}
+    },
   mutations: {
-    MESSAGE (state, value) {
-      state.message = value || state.message;
-    }
+      increment (state) {
+          state.count++
+      }, error(state, error){
+          state.error = error
+      }
   }
 }

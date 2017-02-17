@@ -10,8 +10,8 @@
                     <div class="login-folder">
                         <img src="../assets/images/folder.png" class="image-folder">
                     </div>
-                    <select class="folder-select">
-                        <option v-for="item in initialData.workstationList">
+                    <select class="folder-select" v-model="bindData.workstationId">
+                        <option v-for="item in initialData.workstationList" v-bind:value="item.id">
                             {{item.name}}
                         </option>
                     </select>
@@ -206,42 +206,79 @@
     export default {
         data() {
             return {
+                loading: false,
                 initialData: {
                     password:""
                 },
                 bindData: {
-                    workstation: '',
+                    workstationId: 0,
                     userName: '',
                     password: ''
                 }
-
             };
         },
         methods: {
             async loadData(){
+                // 加载信息
                 const response = await fetch('/login/load', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        data: this.data
-                    })
+                    body: JSON.stringify()
                 });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                this.initialData = data;
+                const resultJson = await response.text();
+                const resultObject = JSON.parse(resultJson);
+
+                // 异常处理
+                if (this.$errHandle(resultObject)) {
+                    return;
+                }
+
+                this.initialData = resultObject;
+                // 默认选择第一个工作站
+                this.bindData.workstationId = resultObject.workstationList[0].id;
             },
-            login: function () {
+            async login() {
                 this.$validator.validateAll().then(success => {
                 }).then(failing => {
                 }, rejected => {
                 });
 
-                this.errors.first('userName');
+                // validate succuess
                 if (this.errors.any() == false) {
-                    alert('123');
+                    const resultJson = await this.loginSubmit();
+                    const resultObject = JSON.parse(resultJson);
+
+                    // 异常处理
+                    if (this.$errHandle(resultObject)) {
+                        return;
+                    }
+
+                    // 登录成功
+                    if (resultObject.loginResult == true) {
+                        this.$router.push("/register");
+                    }
+                    else {
+                        this.$message({
+                            message: this.$t("login.login_failure"),
+                            type: 'error',
+                            duration: 2000
+                        });
+                    }
                 }
+            },
+            async loginSubmit() {
+                const response = await fetch('/login/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.bindData)
+                });
+
+                const json = await response.text();
+                return json;
             }
         },
         mounted () {

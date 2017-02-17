@@ -18,12 +18,13 @@ import validatorMessages  from './assets/strings/locale/zh-cn/validator-messages
 import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attributes.js';
 import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
+import ErrorHandle  from './common/error-handle';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 // install plugin
 Vue.use(VueI18n);
-
+Vue.use(ErrorHandle);
 // ready translated locales
 
 Vue.config.lang = 'cn';
