@@ -180,10 +180,8 @@
                 <button  class="left-button-five">打印</button>
                 <button  class="left-button-two">保存</button>    
         </div>
-        <div class="material-image">
-            <div  class="picture-img" v-on:click="newproject"></div> 
-            <div  class="refresh-img"></div>        
-        </div>
+          <div  class="picture-img" v-on:click="newproject"></div> 
+          <div  class="refresh-img"></div>        
     </div>
   </div>
 </template>
@@ -196,8 +194,9 @@
    margin-top: -16px;
 }
 .dictionary-search,.commondictionary-search,.checkdictionary-search{
-  width: 264px;
+  width: 266px;
   height: 500px;
+  border: 1px solid #ccc;
   overflow-y: scroll;
 }
 .dictionary-search ul li{
@@ -214,15 +213,17 @@
 }
 .dictionary-text{
   width:140px;
+  height:28px; 
   margin-top: 2px;
   border: none;
 }
 .material-modify{
+  float:left;
   background: url('../assets/images/material.png')  -40px -5px no-repeat;
   width:26px;
   height: 26px;
-  margin-right: 2px;
-  margin-top: -23px;
+  margin-left: 208px;
+  margin-top: -27px;
 }
 .material-main button:hover{
   background:#3577af;
@@ -234,8 +235,8 @@
   background: url('../assets/images/material.png')  -72px -5px no-repeat;
   width:26px;
   height: 26px;
-  margin-right: 2px;
-  margin-top: -23px;
+  margin-left: 236px;
+  margin-top: -27px;
 }
 .material-delete:hover{
   background: url('../assets/images/material.png')  -72px -40px no-repeat;
@@ -246,22 +247,22 @@
   height: 26px;
   margin-left: 180px;
   margin-right: 2px;
-  margin-top: -23px;
+  margin-top: -27px;
 }
 .material-add:hover{
   background: url('../assets/images/material.png')  -8px -40px no-repeat;
   cursor:pointer;
 }
 .material-middle-right img{
-  margin-top: 6px;
+  margin-top: 8px;
   margin-left: 10px;
 }
 .dictionary-input{
-  width: 264px;
-  height: 30px;
-  border-bottom: 1px solid #ccc;
+  width: 266px;
+  height: 32px;
+  border-right: 1px solid #ccc !important;
+  border-left: 1px solid #ccc !important;
   border:none;
-  background: #fff;
 }
 .checkdictionary{
   right: 276px;
@@ -299,8 +300,8 @@
 .material-middle-right{
   width: 266px;
   height: 535px;
-  border: 1px solid #ccc;
-  background: #f9f9f9;
+  border-top: 1px solid #ccc;
+  background: #fff;
   position: absolute;
   right: 10px;
   top:0px;
@@ -309,35 +310,15 @@
   width: 1052px;
   position: relative;
 }
-.material-image .picture-img:hover{
-    background: url('../assets/images/register.png')  -32px -35px no-repeat;
-    width:26px;
-    height:26px;
-    cursor:pointer;
-}
-.material-image .refresh-img:hover{
-    background: url('../assets/images/register.png')  -68px -35px no-repeat;
-    width:26px;
-    height:26px;
-}
-.refresh-img{
-    background: url('../assets/images/picture.png.png') no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float:left;
-    margin-left: 6px;
-}
-.material-image .picture-img{
-    background: url('../assets/images/refresh.png.png') no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float: left;
-}
 .material-image{
   margin-top: -41px;
   margin-left: 34px;
+}
+.material-bottom .refresh-img,.material-bottom .picture-img{
+  bottom:20px;
+}
+.material-bottom .refresh-img{
+  left:56px;
 }
 .material-bottom{
   width: 1052px;
@@ -497,6 +478,24 @@ textarea{
   border-radius: 3px;
   overflow: auto;
   resize:none;
+}
+ .dictionary-search::-webkit-scrollbar-track,.commondictionary-search::-webkit-scrollbar-track,.checkdictionary-search::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+} 
+ .dictionary-search::-webkit-scrollbar,.commondictionary-search::-webkit-scrollbar,.checkdictionary-search::-webkit-scrollbar{
+    width: 10px;
+    height: 12px;
+    background-color: #F5F5F5;
+}
+ .dictionary-search::-webkit-scrollbar-thumb,.commondictionary-search::-webkit-scrollbar-thumb,.checkdictionary-search::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
+.el-tree{
+  border:none;
 }
 </style>
 <script>

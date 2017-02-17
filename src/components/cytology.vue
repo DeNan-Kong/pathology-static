@@ -12,7 +12,7 @@
                   <input type="radio" class="floatleft cytology-col-radio" name="satisfaction">
                   <span class="demo--radioInput"></span>
                   <p class="floatleft cytology-nosatisfaction">&nbsp;&nbsp;不满意</p>
-                  <form class="floatleft cytology-form">
+                  <form class="floatleft">
                       <select class="cytology-form">
                           <option></option>
                           <option></option>
@@ -169,8 +169,8 @@
                 <button>常用词</button>
                 <button>保存</button>
                 <button>打印</button>
-                <div  class="picture-img" v-on:click="newproject"></div> 
-               <div  class="refresh-img"></div>
+                <div  class="picture-img"></div> 
+                <div  class="refresh-img"></div>
           </div>
        </div> 
     </div>
@@ -178,39 +178,34 @@
       <cytologytwo/>
     </div>
     <div id="cytologythree">
-      
+      <cytologythree/>
     </div>
     <div id="cytologyfour">
-      
+      <cytologyfour/>
     </div>
     <div id="cytologyfive">
-      
+      <cytologyfive/>
     </div>
     </div>
 </template>
 <style>
-#cytologyone,#cytologythree,#cytologyfour,#cytologyfive{
+#cytologyone,#cytologytwo,#cytologyfive,#cytologythree{
   display: none;
 }
 .radioo{
   opacity: 0;
 }
-input[type='radio']
-{background-color:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:100%;display:inline-block;height:16px;margin-right:10px;margin-top:-1px;vertical-align:middle;width:16px;line-height:1}
-.pic-ref .picture-img{
-    background: url('../assets/images/refresh.png.png')no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float: left;
-    margin-top: 6px;
-    margin-left: 10px;
-}
-.pic-ref .picture-img:hover{
-  background: url('../assets/images/register.png')  -32px -35px no-repeat;
-}
-.pic-ref .refresh-img:hover{
-    background: url('../assets/images/register.png')  -68px -35px no-repeat;
+input[type='radio']{
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.15);
+  border-radius:100%;
+  outline: none;
+  display:inline-block;
+  height:16px;
+  margin-top:7px;
+  vertical-align:middle;
+  width:16px;
+  line-height:1
 }
 .pic-ref .refresh-img{
     margin-top: 6px;
@@ -254,6 +249,8 @@ input[type='radio']
 .cytology-form{
     width:154px;
     height: 24px;
+    border:1px solid #ccc;
+    border-radius: 3px;
 }
 .cytology-rows .cytology-col-radio{
     margin-top:7px;
@@ -347,7 +344,6 @@ input[type='radio']
 }
 .cytology-addimg{
     margin-left: 196px;
-
 }
 .cytology-input{
     width:280px;
@@ -397,6 +393,9 @@ input[type='radio']
     import $ from "jQuery";
     import Treelist from "components/treelist";
     import Cytologytwo from "components/cytologytwo";
+    import Cytologythree from "components/cytologythree";
+    import Cytologyfour from "components/cytologyfour";
+    import Cytologyfive from "components/cytologyfive";
     export default{
         data(){
             return{
@@ -405,7 +404,10 @@ input[type='radio']
         },
         components:{
            "treelist":Treelist,
-           "cytologytwo":Cytologytwo 
+           "cytologytwo":Cytologytwo,
+           "cytologythree":Cytologythree,
+           "cytologyfour":Cytologyfour,
+           "cytologyfive":Cytologyfive 
         },
         methods:{
             cytologyselect:function(e){

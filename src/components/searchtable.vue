@@ -248,11 +248,10 @@
     background-color:transparent;
     height: 30px;
 }
- body .table-show .el-popover{
+body .table-show .el-popover{
     width: 10px;
 }
- .el-table tr{
-    
+.el-table tr{   
     text-overflow:ellipsis;
 }
 body .el-table .cell{
@@ -683,22 +682,46 @@ body .table-show-one{
     background:#fff;
     margin-left:392px;
     margin-top:-530px;
-    position:relative;
+    position: absolute;
     z-index: 10;
     box-shadow: -3px -3px 3px  rgba(4,4,4,0.3);
     -moz-box-shadow: -3px -3px 3px  rgba(4,4,4,0.3);
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
-.grop-search button:hover{
-
-}
 body #relatetable .el-table .cell,.el-table__header-wrapper{
   font-size: 14px;
   font-weight: normal;
   text-align: center;
   padding: 0px;
-}  
+} 
+ .el-table__body-wrapper::-webkit-scrollbar-track{
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    border-radius: 10px;
+    background-color: #F5F5F5;
+} 
+ .el-table__body-wrapper::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+    background-color: #F5F5F5;
+}
+ .el-table__body-wrapper::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
+#middle-right .el-table__fixed{
+    height: 387px !important;
+    width:259px;
+}
+.el-table th,.el-table td{
+    background: #fff;
+    height: 40px;
+    padding: 0px !important;
+}
+.el-table th .cell{
+    background: #fff;
+}
 </style>
 <script>
 import {mapState} from 'vuex';

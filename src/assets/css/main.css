@@ -5,12 +5,39 @@ html,body{
     background-color: #edeef2;
     /*min-height:615px;*/
     color:#333;
+    position: relative;
 }
 button{
     border:none;
     outline: none;
     margin:0; padding:0; list-style-type:none;
     background: none;
+}
+.picture-img{
+    position: absolute;
+    background: url('../../assets/images/refresh.png.png')no-repeat;
+    width:26px;
+    height:26px;
+    border-radius: 3px;
+    bottom: 50px;
+    left: 20px;
+    float: left;
+}
+.picture-img:hover{
+    background: url('../../assets/images/register.png')  -32px -35px no-repeat;
+}
+.refresh-img{
+    position: absolute;
+    background: url('../../assets/images/picture.png.png') no-repeat;
+    width:26px;
+    height:26px;
+    border-radius: 3px;
+    bottom: 50px;
+    left:48px;
+    float:left;
+}
+.refresh-img:hover{
+    background: url('../../assets/images/register.png')  -68px -35px no-repeat;
 }
 /*默认样式*/
 .floatleft{

@@ -226,19 +226,6 @@
 .tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
     display:none;
 }
-.left-bottom .picture-img:hover{
-    background: url('../assets/images/register.png')  -32px -35px no-repeat;
-}
-.left-bottom .refresh-img{
-    background: url('../assets/images/picture.png.png') no-repeat;
-    width:26px;
-    height:26px;
-    border-radius: 3px;
-    float:left;
-}
-.left-bottom .refresh-img:hover{
-    background: url('../assets/images/register.png')  -68px -35px no-repeat;
-}
 #filmmaking-main{
     height: 660px;
     background: #eceef2;
