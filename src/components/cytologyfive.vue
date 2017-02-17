@@ -197,9 +197,9 @@
     -ms-transform-origin: center;
     transform-origin: center;
 }
-.cytology-row .el-checkbox{
+/*.cytology-row .el-checkbox{
     color:#4d7cbe;
-}
+}*/
 .cytology-row-yellow .el-checkbox{
     color:#ca602c;
 }

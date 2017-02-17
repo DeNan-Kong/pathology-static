@@ -189,7 +189,7 @@
     </div>
 </template>
 <style>
-#cytologyone,#cytologytwo,#cytologythree,#cytologyfour{
+#cytologyone,#cytologytwo,#cytologyfive,#cytologythree{
   display: none;
 }
 .radioo{

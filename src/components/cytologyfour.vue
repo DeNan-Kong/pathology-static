@@ -179,7 +179,6 @@
             </div>
             <div class="clear"></div>
              <div class="cytology-row cytologyfour-row-check">
-                 
                  <span class="floatleft color cytology-yes-no">审核医生&nbsp;：&nbsp;</span>
                  <input class="floatleft cytologyfour-form" type="text">
                  <span class="floatleft color">报告日期&nbsp;：&nbsp;</span>

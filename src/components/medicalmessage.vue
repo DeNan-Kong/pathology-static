@@ -3,56 +3,46 @@
         <div class="case-content">
             <div class="case-num">
                 <div class="case-num-one">
-                    <p class="floatleft p-one">HIS识别码:</p><input type="text" class="floatleft  input-his  radium" ref="write1">
+                    <p class="floatleft p-one">{{$t('medicalmessage.his_identification_code')}}</p><input type="text" class="floatleft  input-his  radium" v-model="bindData.inputss">
                     <form class="floatleft " >
-                        <select class="sel-his null" :value="bindData.id">
-                            <option v-for="item in initialData.hisCodeList" 
-                            :id="item.id"> 
+                        <select class="sel-his null" v-model="bindData.id">
+                            <option v-for="item in initialData.hisCodeList"   :value="item.id"> 
                                 {{ item.name }}
                             </option>
                         </select>
                     </form>
-                    <button class="floatleft  but-his">提取</button>
-                    <p class="floatleft  p-three">病人ID:</p><input type="text" class="floatleft input-id  radium" ref="write2">
-                    <p class="floatleft  p-mark p-four">冰冻标识:</p>
+                    <button class="floatleft  but-his">{{$t('medicalmessage.extract')}}</button>
+                    <p class="floatleft  p-three">{{$t('medicalmessage.patient_id')}}</p><input type="text" class="floatleft input-id  radium" ref="write2">
+                    <p class="floatleft  p-mark p-four">{{$t('medicalmessage.frozen_logo')}}</p>
                     <input type="text" class="floatleft  radium input-mark null" ref="write3">
                     <button class="arrow"></button>
                 </div>
                 <br>
                 <div class="case-num-two">
-                    <p class="floatleft p-one">病理号:</p>
-
+                    <p class="floatleft p-one">{{$t('medicalmessage.pathology')}}</p>
                     <div class="floatleft">
-
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
                                    class="pathologyNum p-margin  radium" type="text" v-model="bindData.pathologyNo">
                         </el-tooltip>
                     </div>
-
                     <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
-
-
-                    <p class="floatleft  p-two">申请号:</p><input type="text" class="floatleft  p-margin  radium null applicationNo"
+                    <p class="floatleft  p-two">{{$t('medicalmessage.application_number')}}</p><input type="text" class="floatleft  p-margin  radium null applicationNo"
                                                                ref="write4">
-                    <p class="floatleft  p-three">门诊号:</p><input type="text" class="floatleft p-margin radium null patientNo"
+                    <p class="floatleft  p-three">{{$t('medicalmessage.outpatient_service_no')}}</p><input type="text" class="floatleft p-margin radium null patientNo"
                                                                  ref="write5">
-                    <p class="floatleft   p-four">住院号:</p><input type="text" class="floatleft p-margin radium null inhospitalId"
-                                                                 ref="write6">
+                    <p class="floatleft   p-four">{{$t('medicalmessage.hospitalized_no')}}</p><input type="text" class="floatleft p-margin radium null inhospitalId">
                 </div>
             </div>
             <div class="case-name">
                 <div class="name-num-one">
-                    <p class="p-one floatleft">姓&nbsp;&nbsp;&nbsp;名:</p>
-                    <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft"
-                                :value="errors.has('firstName')">
-                        <input v-validate="'required'" name="firstName" type="text" class="floatleft  p-margin  radium null patientName"
-                                                             ref="write7" v-model="bindData.firstName">
-
+                    <p class="p-one floatleft">{{$t('medicalmessage.name')}}</p>
+                    <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft" :value="errors.has('firstName')">
+                    <input v-validate="'required'" name="firstName" type="text" class="floatleft  p-margin  radium null patientName"
+                    ref="write7" v-model="bindData.firstName">
                     </el-tooltip>
-
-                    <p class="floatleft  p-two">性&nbsp;&nbsp;&nbsp;别:</p>
+                    <p class="floatleft  p-two">{{$t('medicalmessage.sex')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup null sex" :value="bindData.id">
                             <option v-for="item in initialData.sexList" :id="item.id">
@@ -60,7 +50,7 @@
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">年&nbsp;&nbsp;&nbsp;龄:</p>
+                    <p class="floatleft  p-three">{{$t('medicalmessage.age')}}</p>
                     <input type="text" class="floatleft input-age radium null agenum" ref="write8">
                     <form class="floatleft ">
                         <select class="sel-sup  radium-sup null">
@@ -450,35 +440,10 @@
             return {
                 initialData:{},
                 bindData: {
-
-                    "applicationNo": "a10001",
-            "chargeTypeId": 1,
-            "frozenNo": "f10001",
-            "infobaseId": 30000001,
-            "inhospitalId": "123231",
-            "inspectDate": "2017-02-13 10:15:25",
-            "inspectDepartmentId": 4,
-            "inspectUnitId": 1,
-            "orderId": 8,
-            "pathologyNo": "p10001",
-            "patient": {
-                "age": 5,
-                "ageUnit": 1,
-                "birthday": "2017-01-17 00:00:00",
-                "patientId": 1,
-                "patientName": "tkong",
-                "patientUid": "pid-001",
-                "sex": 1
-            },
-            "patientId": 1,
-            "patientNo": "p10001",
-            "specimenNameId": 2,
-            "specimenTypeId": 1,
-            "status": 1,
-
-                    userName: '',
                     pathologyNo: '',
-                    firstName:''
+                    firstName:'',
+                    id:"",
+                    inputss:""
 
                 },
                 today:{},
@@ -529,12 +494,13 @@
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-                            bindData
+                            
                     })
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
                 this.pathologyno = data;
+                console.log(this.bindData.id)
             },
             refund: function () {
                 $(".null").val('');
@@ -554,6 +520,7 @@
         },
             print: function () {
                 console.log("print");
+                console.log(this.bindData.inputss)
         },
             refresh: function () {
                 console.log("refresh");

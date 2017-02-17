@@ -194,7 +194,7 @@
    margin-top: -16px;
 }
 .dictionary-search,.commondictionary-search,.checkdictionary-search{
-  width: 264px;
+  width: 266px;
   height: 500px;
   border: 1px solid #ccc;
   overflow-y: scroll;
@@ -213,15 +213,17 @@
 }
 .dictionary-text{
   width:140px;
+  height:28px; 
   margin-top: 2px;
   border: none;
 }
 .material-modify{
+  float:left;
   background: url('../assets/images/material.png')  -40px -5px no-repeat;
   width:26px;
   height: 26px;
-  margin-right: 2px;
-  margin-top: -23px;
+  margin-left: 208px;
+  margin-top: -27px;
 }
 .material-main button:hover{
   background:#3577af;
@@ -233,8 +235,8 @@
   background: url('../assets/images/material.png')  -72px -5px no-repeat;
   width:26px;
   height: 26px;
-  margin-right: 2px;
-  margin-top: -23px;
+  margin-left: 236px;
+  margin-top: -27px;
 }
 .material-delete:hover{
   background: url('../assets/images/material.png')  -72px -40px no-repeat;
@@ -245,22 +247,22 @@
   height: 26px;
   margin-left: 180px;
   margin-right: 2px;
-  margin-top: -23px;
+  margin-top: -27px;
 }
 .material-add:hover{
   background: url('../assets/images/material.png')  -8px -40px no-repeat;
   cursor:pointer;
 }
 .material-middle-right img{
-  margin-top: 6px;
+  margin-top: 8px;
   margin-left: 10px;
 }
 .dictionary-input{
-  width: 264px;
-  height: 30px;
-  border-bottom: 1px solid #ccc;
+  width: 266px;
+  height: 32px;
+  border-right: 1px solid #ccc !important;
+  border-left: 1px solid #ccc !important;
   border:none;
-  background: #fff;
 }
 .checkdictionary{
   right: 276px;
@@ -298,7 +300,8 @@
 .material-middle-right{
   width: 266px;
   height: 535px;
-  background: #f9f9f9;
+  border-top: 1px solid #ccc;
+  background: #fff;
   position: absolute;
   right: 10px;
   top:0px;
