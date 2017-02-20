@@ -48,7 +48,7 @@
                     <div class="tabscheck">789</div>
                 </div>
             </div>
-            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
+            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method" v-on:orderStatusClick="searchByStatus"/>
         </div>
     </div>
 </template>
@@ -371,7 +371,9 @@
             },
             first: function () {
                 $(".aaaa").css('display', 'block');
-            },
+            },searchByStatus:function (id) {
+                alert(id);
+            }
 
         }
     }

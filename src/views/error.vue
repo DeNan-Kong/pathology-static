@@ -1,9 +1,9 @@
 <template>
     <div class="hello">
-        <p>{{error.code}}</p>
-        <p>{{error.logId}}</p>
-        <p>{{error.message}}</p>
-        <p>{{error.description}}</p>
+        <p>错误代码：{{error.logId}}</p>
+        <p>错误种类代码：{{error.code}}</p>
+        <p>错误消息：{{error.message}}</p>
+        <p>错误描述：{{error.description}}</p>
     </div>
 </template>
 
@@ -17,7 +17,6 @@
         computed: {
             // a computed getter
             error : function () {
-                debugger
                 // `this` points to the vm instance
                 return this.$store.state.error
             }
