@@ -10,9 +10,7 @@
                         <div class="header-icon-group" style="float:right;">
                             <img class="header-icon" src="../assets/images/setting.png">
                             <img class="header-icon" src="../assets/images/help.png">
-                            <router-link to="/login">
-                                <img class="header-icon" src="../assets/images/logout.png">
-                            </router-link>
+                            <img class="header-icon" src="../assets/images/logout.png" v-on:click="logout()">
                         </div>
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
@@ -79,8 +77,27 @@
     export default{
         data(){
             return {
-                name: 'Vue.js'
+
             }
-        },
+        }, methods: {
+            async logout() {
+                const response = await fetch('/home/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const resultJson = await response.text();
+                const resultObject = JSON.parse(resultJson);
+
+                // 异常处理
+                if (this.$errHandle(resultObject)) {
+                    return;
+                }
+
+                this.$router.push("/login");
+            }
+        }
     }
 </script>
