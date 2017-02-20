@@ -6,38 +6,38 @@
            <div class="filmmaking-main">
                 <div class="tabs-embedding">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
                     </div>
                     <!-- <embedding :item="(lists)" :get-datas="fetchData" /> -->
                     <embedding />
                 </div>
                 <div class="tabs-section">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
                     </div>
                     <medicalsection />
                 </div>
                 <div class="tabs-advice">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
                     </div>
                     <advice/>
                 </div>
                 <div class="tabs-filmmaking">
                     <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">待包埋列表(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">待切片列表(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">医嘱列表(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">已制片列表(5)</a><br>
+                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
+                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
+                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
+                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
                     </div>
                     <filmmaking/>
                 </div>

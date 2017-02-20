@@ -4,7 +4,7 @@
     <el-date-picker
       v-model="value1"
       type="date"
-      :picker-options="pickerOptions0">
+      >
     </el-date-picker>
   </div>
 </div>

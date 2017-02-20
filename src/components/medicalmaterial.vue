@@ -4,25 +4,25 @@
     <div class="material-top">
         <form  class="material-select-one floatleft material-margin">
             <select class="radius common">
-              <option v-for="item in allMaterialData.taskSourceList">{{item.name}}</option>
+              <option v-for="item in allMaterialData.taskSourceList">{{item.name}}
+              </option>
             </select>
         </form>
-         <form  class="floatleft ">
+         <form  class="floatleft">
             <select class="radius common material-top-input">
               <option v-for="item in allMaterialData.materialNoList">{{
                 item.name
-              }}</option>
+              }}
+              </option>
             </select>
         </form>
-        <!-- <input type="text"  class="material-top-input floatleft  radius common">  -->
-        <form  class="material-top-two floatleft ">
+        <form  class="material-top-two floatleft">
             <select class="radius common material-top-two">
               <option v-for="item in materialInitialData.nodeList">{{
                 item.name
               }}</option>
             </select>
         </form>
-       <!--  <Cascader :data="datass" :value.sync="value1"></Cascader> -->
         <input type="text"  class="material-top-ipttwo floatleft  radius common">
         <form  class="material-top-three floatleft ">
             <select class="threeradius common">
@@ -37,12 +37,11 @@
         <div class="material-top-date">
           <calendar/>
         </div>
-        <button class="material-top-add radius  material-top-btn">添加</button>
-        <button class="material-top-del radius  material-top-btn">删除</button>
+        <button class="material-top-add radius  material-top-btn">{{$t('medicalmaterial.add')}}</button>
+        <button class="material-top-del radius  material-top-btn">{{$t('medicalmaterial.deletebtn')}}</button>
     </div>
     <div class="material-middle">
-        <el-table
-        
+        <el-table  
         border
         style="width: 100%" height="272">
         <el-table-column
@@ -102,20 +101,20 @@
     </div>
     <div class="material-information">
       <div class="informationone">
-        <p class="floatleft information-la">蜡块总数：666</p><p class="floatleft information-cai">材块总数：777</p>
-        <p class="floatleft information-biao">标本处理：</p>
-        <form  class="floatleft  ">
+        <p class="floatleft information-la">{{$t('medicalmaterial.wax_block_num')}}666</p><p class="floatleft information-cai">{{$t('medicalmaterial.wood_block_num')}}777</p>
+        <p class="floatleft information-biao">{{$t('medicalmaterial.specimen_handling')}}</p>
+        <form  class="floatleft">
             <select class="radius  information-sel-one  information-sel">
               <option v-for="item in allMaterialData.specimenHandleList">{{}}</option>
             </select>
         </form> 
-        <p class="floatleft">存放位置：</p>
+        <p class="floatleft">{{$t('medicalmaterial.location')}}</p>
         <form  class="floatleft">
             <select class="radius  information-sel information-sel-two">
               <option v-for="item in allMaterialData.saveLocationList">{{}}</option>
             </select>
         </form> 
-        <p class="floatleft">记录人：</p>
+        <p class="floatleft">{{$t('medicalmaterial.recorder')}}</p>
         <form  class="floatleft">
             <select class="radius  information-sel">
               <option v-for="item in allMaterialData.noterList">{{item.name}}</option>
@@ -124,32 +123,32 @@
       </div>
       <div class="clear"></div>
       <div class="informationtwo">
-        <p class="floatleft informationtwo-p">肉眼所见：</p>
+        <p class="floatleft informationtwo-p">{{$t('medicalmaterial.eye_findings')}}</p>
         <form  class="floatleft ">
             <select class="radius  informationtwo-sel informationtwo-sel-one">
-              <option>字体大小</option>
-              <option>个</option>
+              <option></option>
+              
             </select>
         </form>
         <button class="informationtwo-button">B</button>
-        <p class="floatleft chooseinput">选择通道：</p>
+        <p class="floatleft chooseinput">{{$t('medicalmaterial.channel_select')}}</p>
         <form  class="floatleft  ">
             <select class="radius informationtwo-sel-two informationtwo-sel">
               <option v-for="item in allMaterialData.passageWayList">{{}}</option>
             </select>
         </form>
-        <button class=" radius  informationtwo-btn">标签打印</button>
+        <button class=" radius  informationtwo-btn">{{$t('medicalmaterial.label_printing')}}</button>
         <textarea></textarea>
       </div>  
     </div>
-    <div  class="mydictionary dictionary  dictionary-active"  @click="myDictionary">
-      <p>我的词典</p>
+    <div  class="mydictionary dictionary dictionary-active"  @click="myDictionary">
+      <p>{{$t('medicalmaterial.mydictionary')}}</p>
     </div>
     <div  class="commondictionary  dictionary" @click="commonDictionary">
-      常用词典
+      {{$t('medicalmaterial.commondictionary')}}
     </div>
     <div  class="checkdictionary  dictionary" @click="checkDictionary">
-      检查模板
+      {{$t('medicalmaterial.checkdictionary')}}
     </div>
     <div  class="material-middle-right">
         <div   class="dictionary-input">
@@ -171,17 +170,17 @@
     </div>
   </div>
   <div  class="material-bottom">
-        <div  class="material-button">
-                <button  class="left-button-two  material-button-one">补取医嘱</button>
-                <button  class="left-button-two">检查模板</button> 
-                <button  class="left-button-two">冰冻切块</button>
-                <button  class="left-button-five" >材料核对</button>
-                <button  class="left-button-two">暂存</button>
-                <button  class="left-button-five">打印</button>
-                <button  class="left-button-two">保存</button>    
+      <div  class="material-button">
+          <button  class="left-button-two  material-button-one"> {{$t('medicalmaterial.take_doctor_advice')}}</button>
+          <button  class="left-button-two">{{$t('medicalmaterial.check_template')}}</button> 
+          <button  class="left-button-two">{{$t('medicalmaterial.frozen_slices')}}</button>
+          <button  class="left-button-five">{{$t('medicalmaterial.check_material')}}</button>
+          <button  class="left-button-two">{{$t('medicalmaterial.temporary_storage')}}</button>
+          <button  class="left-button-five">{{$t('medicalmaterial.print')}}</button>
+          <button  class="left-button-two">{{$t('medicalmaterial.save')}}</button>    
         </div>
-          <div  class="picture-img" v-on:click="newproject"></div> 
-          <div  class="refresh-img"></div>        
+        <div  class="picture-img" v-on:click="newproject"></div> 
+        <div  class="refresh-img"></div>        
     </div>
   </div>
 </template>

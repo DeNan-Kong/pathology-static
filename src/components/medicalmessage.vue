@@ -3,18 +3,19 @@
         <div class="case-content">
             <div class="case-num">
                 <div class="case-num-one">
-                    <p class="floatleft p-one">{{$t('medicalmessage.his_identification_code')}}</p><input type="text" class="floatleft  input-his  radium" v-model="bindData.inputss">
-                    <form class="floatleft " >
+                    <p class="floatleft p-one">{{$t('medicalmessage.his_identification_code')}}</p><input type="text" class="floatleft input-his radium" v-model="bindData.inputss">
+                    <form class="floatleft">
                         <select class="sel-his null" v-model="bindData.id">
                             <option v-for="item in initialData.hisCodeList"   :value="item.id"> 
-                                {{ item.name }}
+                                {{item.name }}
                             </option>
                         </select>
                     </form>
-                    <button class="floatleft  but-his">{{$t('medicalmessage.extract')}}</button>
-                    <p class="floatleft  p-three">{{$t('medicalmessage.patient_id')}}</p><input type="text" class="floatleft input-id  radium" ref="write2">
-                    <p class="floatleft  p-mark p-four">{{$t('medicalmessage.frozen_logo')}}</p>
-                    <input type="text" class="floatleft  radium input-mark null" ref="write3">
+                    <button class="floatleft but-his">{{$t('medicalmessage.extract')}}</button>
+                    <p class="floatleft p-three">{{$t('medicalmessage.patient_id')}}</p>
+                    <input type="text" class="floatleft input-id radium" v-model="bindData.patient.patientUid">
+                    <p class="floatleft p-mark p-four">{{$t('medicalmessage.frozen_logo')}}</p>
+                    <input type="text" class="floatleft radium input-mark null" v-model="bindData.frozenNo">
                     <button class="arrow"></button>
                 </div>
                 <br>
@@ -24,79 +25,83 @@
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
-                                   class="pathologyNum p-margin  radium" type="text" v-model="bindData.pathologyNo">
+                                   class="p-margin radium" type="text" v-model="bindData.pathologyNo">
                         </el-tooltip>
                     </div>
-                    <!-- <input type="text" class="pathologyNum floatleft  p-margin  radium " v-model="pathologyNo"> -->
-                    <p class="floatleft  p-two">{{$t('medicalmessage.application_number')}}</p><input type="text" class="floatleft  p-margin  radium null applicationNo"
-                                                               ref="write4">
-                    <p class="floatleft  p-three">{{$t('medicalmessage.outpatient_service_no')}}</p><input type="text" class="floatleft p-margin radium null patientNo"
-                                                                 ref="write5">
-                    <p class="floatleft   p-four">{{$t('medicalmessage.hospitalized_no')}}</p><input type="text" class="floatleft p-margin radium null inhospitalId">
+                    <p class="floatleft p-two">{{$t('medicalmessage.application_number')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.applicationNo">
+                    <p class="floatleft  p-three">{{$t('medicalmessage.outpatient_service_no')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patientNo">
+                    <p class="floatleft p-four">{{$t('medicalmessage.hospitalized_no')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.inhospitalId">
                 </div>
             </div>
             <div class="case-name">
                 <div class="name-num-one">
                     <p class="p-one floatleft">{{$t('medicalmessage.name')}}</p>
                     <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft" :value="errors.has('firstName')">
-                    <input v-validate="'required'" name="firstName" type="text" class="floatleft  p-margin  radium null patientName"
-                    ref="write7" v-model="bindData.firstName">
+                    <input v-validate="'required'" name="firstName" type="text" class="floatleft p-margin radium null"
+                    v-model="bindData.patient.patientName">
                     </el-tooltip>
-                    <p class="floatleft  p-two">{{$t('medicalmessage.sex')}}</p>
+                    <p class="floatleft p-two">{{$t('medicalmessage.sex')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null sex" :value="bindData.id">
-                            <option v-for="item in initialData.sexList" :id="item.id">
+                        <select class="p-margin radium-sup null" v-model="bindData.patient.sex">
+                            <option v-for="item in initialData.sexList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">{{$t('medicalmessage.age')}}</p>
-                    <input type="text" class="floatleft input-age radium null agenum" ref="write8">
-                    <form class="floatleft ">
-                        <select class="sel-sup  radium-sup null">
-                            <option v-for="item in initialData.ageUnitList" :id="item.id">
+                    <p class="floatleft p-three">{{$t('medicalmessage.age')}}</p>
+                    <input type="text" class="floatleft input-age radium null" v-model="bindData.patientAge">
+                    <form class="floatleft">
+                        <select class="sel-sup radium-sup null" v-model="bindData.patient.ageUnit">
+                            <option v-for="item in initialData.ageUnitList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft   p-four">民&nbsp;&nbsp;&nbsp;族:</p>
+                    <p class="floatleft p-four">{{$t('medicalmessage.national')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null nationlist">
-                            <option v-for="item in initialData.nationList" :id="item.id">
+                        <select class="p-margin  radium-sup null" v-model="bindData.patient.nationId">
+                            <option v-for="item in initialData.nationList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                 </div>
                 <div class="name-num-two">
-                    <p class="floatleft p-one">婚&nbsp;&nbsp;&nbsp;否:</p>
+                    <p class="floatleft p-one">{{$t('medicalmessage.marital_status')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin radium-sup null maritalStatusId">
-                            <option v-for="item in initialData.maritalStatusList" :id="item.id">
+                        <select class="p-margin radium-sup null" v-model="bindData.patient.maritalStatusId">
+                            <option v-for="item in initialData.maritalStatusList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-two">职&nbsp;&nbsp;&nbsp;业:</p>
+                    <p class="floatleft  p-two">{{$t('medicalmessage.professional')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null professionId">
-                            <option v-for="item in initialData.professionList" :id="item.id">
+                        <select class="p-margin radium-sup null" v-model="bindData.patient.professionId">
+                            <option v-for="item in initialData.professionList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">手机号码:</p><input type="text" class="floatleft p-margin radium null phone" ref="write10">
-                    <p class="floatleft   p-four">身份证号:</p><input type="text" class="floatleft p-margin radium null idCard" ref="write11">
+                    <p class="floatleft  p-three">{{$t('medicalmessage.phone_number')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patient.phone">
+                    <p class="floatleft p-four">{{$t('medicalmessage.Id_number')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patient.idCard">
                 </div>
                 <div class="name-num-three">
-                    <p class="floatleft p-one">联系信息:</p><input type="text" class="floatleft   p-big  radium null address"
-                                                               ref="write12">
-                    <p class="floatleft  p-three">末次月经:</p>
+                    <p class="floatleft p-one">{{$t('medicalmessage.Contact_information')}}</p>
+                    <input type="text" class="floatleft p-big radium null">
+                    <p class="floatleft p-three">{{$t('medicalmessage.last_menstrual_period')}}</p>
+                    <div class="null">
                     <calendar/>
-                    <p class="floatleft  p-four">绝&nbsp;&nbsp;&nbsp;经:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup null pausimenia">
-                            <option v-for="item in initialData.pausimeniaList" :id="item.id">
+                    </div>
+                    <p class="floatleft p-four">{{$t('medicalmessage.menopause')}}</p>
+                    <form class="floatleft">
+                        <select class="p-margin radium-sup null" v-model="bindData.pausimenia">
+                            <option v-for="item in initialData.pausimeniaList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -105,124 +110,129 @@
             </div>
             <div class="case-hospital">
                 <div class="hospital-num-one hospital-num">
-                    <p class="floatleft p-one">送检单位:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup null inspectUnitId">
-                            <option v-for="item in initialData.inspectUnitList" :id="item.id">
+                    <p class="floatleft p-one">{{$t('medicalmessage.Inspection_unit')}}</p>
+                    <form class="floatleft">
+                        <select class="p-margin radium-sup"
+                        v-model="bindData.inspectUnitId">
+                            <option v-for="item in initialData.inspectUnitList" :value="item.inspectUnitId">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-two">送检科室:</p>
+                    <p class="floatleft p-two">{{$t('medicalmessage.inspection_department')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null inspectDepartmentId">
-                            <option v-for="item in initialData.inspectDepartmentList" :id="item.id">
+                        <select class="p-margin radium-sup null" v-model="bindData.inspectDepartmentId">
+                            <option v-for="item in initialData.inspectDepartmentList" :value="item.inspectDepartmentId">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three">送检医生:</p>
+                    <p class="floatleft p-three">{{$t('medicalmessage.send_doctor')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null submittingPhysicianId">
-                            <option v-for="item in initialData.submittingPhysicianList" :id="item.id">
+                        <select class="p-margin radium-sup null" v-model="bindData.submittingPhysicianId">
+                            <option v-for="item in initialData.submittingPhysicianList" :value="item.submittingPhysicianId">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft   p-four">送检日期:</p>
-                    <calendar :today="(today)"/>
+                    <p class="floatleft p-four">{{$t('medicalmessage.inspection_date')}}</p>
+                    <calendar :today="(today)" v-model="bindData.inspectDate" />
                 </div>
                 <div class="hospital-num-two hospital-num">
-                    <p class="floatleft p-one">病&nbsp;&nbsp;&nbsp;区:</p><input type="text" class="floatleft  p-margin  radium null ward"
-                                                             ref="write13">
-                    <p class="floatleft  p-two">床&nbsp;&nbsp;&nbsp;号:</p><input type="text" class="floatleft  p-margin  radium null sickbedNo"
-                                                              ref="write14">
-                    <p class="floatleft  p-three">标本类型:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup null specimenTypeId">
-                            <option v-for="item in initialData.specimenTypeList" :id="item.id">
+                    <p class="floatleft p-one">{{$t('medicalmessage.ward')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.ward">
+                    <p class="floatleft p-two">{{$t('medicalmessage.bed_no')}}</p>
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.sickbedNo">
+                    <p class="floatleft p-three">{{$t('medicalmessage.specimen_type')}}</p>
+                    <form class="floatleft">
+                        <select class="p-margin radium-sup null" v-model="bindData.specimenTypeId">
+                            <option v-for="item in initialData.specimenTypeList" :value="item.specimenTypeId">
                                 {{ item.name }}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft p-four">标本情况:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup null specimenSituationId">
-                            <option v-for="item in initialData.specimenSituationList" :id="item.id">
+                    <p class="floatleft p-four">{{$t('medicalmessage.specimen_situation')}}</p>
+                    <form class="floatleft">
+                        <select class="p-margin radium-sup null" v-model="bindData.specimenSituationId">
+                            <option v-for="item in initialData.specimenSituationList" :value="item.specimenSituationId">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                 </div>
                 <div class="hospital-num-three hospital-num">
-                    <p class="floatleft p-one">标本名称:</p>
-                    <form class="floatleft ">
-                        <select class="p-big  radium-sup null specimenNameId">
-                            <option v-for="item in initialData.specimenNameList" :id="item.id">
+                    <p class="floatleft p-one">{{$t('medicalmessage.specimen_name')}}</p>
+                    <form class="floatleft">
+                        <select class="p-big  radium-sup null" v-model="bindData.specimenNameId">
+                            <option v-for="item in initialData.specimenNameList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-three unqualifiedCauseId">不合格原因:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup null">
-                            <option v-for="item in initialData.unqualifiedCauseList" :id="item.id">
+                   <!--  <rd-cascader :cascader="cascader"></rd-cascader> -->
+                    <p class="floatleft p-three unqualifiedCauseId">{{$t('medicalmessage.unqualified_reason')}}</p>
+                    <form class="floatleft">
+                        <select class="p-margin radium-sup null" v-model="bindData.unqualifiedCauseId">
+                            <option v-for="item in initialData.unqualifiedCauseList" :value="item.unqualifiedCauseId">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-four">标本接收:</p>
+                    <p class="floatleft p-four">{{$t('medicalmessage.samples_received')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium-sup null specimenReceiveId">
-                            <option v-for="item in initialData.specimenReceiveList" :id="item.id">
+                        <select class="p-margin radium-sup null" v-model="bindData.specimenReceiveId">
+                            <option v-for="item in initialData.specimenReceiveList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
                 </div>
                 <div class="hospital-num-four hospital-num">
-                    <p class="floatleft p-one">费&nbsp;&nbsp;&nbsp;别:</p>
-                    <form class="floatleft ">
-                        <select class="p-margin  radium-sup null chargeTypeId">
-                            <option v-for="item in initialData.chargeTypeList" :id="item.id">
+                    <p class="floatleft p-one">{{$t('medicalmessage.cost_categories')}}</p>
+                    <form class="floatleft" >
+                        <select class="p-margin radium-sup null" v-model="bindData.chargeTypeId">
+                            <option v-for="item in initialData.chargeTypeList" :value="item.chargeTypeId">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft p-two">收&nbsp;&nbsp;&nbsp;费:</p><input type="text" class="floatleft p-margin  radium charge" ref="write9">
-                    <p class="floatleft p-three">取材医生:</p>
+                    <p class="floatleft p-two">{{$t('medicalmessage.charge')}}</p>
+                    <input type="text" class="floatleft p-margin  radium charge" v-model="bindData.charge">
+                    <p class="floatleft p-three">{{$t('medicalmessage.draw_materials_doctor')}}</p>
                     <form class="floatleft">
-                        <select class="p-margin radium-sup null sampleDoctorId">
-                            <option v-for="item in initialData.sampleDoctorList" :id="item.id">
+                        <select class="p-margin radium-sup null sampleDoctorId" v-model="bindData.sampleDoctorId">
+                            <option v-for="item in initialData.sampleDoctorList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
                     </form>
-                    <p class="floatleft  p-four">接收日期:</p>
-                    <calendar/>
+                    <p class="floatleft p-four">{{$t('medicalmessage.receiving_date')}}</p>
+                    <calendar />
                 </div>
                 <div class="hospital-num-five hospital-num">
-                    <p class="floatleft p-one">临床诊断:</p>
+                    <p class="floatleft p-one">{{$t('medicalmessage.clinical_diagnosis')}}</p>
                     <form class="floatleft ">
-                        <select class="p-margin  radium  input-doctor null clinicalDiagnosisId">
-                            <option v-for="item in initialData.clinicalDiagnosisList" :id="item.id"> {{item.name}}</option>
+                        <select class="p-margin  radium  input-doctor null clinicalDiagnosisId" v-model="bindData.clinicalDiagnosisId">
+                            <option v-for="item in initialData.clinicalDiagnosisList" :value="item.id"> {{item.name}}</option>
                         </select>
                     </form> 
-                    <p  class="floatleft  p-four ">术间电话:</p><input type="text"  class="floatleft  p-margin  radium null operatingRoomPhone"  ref="write15">
+                    <p  class="floatleft p-four">{{$t('medicalmessage.operation_phone')}}</p>
+                    <input type="text" class="floatleft p-margin radium null"
+                     v-model="bindData.operatingRoomPhone">
                 </div>
                 <div class="hospital-num-six">
-                    <p class="floatleft p-one">病史摘要:</p>
-                    <textarea class="floatleft ill-abstract radium null medicalHistory" ref="write16"></textarea>
-                    <p class="floatleft p-one">手术所见:</p>
-                    <textarea type="text" class="floatleft ill-see radium null operativeFindings" ref="write17"></textarea>
+                    <p class="floatleft p-one">{{$t('medicalmessage.history_abstract')}}</p>
+                    <textarea class="floatleft ill-abstract radium null" v-model="bindData.medicalHistory"></textarea>
+                    <p class="floatleft p-one">{{$t('medicalmessage.operative_findings')}}</p>
+                    <textarea type="text" class="floatleft ill-see radium null" v-model="bindData.operativeFindings"></textarea>
                 </div>
             </div>
             <div  class="left-button">
-                <button  class="left-button-two"  @click="refund">清&nbsp;除</button>
-                <button class="left-button-two" @click="print">打&nbsp;印</button>
-                <button  class="left-button-two" @click="save">保&nbsp;存</button>
-                <button  class="left-button-five" @click="newsave">保存且新建</button>
-                <button class="left-button-two" @click="newproject">新&nbsp;建</button>
+                <button  class="left-button-two"  @click="refund">{{$t('medicalmessage.clear')}}</button>
+                <button class="left-button-two" @click="print">{{$t('medicalmessage.print')}}</button>
+                <button  class="left-button-two" @click="save">{{$t('medicalmessage.save')}}</button>
+                <button  class="left-button-five" @click="newsave">{{$t('medicalmessage.save_and_create')}}</button>
+                <button class="left-button-two" @click="newproject">{{$t('medicalmessage.create')}}</button>
             </div>
             <div class="left-bottom">
                 <div class="picture-img" @click="refresh"></div>
@@ -378,7 +388,6 @@
 }
 .left-button-five{
     width:88px;
-
 }
 .big-search-img{
     margin-left: -240px;
@@ -390,7 +399,7 @@
 .table-show .th-three{
     width:66px;
 }
-#header {
+#header{
     width: 100%;
     height: 45px;
     position: absolute;
@@ -435,24 +444,103 @@
     import $ from "jQuery"
     import Calendar from 'components/calendar';
     import Medicalmessage from 'components/medicalmessage';
+    import { rdCascader } from 'radon-ui'
     export default{
+        // template: '<rd-cascader :cascader="cascader"></rd-cascader>',
         data(){
             return {
+                cascader: {
+             options: [{
+    value: 'china',
+    label: '中国',
+    children: [{
+        value: 'sichuan',
+        label: '四川',
+        children: [{
+            value: 'chegndu',
+            label: '成都'
+        }, {
+            value: 'deyang',
+            label: '德阳'
+        }]
+    }]
+}, {
+    value: 'America',
+    label: '美国',
+    children: [{
+        value: 'California',
+        label: '加利福尼亚',
+        children: [{
+            value: 'lake',
+            label: '湖'
+        }, {
+            value: 'Los Angeles',
+            label: '洛杉矶'
+        }]
+    }, {
+        value: 'Delaware',
+        label: '特拉华',
+        children: [{
+            value: 'Dover',
+            label: '多佛'
+        }]
+    }]
+}],
+                valueArr: []
+            },
                 initialData:{},
                 bindData: {
-                    pathologyNo: '',
-                    firstName:'',
-                    id:"",
-                    inputss:""
-
+                    "applicationNo": "",
+                    "frozenNo": "",
+                    "infobaseId": 30000001,
+                    "inhospitalId": "",
+                    "pathologyNo": "",
+                    "patientNo": "",
+                    "inspectDate": "",
+                    "inspectDepartmentId": null,
+                    "inspectUnitId": 1,
+                    "specimenNameId": null,
+                    "specimenTypeId": null,
+                    "submittingPhysicianId": null,
+                    "sickbedNo": "",
+                    "ward": "",
+                    "unqualifiedCauseId": null,
+                    "specimenSituationId": null,
+                    "specimenReceiveId": null,
+                    "chargeTypeId": null,
+                    "charge": null,
+                    "sampleDoctorId": null,
+                    "clinicalDiagnosisId": null,
+                    "receiveDate": "",
+                    "operatingRoomPhone": "",
+                    "medicalHistory": "",
+                    "operativeFindings": "",
+                    "patientAge": null,
+                    "lmp": "",
+                    "pausimenia": null,
+                    "patient": {
+                        "patientName": "",
+                        "patientUid": "",
+                        "sex": null,
+                        "age": null,
+                        "ageUnit": null,
+                        "nationId": null,
+                        "professionId": null,
+                        "maritalStatusId": null,
+                        "phone": "",
+                        "idCard": "",
+                        "address": ""
+                    }
                 },
                 today:{},
+
             }
         },
         components: {
             "searchtable": SearchTable,
             "calendar": Calendar,
-            "medicalmessage": Medicalmessage
+            "medicalmessage": Medicalmessage,
+             "rd-cascader":rdCascader
         },
         methods: {
             async loadData () {
@@ -463,8 +551,7 @@
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-                        firstParam: 'yourValue',
-                        secondParam: 'yourOtherValue'
+                    
                     })
                 });
                 const json = await response.text();
@@ -480,7 +567,7 @@
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-            
+                       
                     })
                 });
                 const json = await response.text();
@@ -494,33 +581,41 @@
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
                     body: JSON.stringify({ 
-                            
+                            order:this.bindData 
                     })
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                this.pathologyno = data;
-                console.log(this.bindData.id)
+                this.pathologyno= data;
+                console.log(this.pathologyno)
             },
             refund: function () {
                 $(".null").val('');
             },
-            save: function () {
-                console.log(this.bindData);
-            this.$validator.validateAll().then(success => {
-            }).then(failing => {
-            }, rejected => {
-            });
-
-            this.errors.first('pathologyNo');
-            if (this.errors.any() == false) {
-                alert('123');
-            }
-        
+            async save(){
+                 const response = await fetch('/api/hello',{ 
+                    method: 'POST',
+                    headers: { 
+                        "Content-type": "application/json; charset=UTF-8" 
+                    }, 
+                    body: JSON.stringify({ 
+                            order:this.bindData 
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.pathologyno= data;
+                console.log(this.pathologyno)
+                this.$validator.validateAll().then(success => {
+                }).then(failing => {
+                }, rejected => {
+                });
+                if (this.errors.any() == false) {
+                    alert('123');
+                }
         },
             print: function () {
                 console.log("print");
-                console.log(this.bindData.inputss)
         },
             refresh: function () {
                 console.log("refresh");

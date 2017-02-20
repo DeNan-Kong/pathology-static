@@ -9,51 +9,66 @@
                 </div>
                 <div class="case-message">
                     <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">病历信息</a><a
-                            class="medicalMaterials" v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage"
-                                                                                              v-on:click="medicalImage">图像(10)</a><a
-                            class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
-                            class="close" @click="closebtn"></p></a><br>
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}
+                        </a>
+                        <a class="medicalMaterials" v-on:click="medicalMaterials">{{$t('register.pathological_diagnosis')}}
+                        </a>
+                        <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)
+                        </a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                            <p class="close" @click="closebtn"></p>
+                        </a>
+                        <br>
                     </div>
                     <medicalmessage/>
                 </div>
                 <div class="tabs-materials">
                     <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">病历信息</a><a
-                            class="medicalMaterials" v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage"
-                                                                                              v-on:click="medicalImage">图像(10)</a><a
-                            class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
-                            class="close" @click="closebtn"></p></a><br>
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a
+                            class="medicalMaterials" v-on:click="medicalMaterials">{{$t('register.pathological_diagnosis')}}</a> <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)
+                        </a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                            <p class="close" @click="closebtn"></p>
+                        </a><br>
                     </div>
                     <diagnostic/>
                 </div>
                 <div class="tabs-img">
                     <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">病历信息</a><a
-                            class="medicalMaterials" v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage"
-                                                                                              v-on:click="medicalImage">图像(10)</a><a
-                            class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
-                            class="close" @click="closebtn"></p></a><br>
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a
+                            class="medicalMaterials" v-on:click="medicalMaterials">{{$t('register.pathological_diagnosis')}}</a> <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)
+                        </a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                            <p class="close" @click="closebtn"></p>
+                        </a><br>
                     </div>
                     123
                 </div>
                 <div class="tabs-pay">
                     <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">病历信息</a><a
-                            class="medicalMaterials" v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage"
-                                                                                              v-on:click="medicalImage">图像(10)</a><a
-                            class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
-                            class="close" @click="closebtn"></p></a><br>
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}
+                        </a>
+                        <a class="medicalMaterials" v-on:click="medicalMaterials">{{$t('register.pathological_diagnosis')}}
+                        </a> 
+                        <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)
+                        </a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                        <p class="close" @click="closebtn"></p>
+                        </a>
+                        <br>
                     </div>
                     456
                 </div>
                 <div class="tabs-check">
                     <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">病历信息</a><a
-                            class="medicalMaterials" v-on:click="medicalMaterials">病理诊断</a><a class="medicalImage"
-                                                                                              v-on:click="medicalImage">图像(10)</a><a
-                            class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
-                            class="close" @click="closebtn"></p></a><br>
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}
+                        </a>
+                        <a class="medicalMaterials" v-on:click="medicalMaterials">{{$t('register.pathological_diagnosis')}}</a>
+                        <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)
+                        </a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                            <p class="close" @click="closebtn"></p>
+                        </a><br>
                     </div>
                     <div class="tabscheck">789</div>
                 </div>

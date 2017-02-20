@@ -3,11 +3,14 @@
     <div  id="middle-right">
         <div  class="right-inner">    
         <div class="right-top">
-            <!-- <button class="right-top-one shen  rightbtnone" v-on:click="shenbtn">申</button> --><button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">登</button>
-            <button  class="rightbtnthr right-top-three qu" v-on:click="qubtn">取</button><button  class="rightbtnfou right-top-four zhizi" v-on:click="zhibtn">制</button>
-            <button  class="rightbtnfiv right-top-five zan" v-on:click="zanbtn">暂</button><button  class="rightbtnsix right-top-six zhen" v-on:click="zhenbtn">诊</button>
-            <button  class="rightbtnsev right-top-seven yan" v-on:click="yanbtn">延</button><button  class="rightbtneig right-top-eight  shen2" v-on:click="shen2btn">审</button>
-            <button  class="rightbtnnin right-top-nine yin" v-on:click="yinbtn">印</button>
+            <button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">{{$t('searchtable.deng')}}</button>
+            <button  class="rightbtnthr right-top-three qu" v-on:click="qubtn">{{$t('searchtable.qu')}}</button>
+            <button  class="rightbtnfou right-top-four zhizi" v-on:click="zhibtn">{{$t('searchtable.zhi')}}</button>
+            <button  class="rightbtnfiv right-top-five zan" v-on:click="zanbtn">{{$t('searchtable.zan')}}</button>
+            <button  class="rightbtnsix right-top-six zhen" v-on:click="zhenbtn">{{$t('searchtable.zhen')}}</button>
+            <button  class="rightbtnsev right-top-seven yan" v-on:click="yanbtn">{{$t('searchtable.yan')}}</button>
+            <button  class="rightbtneig right-top-eight  shen2" v-on:click="shen2btn">{{$t('searchtable.shen')}}</button>
+            <button  class="rightbtnnin right-top-nine yin" v-on:click="yinbtn">{{$t('searchtable.yin')}}</button>
              <el-checkbox-group v-model="checkList">
                 <el-checkbox label="全库"></el-checkbox>
             </el-checkbox-group>
@@ -15,8 +18,8 @@
         <br>
         <div class="grop-search ">
             <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
-            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">组合查询</button>
-            <p  class="floatleft">送检时间:</p>
+            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
+            <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
              <form  class="floatleft ">
                 <select class="grop-search-sel  radium">
                     <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
@@ -24,28 +27,26 @@
             </form>
         </div>
         <div class="big-search">
-            <input type="text"  class="floatleft big-search-input "  id="app">
-            <img src="../assets/images/search.png.png"   class="big-search-img">
+            <input type="text" class="floatleft big-search-input" id="app">
+            <img src="../assets/images/search.png.png" class="big-search-img">
             <form  class="floatleft ">
                 <select class="big-search-sel  ">
-                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>
-                    
+                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
                 </select>
             </form>
-            <button  class="select-search-btn floatleft" @click="find">提取</button>
+            <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
         </div>
-        
         <div class="clear"></div>
-        <div   class="table-show" >
+        <div class="table-show">
             <el-table :data="tabledatas.orderlist" border style="width: 100%" height="400">
-            <el-table-column label="" width="53" fixed>
+            <el-table-column label="" width="28" style="height:30px;padding:0px">
               <template scope="scope">
                <!--  <el-popover trigger="hover" placement="top">
                 <p>相关诊断</p> -->
                 <div slot="reference" class="name-wrapper">
                 <el-tooltip class="item"  content="相关诊断" placement="top">
                 <el-tag>
-                <div >
+                <div>
                     <p class="relateimgon  relateclick"  @click="showrelate" :id='scope.row.patient.birthday'></p>
                 </div>
                 </el-tag>
@@ -54,18 +55,18 @@
             </el-popover>
             </template>
             </el-table-column>
-             <el-table-column label="" width="20" fixed>
+             <el-table-column label="" width="20">
               <template scope="scope">
                 <div>
                 </div>
               </template>
             </el-table-column>
-            <el-table-column label="病理号" width="114" fixed> 
+            <el-table-column label="病理号" width="114"> 
               <template scope="scope" >
                 <span>{{ scope.row.pathologyNo}}</span>
               </template>
             </el-table-column>
-            <el-table-column label="姓名" width="72" fixed>
+            <el-table-column label="姓名" width="54">
               <template scope="scope">
                 <span>{{ scope.row.patient.patientName}}</span>
               </template>
@@ -136,85 +137,79 @@
     </div>
     <div class="bmobbox">
         <div class="bmobbox-top" >
-            <p>组合查询</p>
+            <p>{{$t('searchtable.combination_query')}}</p>
         </div>
         <div class="bmobbox-body">
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">送检日期&nbsp;:&nbsp;<p>
+                <p class="floatleft bmobboxleft">{{$t('medicalmessage.inspection_date')}}<p>
                  <calendar/>
-                <p  class="floatleft  zhi">至</p>
+                <p  class="floatleft zhi">{{$t('searchtable.to')}}</p>
                <calendar/>
                 <div  class="noselectbox e floatleft teshudate" v-on:click="changecheckbox5"></div>
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">报告日期&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('searchtable.report_date')}}<p>
                 <calendar/>
-                <p  class="floatleft  zhi">至</p>
+                <p  class="floatleft zhi">{{$t('searchtable.to')}}</p>
                 <calendar/>
                 <div  class="noselectbox f floatleft teshudate" v-on:click="changecheckbox6"></div>    
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('medicalmessage.sex')}}<p>
                 <form  class="floatleft">
                     <select class="floatleft bmobboxinputcom">
-                        <option>男</option>
-                        <option>女</option>
-                        <option>未知</option>
+                        <option></option>
                     </select>
                 </form> 
-                <p  class="floatleft  age">年龄&nbsp;:&nbsp;</p>
+                <p  class="floatleft  age">{{$t('medicalmessage.age')}}</p>
+                <input  type="text"  class="bmobboxage floatleft">
+                <form  class="floatleft">
+                    <select class="floatleft selectage">
+                        <option></option>
+                    </select>
+                </form> 
+                <p  class="floatleft  agezhi">{{$t('searchtable.to')}}</p>
                 <input  type="text"  class="bmobboxage  floatleft">
                 <form  class="floatleft">
                     <select class="floatleft selectage">
-                        <option>岁</option>
-                        <option>女</option>
-                        <option>未知</option>
-                    </select>
-                </form> 
-                <p  class="floatleft  agezhi">至</p>
-                <input  type="text"  class="bmobboxage  floatleft">
-                <form  class="floatleft">
-                    <select class="floatleft selectage">
-                        <option>岁</option>
-                        <option>女</option>
-                        <option>未知</option>
+                        <option></option>
                     </select>
                 </form> 
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">送检单位&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('medicalmessage.Inspection_unit')}}<p>
                 <input  type="text"  class="bmobboxinputcom  floatleft">
-                <p  class="floatleft ">送检科室&nbsp;:&nbsp;</p>
+                <p  class="floatleft ">{{$t('medicalmessage.inspection_department')}}</p>
                 <input  type="text"  class="bmobboxinput2  floatleft">
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">标本类型&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('medicalmessage.specimen_type')}}<p>
                 <input  type="text"  class="bmobboxinputcom  floatleft">
-                <p  class="floatleft ">标本名称&nbsp;:&nbsp;</p>
+                <p  class="floatleft ">{{$t('medicalmessage.specimen_name')}}</p>
                 <input  type="text"  class="bmobboxinput2  floatleft">
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">报告状态&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('searchtable.report_status')}}<p>
                 <input  type="text"  class="bmobboxinputcom  floatleft">
-                <p  class="floatleft ">初诊医生&nbsp;:&nbsp;</p>
+                <p  class="floatleft ">{{$t('searchtable.primary_doctor')}}</p>
                 <input  type="text"  class="bmobboxinput2  floatleft">
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">主诊医生&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('searchtable.attending_doctor')}}<p>
                 <input  type="text"  class="bmobboxinputcom  floatleft">
-                <p  class="floatleft ">审核医生&nbsp;:&nbsp;</p>
+                <p  class="floatleft ">{{$t('searchtable.review_doctor')}}</p>
                 <input  type="text"  class="bmobboxinput2  floatleft">
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">临床诊断&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('medicalmessage.clinical_diagnosis')}}<p>
                 <input  type="text"  class="bmobboxinputlong  floatleft">  
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft">病理诊断&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft">{{$t('searchtable.pathological_diagnosis')}}<p>
                 <input  type="text"  class="bmobboxinputlong  floatleft">  
             </div>
             <div class="bmobboxone">
-                <p class="floatleft  bmobboxleft2">诊断关键词&nbsp;:&nbsp;<p>
+                <p class="floatleft  bmobboxleft2">{{$t('searchtable.diagnosis_keywords')}}<p>
                 <input  type="text"  class="bmobboxinputlong2  floatleft">  
             </div>
             <div class="bmobboxtwo">
@@ -230,12 +225,12 @@
                 <div  class="noselectbox d floatleft"  v-on:click="changecheckbox4"></div><p  class="floatleft">会诊报告</p> -->   
             </div>
             <div class="example">
-                <p>说明：临床诊断、病理诊断、诊断关键词输入多个关键词时用“l”隔开</p>
+                <p>{{$t('searchtable.instructions')}}</p>
             </div>
         </div>
         <div class="bmobbox-bottom">
-            <button class="bmobbox-btnone">查询</button>
-            <button class="bmobbox-btntwo">取消</button>
+            <button class="bmobbox-btnone">{{$t('searchtable.search')}}</button>
+            <button class="bmobbox-btntwo">{{$t('searchtable.cancel')}}</button>
         </div>
     </div>
     <div class="relatelist">
@@ -344,7 +339,7 @@ body .el-table .cell{
     margin-left: 83px;
 }
 .bmobboxleft2{
-    width:83px;
+    width:84px;
     text-align: right;
 }
 .bmobboxinputlong2{
@@ -698,17 +693,18 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
  .el-table__body-wrapper::-webkit-scrollbar-track{
     /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
     border-radius: 10px;
-    background-color: #F5F5F5;
+   /* background-color: #F5F5F5;*/
 } 
  .el-table__body-wrapper::-webkit-scrollbar{
     width: 12px;
-    height: 12px;
-    background-color: #F5F5F5;
+    height: 8px;
+    /*background-color: #F5F5F5;*/
 }
  .el-table__body-wrapper::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #ccc;
+    width: 10px;
+    /*border-radius: 10px;*/
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
+    background-color: #eee;
 }
 #middle-right .el-table__fixed{
     height: 387px !important;
@@ -716,7 +712,7 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
 }
 .el-table th,.el-table td{
     background: #fff;
-    height: 40px;
+    height: 30px;
     padding: 0px !important;
 }
 .el-table th .cell{

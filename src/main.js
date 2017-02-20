@@ -18,12 +18,18 @@ import validatorMessages  from './assets/strings/locale/zh-cn/validator-messages
 import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attributes.js';
 import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
+import { RadonInstall } from 'radon-ui'
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 // install plugin
 Vue.use(VueI18n);
-
+Vue.use(RadonInstall, {
+    Modal: true,
+    Notification: true,
+    LoadingBar: true,
+    Preview: true
+})
 // ready translated locales
 
 Vue.config.lang = 'cn';

@@ -40,7 +40,6 @@
                                v-bind:placeholder="$t('login.password')" >
                     </el-tooltip>
                 </div>
-
                 <div class="login-btn">
                     <button class="loginin" v-on:click="login">登录</button>
                     <button class="loginout">退出</button>
@@ -71,7 +70,6 @@
         -moz-background-size: 100% 100%;
         background-size: 100% 100%;
     }
-
     #login {
         width: 302px;
         height: 328px;
