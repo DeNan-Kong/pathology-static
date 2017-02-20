@@ -7,7 +7,8 @@ export default{
         password: '密码',
         login: "登录",
         exit: "退出",
-        user_management: "用户管理"
+        user_management: "用户管理",
+        login_failure:'用户名或密码错误'
     },
     register:{
         medical_information:"病历信息",
@@ -112,5 +113,4 @@ export default{
         print:"打印",
         save:"保存"
     }
-
 }

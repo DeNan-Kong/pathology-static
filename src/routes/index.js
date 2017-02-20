@@ -13,6 +13,7 @@ const Production = r => require(['views/production'], r);
 const Cell = r => require(['views/cell'], r);
 const NotFound = r => require(['views/notfound'], r);
 const Test = r => require(['views/test'], r);
+const Error = r => require(['views/error'], r);
 
 // 根目录
 const rootPath = '';
@@ -29,7 +30,8 @@ const routes = [
     {path: '/hello', component: Hello, name: 'hello'},
     {path: '/index', component: Index, name: 'index'},
     {path: '/home', component: Home, name: 'home'},
-    {path: '/test', component: Test, name: 'test'}
+    {path: '/test', component: Test, name: 'test'},
+    {path: '/error', component: Error, name: 'error'}
 ].map(route => {
     route.path = rootPath + route.path;
     return route;
