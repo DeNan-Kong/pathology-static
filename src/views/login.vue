@@ -242,6 +242,7 @@
 
                 // validate succuess
                 if (this.errors.any() == false) {
+
                     const resultJson = await this.loginSubmit();
                     const resultObject = JSON.parse(resultJson);
 

@@ -444,50 +444,11 @@
     import $ from "jQuery"
     import Calendar from 'components/calendar';
     import Medicalmessage from 'components/medicalmessage';
-    import { rdCascader } from 'radon-ui'
+
     export default{
         // template: '<rd-cascader :cascader="cascader"></rd-cascader>',
         data(){
             return {
-                cascader: {
-             options: [{
-    value: 'china',
-    label: '中国',
-    children: [{
-        value: 'sichuan',
-        label: '四川',
-        children: [{
-            value: 'chegndu',
-            label: '成都'
-        }, {
-            value: 'deyang',
-            label: '德阳'
-        }]
-    }]
-}, {
-    value: 'America',
-    label: '美国',
-    children: [{
-        value: 'California',
-        label: '加利福尼亚',
-        children: [{
-            value: 'lake',
-            label: '湖'
-        }, {
-            value: 'Los Angeles',
-            label: '洛杉矶'
-        }]
-    }, {
-        value: 'Delaware',
-        label: '特拉华',
-        children: [{
-            value: 'Dover',
-            label: '多佛'
-        }]
-    }]
-}],
-                valueArr: []
-            },
                 initialData:{},
                 bindData: {
                     "applicationNo": "",
@@ -539,35 +500,34 @@
         components: {
             "searchtable": SearchTable,
             "calendar": Calendar,
-            "medicalmessage": Medicalmessage,
-             "rd-cascader":rdCascader
+            "medicalmessage": Medicalmessage
         },
         methods: {
             async loadData () {
                 const self=this;
-                const response = await fetch('/api/hello',{ 
+                const response = await fetch('/api/hello',{
                     method: 'POST',
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8" 
-                    }, 
-                    body: JSON.stringify({ 
-                    
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+
                     })
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                self.initialData = data;    
+                self.initialData = data;
             },
             async newproject(){
                 $(".null").val('');
                 const self=this;
-                const response = await fetch('/api/hello',{ 
+                const response = await fetch('/api/hello',{
                     method: 'POST',
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8" 
-                    }, 
-                    body: JSON.stringify({ 
-                       
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+
                     })
                 });
                 const json = await response.text();
@@ -575,13 +535,13 @@
                 self.pathologyNo = data;
             },
             async newsave(){
-                const response = await fetch('/api/hello',{ 
+                const response = await fetch('/api/hello',{
                     method: 'POST',
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8" 
-                    }, 
-                    body: JSON.stringify({ 
-                            order:this.bindData 
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                            order:this.bindData
                     })
                 });
                 const json = await response.text();
@@ -593,13 +553,13 @@
                 $(".null").val('');
             },
             async save(){
-                 const response = await fetch('/api/hello',{ 
+                 const response = await fetch('/api/hello',{
                     method: 'POST',
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8" 
-                    }, 
-                    body: JSON.stringify({ 
-                            order:this.bindData 
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                            order:this.bindData
                     })
                 });
                 const json = await response.text();

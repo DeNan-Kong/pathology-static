@@ -1,61 +1,138 @@
 <template>
-    <div> 
-    <div  id="middle-right">
-        <div  class="right-inner">    
-        <div class="right-top">
-            <button  class="rightbtntwo right-top-two  deng" v-on:click="dengbtn">{{$t('searchtable.deng')}}</button>
-            <button  class="rightbtnthr right-top-three qu" v-on:click="qubtn">{{$t('searchtable.qu')}}</button>
-            <button  class="rightbtnfou right-top-four zhizi" v-on:click="zhibtn">{{$t('searchtable.zhi')}}</button>
-            <button  class="rightbtnfiv right-top-five zan" v-on:click="zanbtn">{{$t('searchtable.zan')}}</button>
-            <button  class="rightbtnsix right-top-six zhen" v-on:click="zhenbtn">{{$t('searchtable.zhen')}}</button>
-            <button  class="rightbtnsev right-top-seven yan" v-on:click="yanbtn">{{$t('searchtable.yan')}}</button>
-            <button  class="rightbtneig right-top-eight  shen2" v-on:click="shen2btn">{{$t('searchtable.shen')}}</button>
-            <button  class="rightbtnnin right-top-nine yin" v-on:click="yinbtn">{{$t('searchtable.yin')}}</button>
-             <el-checkbox-group v-model="checkList">
-                <el-checkbox label="全库"></el-checkbox>
-            </el-checkbox-group>
-        </div>
-        <br>
-        <div class="grop-search ">
-            <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
-            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
-            <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
-             <form  class="floatleft ">
-                <select class="grop-search-sel  radium">
-                    <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
-                </select>
-            </form>
-        </div>
-        <div class="big-search">
-            <input type="text" class="floatleft big-search-input" id="app">
-            <img src="../assets/images/search.png.png" class="big-search-img">
-            <form  class="floatleft ">
-                <select class="big-search-sel  ">
-                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
-                </select>
-            </form>
-            <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
-        </div>
-        <div class="clear"></div>
-        <div class="table-show">
-            <div>
-            <table >
-                <thead>
-                    <tr>
-                        <th class="pictable"></th>
-                        <th class="statustable"></th>
-                        <th class="pathology-table">病理号</th>
-                        <th class="name-table">姓名</th>
-                        <th class="sex-table">性别</th>
-                        <th class="age-table">年龄</th>
-                        <th class="hospitalized-table">住院号</th>
-                        <th class="unit-table">送检单位</th>
-                        <th class="department-table">送检科室</th>
-                        <th class="sample-table">标本名称</th>
-                       
-                    </tr>
-                </thead>
-            </table>
+    <div>
+        <div id="middle-right">
+            <div class="right-inner">
+                <div class="right-top">
+                    <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" v-on:click="orderStatusClick(item.id)">{{item.name}}
+                    </button>
+
+                    <el-checkbox-group v-model="checkList">
+                        <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
+                    </el-checkbox-group>
+                </div>
+                <br>
+                <div class="grop-search ">
+                    <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines" v-on:click="toggle">
+                        <div class="grop-search-img2 grop-search-img  grop-search-imgs"></div>
+                    </button>
+                    <button class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">
+                        {{$t('searchtable.combination_query')}}
+                    </button>
+                    <p class="floatleft">{{$t('searchtable.inspection_time')}}</p>
+                    <form class="floatleft ">
+                        <select class="grop-search-sel radium">
+                            <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="big-search">
+                    <input type="text" class="floatleft big-search-input" id="app">
+                    <img src="../assets/images/search.png.png" class="big-search-img">
+                    <form class="floatleft ">
+                        <select class="big-search-sel  ">
+                            <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>
+                        </select>
+                    </form>
+                    <button class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
+                </div>
+                <div class="clear"></div>
+                <div class="table-show">
+                    <el-table :data="tabledatas.orderlist" border style="width: 100%" height="400">
+                        <el-table-column label="" width="28" style="height:30px;padding:0px">
+                            <template scope="scope">
+                                <!--  <el-popover trigger="hover" placement="top">
+                                 <p>相关诊断</p> -->
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tooltip class="item" content="相关诊断" placement="top">
+                                        <el-tag>
+                                            <div>
+                                                <p class="relateimgon  relateclick" @click="showrelate"
+                                                   :id='scope.row.patient.birthday'></p>
+                                            </div>
+                                        </el-tag>
+                                    </el-tooltip>
+                                </div>
+                                </el-popover>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="" width="20">
+                            <template scope="scope">
+                                <div>
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="病理号" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.pathologyNo}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="姓名" width="54">
+                            <template scope="scope">
+                                <span>{{ scope.row.patient.patientName}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="性别" width="40">
+                            <template scope="scope">
+                                <span>{{ scope.row.patient.sex}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="年龄" width="40">
+                            <template scope="scope">
+                                <span>{{ scope.row.patient.age}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="住院号" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.inhospitalId }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="送检单位" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="送检科室" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="标本名称" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="临床诊断" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="诊断意见" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="主诊医生" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="送检日期" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="报告日期" width="114">
+                            <template scope="scope">
+                                <span>{{ scope.row.applicationid}}</span>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+                <div class="right-bottom">
+                    <p class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
+                    <p class="urgecolor"><a class="urgecolor" href="#">申请单(1)</a></p>
+                    <p class="activecolor"><a class="activecolor" href="#">会诊意见(0)</a></p>
+                </div>
             </div>
             <div class="el-table__body-wrapper">
             <table style="table-layout:fixed">
@@ -181,13 +258,13 @@
                     <el-checkbox label="会诊报告"></el-checkbox>
                 </el-checkbox-group>  
             </div>
-            <div class="example">
-                <p>{{$t('searchtable.instructions')}}</p>
+            <div class="bmobbox-bottom">
+                <button class="bmobbox-btnone">{{$t('searchtable.search')}}</button>
+                <button class="bmobbox-btntwo">{{$t('searchtable.cancel')}}</button>
             </div>
         </div>
-        <div class="bmobbox-bottom">
-            <button class="bmobbox-btnone">{{$t('searchtable.search')}}</button>
-            <button class="bmobbox-btntwo">{{$t('searchtable.cancel')}}</button>
+        <div class="relatelist">
+            <relatetable :relationshow="method" :relationdate="(relateListDatas)"/>
         </div>
     </div>
     <div class="relatelist" v-if="listshow">
@@ -709,46 +786,50 @@ table .pictable{
 #middle-right table td:nth-child(2),#middle-right table th:nth-child(2){
     border-left:none;
 }
+
 </style>
 <script>
-import {mapState} from 'vuex';
-import $ from "jQuery";
-import Calendar from 'components/calendar';
-import Relatetable from 'components/relatetable';
+    import {mapState} from 'vuex';
+    import $ from "jQuery";
+    import Calendar from 'components/calendar';
+    import Relatetable from 'components/relatetable';
     export default{
-       data() {
-      return {
-       listshow:false,
-       checkList: [],
-       relateListDatas:{},
-       searchTableData:{},
-       bmobCheckList:[],
-       tabledatas:{}
-      }
-    }, 
-    components:{
-        "calendar":Calendar,
-        "relatetable":Relatetable
-    },
-    props:['tableshow'],
-    created(){
-          this.tableData();
-          this.searchTable ();   
-    },
-        methods:{
+        data() {
+            return {
+                listshow:false,
+                checkList: [],
+                relateListDatas: {},
+                searchTableData: {},
+                bmobCheckList: [],
+                tabledatas: {},
+                statusColors:["#4d7cbe","#6bc664","#5acdce","#d99165","#e975c1","#dc5b5b","dfd06d","#b0bec5","dfd06d","#b0bec5","dfd06d","#b0bec5","dfd06d","#b0bec5"]
+            }
+        },
+        components: {
+            "calendar": Calendar,
+            "relatetable": Relatetable
+        },
+        props: ['tableshow'],
+        created(){
+            this.tableData();
+            this.searchTable();
+        },
+        methods: {
             async relateListData () {
-            const response = await fetch('/api/hello',{ 
-                method: 'POST',
-                headers: { 
-                    "Content-type": "application/json; charset=UTF-8" 
-                }, 
-                body: JSON.stringify({ 
-                    firstParam: 'yourValue',
-                })
-            });
-            const json = await response.text();
-            const data = JSON.parse(json);
-            this.relateListDatas = data;
+                const response = await
+                fetch('/api/hello', {
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        firstParam: 'yourValue',
+                    })
+                });
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+                this.relateListDatas = data;
             },
 
             async tableData () {
@@ -769,34 +850,33 @@ import Relatetable from 'components/relatetable';
 
             async searchTable () {
                 const response = await fetch('/api/test',{ 
-                    method: 'POST',
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8" 
-                    }, 
-                    body: JSON.stringify({ 
 
-                    })
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({})
                 });
                 const json = await response.text();
-                 const data = JSON.parse(json);
+                const data = JSON.parse(json);
                 this.searchTableData = data;
-                
+
             },
-            toggle:function(){
-                $(".bmobbox").animate({marginLeft:"538px"},100).fadeToggle();
-                if($(".grop-search-lines").hasClass('grop-search-line1')){
+            toggle: function () {
+                $(".bmobbox").animate({marginLeft: "538px"}, 100).fadeToggle();
+                if ($(".grop-search-lines").hasClass('grop-search-line1')) {
                     $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
-                }else{
+                } else {
                     $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
                 }
-                if($(".grop-search-imgs").hasClass('grop-search-img1')){
+                if ($(".grop-search-imgs").hasClass('grop-search-img1')) {
                     $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
-                }else{
+                } else {
                     $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
                 }
-                 if($(".grop-search-btns").hasClass('grop-search-btn1')){
+                if ($(".grop-search-btns").hasClass('grop-search-btn1')) {
                     $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
-                }else{
+                } else {
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                 }
             },
@@ -804,70 +884,78 @@ import Relatetable from 'components/relatetable';
                 if(!$(".rightbtntwo").hasClass('insetcolor')){
                    $(".rightbtntwo").addClass('insetcolor');
                    $(".rightbtntwo").siblings().removeClass('insetcolor')
+
                 }
             },
-            qubtn:function(){
-                if(!$(".rightbtnthr").hasClass('insetcolor')){
-                   $(".rightbtnthr").addClass('insetcolor');
-                   $(".rightbtnthr").siblings().removeClass('insetcolor')
+            qubtn: function () {
+                if (!$(".rightbtnthr").hasClass('insetcolor')) {
+                    $(".rightbtnthr").addClass('insetcolor');
+                    $(".rightbtnthr").siblings().removeClass('insetcolor')
                 }
             },
-            zhibtn:function(){
-                if(!$(".rightbtnfou").hasClass('insetcolor')){
-                   $(".rightbtnfou").addClass('insetcolor');
-                   $(".rightbtnfou").siblings().removeClass('insetcolor')
+            zhibtn: function () {
+                if (!$(".rightbtnfou").hasClass('insetcolor')) {
+                    $(".rightbtnfou").addClass('insetcolor');
+                    $(".rightbtnfou").siblings().removeClass('insetcolor')
                 }
             },
-            zanbtn:function(){
-                if(!$(".rightbtnfiv").hasClass('insetcolor')){
-                   $(".rightbtnfiv").addClass('insetcolor');
-                   $(".rightbtnfiv").siblings().removeClass('insetcolor')
+            zanbtn: function () {
+                if (!$(".rightbtnfiv").hasClass('insetcolor')) {
+                    $(".rightbtnfiv").addClass('insetcolor');
+                    $(".rightbtnfiv").siblings().removeClass('insetcolor')
                 }
             },
-            zhenbtn:function(){
-                if(!$(".rightbtnsix").hasClass('insetcolor')){
-                   $(".rightbtnsix").addClass('insetcolor');
-                   $(".rightbtnsix").siblings().removeClass('insetcolor')
+            zhenbtn: function () {
+                if (!$(".rightbtnsix").hasClass('insetcolor')) {
+                    $(".rightbtnsix").addClass('insetcolor');
+                    $(".rightbtnsix").siblings().removeClass('insetcolor')
                 }
             },
-            yanbtn:function(){
-                if(!$(".rightbtnsev").hasClass('insetcolor')){
-                   $(".rightbtnsev").addClass('insetcolor');
-                   $(".rightbtnsev").siblings().removeClass('insetcolor')
+            yanbtn: function () {
+                if (!$(".rightbtnsev").hasClass('insetcolor')) {
+                    $(".rightbtnsev").addClass('insetcolor');
+                    $(".rightbtnsev").siblings().removeClass('insetcolor')
                 }
             },
-            shen2btn:function(){
-                if(!$(".rightbtneig").hasClass('insetcolor')){
-                   $(".rightbtneig").addClass('insetcolor');
-                   $(".rightbtneig").siblings().removeClass('insetcolor')
+            shen2btn: function () {
+                if (!$(".rightbtneig").hasClass('insetcolor')) {
+                    $(".rightbtneig").addClass('insetcolor');
+                    $(".rightbtneig").siblings().removeClass('insetcolor')
                 }
             },
-            yinbtn:function(){
-                if(!$(".rightbtnnin").hasClass('insetcolor')){
-                   $(".rightbtnnin").addClass('insetcolor');
-                   $(".rightbtnnin").siblings().removeClass('insetcolor')
+            yinbtn: function () {
+                if (!$(".rightbtnnin").hasClass('insetcolor')) {
+                    $(".rightbtnnin").addClass('insetcolor');
+                    $(".rightbtnnin").siblings().removeClass('insetcolor')
                 }
             },
-            cancle:function(){
+            orderStatusClick: function (id) {
+                this.$emit('orderStatusClick',id)
+            },
+            getOrderStatusColor(index)
+            {
+                return this.statusColors[index];
+            },
+            cancle: function () {
                 $(".bmobbox").fadeOut(500);
-                if($(".grop-search-lines").hasClass('grop-search-line1')){
+                if ($(".grop-search-lines").hasClass('grop-search-line1')) {
                     $(".grop-search-lines").removeClass('grop-search-line1').addClass('grop-search-line2')
-                }else{
+                } else {
                     $(".grop-search-lines").addClass('grop-search-line1').removeClass('grop-search-line2')
                 }
-                if($(".grop-search-imgs").hasClass('grop-search-img1')){
+                if ($(".grop-search-imgs").hasClass('grop-search-img1')) {
                     $(".grop-search-imgs").removeClass('grop-search-img1').addClass('grop-search-img2')
-                }else{
+                } else {
                     $(".grop-search-imgs").addClass('grop-search-img1').removeClass('grop-search-img2')
                 }
-                 if($(".grop-search-btns").hasClass('grop-search-btn1')){
+                if ($(".grop-search-btns").hasClass('grop-search-btn1')) {
                     $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
-                }else{
+                } else {
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                 }
             },
-            find:function(){
-            
+            find: function () {
+
             },
             showrelate:function(e){
                 var vvv=$(e.target).attr('id');
@@ -877,19 +965,17 @@ import Relatetable from 'components/relatetable';
             },
             showcontent:function(e){
                 var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
-
             },
-            method:function(){
+            method: function () {
                 this.tableshow();
                 $('.relatelist').hide()
             },
-            handleEdit:function(index, row) {
+            handleEdit: function (index, row) {
                 console.log(index, row);
-              },
+            },
             mounted () {
-            this.searchTableData();
-
-        },
-           }
-        };
+                this.searchTableData();
+            },
+        }
+    };
 </script>
