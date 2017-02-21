@@ -1,6 +1,6 @@
  <template>
   <div>
- <div class="floatleft  p-margin www">
+ <div class="floatleft p-margin www">
     <el-date-picker
       v-model="value1"
       type="date"
@@ -11,11 +11,10 @@
 </template>
 <style>
 .el-date-editor.el-input{
-  width: 153px;
-  
+  width: 153px; 
 }
 body .embedding-top .el-date-editor.el-input{
-    margin-left: -5px;
+  margin-left: -5px;
 }
 .el-input__inner{
   height: 24px;

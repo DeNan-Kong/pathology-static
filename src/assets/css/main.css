@@ -222,8 +222,8 @@ hr{
 .nav>li:hover{
     border-bottom:3px solid #00bfe8
 }
-.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
-    /*防止压缩列*/
+/*.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+    
     min-width: 70px;
     text-align:center;
     overflow:hidden;

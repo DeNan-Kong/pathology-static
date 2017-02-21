@@ -38,101 +38,58 @@
         </div>
         <div class="clear"></div>
         <div class="table-show">
-            <el-table :data="tabledatas.orderlist" border style="width: 100%" height="400">
-            <el-table-column label="" width="28" style="height:30px;padding:0px">
-              <template scope="scope">
-               <!--  <el-popover trigger="hover" placement="top">
-                <p>相关诊断</p> -->
-                <div slot="reference" class="name-wrapper">
-                <el-tooltip class="item"  content="相关诊断" placement="top">
-                <el-tag>
-                <div>
-                    <p class="relateimgon  relateclick"  @click="showrelate" :id='scope.row.patient.birthday'></p>
-                </div>
-                </el-tag>
-                </el-tooltip>    
-                </div>
-            </el-popover>
-            </template>
-            </el-table-column>
-             <el-table-column label="" width="20">
-              <template scope="scope">
-                <div>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column label="病理号" width="114"> 
-              <template scope="scope" >
-                <span>{{ scope.row.pathologyNo}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="姓名" width="54">
-              <template scope="scope">
-                <span>{{ scope.row.patient.patientName}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="性别" width="40">
-              <template scope="scope">
-                <span>{{ scope.row.patient.sex}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="年龄" width="40">
-              <template scope="scope">
-                <span>{{ scope.row.patient.age}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="住院号" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.inhospitalId }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="送检单位" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="送检科室" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="标本名称" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="临床诊断" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="诊断意见" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="主诊医生" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="送检日期" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="报告日期" width="114">
-              <template scope="scope">
-                <span>{{ scope.row.applicationid}}</span>
-              </template>
-            </el-table-column> 
-          </el-table>   
+            <div>
+            <table >
+                <thead>
+                    <tr>
+                        <th class="pictable"></th>
+                        <th class="statustable"></th>
+                        <th class="pathology-table">病理号</th>
+                        <th class="name-table">姓名</th>
+                        <th class="sex-table">性别</th>
+                        <th class="age-table">年龄</th>
+                        <th class="hospitalized-table">住院号</th>
+                        <th class="unit-table">送检单位</th>
+                        <th class="department-table">送检科室</th>
+                        <th class="sample-table">标本名称</th>
+                       
+                    </tr>
+                </thead>
+            </table>
             </div>
-            <div class="right-bottom">
-                <p  class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
-                <p  class="urgecolor"><a class="urgecolor" href="#">申请单(1)</a></p>
-                <p  class="activecolor"><a class="activecolor" href="#">会诊意见(0)</a></p>
-            </div>
+            <div class="el-table__body-wrapper">
+            <table style="table-layout:fixed">
+                <tbody v-for="item in tabledatas.orderlist">
+                    <tr  :data-patientId="item.patient.patientId" @click="showcontent">
+                        <td class="pictable"> 
+                             <el-tooltip class="item"  content="相关诊断" placement="top">
+                            <el-tag>
+                            <div class="relateimgon relateclick" @click="showrelate" :id="item.patient.patientId"></span></div>
+                            </el-tag>
+                            </el-tooltip>
+                        </td>
+                        <td class="statustable">冰</td>
+                        <td class="pathology-table">{{item.pathologyNo}}</td>
+                        <td class="name-table"><div class="textoverflow nameover">{{item.patient.patientName}}</div></td>
+                        <td class="sex-table">{{item.patient.sex}}</td>
+                        <td class="age-table">{{item.patient.age}}</td>
+                        <td class="hospitalized-table"><div class="textoverflow hospitalized-over">20106235261svhgghdcvashgdcv</div></td>
+                        <td class="unit-table">20106235261</td>
+                        <td class="department-table">20106235261</td>
+                        <td class="sample-table">11111</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+        </div>
+        <div class="right-bottom">
+            <p  class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
+            <p  class="urgecolor"><a class="urgecolor" href="#">申请单(1)</a></p>
+            <p  class="activecolor"><a class="activecolor" href="#">会诊意见(0)</a></p>
+            <p  class="activecolor"><a class="activecolor" href="#">冰冻预约(0)</a></p>
+            <p  class="activecolor"><a class="activecolor" href="#">延期原因(0)</a></p>
+            <p  class="activecolor"><a class="activecolor" href="#">补取列表(0)</a></p>
+        </div>
         </div>
     </div>
     <div class="bmobbox">
@@ -144,15 +101,19 @@
                 <p class="floatleft bmobboxleft">{{$t('medicalmessage.inspection_date')}}<p>
                  <calendar/>
                 <p  class="floatleft zhi">{{$t('searchtable.to')}}</p>
-               <calendar/>
-                <div  class="noselectbox e floatleft teshudate" v-on:click="changecheckbox5"></div>
+                <calendar/>
+                <el-checkbox-group v-model="checkList">
+                    <el-checkbox></el-checkbox>
+                </el-checkbox-group>
             </div>
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">{{$t('searchtable.report_date')}}<p>
                 <calendar/>
                 <p  class="floatleft zhi">{{$t('searchtable.to')}}</p>
                 <calendar/>
-                <div  class="noselectbox f floatleft teshudate" v-on:click="changecheckbox6"></div>    
+                <el-checkbox-group v-model="checkList">
+                    <el-checkbox label=""></el-checkbox>
+                </el-checkbox-group>  
             </div>
             <div class="bmobboxone">
                 <p class="floatleft  bmobboxleft">{{$t('medicalmessage.sex')}}<p>
@@ -218,11 +179,7 @@
                     <el-checkbox label="冰冻报告"></el-checkbox>
                     <el-checkbox label="补充报告"></el-checkbox>
                     <el-checkbox label="会诊报告"></el-checkbox>
-                </el-checkbox-group>
-                <!-- <div  class="noselectbox  a floatleft"   v-on:click="changecheckbox1"></div><p  class="floatleft">延期报告</p>
-                <div  class="noselectbox b floatleft"   v-on:click="changecheckbox2"></div><p  class="floatleft">冰冻报告</p> 
-                <div  class="noselectbox c floatleft"   v-on:click="changecheckbox3"></div><p  class="floatleft">补充报告</p> 
-                <div  class="noselectbox d floatleft"  v-on:click="changecheckbox4"></div><p  class="floatleft">会诊报告</p> -->   
+                </el-checkbox-group>  
             </div>
             <div class="example">
                 <p>{{$t('searchtable.instructions')}}</p>
@@ -233,40 +190,23 @@
             <button class="bmobbox-btntwo">{{$t('searchtable.cancel')}}</button>
         </div>
     </div>
-    <div class="relatelist">
+    <div class="relatelist" v-if="listshow">
         <relatetable :relationshow="method" :relationdate="(relateListDatas)" />
     </div>    
 </div>
 </template>
 <style>
- body .table-show .el-tag{
-    background-color:transparent;
-    height: 30px;
-}
-body .table-show .el-popover{
-    width: 10px;
-}
-.el-table tr{   
-    text-overflow:ellipsis;
-}
-body .el-table .cell{
-    color:#333;
-    padding: 0px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    white-space:nowrap; 
-    text-overflow:ellipsis;
-}
 .relateimgon{
     display: block;
-    width: 22px;
+    width: 26px;
     height: 24px;
+    margin-left: -7px;
     background:url('../assets/images/register.png') no-repeat 0 -3px;
+    padding: 0px;
 }
 .relateimgout{
     display: block;
-    width: 22px;
+    width: 26px;
     height: 24px;
     background:url('../assets/images/register.png') no-repeat 0 -37px;
 }
@@ -437,12 +377,12 @@ body .el-table .cell{
 }
 .table-show{
     width:100%;
-    min-width:255px;
+    min-width:235px;
     height: 425px;
     margin-top: 15px;
-}
-.table-show .table th:first-child,.table-show .table td:first-child{
-    width:48px;
+    border:1px solid #ccc;
+    /*/*overflow-y: auto;*/
+    overflow:hidden;
 }
 #middle-right{
     margin-top: -650px;
@@ -573,10 +513,9 @@ body .el-table .cell{
     height: 27px;    
 }
 .grop-search-img1{
-    background: url('../assets/images/combinationsearch.png')  -151px -10px no-repeat; 
-}
+    background:url('../assets/images/combinationsearch.png')-151px -10px no-repeat; }
 .grop-search-img2{
-    background: url('../assets/images/combinationsearch.png')  -151px -51px no-repeat;
+   background:url('../assets/images/combinationsearch.png')-151px -51px no-repeat;
 }
 .grop-search p{
     display:block;
@@ -664,14 +603,10 @@ input[type='checkbox'] .checkbox-one{
 .urgecolor{
     color:#c94646;
 }
-body .table-show-one{
-    width: 48px;
-}
 .middle-right .right-bottom .activecolor{
     color:#c94646; 
 }
 .relatelist{
-    display: none;
     width: 674px;
     height: 416px;
     background:#fff;
@@ -690,33 +625,89 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
   text-align: center;
   padding: 0px;
 } 
- .el-table__body-wrapper::-webkit-scrollbar-track{
-    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+.el-table__body-wrapper::-webkit-scrollbar-track{
     border-radius: 10px;
-   /* background-color: #F5F5F5;*/
 } 
  .el-table__body-wrapper::-webkit-scrollbar{
-    width: 12px;
-    height: 8px;
-    /*background-color: #F5F5F5;*/
+    width: 8px;
+    height: 6px;
 }
  .el-table__body-wrapper::-webkit-scrollbar-thumb{
     width: 10px;
-    /*border-radius: 10px;*/
-    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
     background-color: #eee;
 }
-#middle-right .el-table__fixed{
-    height: 387px !important;
-    width:259px;
+.el-table__body-wrapper{
+     overflow-y:scroll;
+     height: 400px;
 }
-.el-table th,.el-table td{
-    background: #fff;
-    height: 30px;
-    padding: 0px !important;
+.el-tag{
+    width:26px;
+    background-color: transparent;
 }
-.el-table th .cell{
-    background: #fff;
+.right-bottom{
+    width:200px;
+    height: 100px;
+}
+/*table*/
+#middle-right table tr th,#middle-right table tr td{
+    height: 30px !important;
+    padding: 0px;
+    margin: 0px;
+    vertical-align:middle;
+    text-align: center;
+    font-weight: normal;
+    border:1px solid #ccc; 
+}
+#middle-right tr:hover{
+    cursor: pointer;
+}
+table .pictable{
+    min-width:28px;
+    width:28px;
+}
+#middle-right table{
+    table-layout: fixed;
+}
+.statustable{
+    min-width:20px;
+    width:20px;
+}
+.pathology-table{
+    width: 114px;
+    min-width: 114px;
+}
+.name-table{
+    width: 69px;
+    min-width: 69px;
+}
+.nameover{
+    width:65px;
+}
+.sex-table,.age-table{
+    width:44px;
+    min-width:44px;
+}
+.hospitalized-table{ 
+    min-width: 120px;
+    width:120px;  
+}
+.textoverflow{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.hospitalized-over{
+    width:118px;
+}
+.unit-table,.department-table,.sample-table{
+    min-width: 114px;
+    width:114px;
+}
+#middle-right table td:first-child,#middle-right table th:first-child{
+    border-right:none;
+}
+#middle-right table td:nth-child(2),#middle-right table th:nth-child(2){
+    border-left:none;
 }
 </style>
 <script>
@@ -727,6 +718,7 @@ import Relatetable from 'components/relatetable';
     export default{
        data() {
       return {
+       listshow:false,
        checkList: [],
        relateListDatas:{},
        searchTableData:{},
@@ -758,6 +750,7 @@ import Relatetable from 'components/relatetable';
             const data = JSON.parse(json);
             this.relateListDatas = data;
             },
+
             async tableData () {
             const response = await fetch('/api/test',{ 
                 method: 'POST',
@@ -768,13 +761,14 @@ import Relatetable from 'components/relatetable';
                     firstParam: 'yourValue',
                 })
             });
-         const json = await response.text();
+            const json = await response.text();
             const data = JSON.parse(json);
             this.tabledatas = data;
             console.log(this.tabledatas)
             },
+
             async searchTable () {
-                const response = await fetch('/api/hello',{ 
+                const response = await fetch('/api/test',{ 
                     method: 'POST',
                     headers: { 
                         "Content-type": "application/json; charset=UTF-8" 
@@ -804,20 +798,6 @@ import Relatetable from 'components/relatetable';
                     $(".grop-search-btns").removeClass('grop-search-btn1').addClass('grop-search-btn2')
                 }else{
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
-                }
-            },
-            changecheckbox5:function(e){
-                if($(".e").hasClass("selectbox")){
-                $(".e").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".e").removeClass("noselectbox").addClass("selectbox"); 
-                }
-            },
-            changecheckbox6:function(e){
-                if($(".f").hasClass("selectbox")){
-                $(".f").removeClass("selectbox").addClass("noselectbox");
-                }else{
-                $(".f").removeClass("noselectbox").addClass("selectbox"); 
                 }
             },
             dengbtn:function(){
@@ -890,17 +870,14 @@ import Relatetable from 'components/relatetable';
             
             },
             showrelate:function(e){
-                var vvv=$(e.target).attr('id')
-                if($('.relateclick').hasClass('.relateimgon')){
-                    console.log("000")
-                    $('.relatelist').hide()
-                    $('.relateclick').removeClass('.relateimgon').addClass('.relateimgout')
-                }else{
-                     console.log("111")
-                    $('.relatelist').show()
-                    $('.relateclick').removeClass('.relateimgout').addClass('.relateimgon')
-                }
-                this.relateListData ()
+                var vvv=$(e.target).attr('id');
+                this.listshow=!(this.listshow);
+                this.relateListData ();
+                e.stopPropagation();
+            },
+            showcontent:function(e){
+                var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
+
             },
             method:function(){
                 this.tableshow();
