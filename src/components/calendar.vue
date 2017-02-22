@@ -2,9 +2,8 @@
   <div>
  <div class="floatleft p-margin www">
     <el-date-picker
-      v-model="value1"
-      type="date"
-      >
+            v-model="innerDate"
+            type="date">
     </el-date-picker>
   </div>
 </div>
@@ -31,17 +30,23 @@ body .embedding-contains .p-margin{
 </style>
 <script>
   export default {
-    data() {
-      return {
-        pickerOptions0: {
-          disabledDate(time) {
-            return time.getTime() < Date.now() - 8.64e7;
+      data: function () {
+          return {
+              innerDate: this.date
+          };
+      },
+      props: ['date'],
+      mounted: function () {
+
+      }, watch: {
+          date(val) {
+              this.innerDate = val;//新增date的watch，监听变更并同步到innerDate上
+          },
+          innerDate(val){
+              //xxcanghai 小小沧海 博客园
+              this.$emit("change",val);//③组件内对innerDate变更后向外部发送事件通知
           }
-        },
-        value1: new Date()
-      };
-    },
-    prop:['today']
+      }
   };
 </script>
 

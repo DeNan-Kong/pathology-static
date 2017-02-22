@@ -63,7 +63,7 @@
                     <p class="floatleft p-four">{{$t('medicalmessage.national')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup null" v-model="bindData.patient.nationId">
-                            <option v-for="item in initialData.nationList" :value="item.id">
+                            <option v-for="item in initialData.nationList" :value="item.nationId">
                                 {{item.name}}
                             </option>
                         </select>
@@ -96,7 +96,7 @@
                     <input type="text" class="floatleft p-big radium null">
                     <p class="floatleft p-three">{{$t('medicalmessage.last_menstrual_period')}}</p>
                     <div class="null">
-                    <calendar/>
+                        <calendar :date="bindData.lmp"  v-on:change="lmpChange"/>
                     </div>
                     <p class="floatleft p-four">{{$t('medicalmessage.menopause')}}</p>
                     <form class="floatleft">
@@ -136,7 +136,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-four">{{$t('medicalmessage.inspection_date')}}</p>
-                    <calendar :today="(today)" v-model="bindData.inspectDate" />
+                    <calendar :date="bindData.inspectDate" v-on:change="inspectDateChange"/>
                 </div>
                 <div class="hospital-num-two hospital-num">
                     <p class="floatleft p-one">{{$t('medicalmessage.ward')}}</p>
@@ -168,8 +168,11 @@
                                 {{item.name}}
                             </option>
                         </select>
+
                     </form>
-                   <!--  <rd-cascader :cascader="cascader"></rd-cascader> -->
+
+
+                    <!--  <rd-cascader :cascader="cascader"></rd-cascader> -->
                     <p class="floatleft p-three unqualifiedCauseId">{{$t('medicalmessage.unqualified_reason')}}</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup null" v-model="bindData.unqualifiedCauseId">
@@ -181,8 +184,8 @@
                     <p class="floatleft p-four">{{$t('medicalmessage.samples_received')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup null" v-model="bindData.specimenReceiveId">
-                            <option v-for="item in initialData.specimenReceiveList" :value="item.id">
-                                {{item.name}}
+                            <option v-for="item in initialData.specimenReceiveList" :value="item.userId">
+                                {{item.fullName}}
                             </option>
                         </select>
                     </form>
@@ -207,7 +210,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-four">{{$t('medicalmessage.receiving_date')}}</p>
-                    <calendar />
+                    <calendar :date="bindData.receiveDate" v-on:change="receiveDateChange"/>
                 </div>
                 <div class="hospital-num-five hospital-num">
                     <p class="floatleft p-one">{{$t('medicalmessage.clinical_diagnosis')}}</p>
@@ -232,7 +235,7 @@
                 <button class="left-button-two" @click="print">{{$t('medicalmessage.print')}}</button>
                 <button  class="left-button-two" @click="save">{{$t('medicalmessage.save')}}</button>
                 <button  class="left-button-five" @click="newsave">{{$t('medicalmessage.save_and_create')}}</button>
-                <button class="left-button-two" @click="newproject">{{$t('medicalmessage.create')}}</button>
+                <button class="left-button-two" @click="createOrder">{{$t('medicalmessage.create')}}</button>
             </div>
             <div class="left-bottom">
                 <div class="picture-img" @click="refresh"></div>
@@ -459,7 +462,7 @@
                     "patientNo": "",
                     "inspectDate": "",
                     "inspectDepartmentId": null,
-                    "inspectUnitId": 1,
+                    "inspectUnitId": null,
                     "specimenNameId": null,
                     "specimenTypeId": null,
                     "submittingPhysicianId": null,
@@ -505,7 +508,7 @@
         methods: {
             async loadData () {
                 const self=this;
-                const response = await fetch('/api/hello',{
+                const response = await fetch('/register/load', {
                     method: 'POST',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
@@ -518,23 +521,24 @@
                 const data = JSON.parse(json);
                 self.initialData = data;
             },
-            async newproject(){
-                $(".null").val('');
-                const self=this;
-                const response = await fetch('/api/hello',{
+            async createOrder(){
+                const response = await fetch('/register/create-order', {
                     method: 'POST',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
-                    body: JSON.stringify({
-
-                    })
+                    body: {}
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                self.pathologyNo = data;
+
+                for (let p in data) {
+                    this.bindData[p] = data[p];
+                }
+                return false;
             },
             async newsave(){
+
                 const response = await fetch('/api/hello',{
                     method: 'POST',
                     headers: {
@@ -553,32 +557,43 @@
                 $(".null").val('');
             },
             async save(){
-                 const response = await fetch('/api/hello',{
-                    method: 'POST',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-                            order:this.bindData
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                this.pathologyno= data;
-                console.log(this.pathologyno)
                 this.$validator.validateAll().then(success => {
                 }).then(failing => {
                 }, rejected => {
                 });
                 if (this.errors.any() == false) {
-                    alert('123');
+                    const response = await fetch('/register/save', {
+                        method: 'POST',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify(this.bindData)
+                    });
+                    const resultJson = await response.text();
+                    const resultObject = JSON.parse(resultJson);
+
+                    // 异常处理
+                    if (this.$errHandle(resultObject)) {
+                        return;
+                    }
                 }
+
+
         },
             print: function () {
                 console.log("print");
         },
             refresh: function () {
                 console.log("refresh");
+            },
+            inspectDateChange: function (date) {
+                this.bindData.inspectDate = date;
+            },
+            receiveDateChange: function (date) {
+                this.bindData.receiveDate = date;
+            },
+            lmpChange: function (date) {
+                this.bindData.lmp = date;
             }
         },
         mounted () {
