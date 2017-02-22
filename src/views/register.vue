@@ -371,7 +371,8 @@
             },
             first: function () {
                 $(".aaaa").css('display', 'block');
-            },searchByStatus:function (id) {
+            },
+            searchByStatus:function (id) {
                 alert(id);
             }
 

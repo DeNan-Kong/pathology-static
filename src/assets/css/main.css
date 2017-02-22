@@ -5,13 +5,90 @@ html,body{
     background-color: #edeef2;
     /*min-height:615px;*/
     color:#333;
-
 }
 button{
     border:none;
     outline: none;
     margin:0; padding:0; list-style-type:none;
     background: none;
+}
+/*modal*/
+.modal-content{
+    margin-top: 45%;
+    margin-left: 150px;
+    width:300px;
+    height: 158px;
+} 
+.modal-header{
+    width: 298px;
+    height: 36px;
+    line-height: 36px;
+    background: #2f3b4c;
+    color:#fff;
+}
+.modal-title{
+    width:80px;
+    margin-top:-8px;
+    font-size: 14px; 
+}
+/*重写element ui table*/
+.el-table td, .el-table th.is-leaf{
+     border-bottom:1px solid #d9d9d9; 
+}
+.el-table td, .el-table th{
+    height: 30px;
+}
+.el-table{
+    border-left: 1px solid #d9d9d9;
+}
+.el-table .caret-wrapper, .el-table th>.cell{
+    background: #fff;
+    padding: 0px;
+    text-align: center;
+}
+.el-table th{
+    background: #fff;
+}
+.el-checkbox__inner {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #c0ccda;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    z-index: 1;
+    transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+}
+.scroll-flow::-webkit-scrollbar-track{
+    background-color: #fff;
+} 
+.scroll-flow::-webkit-scrollbar{
+    width: 8px;
+    height: 12px;
+}
+.scroll-flow::-webkit-scrollbar-thumb{
+    background-color: #eee;
+}
+button{
+    border:none;
+    outline: none;
+}
+.modal-dialog .close{
+ margin-top: -8px;
+ color:#fff;
+ font-weight: normal;
+ opacity: 1
+}
+.modal-dialog .close:hover{
+    color:#fff;
+}
+.modal-select{
+    width: 262px;
+    height: 28px;
+    border-radius: 3px;
+    border:1px solid #ccc;
 }
 .picture-img{
     position: absolute;
@@ -305,7 +382,7 @@ textarea{
     /*margin-top: 10px;*/
 }
 .right-inner{
-    padding: 10px;
+    padding: 0px;
     height: 100%;
     overflow: auto;
 }

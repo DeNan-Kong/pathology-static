@@ -1,138 +1,55 @@
 <template>
-    <div>
-        <div id="middle-right">
-            <div class="right-inner">
-                <div class="right-top">
-                    <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" v-on:click="orderStatusClick(item.id)">{{item.name}}
-                    </button>
-
-                    <el-checkbox-group v-model="checkList">
+    <div> 
+    <div  id="middle-right">
+        <div  class="right-inner">    
+        <div class="right-top">
+           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" v-on:click="orderStatusClick(item.id)">{{item.name}}
+            </button>
+            <el-checkbox-group v-model="checkList">
                         <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
-                    </el-checkbox-group>
-                </div>
-                <br>
-                <div class="grop-search ">
-                    <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines" v-on:click="toggle">
-                        <div class="grop-search-img2 grop-search-img  grop-search-imgs"></div>
-                    </button>
-                    <button class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">
-                        {{$t('searchtable.combination_query')}}
-                    </button>
-                    <p class="floatleft">{{$t('searchtable.inspection_time')}}</p>
-                    <form class="floatleft ">
-                        <select class="grop-search-sel radium">
-                            <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
-                        </select>
-                    </form>
-                </div>
-                <div class="big-search">
-                    <input type="text" class="floatleft big-search-input" id="app">
-                    <img src="../assets/images/search.png.png" class="big-search-img">
-                    <form class="floatleft ">
-                        <select class="big-search-sel  ">
-                            <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>
-                        </select>
-                    </form>
-                    <button class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
-                </div>
-                <div class="clear"></div>
-                <div class="table-show">
-                    <el-table :data="tabledatas.orderlist" border style="width: 100%" height="400">
-                        <el-table-column label="" width="28" style="height:30px;padding:0px">
-                            <template scope="scope">
-                                <!--  <el-popover trigger="hover" placement="top">
-                                 <p>相关诊断</p> -->
-                                <div slot="reference" class="name-wrapper">
-                                    <el-tooltip class="item" content="相关诊断" placement="top">
-                                        <el-tag>
-                                            <div>
-                                                <p class="relateimgon  relateclick" @click="showrelate"
-                                                   :id='scope.row.patient.birthday'></p>
-                                            </div>
-                                        </el-tag>
-                                    </el-tooltip>
-                                </div>
-                                </el-popover>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="" width="20">
-                            <template scope="scope">
-                                <div>
-                                </div>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="病理号" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.pathologyNo}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="姓名" width="54">
-                            <template scope="scope">
-                                <span>{{ scope.row.patient.patientName}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="性别" width="40">
-                            <template scope="scope">
-                                <span>{{ scope.row.patient.sex}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="年龄" width="40">
-                            <template scope="scope">
-                                <span>{{ scope.row.patient.age}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="住院号" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.inhospitalId }}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="送检单位" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid }}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="送检科室" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid }}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="标本名称" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid }}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="临床诊断" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="诊断意见" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="主诊医生" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="送检日期" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="报告日期" width="114">
-                            <template scope="scope">
-                                <span>{{ scope.row.applicationid}}</span>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-                <div class="right-bottom">
-                    <p class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
-                    <p class="urgecolor"><a class="urgecolor" href="#">申请单(1)</a></p>
-                    <p class="activecolor"><a class="activecolor" href="#">会诊意见(0)</a></p>
-                </div>
+            </el-checkbox-group>
+        </div>
+        <br>
+        <div class="grop-search ">
+            <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
+            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
+            <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
+             <form  class="floatleft ">
+                <select class="grop-search-sel  radium">
+                    <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
+                </select>
+            </form>
+        </div>
+        <div class="big-search">
+            <input type="text" class="floatleft big-search-input" id="app">
+            <img src="../assets/images/search.png.png" class="big-search-img">
+            <form  class="floatleft ">
+                <select class="big-search-sel  ">
+                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
+                </select>
+            </form>
+            <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
+        </div>
+        <div class="clear"></div>
+        <div class="table-show">
+            <div>
+            <table >
+                <thead>
+                    <tr>
+                        <th class="pictable"></th>
+                        <th class="statustable"></th>
+                        <th class="pathology-table">病理号</th>
+                        <th class="name-table">姓名</th>
+                        <th class="sex-table">性别</th>
+                        <th class="age-table">年龄</th>
+                        <th class="hospitalized-table">住院号</th>
+                        <th class="unit-table">送检单位</th>
+                        <th class="department-table">送检科室</th>
+                        <th class="sample-table">标本名称</th>
+                       
+                    </tr>
+                </thead>
+            </table>
             </div>
             <div class="el-table__body-wrapper">
             <table style="table-layout:fixed">
@@ -396,8 +313,7 @@
     width:34px;
     height: 24px;
     border:1px solid #e5e5e5;
-    border-radius: 3px;
-   
+    border-radius: 3px;  
 }
 .selectage{
     margin-left: 3px;
@@ -746,19 +662,19 @@ table .pictable{
     table-layout: fixed;
 }
 .statustable{
-    min-width:20px;
-    width:20px;
+    min-width:23px;
+    width:23px;
 }
 .pathology-table{
     width: 114px;
     min-width: 114px;
 }
 .name-table{
-    width: 69px;
-    min-width: 69px;
+    width: 86px;
+    min-width: 86px;
 }
 .nameover{
-    width:65px;
+    width:84px;
 }
 .sex-table,.age-table{
     width:44px;
@@ -786,7 +702,6 @@ table .pictable{
 #middle-right table td:nth-child(2),#middle-right table th:nth-child(2){
     border-left:none;
 }
-
 </style>
 <script>
     import {mapState} from 'vuex';
@@ -849,7 +764,11 @@ table .pictable{
             },
 
             async searchTable () {
-                const response = await fetch('/api/test',{ 
+
+                // const response = await fetch('/api/test',{ 
+
+                const response = await
+                fetch('/search-panel/load', {
 
                     method: 'POST',
                     headers: {
@@ -884,7 +803,6 @@ table .pictable{
                 if(!$(".rightbtntwo").hasClass('insetcolor')){
                    $(".rightbtntwo").addClass('insetcolor');
                    $(".rightbtntwo").siblings().removeClass('insetcolor')
-
                 }
             },
             qubtn: function () {

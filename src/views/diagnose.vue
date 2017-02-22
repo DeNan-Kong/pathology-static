@@ -86,6 +86,7 @@
         font-size: 14px;
         width: 100%;
         min-width: 1340px;
+        position: relative;
     }
 
     .case-message, .tabs-pay, .tabs-img, .tabs-check, .tabs-materials {

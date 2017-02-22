@@ -31,7 +31,7 @@
           </select>
       </form> 
   </div>
-  <div class="diagnostic-middle">
+  <div class="diagnostic-middle scroll-flow">
      <div  class="diagnostic-middle-top">
        <p class="diagnostic-middle-font ">辽宁中医药大学附属医院</p>
        <p class="diagnostic-middle-font">病理检查报告单</p>
@@ -86,40 +86,11 @@
             <img src="../assets/images/search.png.png"  class="floatleft">
             <input type="text"  class="floatleft  dictionary-text">
             <div class="material-add2  floatleft"></div> 
-            <div class="material-modify  floatleft"></div>
-            <div class="material-delete  floatleft"></div>
+            <div class="material-modify2  floatleft"></div>
+            <div class="material-delete2  floatleft"></div>
           </div>
-          <div class="dictionary_search">
+          <div class="dictionary_search scroll-flow">
              <treelist/>
-            <!-- <ul>
-              <li>肿物通用
-                <p class="menus-img"><p>
-              </li>
-              <li>通用2
-                <p class="menus-img"><p>
-              </li>
-              <li>肠
-                <p class="menus-img"><p>
-              </li>
-              <li>乳腺
-                <p class="menus-img"><p>
-              </li>
-              <li>肺组织
-                <p class="menus-img"><p>
-              </li>
-              <li>胃
-                <p class="menus-img"><p>
-              </li>
-              <li>全组织+双附件
-                <p class="menus-img"><p>
-              </li>
-              <li>脾脏
-                <p class="menus-img"><p>
-              </li>
-              <li>肾标本
-                <p class="menus-img"><p>
-              </li>
-            </ul> -->
           </div>
       </div>
       <div  class="diagnostic-right-iptmesssage">
@@ -174,19 +145,39 @@
         <input type="text" class="radius  iptmesssage-long iptmesssage-input">
       </div>
       <div class="diagnostic-right-a">
-        <a class="floatleft " href="#">取材信息</a>
-        <a class="floatleft " href="#">切片信息</a>
-        <a class="floatleft " href="#">技术医嘱</a>
-        <a class="floatleft rightnone" href="#">特检医嘱</a>
-        <a class="floatleft " href="#">诊断意见</a>
-        <a class="floatleft " href="#">特检报告</a>
+        <a class="floatleft " data-toggle="modal" data-target="#modalmaterials">取材信息</a>
+        <a class="floatleft " data-toggle="modal" data-target="#modalsection">切片信息</a>
+        <a class="floatleft " data-toggle="modal" data-target="#modaltechnical">技术医嘱</a>
+        <a class="floatleft " href="#">特检医嘱</a>
+        <a class="floatleft rightnone" href="#">诊断意见</a>
+        <a class="floatleft" data-toggle="modal" data-target="#modalfrozen">冰冻报告</a>
+        <a class="floatleft " href="#">诊断模板</a>
       </div>
       <div  class="diagnostic-right-bottom">
         <div class="checkpic-one checkpic floatleft"></div><div  class="checkpic-two checkpic floatleft"></div>
         <div class="checkpic-thr checkpic floatleft"></div><div  class="checkpic-four checkpic floatleft"></div>
         <div class="checkpic-five checkpic floatleft"></div><div  class="checkpic-six checkpic floatleft"></div>
-        <div class="checkpic-sev checkpic floatleft"></div><div  class="checkpic-eig checkpic floatleft"></div>
+        <div class="checkpic-sev checkpic floatleft"></div>
+        <div  class="checkpic-eig checkpic floatleft" data-toggle="modal" data-target="#printmodal"></div>
       </div>
+       <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <printmodal />
+       </div>
+       <div class="modal fade" id="modalfrozen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalfrozen />
+       </div>
+       <div class="modal fade" id="modaltechnical" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modaltechnical/>
+       </div>
+       <div class="modal fade" id="modalmaterials" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalmaterials/>
+       </div>
+        <div class="modal fade" id="modalsection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalsection/>
+       </div>
+      <!-- <div class="printmodal" v-show="printmodal">
+        
+      </div> -->
     </div>
   </div>
 </div>
@@ -346,9 +337,30 @@
   background: url('../assets/images/material.png')  -6px -5px no-repeat;
   width:26px;
   height: 26px;
-  margin-left: 213px;
+  margin-left: 209px;
   margin-right: 2px;
-  margin-top: -23px;
+  margin-top: -27px;
+}
+.material-modify2{
+  float:left;
+  background: url('../assets/images/material.png')  -40px -5px no-repeat;
+  width:26px;
+  height: 26px;
+  margin-left: 238px;
+  margin-top: -27px;
+}
+.material-modify2:hover{
+  background: url('../assets/images/material.png')  -40px -40px no-repeat;
+}
+.material-delete2 {
+    background: url('../assets/images/material.png') -72px -5px no-repeat;
+    width: 26px;
+    height: 26px;
+    margin-left: 267px;
+    margin-top: -27px;
+}
+.material-delete2:hover{
+  background: url('../assets/images/material.png')  -72px -40px no-repeat;
 }
 .material-add2:hover{
   background: url('../assets/images/material.png')  -6px -40px no-repeat;
@@ -356,8 +368,9 @@
   }
 .dictionary_search{
   width: 298px;
-  height: 286px;
-  overflow-y: scroll;
+  height: 285px;
+  border-bottom:1px solid #c9c9c9;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .dictionary-search2 ul li{
@@ -435,10 +448,11 @@ body .iptmesssage-p-long{
 }
 .diagnostic-right-a a{
   display: block;
-  width: 80px;
+  width: 76px;
   height: 32px;
   text-decoration: underline;
   color: #2eacd5;
+  cursor: pointer;
 }
 .diagnostic-right-a .rightnone{
   width: 77px;
@@ -522,16 +536,26 @@ body .iptmesssage-p-long{
 <script>
 import Calendar from 'components/calendar';
 import Treelist from "components/treelist";
+import Printmodal from "components/printmodal";
+import Modalfrozen from "components/modalfrozen";
+import Modaltechnical from "components/modaltechnical";
+import Modalmaterials from "components/modalmaterials";
+import Modalsection from "components/modalsection";
   export default {
     data() {
       return {
-       
+       printmodal:true,
        
       }
     },
     components:{
             "calendar":Calendar,
-             "treelist":Treelist
+            "treelist":Treelist,
+            "printmodal":Printmodal,
+            "modalfrozen":Modalfrozen,
+            "modaltechnical":Modaltechnical,
+            "modalmaterials":Modalmaterials,
+            "modalsection":Modalsection
         },
     methods:{
       mydictionary2:function(){
