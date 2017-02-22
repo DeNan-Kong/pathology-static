@@ -217,6 +217,7 @@
                 // 加载信息
                 const response = await fetch('/login/load', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -267,6 +268,7 @@
             async loginSubmit() {
                 const response = await fetch('/login/submit', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },

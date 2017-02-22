@@ -52,29 +52,29 @@
             </table>
             </div>
             <div class="el-table__body-wrapper">
-            <table style="table-layout:fixed">
-                <tbody v-for="item in tabledatas.orderlist">
-                    <tr  :data-patientId="item.patient.patientId" @click="showcontent">
-                        <td class="pictable"> 
-                             <el-tooltip class="item"  content="相关诊断" placement="top">
-                            <el-tag>
-                            <div class="relateimgon relateclick" @click="showrelate" :id="item.patient.patientId"></span></div>
-                            </el-tag>
-                            </el-tooltip>
-                        </td>
-                        <td class="statustable">冰</td>
-                        <td class="pathology-table">{{item.pathologyNo}}</td>
-                        <td class="name-table"><div class="textoverflow nameover">{{item.patient.patientName}}</div></td>
-                        <td class="sex-table">{{item.patient.sex}}</td>
-                        <td class="age-table">{{item.patient.age}}</td>
-                        <td class="hospitalized-table"><div class="textoverflow hospitalized-over">20106235261svhgghdcvashgdcv</div></td>
-                        <td class="unit-table">20106235261</td>
-                        <td class="department-table">20106235261</td>
-                        <td class="sample-table">11111</td>
-                    </tr>
+                <table style="table-layout:fixed">
+                    <tbody>
+                        <tr v-for="item in tabledatas" :data-patientId="item.patientId" @click="showcontent">
+                            <td class="pictable">
+                                <el-tooltip class="item"  content="相关诊断" placement="top">
+                                    <el-tag>
+                                        <div class="relateimgon relateclick" @click="showrelate" :id="item.patientId"></span></div>
+                                    </el-tag>
+                                </el-tooltip>
+                            </td>
+                            <td  class="statustable"><span v-if="item.isFrozen"> 冰</span></td>
+                            <td class="pathology-table">{{item.pathologyNo}}</td>
+                            <td class="name-table"><div class="textoverflow nameover">{{item.patientName}}</div></td>
+                            <td class="sex-table">{{item.sexName}}</td>
+                            <td class="age-table">{{item.age}}</td>
+                            <td class="hospitalized-table"><div class="textoverflow hospitalized-over">{{item.inhospitalId}}</div></td>
+                            <td class="unit-table">{{item.inspectName}}</td>
+                            <td class="department-table">{{item.departmentName}}</td>
+                            <td class="sample-table">{{item.specimenName}}</td>
+                        </tr>
                     </tbody>
-                    </table>
-                </div>
+                </table>
+            </div>
         </div>
         <div class="right-bottom">
             <p  class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
@@ -748,19 +748,20 @@ table .pictable{
             },
 
             async tableData () {
-            const response = await fetch('/api/test',{ 
-                method: 'POST',
-                headers: { 
-                   "Content-type": "application/json; charset=UTF-8" 
-                }, 
-                body: JSON.stringify({ 
-                    firstParam: 'yourValue',
-                })
-            });
-            const json = await response.text();
-            const data = JSON.parse(json);
-            this.tabledatas = data;
-            console.log(this.tabledatas)
+                const response = await fetch('/register/query-time', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        selectTimeType: '4',
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.tabledatas = data;
+                console.log(this.tabledatas)
             },
 
             async searchTable () {

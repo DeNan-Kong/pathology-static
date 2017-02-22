@@ -510,6 +510,7 @@
                 const self=this;
                 const response = await fetch('/register/load', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
@@ -524,6 +525,7 @@
             async createOrder(){
                 const response = await fetch('/register/create-order', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
@@ -541,6 +543,7 @@
 
                 const response = await fetch('/api/hello',{
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
@@ -564,6 +567,7 @@
                 if (this.errors.any() == false) {
                     const response = await fetch('/register/save', {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             "Content-type": "application/json; charset=UTF-8"
                         },

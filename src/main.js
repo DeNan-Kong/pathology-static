@@ -19,17 +19,17 @@ import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attrib
 import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
 import ErrorHandle  from './common/error-handle';
-var $ = window.$ = window.jQuery = require('jquery'),
-    bootstrap = require('bootstrap');
+var $ = window.$ = window.jQuery = require('jquery');
 
+// bootstrap = require('bootstrap');
+
+// install plugin
 Vue.use(Vuex);
 Vue.use(VueRouter);
-// install plugin
 Vue.use(VueI18n);
 Vue.use(ErrorHandle);
 
 // ready translated locales
-
 Vue.config.lang = 'cn';
 Vue.locale('cn', labelMessages);
 

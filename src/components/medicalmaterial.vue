@@ -580,6 +580,7 @@ textarea{
                 const self=this;
                 const response = await fetch('/material/load',{ 
                     method: 'POST',
+                    credentials: 'include',
                     headers: { 
                         "Content-type": "application/json; charset=UTF-8" 
                     }, 
