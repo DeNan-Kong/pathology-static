@@ -19,6 +19,8 @@ import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attrib
 import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
 import ErrorHandle  from './common/error-handle';
+//import bootstrap from 'bootstrap';
+
 var $ = window.$ = window.jQuery = require('jquery');
 var bootstrap = require('bootstrap');
 
