@@ -823,7 +823,7 @@ table .pictable{
             showRegisterMessage:function(id){
                 // var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
                 this.$emit('showRegisterMessage',id)
-
+            },
             showContent: function (orderId) {
                 this.$emit("orderItemClick", orderId);
             },
