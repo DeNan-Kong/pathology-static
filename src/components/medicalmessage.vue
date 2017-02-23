@@ -128,7 +128,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-three">{{$t('medicalmessage.send_doctor')}}</p>
-                    <form class="floatleft ">
+                    <form class="floatleft">
                         <select class="p-margin radium-sup null" v-model="bindData.submittingPhysicianId">
                             <option v-for="item in initialData.submittingPhysicianList" :value="item.submittingPhysicianId">
                                 {{item.name}}

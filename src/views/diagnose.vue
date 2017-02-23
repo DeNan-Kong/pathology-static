@@ -457,6 +457,7 @@
             },
             showModalContent:function(id){
                 // data-toggle="modal" data-target="#printmodal"
+                console.log("lll")
                 if(id==1){
                 $('#historycheck').modal({keyboard: false})
                 }

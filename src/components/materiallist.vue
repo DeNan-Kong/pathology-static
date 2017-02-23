@@ -15,6 +15,12 @@
     }
   },
    props: ['mydictionaryData'],
+   // created () {
+   //          console.log(this.mydictionaryData)
+   //      },
+   methods:{
+
+   }
   
   };
 </script>

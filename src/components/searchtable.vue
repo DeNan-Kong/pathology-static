@@ -2,7 +2,7 @@
     <div> 
         <div  class="right-inner">    
         <div class="right-top">
-           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}">{{item.name}}
+           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two stylevtn"  v-bind:style="{background:getOrderStatusColor(index)}">{{item.name}}
             </button>
             <el-checkbox-group v-model="checkList">
                         <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
@@ -203,6 +203,9 @@
 </div>
 </template>
 <style>
+.stylevtn{
+    border:1px solid #20eedd;
+}
 .relateimgon{
     display: block;
     width: 26px;
@@ -789,8 +792,7 @@ table .pictable{
                 this.$emit('orderStatusClick',id)
                 console.log(id)
             },
-            getOrderStatusColor:function(index)
-            {
+            getOrderStatusColor:function(index){
                 return this.statusColors[index];
             },
             cancle: function () {
@@ -829,7 +831,8 @@ table .pictable{
             },
             modalSelect:function(id){
                 // var id=$(e.target).attr('id');
-               this.$emit('modalSelect',id) 
+               this.$emit('modalSelect',id)
+               console.log(id) 
            },
             method: function () {
                 this.tableshow();

@@ -158,13 +158,13 @@
           <div class="material-modify  floatleft"></div>
           <div class="material-delete  floatleft"></div>
         </div>
-        <div class="dictionary-search" v-show="mydictionary">
+        <div class="dictionary-search scroll-flow" v-show="mydictionary">
           <materiallist :mydictionaryData="(mydictionaryData)"/>
         </div>
-        <div class="commondictionary-search" v-show="commondictionary">
+        <div class="commondictionary-search scroll-flow" v-show="commondictionary">
           <commondictionary/>
         </div>
-        <div class="checkdictionary-search" v-show="checkdictionary">
+        <div class="checkdictionary-search scroll-flow" v-show="checkdictionary">
           <checkdictionary/>
         </div>
     </div>
@@ -478,21 +478,6 @@ textarea{
   overflow: auto;
   resize:none;
 }
- .dictionary-search::-webkit-scrollbar-track,.commondictionary-search::-webkit-scrollbar-track,.checkdictionary-search::-webkit-scrollbar-track{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #F5F5F5;
-} 
- .dictionary-search::-webkit-scrollbar,.commondictionary-search::-webkit-scrollbar,.checkdictionary-search::-webkit-scrollbar{
-    width: 10px;
-    height: 12px;
-    background-color: #F5F5F5;
-}
- .dictionary-search::-webkit-scrollbar-thumb,.commondictionary-search::-webkit-scrollbar-thumb,.checkdictionary-search::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #ccc;
-}
 .el-tree{
   border:none;
 }
@@ -514,54 +499,7 @@ textarea{
                 mydictionary:true,
                 commondictionary:false,
                 checkdictionary:false,
-                value1: [],
-                datass: [{
-                    value: 'beijing',
-                    label: '北京',
-                    children: [
-                        {
-                            value: 'gugong',
-                            label: '故宫'
-                        },
-                        {
-                            value: 'tiantan',
-                            label: '天坛'
-                        },
-                        {
-                            value: 'wangfujing',
-                            label: '王府井'
-                        }
-                    ]
-                }, {
-                    value: 'jiangsu',
-                    label: '江苏',
-                    children: [
-                        {
-                            value: 'nanjing',
-                            label: '南京',
-                            children: [
-                                {
-                                    value: 'fuzimiao',
-                                    label: '夫子庙',
-                                }
-                            ]
-                        },
-                        {
-                            value: 'suzhou',
-                            label: '苏州',
-                            children: [
-                                {
-                                    value: 'zhuozhengyuan',
-                                    label: '拙政园',
-                                },
-                                {
-                                    value: 'shizilin',
-                                    label: '狮子林',
-                                }
-                            ]
-                        }
-                    ],
-                }]
+                value1: [],       
             }
     },
       // props: ['materialInitialData','get'],
@@ -592,13 +530,11 @@ textarea{
                 self.allMaterialData=data;
                 self.materialInitialData = data.materialPartsList;
                 self.mydictionaryData=data.materialPartsList.nodeList;
-                console.log(self.mydictionaryData)
             },
           myDictionary:function(){
             this.commondictionary=false;
             this.mydictionary=true;
             this.checkdictionary=false;
-            console.log(this.mydictionary)
             $(".mydictionary").addClass('dictionary-active');
             $(".mydictionary").siblings().removeClass('dictionary-active');
           },
@@ -606,8 +542,6 @@ textarea{
             this.commondictionary=true;
             this.mydictionary=false;
             this.checkdictionary=false;
-             console.log(this.commondictionary)
-             console.log(this.mydictionary)
             $(".commondictionary").addClass('dictionary-active');
             $(".commondictionary").siblings().removeClass('dictionary-active');
           },
@@ -616,8 +550,6 @@ textarea{
             this.commondictionary=false;
             this.mydictionary=false;
             this.checkdictionary=true;
-             console.log(this.checkdictionary)
-             console.log(this.mydictionary)
             $(".checkdictionary").addClass('dictionary-active');
             $(".checkdictionary").siblings().removeClass('dictionary-active');
           },
