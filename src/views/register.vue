@@ -15,7 +15,7 @@
                             class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
                             class="close" @click="closebtn"></p></a><br>
                     </div>
-                    <medicalmessage/>
+                    <medicalmessage ref="medicalMessage" v-on:orderSaved="orderSaved"/>
                 </div>
                 <div class="tabs-img">
                     <div class="case-tabs">
@@ -48,7 +48,7 @@
                     <div class="tabscheck">789</div>
                 </div>
             </div>
-            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method" v-on:orderStatusClick="searchByStatus"/>
+            <searchtable v-on:orderItemClick="orderItemClick" ref="searchtable"/>
         </div>
     </div>
 </template>
@@ -195,7 +195,6 @@
         data(){
             return {
                 aa: 10,
-                searchTableData: {},
                 pickerOptions0: {
                     disabledDate(time) {
                         return time.getTime() < Date.now() - 8.64e7;
@@ -209,7 +208,6 @@
         },
         created(){ // 生命周期 created,获取数据
             this.first()
-            // this.searchTableData()
         },
         components: {
             "top-menu": TopMenu,
@@ -218,23 +216,7 @@
             "medicalmessage": Medicalmessage,
         },
         methods: {
-            async searchTableData () {
-                const response = await fetch('/api/hello', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-                        firstParam: 'yourValue',
-                        secondParam: 'yourOtherValue'
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                this.searchTableData = data;
-                console.log(this.searchTableData)
-            },
+
             medicalInformation: function () {
                 $(".medicalInformation").addClass("active");
                 $(".medicalInformation").siblings().removeClass("active");
@@ -373,10 +355,14 @@
             first: function () {
                 $(".aaaa").css('display', 'block');
             },
-            searchByStatus:function (id) {
-                alert(id);
+            async orderItemClick(orderId) {
+                var medicalMessage = this.$refs.medicalMessage;
+                medicalMessage.loadOrder(orderId);
+            },
+            async orderSaved(){
+                var searchtable = this.$refs.searchtable;
+                searchtable.search();
             }
-
         }
     }
 </script>

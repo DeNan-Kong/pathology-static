@@ -3,7 +3,7 @@
     <div  id="middle-right">
         <div  class="right-inner">    
         <div class="right-top">
-           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" v-on:click="orderStatusClick(item.id)">{{item.name}}
+           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}">{{item.name}}
             </button>
             <el-checkbox-group v-model="checkList">
                         <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
@@ -54,7 +54,7 @@
             <div class="el-table__body-wrapper">
                 <table style="table-layout:fixed">
                     <tbody>
-                        <tr v-for="item in tabledatas" :data-patientId="item.patientId" @click="showcontent">
+                    <tr v-for="item in tabledatas" @click="showContent(item.orderId)">
                             <td class="pictable">
                                 <el-tooltip class="item"  content="相关诊断" placement="top">
                                     <el-tag>
@@ -186,7 +186,7 @@
     </div>
     <div class="relatelist" v-if="listshow">
         <relatetable :relationshow="method" :relationdate="(relateListDatas)" />
-    </div>    
+    </div>
 </div>
 </template>
 <style>
@@ -726,8 +726,8 @@ table .pictable{
         },
         props: ['tableshow'],
         created(){
-            this.tableData();
-            this.searchTable();
+            this.load();
+            this.search();
         },
         methods: {
             async relateListData () {
@@ -747,7 +747,7 @@ table .pictable{
                 this.relateListDatas = data;
             },
 
-            async tableData () {
+            async searchByTime () {
                 const response = await fetch('/register/query-time', {
                     method: 'POST',
                     credentials: 'include',
@@ -760,17 +760,13 @@ table .pictable{
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
+                this.$errHandle(data);
                 this.tabledatas = data;
-                console.log(this.tabledatas)
             },
-
-            async searchTable () {
-
-                // const response = await fetch('/api/test',{ 
-
+            async load () {
+                // const response = await fetch('/api/test',{
                 const response = await
                 fetch('/search-panel/load', {
-
                     method: 'POST',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
@@ -780,7 +776,10 @@ table .pictable{
                 const json = await response.text();
                 const data = JSON.parse(json);
                 this.searchTableData = data;
-
+            },
+            async search()
+            {
+                this.searchByTime();
             },
             toggle: function () {
                 $(".bmobbox").animate({marginLeft: "538px"}, 100).fadeToggle();
@@ -848,9 +847,6 @@ table .pictable{
                     $(".rightbtnnin").siblings().removeClass('insetcolor')
                 }
             },
-            orderStatusClick: function (id) {
-                this.$emit('orderStatusClick',id)
-            },
             getOrderStatusColor(index)
             {
                 return this.statusColors[index];
@@ -882,8 +878,8 @@ table .pictable{
                 this.relateListData ();
                 e.stopPropagation();
             },
-            showcontent:function(e){
-                var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
+            showContent: function (orderId) {
+                this.$emit("orderItemClick", orderId);
             },
             method: function () {
                 this.tableshow();

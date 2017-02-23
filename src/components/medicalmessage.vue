@@ -25,7 +25,7 @@
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
-                                   class="p-margin radium" type="text" v-model="bindData.pathologyNo">
+                                   class="p-margin radium" type="text" v-model="bindData.pathologyNo" :disabled="bindData.orderId!=null">
                         </el-tooltip>
                     </div>
                     <p class="floatleft p-two">{{$t('medicalmessage.application_number')}}</p>
@@ -453,7 +453,117 @@
         data(){
             return {
                 initialData:{},
-                bindData: {
+                bindData:{}
+            }
+        },
+        components: {
+            "searchtable": SearchTable,
+            "calendar": Calendar,
+            "medicalmessage": Medicalmessage
+        },
+        methods: {
+            async loadData () {
+                const self=this;
+                const response = await fetch('/register/load', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                self.initialData = data;
+            }, async createOrder(){
+                const response = await fetch('/register/create-order', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: {}
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                // 初始化绑定对象
+                let newBindData = this.newBindData();
+                // 合并对象
+                let mergedBindData = Object.assign(newBindData,data);
+                this.bindData = mergedBindData;
+
+                // 不验证
+                // this.errors.clear('firstName');
+                return false;
+            }, async newsave(){
+                await this.save();
+                this.createOrder();
+            }, refund: function () {
+                $(".null").val('');
+            }, async save(){
+                this.$validator.validateAll().then(success => {
+                }).then(failing => {
+                }, rejected => {
+                });
+                if (this.errors.any() == false) {
+                    const response = await fetch('/register/save', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify(this.bindData)
+                    });
+                    const resultJson = await response.text();
+                    const resultObject = JSON.parse(resultJson);
+
+                    // 异常处理
+                    if (this.$errHandle(resultObject)) {
+                        return;
+                    }
+                    // 重新加载 Order
+                    this.loadOrder(resultObject.orderId);
+
+                    // 保存事件
+                    this.$emit("orderSaved");
+                }
+            }, print: function () {
+                console.log("print");
+            }, refresh: function () {
+                console.log("refresh");
+            },
+            inspectDateChange: function (date) {
+                this.bindData.inspectDate = date;
+            },
+            receiveDateChange: function (date) {
+                this.bindData.receiveDate = date;
+            },
+            lmpChange: function (date) {
+                this.bindData.lmp = date;
+            },async loadOrder(orderId) {
+                const response = await fetch('/register/load-order', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        orderId: orderId
+                    })
+                });
+                const resultJson = await response.text();
+                const resultObject = JSON.parse(resultJson);
+                // 异常处理
+                if (this.$errHandle(resultObject)) {
+                    return;
+                }
+
+                this.bindData = resultObject;
+            }, newBindData: function (order) {
+                return {
+                    "orderId":null,
                     "applicationNo": "",
                     "frozenNo": "",
                     "infobaseId": 30000001,
@@ -495,114 +605,12 @@
                         "idCard": "",
                         "address": ""
                     }
-                },
-                today:{},
-
+                }
             }
         },
-        components: {
-            "searchtable": SearchTable,
-            "calendar": Calendar,
-            "medicalmessage": Medicalmessage
-        },
-        methods: {
-            async loadData () {
-                const self=this;
-                const response = await fetch('/register/load', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                self.initialData = data;
-            },
-            async createOrder(){
-                const response = await fetch('/register/create-order', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: {}
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-
-                for (let p in data) {
-                    this.bindData[p] = data[p];
-                }
-                return false;
-            },
-            async newsave(){
-
-                const response = await fetch('/api/hello',{
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-                            order:this.bindData
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                this.pathologyno= data;
-                console.log(this.pathologyno)
-            },
-            refund: function () {
-                $(".null").val('');
-            },
-            async save(){
-                this.$validator.validateAll().then(success => {
-                }).then(failing => {
-                }, rejected => {
-                });
-                if (this.errors.any() == false) {
-                    const response = await fetch('/register/save', {
-                        method: 'POST',
-                        credentials: 'include',
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8"
-                        },
-                        body: JSON.stringify(this.bindData)
-                    });
-                    const resultJson = await response.text();
-                    const resultObject = JSON.parse(resultJson);
-
-                    // 异常处理
-                    if (this.$errHandle(resultObject)) {
-                        return;
-                    }
-                }
-
-
-        },
-            print: function () {
-                console.log("print");
-        },
-            refresh: function () {
-                console.log("refresh");
-            },
-            inspectDateChange: function (date) {
-                this.bindData.inspectDate = date;
-            },
-            receiveDateChange: function (date) {
-                this.bindData.receiveDate = date;
-            },
-            lmpChange: function (date) {
-                this.bindData.lmp = date;
-            }
-        },
-        mounted () {
-            this.loadData()
-
+        created () {
+            this.loadData();
+            this.bindData = this.newBindData();
         }
     }
 </script>
