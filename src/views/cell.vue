@@ -31,7 +31,9 @@
                 <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
+        <div  id="middle-right">
+            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
+        </div>
     </div>
  </div>
 </template>

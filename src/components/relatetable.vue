@@ -1,7 +1,6 @@
 <template>
-
-  <div id="relatetable">
- <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition" style="width: 100%; height: 400px;">
+<div id="relatetable">
+ <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition" style="width: 100%; height: 415px;">
   <div class="hidden-columns">
     <div></div>
      <div></div>
@@ -13,7 +12,7 @@
       <div></div>
     </div>
     <div class="el-table__header-wrapper">
-      <table cellspacing="0" cellpadding="0" border="0" class="el-table__header" style="width: 654px;">
+      <table cellspacing="0" cellpadding="0" border="0" class="el-table__header" style="width: 652px;">
         <col name="el-table_1_column_33" width="144">
         <col name="el-table_1_column_34" width="76">
         <col name="el-table_1_column_35" width="48">
@@ -90,7 +89,6 @@
         <td class="el-table_1_column_40">
           <div class="cell"></div>
         </td>
-      
         <td class="gutter">
         </td>
       </tr>

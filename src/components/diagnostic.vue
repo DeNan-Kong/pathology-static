@@ -22,21 +22,14 @@
               <option>纸张大小</option>
           </select>
       </form> 
-      <p class="diagnostic-top-p  floatleft">缓发原因</p>
-      <form  class="floatleft">
-          <select class="floatleft diagnostic-top-four border">
-              <option>免疫组化</option>
-              <option>颜色</option>
-              <option>纸张大小</option>
-          </select>
-      </form> 
   </div>
   <div class="diagnostic-middle scroll-flow">
-     <div  class="diagnostic-middle-top">
-       <p class="diagnostic-middle-font ">辽宁中医药大学附属医院</p>
-       <p class="diagnostic-middle-font">病理检查报告单</p>
-       <span class="diagnostic-middle-span">病检号：CC131224000</span>
-     </div>
+    
+    <div  class="diagnostic-middle-top">
+      <p class="diagnostic-middle-font ">辽宁中医药大学附属医院</p>
+      <p class="diagnostic-middle-font">病理检查报告单</p>
+      <span class="diagnostic-middle-span">病检号：CC131224000</span>
+    </div>
     <div class="diagnostic-message">
       <p  class="floatleft">姓名：</p><span class="floatleft  diagnostic-message-span">组织常规</span><p class="floatleft">性别：</p><span class="floatleft  diagnostic-message-span">女</span><p class="floatleft">年龄：</p><span class="floatleft  diagnostic-message-span">76</span><p class="floatleft">收到时间：</p><span class="floatleft  diagnostic-message-span">2016.09.07</span>
       <p class="floatleft">送检院别：</p><span class="floatleft  diagnostic-message-span2">本院</span><p class="floatleft">送检科室：</p><span class="floatleft  diagnostic-message-span2">外一科</span><p class="floatleft">送检医生：</p><span class="floatleft  diagnostic-message-span2">李医生</span><p class="floatleft">送检材料：</p><span class="floatleft  diagnostic-message-span2">宫颈刮片</span>
@@ -57,7 +50,7 @@
       <div class="diagnostic-one floatleft">
         <p  class="floatleft">病&nbsp;理&nbsp;医&nbsp;生：</p><span  class="floatleft">李雄丽</span>
       </div>
-        <p  class="floatleft diagnostic-two">诊&nbsp;断&nbsp;日&nbsp;期：</p><span  class="floatleft">2017.01.01</span>
+      <p  class="floatleft diagnostic-two">诊&nbsp;断&nbsp;日&nbsp;期：</p><span  class="floatleft">2017.01.01</span>
       <div class="clear"></div>
       <div class="diagnostic-three" >
         <p  class="floatleft ">上&nbsp;级&nbsp;医&nbsp;师：</p><span  class="floatleft">李伟</span>
@@ -69,17 +62,15 @@
       <div class="clear"></div>
       <p  class="floatleft"><strong>*电话：024-86291312</stron</p>
     </div>
+
   </div>
   <div class="diagnostic-right">
     <div class="diagnostic-right-top">
-      <div  class="mydictionary2 dictionary  dictionary-active">
+      <div  class="mydictionary2 dictionary  dictionary-active" @click="dictionaryMy">
         <p>我的词典</p>
       </div>
-      <div  class="uaualdictionary  dictionary">
+      <div  class="uaualdictionary  dictionary" @click="dictionaryCommon">
         <p>常用词典</p>
-      </div>
-      <div  class="checkdictionary2  dictionary">
-        <p>检查模板</p>
       </div>
       <div  class="diagnostic-right-search2">
           <div   class="dictionary-input2">
@@ -89,8 +80,11 @@
             <div class="material-modify2  floatleft"></div>
             <div class="material-delete2  floatleft"></div>
           </div>
-          <div class="dictionary_search scroll-flow">
-             <treelist/>
+          <div class="dictionary_search scroll-flow" v-show="dictionarymy"> 
+              <dictionaryMy/>
+            </div> 
+          <div class="dictionary_search scroll-flow" v-show="dictionarycommon">
+              <dictionaryCommon/>
           </div>
       </div>
       <div  class="diagnostic-right-iptmesssage">
@@ -201,7 +195,7 @@
 }
 .diagnostic-top-one{
   width:110px;  
-  margin-left: 5px;   
+  margin-left: 169px;   
 }
 .diagnostic-top-two{
   width:66px;
@@ -211,17 +205,6 @@
   width:80px;
   margin-left: 12px;
 }
-.diagnostic-top-p{
-  display: block;
-  width: 58px;
-  margin-left: 22px;
-  margin-top: 5px;
-  margin-right: 2px;
-}
-.diagnostic-top-four{
-  width: 80px;
-  margin-left: 2px;
-}
 .diagnostic-middle{
   width:710px;
   height: 630px;
@@ -229,8 +212,15 @@
   margin-left: 4px;
   margin-top: 12px;
   padding: 12px;
+  padding-bottom: 0px;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.diagnoseContent{
+  width:686px;
+  height: 1090px;
+  margin-top: -12px;
+  border-right:2px solid #eceef2;
 }
 .uaualdictionary{
   right: 310px;
@@ -303,7 +293,7 @@
 }
 .diagnostic-right{
   width: 315px;
-  height: 610px;
+  height: 300px;
   margin-left: 728px;
   margin-top: -710px;
 }
@@ -315,7 +305,7 @@
 }
 .diagnostic-right-top{
   width: 315px;
-  height: 610px;
+  height: 210px;
 }
 .diagnostic-right-search2{
   width: 300px;
@@ -368,11 +358,18 @@
   }
 .dictionary_search{
   width: 298px;
-  height: 285px;
+  height: 287px;
   border-bottom:1px solid #c9c9c9;
+  border-top:1px solid #c9c9c9;
   overflow-y: auto;
   overflow-x: hidden;
+  background: #fff;
 }
+/*.inner_border{
+  width: 290px;
+  height: 100%;
+  border-right:1px solid #c9c9c9;
+}*/
 .dictionary-search2 ul li{
   margin-left: -30px;
   height: 30px;
@@ -390,12 +387,7 @@
   top:-30px;
   border-top-left-radius: 3px; 
 }
-.checkdictionary2{
-  right: 310px;
-  top:110px;
-  border-bottom-left-radius: 3px;
-}
-.checkdictionary2:hover,.commondictionary2:hover,.mydictionary2:hover{
+.commondictionary2:hover,.mydictionary2:hover{
   background: #c6e4ee; 
   cursor: pointer;
 }
@@ -541,10 +533,14 @@ import Modalfrozen from "components/modalfrozen";
 import Modaltechnical from "components/modaltechnical";
 import Modalmaterials from "components/modalmaterials";
 import Modalsection from "components/modalsection";
+import DictionaryMy from "components/dictionaryMy";
+import DictionaryCommon from "components/dictionaryCommon";
   export default {
     data() {
       return {
        printmodal:true,
+       dictionarymy:true,
+       dictionarycommon:false
        
       }
     },
@@ -555,11 +551,22 @@ import Modalsection from "components/modalsection";
             "modalfrozen":Modalfrozen,
             "modaltechnical":Modaltechnical,
             "modalmaterials":Modalmaterials,
-            "modalsection":Modalsection
+            "modalsection":Modalsection,
+            "dictionaryMy":DictionaryMy,
+            "dictionaryCommon":DictionaryCommon
         },
     methods:{
-      mydictionary2:function(){
-
+      dictionaryCommon:function(){
+        this.dictionarycommon=true;
+        this.dictionarymy=false;
+        $(".uaualdictionary").addClass('dictionary-active');
+        $(".mydictionary2").removeClass('dictionary-active');
+      },
+      dictionaryMy:function(){
+        this.dictionarycommon=false;
+        this.dictionarymy=true;
+        $(".mydictionary2").addClass('dictionary-active');
+        $(".uaualdictionary").removeClass('dictionary-active');
       }
     }
   };

@@ -48,7 +48,9 @@
                     <div class="tabscheck">789</div>
                 </div>
             </div>
-            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method" v-on:orderStatusClick="searchByStatus"/>
+            <div  id="middle-right">
+            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"v-on:modalSelect="showRegisterModal" />
+        </div>
         </div>
     </div>
 </template>
@@ -199,10 +201,6 @@
                 pickerOptions0: {
                     disabledDate(time) {
                         return time.getTime() < Date.now() - 8.64e7;
-                        this.state = {
-
-                            lists: [],//初始白名单为空
-                        };
                     }
                 }
             }
@@ -374,7 +372,31 @@
             },
             searchByStatus:function (id) {
                 alert(id);
+            },
+            showMessageContent:function(id){
+                alert(id)
+            },
+            showRegisterModal:function(id){
+                if(id==1){
+                $('#historycheck').modal({keyboard: false})
+                }
+                if(id==2){
+                $('#apply').modal({keyboard: false})
+                }
+                if(id==3){
+                $('#advice').modal({keyboard: false})
+                }
+                if(id==4){
+                $('#frozenorder').modal({keyboard: false})
+                }
+                if(id==5){
+                $('#delayreason').modal({keyboard: false})
+                }
+                if(id==6){
+                $('#filllist').modal({keyboard: false})
+                } 
             }
+
 
         }
     }

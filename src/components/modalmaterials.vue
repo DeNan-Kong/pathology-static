@@ -69,7 +69,7 @@
 <style>
 .modal-materials .modal-content{
     margin-top: 30%;
-    margin-left: -232px;
+    margin-left: -20%;
     width:828px;
     height: 426px;
 } 

@@ -73,9 +73,23 @@
                     <div class="tabscheck">789</div>
                 </div>
             </div>
-            <searchtable :get-datas="fetchData" :tableshow="method"/>
+            <div class="diagnose-second-table">
+            <div  id="middle-right">
+                <div class="righttabs">
+                <a class="activeColor patientlist" v-on:click="patientList">患者列表
+                </a>
+                <a class="myreport" v-on:click="myReport">我的报告</a>
+                </div>
+                <div class="righttabs-one" v-show="tabOne">
+                <searchtable :get-datas="fetchData" :tableshow="method" v-on:modalSelect="showModalContent" />
+                </div>
+                <div class="righttabs-two" v-show="tabTwo">
+                <searchtabletwo :get-datas="fetchData" :tableshow="method" v-on:modalSelect="showModalContent" />
+                </div>
+            </div>
         </div>
     </div>
+</div>
 </template>
 <style>
     .all {
@@ -212,6 +226,30 @@
         height: 22px;
         margin-left: -2px;
     }
+    .righttabs{
+        width:200px;
+        height: 24px;
+        margin-bottom: 8px;
+    }
+    .righttabs a{ 
+        display: block;
+        float: left;
+        width:62px;
+        height:22px;
+        background:#d0eaf8;
+        margin-left: 3px;
+        text-align:center;
+        line-height:22px;
+        color:#999;
+        border-bottom-right-radius:7px;
+        border-bottom-left-radius:7px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .righttabs .activeColor{
+        background:#57bdde;
+        color:#fff;
+    }
 
 </style>
 <script>
@@ -228,11 +266,14 @@
     import Advice from 'components/advice';
     import Cytology from 'components/cytology';
     import Login from 'components/login';
+    import Searchtabletwo from 'components/searchtabletwo';
     export default{
         data(){
             return {
                 aa: 10,
                 searchTableData: {},
+                tabOne:true,
+                tabTwo:false
             }
         },
         created(){ // 生命周期 created,获取数据
@@ -251,7 +292,8 @@
             "medicalsection": Medicalsection,
             "advice": Advice,
             "cytology": Cytology,
-            "login": Login
+            "login": Login,
+            "searchtabletwo":Searchtabletwo
         },
         methods: {
             medicalInformation: function () {
@@ -412,6 +454,39 @@
             },
             first: function () {
                 $(".aaaa").css('display', 'block');
+            },
+            showModalContent:function(id){
+                // data-toggle="modal" data-target="#printmodal"
+                if(id==1){
+                $('#historycheck').modal({keyboard: false})
+                }
+                if(id==2){
+                $('#apply').modal({keyboard: false})
+                }
+                if(id==3){
+                $('#advice').modal({keyboard: false})
+                }
+                if(id==4){
+                $('#frozenorder').modal({keyboard: false})
+                }
+                if(id==5){
+                $('#delayreason').modal({keyboard: false})
+                }
+                if(id==6){
+                $('#filllist').modal({keyboard: false})
+                }
+            },
+            patientList:function(){
+                this.tabOne=true;
+                this.tabTwo=false;
+                $('.patientlist').addClass("activeColor");
+                $('.myreport').removeClass("activeColor");
+            },
+            myReport:function(){
+                this.tabOne=false;
+                this.tabTwo=true;
+                $('.myreport').addClass("activeColor");
+                $('.patientlist').removeClass("activeColor");
             }
         }
     }

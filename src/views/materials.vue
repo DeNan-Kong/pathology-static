@@ -38,7 +38,9 @@
                 <div class="tabscheck">789</div>
             </div>
         </div>
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"/>
+        <div  id="middle-right">
+        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method" v-on:modalSelect="showMaterialsModal" />
+    </div>
      </div>
  </div>
 </template>
@@ -291,6 +293,26 @@ import {mapState} from 'vuex';
             },
             first:function(){
                  $(".aaaa").css('display','block');
+            },
+            showMaterialsModal:function(id){
+               if(id==1){
+                $('#historycheck').modal({keyboard: false})
+                }
+                if(id==2){
+                $('#apply').modal({keyboard: false})
+                }
+                if(id==3){
+                $('#advice').modal({keyboard: false})
+                }
+                if(id==4){
+                $('#frozenorder').modal({keyboard: false})
+                }
+                if(id==5){
+                $('#delayreason').modal({keyboard: false})
+                }
+                if(id==6){
+                $('#filllist').modal({keyboard: false})
+                } 
             }
     }   
 }

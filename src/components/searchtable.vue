@@ -1,91 +1,85 @@
 <template>
     <div> 
-    <div  id="middle-right">
         <div  class="right-inner">    
-        <div class="right-top">
-           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" v-on:click="orderStatusClick(item.id)">{{item.name}}
-            </button>
-            <el-checkbox-group v-model="checkList">
-                        <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
-            </el-checkbox-group>
-        </div>
-        <br>
-        <div class="grop-search ">
-            <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
-            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
-            <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
-             <form  class="floatleft ">
-                <select class="grop-search-sel  radium">
-                    <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
-                </select>
-            </form>
-        </div>
-        <div class="big-search">
-            <input type="text" class="floatleft big-search-input" id="app">
-            <img src="../assets/images/search.png.png" class="big-search-img">
-            <form  class="floatleft ">
-                <select class="big-search-sel  ">
-                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
-                </select>
-            </form>
-            <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
-        </div>
-        <div class="clear"></div>
-        <div class="table-show">
-            <div>
-            <table >
-                <thead>
-                    <tr>
-                        <th class="pictable"></th>
-                        <th class="statustable"></th>
-                        <th class="pathology-table">病理号</th>
-                        <th class="name-table">姓名</th>
-                        <th class="sex-table">性别</th>
-                        <th class="age-table">年龄</th>
-                        <th class="hospitalized-table">住院号</th>
-                        <th class="unit-table">送检单位</th>
-                        <th class="department-table">送检科室</th>
-                        <th class="sample-table">标本名称</th>
-                       
-                    </tr>
-                </thead>
-            </table>
+            <div class="right-top">
+               <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(item.id)">{{item.name}}
+                </button>
+                <el-checkbox-group v-model="checkList">
+                    <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
+                </el-checkbox-group>
             </div>
-            <div class="el-table__body-wrapper">
-            <table style="table-layout:fixed">
-                <tbody v-for="item in tabledatas.orderlist">
-                    <tr  :data-patientId="item.patient.patientId" @click="showcontent">
-                        <td class="pictable"> 
-                             <el-tooltip class="item"  content="相关诊断" placement="top">
-                            <el-tag>
-                            <div class="relateimgon relateclick" @click="showrelate" :id="item.patient.patientId"></span></div>
-                            </el-tag>
-                            </el-tooltip>
-                        </td>
-                        <td class="statustable">冰</td>
-                        <td class="pathology-table">{{item.pathologyNo}}</td>
-                        <td class="name-table"><div class="textoverflow nameover">{{item.patient.patientName}}</div></td>
-                        <td class="sex-table">{{item.patient.sex}}</td>
-                        <td class="age-table">{{item.patient.age}}</td>
-                        <td class="hospitalized-table"><div class="textoverflow hospitalized-over">20106235261svhgghdcvashgdcv</div></td>
-                        <td class="unit-table">20106235261</td>
-                        <td class="department-table">20106235261</td>
-                        <td class="sample-table">11111</td>
-                    </tr>
-                    </tbody>
-                    </table>
+            <br>
+            <div class="grop-search">
+                <div class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></div>
+                <div  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</div>
+                <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
+                 <form  class="floatleft ">
+                    <select class="grop-search-sel  radium">
+                        <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
+                    </select>
+                </form>
+            </div>
+            <div class="big-search">
+                <input type="text" class="floatleft big-search-input" id="app">
+                <img src="../assets/images/search.png.png" class="big-search-img">
+                <form  class="floatleft ">
+                    <select class="big-search-sel  ">
+                        <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
+                    </select>
+                </form>
+                <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
+            </div>
+            <div class="clear"></div>
+            <div class="table-show">
+                <div>
+                <table >
+                    <thead>
+                        <tr>
+                            <th class="pictable"></th>
+                            <th class="statustable"></th>
+                            <th class="pathology-table">病理号</th>
+                            <th class="name-table">姓名</th>
+                            <th class="sex-table">性别</th>
+                            <th class="age-table">年龄</th>
+                            <th class="hospitalized-table">住院号</th>
+                            <th class="unit-table">送检单位</th>
+                            <th class="department-table">送检科室</th>
+                            <th class="sample-table">标本名称</th>  
+                        </tr>
+                    </thead>
+                </table>
                 </div>
+                <div class="el-table__body-wrapper">
+                <table style="table-layout:fixed">
+                    <tbody v-for="item in tabledatas.orderlist">
+                        <tr  @click="showRegisterMessage(item.patient.patientId)">
+                            <td class="pictable"> 
+                                 <el-tooltip class="item"  content="相关诊断" placement="top">
+                                <el-tag>
+                                <div class="relateimgon relateclick" @click="showrelate" :id="item.patient.patientId"></span>
+                                </div>
+                                </el-tag>
+                                </el-tooltip>
+                            </td>
+                            <td class="statustable">冰</td>
+                            <td class="pathology-table">{{item.pathologyNo}}</td>
+                            <td class="name-table"><div class="textoverflow nameover">{{item.patient.patientName}}</div></td>
+                            <td class="sex-table">{{item.patient.sex}}</td>
+                            <td class="age-table">{{item.patient.age}}</td>
+                            <td class="hospitalized-table"><div class="textoverflow hospitalized-over">20106235261svhgghdcvashgdc</div></td>
+                            <td class="unit-table">20106235261</td>
+                            <td class="department-table">20106235261</td>
+                            <td class="sample-table">11111</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            <div class="right-bottom">
+                <a class="activecolor"  v-for="item in searchTableData.aList" @click="modalSelect(item.id)">{{item.name}}</a>
+            </div>
         </div>
-        <div class="right-bottom">
-            <p  class="activecolor"><a class="activecolor" href="#">历史检查(0)</a></p>
-            <p  class="urgecolor"><a class="urgecolor" href="#">申请单(1)</a></p>
-            <p  class="activecolor"><a class="activecolor" href="#">会诊意见(0)</a></p>
-            <p  class="activecolor"><a class="activecolor" href="#">冰冻预约(0)</a></p>
-            <p  class="activecolor"><a class="activecolor" href="#">延期原因(0)</a></p>
-            <p  class="activecolor"><a class="activecolor" href="#">补取列表(0)</a></p>
-        </div>
-        </div>
-    </div>
+    
     <div class="bmobbox">
         <div class="bmobbox-top" >
             <p>{{$t('searchtable.combination_query')}}</p>
@@ -180,12 +174,30 @@
                 <button class="bmobbox-btntwo">{{$t('searchtable.cancel')}}</button>
             </div>
         </div>
-        <div class="relatelist">
+        <!-- <div class="relatelist">
             <relatetable :relationshow="method" :relationdate="(relateListDatas)"/>
-        </div>
+        </div> -->
     </div>
     <div class="relatelist" v-if="listshow">
         <relatetable :relationshow="method" :relationdate="(relateListDatas)" />
+    </div> 
+    <div class="modal fade" id="historycheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalhistorycheck/>
+    </div> 
+    <div class="modal fade" id="apply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalapply/>
+    </div> 
+    <div class="modal fade" id="advice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modaladvice/>
+    </div> 
+    <div class="modal fade" id="filllist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalfilllist/>
+    </div> 
+    <div class="modal fade" id="frozenorder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modalfrozenorder/>
+    </div>
+    <div class="modal fade" id="delayreason" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <modaldelayreason/>
     </div>    
 </div>
 </template>
@@ -327,8 +339,8 @@
     height:660px;
     position:absolute;
     z-index: 9;
-    margin-top: -663px;
-    margin-left: 538px;
+    margin-top: -650px;
+    margin-left: -538px !important;
     background: #fff;
     box-shadow: -3px 3px 5px rgba(0,0,0,0.15);
     display:none;
@@ -371,7 +383,7 @@
 .table-show{
     width:100%;
     min-width:235px;
-    height: 425px;
+    height: 420px;
     margin-top: 15px;
     border:1px solid #ccc;
     /*/*overflow-y: auto;*/
@@ -407,55 +419,10 @@
 .right-top .right-top-two{
     background:#4d7cbe;
 }
-.deng{
-    background:#4d7cbe; 
-}
-.right-top .right-top-three{
-    background:#6bc664;
-}
-.qu{
-    background:#6bc664;   
-}
-.right-top .right-top-four{
-    background:#5acdce;
-}
-.zhizi{
-    background:#5acdce;
-}
-.right-top .right-top-five{
-    background:#d99165;
-}
-.zan{
-    background:#d99165;
-}
-.right-top .right-top-six{
-    background:#e975c1;
-}
-.zhen{
-    background:#e975c1;
-}
-.right-top .right-top-seven{
-    background:#dc5b5b;
-}
 .insetcolor{
     box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
     -moz-box-shadow: -5px -5px 5px  rgba(0,0,0,0.5) inset,5px 5px 5px rgba(0,0,0,0.5) inset;
     border:2px solid #20eedd;
-}
-.yan{
-    background:#dc5b5b;   
-}
-.right-top .right-top-eight{
-    background:#dfd06d;
-}
-.shen2{
-    background:#dfd06d;   
-}
-.right-top .right-top-nine{
-    background:#b0bec5;
-}
-.yin{
-    background:#b0bec5;   
 }
 .right-top{
     width:250px;
@@ -476,6 +443,8 @@
 .grop-search-btn{
     width:65px;
     height:27px;
+    line-height: 25px;
+    cursor:pointer;
     margin-right:22px;
     color:#fff;
     border-radius:3px;
@@ -492,7 +461,9 @@
 }
 .grop-search-line{
     width: 27px;
-    height: 27px;   
+    height: 27px;
+    line-height: 27px;
+    cursor: pointer;   
     border-radius: 3px;
 }
 .grop-search-line1{
@@ -583,11 +554,17 @@ input[type='checkbox'] .checkbox-one{
 .select-search-btn:hover{
     background:#3577af;
 }
-.right-bottom>p{
+.right-bottom{
+    width:230px;
+    height:110px;
+}
+.right-bottom a{
     display:block;
     float:left;
+    width:110px;
+    height: 24px;
     margin-top: 10px;
-    margin-left:20px;
+    margin-left:5px;
     text-decoration:underline;
 }
 .activecolor{
@@ -603,8 +580,8 @@ input[type='checkbox'] .checkbox-one{
     width: 674px;
     height: 416px;
     background:#fff;
-    margin-left:392px;
-    margin-top:-530px;
+    margin-left:-685px;
+    margin-top:-528px;
     position: absolute;
     z-index: 10;
     box-shadow: -3px -3px 3px  rgba(4,4,4,0.3);
@@ -636,10 +613,6 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
 .el-tag{
     width:26px;
     background-color: transparent;
-}
-.right-bottom{
-    width:200px;
-    height: 100px;
 }
 /*table*/
 #middle-right table tr th,#middle-right table tr td{
@@ -708,6 +681,12 @@ table .pictable{
     import $ from "jQuery";
     import Calendar from 'components/calendar';
     import Relatetable from 'components/relatetable';
+    import Modalhistorycheck from 'components/modalhistorycheck';
+    import Modalapply from 'components/modalapply';
+    import Modaladvice from 'components/modaladvice';
+    import Modalfilllist from 'components/modalfilllist';
+    import Modalfrozenorder from 'components/modalfrozenorder';
+    import Modaldelayreason from 'components/modaldelayreason';
     export default{
         data() {
             return {
@@ -722,7 +701,13 @@ table .pictable{
         },
         components: {
             "calendar": Calendar,
-            "relatetable": Relatetable
+            "relatetable": Relatetable,
+            "modalhistorycheck":Modalhistorycheck,
+            "modalapply":Modalapply,
+            "modaladvice":Modaladvice,
+            "modalfilllist":Modalfilllist,
+            "modalfrozenorder":Modalfrozenorder,
+            "modaldelayreason":Modaldelayreason
         },
         props: ['tableshow'],
         created(){
@@ -799,58 +784,11 @@ table .pictable{
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                 }
             },
-            dengbtn:function(){
-                if(!$(".rightbtntwo").hasClass('insetcolor')){
-                   $(".rightbtntwo").addClass('insetcolor');
-                   $(".rightbtntwo").siblings().removeClass('insetcolor')
-                }
-            },
-            qubtn: function () {
-                if (!$(".rightbtnthr").hasClass('insetcolor')) {
-                    $(".rightbtnthr").addClass('insetcolor');
-                    $(".rightbtnthr").siblings().removeClass('insetcolor')
-                }
-            },
-            zhibtn: function () {
-                if (!$(".rightbtnfou").hasClass('insetcolor')) {
-                    $(".rightbtnfou").addClass('insetcolor');
-                    $(".rightbtnfou").siblings().removeClass('insetcolor')
-                }
-            },
-            zanbtn: function () {
-                if (!$(".rightbtnfiv").hasClass('insetcolor')) {
-                    $(".rightbtnfiv").addClass('insetcolor');
-                    $(".rightbtnfiv").siblings().removeClass('insetcolor')
-                }
-            },
-            zhenbtn: function () {
-                if (!$(".rightbtnsix").hasClass('insetcolor')) {
-                    $(".rightbtnsix").addClass('insetcolor');
-                    $(".rightbtnsix").siblings().removeClass('insetcolor')
-                }
-            },
-            yanbtn: function () {
-                if (!$(".rightbtnsev").hasClass('insetcolor')) {
-                    $(".rightbtnsev").addClass('insetcolor');
-                    $(".rightbtnsev").siblings().removeClass('insetcolor')
-                }
-            },
-            shen2btn: function () {
-                if (!$(".rightbtneig").hasClass('insetcolor')) {
-                    $(".rightbtneig").addClass('insetcolor');
-                    $(".rightbtneig").siblings().removeClass('insetcolor')
-                }
-            },
-            yinbtn: function () {
-                if (!$(".rightbtnnin").hasClass('insetcolor')) {
-                    $(".rightbtnnin").addClass('insetcolor');
-                    $(".rightbtnnin").siblings().removeClass('insetcolor')
-                }
-            },
             orderStatusClick: function (id) {
                 this.$emit('orderStatusClick',id)
+                console.log(id)
             },
-            getOrderStatusColor(index)
+            getOrderStatusColor:function(index)
             {
                 return this.statusColors[index];
             },
@@ -881,9 +819,14 @@ table .pictable{
                 this.relateListData ();
                 e.stopPropagation();
             },
-            showcontent:function(e){
-                var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
+            showRegisterMessage:function(id){
+                // var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
+                this.$emit('showRegisterMessage',id)
             },
+            modalSelect:function(id){
+                // var id=$(e.target).attr('id');
+               this.$emit('modalSelect',id) 
+           },
             method: function () {
                 this.tableshow();
                 $('.relatelist').hide()

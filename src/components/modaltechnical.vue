@@ -98,7 +98,7 @@
 <style>
 .modal-technical .modal-content{
     margin-top: 30%;
-    margin-left: -212px;
+    margin-left: -22%;
     width:828px;
     height: 462px;
 } 

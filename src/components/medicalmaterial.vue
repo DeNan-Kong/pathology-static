@@ -105,13 +105,13 @@
         <p class="floatleft information-biao">{{$t('medicalmaterial.specimen_handling')}}</p>
         <form  class="floatleft">
             <select class="radius  information-sel-one  information-sel">
-              <option v-for="item in allMaterialData.specimenHandleList">{{}}</option>
+              <option v-for="item in allMaterialData.specimenHandleList"></option>
             </select>
         </form> 
         <p class="floatleft">{{$t('medicalmaterial.location')}}</p>
         <form  class="floatleft">
             <select class="radius  information-sel information-sel-two">
-              <option v-for="item in allMaterialData.saveLocationList">{{}}</option>
+              <option v-for="item in allMaterialData.saveLocationList"></option>
             </select>
         </form> 
         <p class="floatleft">{{$t('medicalmaterial.recorder')}}</p>
@@ -134,7 +134,7 @@
         <p class="floatleft chooseinput">{{$t('medicalmaterial.channel_select')}}</p>
         <form  class="floatleft  ">
             <select class="radius informationtwo-sel-two informationtwo-sel">
-              <option v-for="item in allMaterialData.passageWayList">{{}}</option>
+              <option v-for="item in allMaterialData.passageWayList"></option>
             </select>
         </form>
         <button class=" radius  informationtwo-btn">{{$t('medicalmaterial.label_printing')}}</button>
