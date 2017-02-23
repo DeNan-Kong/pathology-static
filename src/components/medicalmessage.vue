@@ -25,7 +25,7 @@
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
-                                   class="p-margin radium" type="text" v-model="bindData.pathologyNo">
+                                   class="p-margin radium" type="text" v-model="bindData.pathologyNo" :disabled="bindData.orderId!=null">
                         </el-tooltip>
                     </div>
                     <p class="floatleft p-two">{{$t('medicalmessage.application_number')}}</p>
@@ -63,7 +63,7 @@
                     <p class="floatleft p-four">{{$t('medicalmessage.national')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin  radium-sup null" v-model="bindData.patient.nationId">
-                            <option v-for="item in initialData.nationList" :value="item.id">
+                            <option v-for="item in initialData.nationList" :value="item.nationId">
                                 {{item.name}}
                             </option>
                         </select>
@@ -96,7 +96,7 @@
                     <input type="text" class="floatleft p-big radium null">
                     <p class="floatleft p-three">{{$t('medicalmessage.last_menstrual_period')}}</p>
                     <div class="null">
-                    <calendar/>
+                        <calendar :date="bindData.lmp"  v-on:change="lmpChange"/>
                     </div>
                     <p class="floatleft p-four">{{$t('medicalmessage.menopause')}}</p>
                     <form class="floatleft">
@@ -136,7 +136,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-four">{{$t('medicalmessage.inspection_date')}}</p>
-                    <calendar :today="(today)" v-model="bindData.inspectDate" />
+                    <calendar :date="bindData.inspectDate" v-on:change="inspectDateChange"/>
                 </div>
                 <div class="hospital-num-two hospital-num">
                     <p class="floatleft p-one">{{$t('medicalmessage.ward')}}</p>
@@ -168,8 +168,11 @@
                                 {{item.name}}
                             </option>
                         </select>
+
                     </form>
-                   <!--  <rd-cascader :cascader="cascader"></rd-cascader> -->
+
+
+                    <!--  <rd-cascader :cascader="cascader"></rd-cascader> -->
                     <p class="floatleft p-three unqualifiedCauseId">{{$t('medicalmessage.unqualified_reason')}}</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup null" v-model="bindData.unqualifiedCauseId">
@@ -181,8 +184,8 @@
                     <p class="floatleft p-four">{{$t('medicalmessage.samples_received')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup null" v-model="bindData.specimenReceiveId">
-                            <option v-for="item in initialData.specimenReceiveList" :value="item.id">
-                                {{item.name}}
+                            <option v-for="item in initialData.specimenReceiveList" :value="item.userId">
+                                {{item.fullName}}
                             </option>
                         </select>
                     </form>
@@ -207,7 +210,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-four">{{$t('medicalmessage.receiving_date')}}</p>
-                    <calendar />
+                    <calendar :date="bindData.receiveDate" v-on:change="receiveDateChange"/>
                 </div>
                 <div class="hospital-num-five hospital-num">
                     <p class="floatleft p-one">{{$t('medicalmessage.clinical_diagnosis')}}</p>
@@ -232,7 +235,7 @@
                 <button class="left-button-two" @click="print">{{$t('medicalmessage.print')}}</button>
                 <button  class="left-button-two" @click="save">{{$t('medicalmessage.save')}}</button>
                 <button  class="left-button-five" @click="newsave">{{$t('medicalmessage.save_and_create')}}</button>
-                <button class="left-button-two" @click="newproject">{{$t('medicalmessage.create')}}</button>
+                <button class="left-button-two" @click="createOrder">{{$t('medicalmessage.create')}}</button>
             </div>
             <div class="left-bottom">
                 <div class="picture-img" @click="refresh"></div>
@@ -450,7 +453,117 @@
         data(){
             return {
                 initialData:{},
-                bindData: {
+                bindData:{}
+            }
+        },
+        components: {
+            "searchtable": SearchTable,
+            "calendar": Calendar,
+            "medicalmessage": Medicalmessage
+        },
+        methods: {
+            async loadData () {
+                const self=this;
+                const response = await fetch('/register/load', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                self.initialData = data;
+            }, async createOrder(){
+                const response = await fetch('/register/create-order', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: {}
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                // 初始化绑定对象
+                let newBindData = this.newBindData();
+                // 合并对象
+                let mergedBindData = Object.assign(newBindData,data);
+                this.bindData = mergedBindData;
+
+                // 不验证
+                // this.errors.clear('firstName');
+                return false;
+            }, async newsave(){
+                await this.save();
+                this.createOrder();
+            }, refund: function () {
+                $(".null").val('');
+            }, async save(){
+                this.$validator.validateAll().then(success => {
+                }).then(failing => {
+                }, rejected => {
+                });
+                if (this.errors.any() == false) {
+                    const response = await fetch('/register/save', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify(this.bindData)
+                    });
+                    const resultJson = await response.text();
+                    const resultObject = JSON.parse(resultJson);
+
+                    // 异常处理
+                    if (this.$errHandle(resultObject)) {
+                        return;
+                    }
+                    // 重新加载 Order
+                    this.loadOrder(resultObject.orderId);
+
+                    // 保存事件
+                    this.$emit("orderSaved");
+                }
+            }, print: function () {
+                console.log("print");
+            }, refresh: function () {
+                console.log("refresh");
+            },
+            inspectDateChange: function (date) {
+                this.bindData.inspectDate = date;
+            },
+            receiveDateChange: function (date) {
+                this.bindData.receiveDate = date;
+            },
+            lmpChange: function (date) {
+                this.bindData.lmp = date;
+            },async loadOrder(orderId) {
+                const response = await fetch('/register/load-order', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        orderId: orderId
+                    })
+                });
+                const resultJson = await response.text();
+                const resultObject = JSON.parse(resultJson);
+                // 异常处理
+                if (this.$errHandle(resultObject)) {
+                    return;
+                }
+
+                this.bindData = resultObject;
+            }, newBindData: function (order) {
+                return {
+                    "orderId":null,
                     "applicationNo": "",
                     "frozenNo": "",
                     "infobaseId": 30000001,
@@ -459,7 +572,7 @@
                     "patientNo": "",
                     "inspectDate": "",
                     "inspectDepartmentId": null,
-                    "inspectUnitId": 1,
+                    "inspectUnitId": null,
                     "specimenNameId": null,
                     "specimenTypeId": null,
                     "submittingPhysicianId": null,
@@ -492,98 +605,12 @@
                         "idCard": "",
                         "address": ""
                     }
-                },
-                today:{},
-
-            }
-        },
-        components: {
-            "searchtable": SearchTable,
-            "calendar": Calendar,
-            "medicalmessage": Medicalmessage
-        },
-        methods: {
-            async loadData () {
-                const self=this;
-                const response = await fetch('/api/hello',{
-                    method: 'POST',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                self.initialData = data;
-            },
-            async newproject(){
-                $(".null").val('');
-                const self=this;
-                const response = await fetch('/api/hello',{
-                    method: 'POST',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                self.pathologyNo = data;
-            },
-            async newsave(){
-                const response = await fetch('/api/hello',{
-                    method: 'POST',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-                            order:this.bindData
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                this.pathologyno= data;
-                console.log(this.pathologyno)
-            },
-            refund: function () {
-                $(".null").val('');
-            },
-            async save(){
-                 const response = await fetch('/api/hello',{
-                    method: 'POST',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-                            order:this.bindData
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                this.pathologyno= data;
-                console.log(this.pathologyno)
-                this.$validator.validateAll().then(success => {
-                }).then(failing => {
-                }, rejected => {
-                });
-                if (this.errors.any() == false) {
-                    alert('123');
                 }
-        },
-            print: function () {
-                console.log("print");
-        },
-            refresh: function () {
-                console.log("refresh");
             }
         },
-        mounted () {
-            this.loadData()
-
+        created () {
+            this.loadData();
+            this.bindData = this.newBindData();
         }
     }
 </script>

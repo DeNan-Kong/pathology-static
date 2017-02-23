@@ -107,32 +107,32 @@
 </div>
 </template>
 <style>
-body #relatetable .el-table .cell,.el-table__header-wrapper{
-  font-size: 14px;
-  font-weight: normal;
-  text-align: center;
-  padding: 0px;
-} 
-body .el-table__fixed-header-wrapper thead div, .el-table__header-wrapper thead div{
-  color:#333;
-  font-weight: normal;
-}
-body .el-table .cell, .el-table th>div{
-  padding: auto 0px;
-} 
+    body #relatetable .el-table .cell, .el-table__header-wrapper {
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        padding: 0px;
+    }
+
+    body .el-table__fixed-header-wrapper thead div, .el-table__header-wrapper thead div {
+        color: #333;
+        font-weight: normal;
+    }
+
+    body .el-table .cell, .el-table th > div {
+        padding: auto 0px;
+    }
 </style>
 <script>
-export default {
-    data() {
-      return {
-        
-      };
-    },
-    props: ['relationshow','relationdate'],
-    methods:{
-      relateclick:function(){
-          this.relationshow()
-      }
-    }
-  };
+    export default {
+        data() {
+            return {};
+        },
+        props: ['relationshow', 'relationdate'],
+        methods: {
+            relateclick: function () {
+                this.relationshow()
+            }
+        }
+    };
 </script>

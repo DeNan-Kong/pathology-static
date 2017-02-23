@@ -1,75 +1,75 @@
 <template>
     <div> 
         <div  class="right-inner">    
-            <div class="right-top">
-               <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(item.id)">{{item.name}}
-                </button>
-                <el-checkbox-group v-model="checkList">
-                    <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
-                </el-checkbox-group>
+        <div class="right-top">
+           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}">{{item.name}}
+            </button>
+            <el-checkbox-group v-model="checkList">
+                        <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
+            </el-checkbox-group>
+        </div>
+        <br>
+        <div class="grop-search ">
+            <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
+            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
+            <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
+             <form  class="floatleft ">
+                <select class="grop-search-sel  radium">
+                    <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
+                </select>
+            </form>
+        </div>
+        <div class="big-search">
+            <input type="text" class="floatleft big-search-input" id="app">
+            <img src="../assets/images/search.png.png" class="big-search-img">
+            <form  class="floatleft ">
+                <select class="big-search-sel  ">
+                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
+                </select>
+            </form>
+            <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
+        </div>
+        <div class="clear"></div>
+        <div class="table-show">
+            <div>
+            <table >
+                <thead>
+                    <tr>
+                        <th class="pictable"></th>
+                        <th class="statustable"></th>
+                        <th class="pathology-table">病理号</th>
+                        <th class="name-table">姓名</th>
+                        <th class="sex-table">性别</th>
+                        <th class="age-table">年龄</th>
+                        <th class="hospitalized-table">住院号</th>
+                        <th class="unit-table">送检单位</th>
+                        <th class="department-table">送检科室</th>
+                        <th class="sample-table">标本名称</th>
+                       
+                    </tr>
+                </thead>
+            </table>
             </div>
-            <br>
-            <div class="grop-search">
-                <div class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></div>
-                <div  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</div>
-                <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
-                 <form  class="floatleft ">
-                    <select class="grop-search-sel  radium">
-                        <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
-                    </select>
-                </form>
-            </div>
-            <div class="big-search">
-                <input type="text" class="floatleft big-search-input" id="app">
-                <img src="../assets/images/search.png.png" class="big-search-img">
-                <form  class="floatleft ">
-                    <select class="big-search-sel  ">
-                        <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
-                    </select>
-                </form>
-                <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
-            </div>
-            <div class="clear"></div>
-            <div class="table-show">
-                <div>
-                <table >
-                    <thead>
-                        <tr>
-                            <th class="pictable"></th>
-                            <th class="statustable"></th>
-                            <th class="pathology-table">病理号</th>
-                            <th class="name-table">姓名</th>
-                            <th class="sex-table">性别</th>
-                            <th class="age-table">年龄</th>
-                            <th class="hospitalized-table">住院号</th>
-                            <th class="unit-table">送检单位</th>
-                            <th class="department-table">送检科室</th>
-                            <th class="sample-table">标本名称</th>  
-                        </tr>
-                    </thead>
-                </table>
-                </div>
-                <div class="el-table__body-wrapper">
+            <div class="el-table__body-wrapper">
                 <table style="table-layout:fixed">
-                    <tbody v-for="item in tabledatas.orderlist">
-                        <tr  @click="showRegisterMessage(item.patient.patientId)">
-                            <td class="pictable"> 
-                                 <el-tooltip class="item"  content="相关诊断" placement="top">
-                                <el-tag>
-                                <div class="relateimgon relateclick" @click="showrelate" :id="item.patient.patientId"></span>
-                                </div>
-                                </el-tag>
+                    <tbody>
+                    <tr v-for="item in tabledatas" @click="showContent(item.orderId)">
+                            <td class="pictable">
+                                <el-tooltip class="item"  content="相关诊断" placement="top">
+                                    <el-tag>
+                                        <div class="relateimgon relateclick" @click="showrelate" :id="item.patientId"></span></div>
+                                    </el-tag>
                                 </el-tooltip>
                             </td>
-                            <td class="statustable">冰</td>
+                            <td  class="statustable"><span v-if="item.isFrozen"> 冰</span></td>
                             <td class="pathology-table">{{item.pathologyNo}}</td>
-                            <td class="name-table"><div class="textoverflow nameover">{{item.patient.patientName}}</div></td>
-                            <td class="sex-table">{{item.patient.sex}}</td>
-                            <td class="age-table">{{item.patient.age}}</td>
-                            <td class="hospitalized-table"><div class="textoverflow hospitalized-over">20106235261svhgghdcvashgdc</div></td>
-                            <td class="unit-table">20106235261</td>
-                            <td class="department-table">20106235261</td>
-                            <td class="sample-table">11111</td>
+                            <td class="name-table"><div class="textoverflow nameover">{{item.patientName}}</div></td>
+                            <td class="sex-table">{{item.sexName}}</td>
+                            <td class="age-table">{{item.age}}</td>
+                            <td class="hospitalized-table"><div class="textoverflow hospitalized-over">{{item.inhospitalId}}</div></td>
+                            <td class="unit-table">{{item.inspectName}}</td>
+                            <td class="department-table">{{item.departmentName}}</td>
+                            <td class="sample-table">{{item.specimenName}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -199,6 +199,7 @@
     <div class="modal fade" id="delayreason" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <modaldelayreason/>
     </div>    
+
 </div>
 </template>
 <style>
@@ -711,8 +712,8 @@ table .pictable{
         },
         props: ['tableshow'],
         created(){
-            this.tableData();
-            this.searchTable();
+            this.load();
+            this.search();
         },
         methods: {
             async relateListData () {
@@ -732,29 +733,26 @@ table .pictable{
                 this.relateListDatas = data;
             },
 
-            async tableData () {
-            const response = await fetch('/api/test',{ 
-                method: 'POST',
-                headers: { 
-                   "Content-type": "application/json; charset=UTF-8" 
-                }, 
-                body: JSON.stringify({ 
-                    firstParam: 'yourValue',
-                })
-            });
-            const json = await response.text();
-            const data = JSON.parse(json);
-            this.tabledatas = data;
-            console.log(this.tabledatas)
+            async searchByTime () {
+                const response = await fetch('/register/query-time', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        selectTimeType: '4',
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                this.$errHandle(data);
+                this.tabledatas = data;
             },
-
-            async searchTable () {
-
-                // const response = await fetch('/api/test',{ 
-
+            async load () {
+                // const response = await fetch('/api/test',{
                 const response = await
                 fetch('/search-panel/load', {
-
                     method: 'POST',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
@@ -764,7 +762,10 @@ table .pictable{
                 const json = await response.text();
                 const data = JSON.parse(json);
                 this.searchTableData = data;
-
+            },
+            async search()
+            {
+                this.searchByTime();
             },
             toggle: function () {
                 $(".bmobbox").animate({marginLeft: "538px"}, 100).fadeToggle();
@@ -822,6 +823,9 @@ table .pictable{
             showRegisterMessage:function(id){
                 // var patientId=$(e.target).parents("tr:eq(0)").attr('data-patientId');
                 this.$emit('showRegisterMessage',id)
+
+            showContent: function (orderId) {
+                this.$emit("orderItemClick", orderId);
             },
             modalSelect:function(id){
                 // var id=$(e.target).attr('id');
