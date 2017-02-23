@@ -62,7 +62,7 @@
                                 </el-tooltip>
                             </td>
                             <td  class="statustable"><span v-if="item.isFrozen"> 冰</span></td>
-                            <td class="pathology-table">{{item.pathologyNo}}</td>
+                            <td class="pathology-table" v-bind:style="{background:getOrderStatusColor(item.orderStatus-1)}">{{item.pathologyNo}}</td>
                             <td class="name-table"><div class="textoverflow nameover">{{item.patientName}}</div></td>
                             <td class="sex-table">{{item.sexName}}</td>
                             <td class="age-table">{{item.age}}</td>
