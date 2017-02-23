@@ -488,6 +488,7 @@
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
+
                 // 初始化绑定对象
                 let newBindData = this.newBindData();
                 // 合并对象

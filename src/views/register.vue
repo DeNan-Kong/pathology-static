@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div  id="middle-right">
-            <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method"v-on:modalSelect="showRegisterModal" />
+            <searchtable v-on:modalSelect="showRegisterModal" v-on:orderItemClick="orderItemClick" ref="searchtable" />
         </div>
         </div>
     </div>
@@ -380,6 +380,7 @@
                 } 
             },
             async orderItemClick(orderId) {
+
                 var medicalMessage = this.$refs.medicalMessage;
                 medicalMessage.loadOrder(orderId);
             },
