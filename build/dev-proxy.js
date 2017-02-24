@@ -47,7 +47,7 @@ compiler.plugin('compilation', function (compilation) {
 
 // mock/proxy api requests
 var mockDir = path.resolve(__dirname, '../mock');
-var proxy = 'http://127.0.0.1:8080';
+var proxy = 'http://localhost:8080';
 (function setMock(mockDir) {
     fs.readdirSync(mockDir).forEach(function (file) {
         var filePath = path.resolve(mockDir, file);

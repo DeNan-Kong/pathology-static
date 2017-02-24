@@ -1,0 +1,6 @@
+module.exports = {
+    api: '/register/query-no',
+    response: function (req, res) {
+        res.send(`[{"applicationNo":"","frozenNo":"","infobaseId":30000001,"inhospitalId":"","inspectDate":"2017-02-22 19:21:11","medicalHistory":"","operatingRoomPhone":"","operativeFindings":"","orderId":3,"pathologyNo":"P0003","patient":{"address":"","idCard":"","patientId":10,"patientName":"潘芳巧","patientUid":"","phone":"","sex":2},"patientId":10,"patientNo":"","receiveDate":"2017-02-22 19:21:11","sickbedNo":"","specimenReceiveId":1,"status":1,"ward":""},{"applicationNo":"","frozenNo":"","infobaseId":30000001,"inhospitalId":"","inspectDate":"2017-02-23 14:37:25","medicalHistory":"","operatingRoomPhone":"","operativeFindings":"","orderId":22,"pathologyNo":"P0003","patient":{"address":"","age":38,"ageUnit":1,"birthday":"1979-02-23 00:00:00","idCard":"","nationId":12,"patientId":29,"patientName":"喻浩丹","patientUid":"","phone":""},"patientAge":38,"patientId":29,"patientNo":"","receiveDate":"2017-02-23 14:37:25","sickbedNo":"","specimenReceiveId":1,"status":1,"ward":""}]`);
+    }
+}

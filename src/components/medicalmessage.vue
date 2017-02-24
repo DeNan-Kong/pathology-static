@@ -233,7 +233,7 @@
             <div  class="left-button">
                 <button  class="left-button-two"  @click="refund">{{$t('medicalmessage.clear')}}</button>
                 <button class="left-button-two" @click="print">{{$t('medicalmessage.print')}}</button>
-                <button  class="left-button-two" @click="save">{{$t('medicalmessage.save')}}</button>
+                <button  class="left-button-two" @click="save(false)">{{$t('medicalmessage.save')}}</button>
                 <button  class="left-button-five" @click="newsave">{{$t('medicalmessage.save_and_create')}}</button>
                 <button class="left-button-two" @click="createOrder">{{$t('medicalmessage.create')}}</button>
             </div>
@@ -499,11 +499,10 @@
                 // this.errors.clear('firstName');
                 return false;
             }, async newsave(){
-                await this.save();
-                this.createOrder();
+                this.save(true);
             }, refund: function () {
                 $(".null").val('');
-            }, async save(){
+            }, async save(isCreate){
                 this.$validator.validateAll().then(success => {
                 }).then(failing => {
                 }, rejected => {
@@ -524,11 +523,19 @@
                     if (this.$errHandle(resultObject)) {
                         return;
                     }
-                    // 重新加载 Order
-                    this.loadOrder(resultObject.orderId);
+
 
                     // 保存事件
                     this.$emit("orderSaved");
+
+                    // 创建新
+                    if (isCreate == true) {
+                        this.createOrder();
+                    } else {
+                        // 重新加载 Order
+                        this.loadOrder(resultObject.orderId);
+                    }
+
                 }
             }, print: function () {
                 console.log("print");
