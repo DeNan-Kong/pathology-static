@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div>
                 <el-table
-                    :data="tableData3"
+                    :data="initialData.doctorAdviceTypeList"
                     border
                     height="330"
                     style="width: 100%">
@@ -66,17 +66,13 @@
                   <p class="floatleft">医嘱类型&nbsp;：&nbsp;</p>
                   <form class="floatleft">
                     <select class="tech-one">
-                      <option> 
-                            
-                      </option>
+                        <option v-for="(item,index) in initialData.doctorAdviceTypeList" :vlue="item.id" >{{item.name}}</option>
                     </select>
                   </form>
                   <p class="floatleft" style="margin-left:34px;">蜡块号&nbsp;：&nbsp;</p>
                   <form class="floatleft">
                     <select class="tech-two">
-                      <option> 
-                            
-                      </option>
+                        <option v-for="(item,index) in initialData.materialNoList" :vlue="item.id" >{{item.name}}</option>
                     </select>
                   </form>
                   <p class="floatleft" style="margin-left:34px;">数量&nbsp;：&nbsp;</p>
@@ -168,11 +164,31 @@ button:hover{
     export default{
         data(){
             return{
-               
+                initialData:{}
             }
         },
-        components:{
-            
+        components: {},
+        methods: {
+            async loadData(orderId){
+                const response = await
+                    fetch('/diagnose/technology/load', {
+                        method: 'POST',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify({
+                            "orderId":orderId
+                        })
+                    });
+                const resultJson = await response.text();
+                const resultObject = JSON.parse(resultJson);
+                // 异常处理
+                if (this.$errHandle(resultObject)) {
+                    return;
+                }
+
+                this.initialData = resultObject;
+            }
         }
     }
 </script>

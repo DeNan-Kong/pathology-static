@@ -205,9 +205,6 @@
                 }
             }
         },
-        created(){ // 生命周期 created,获取数据
-            this.first()
-        },
         components: {
             "top-menu": TopMenu,
             "searchtable": SearchTable,
@@ -389,6 +386,9 @@
                 var searchtable = this.$refs.searchtable;
                 searchtable.search();
             }
+        },created(){ // 生命周期 created,获取数据
+            this.first()
+        },mounted(){
         }
     }
 </script>
