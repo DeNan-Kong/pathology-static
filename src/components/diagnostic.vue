@@ -3,19 +3,17 @@
   <div class="diagnostic-top">
       <form  class="floatleft">
           <select class="floatleft diagnostic-top-one border">
-              <option>诊断报告图一</option>
-              <option>诊断报告图二</option>
-              <option>诊断报告图三</option>
+              <option v-for="(item,index) in loadData.reportTemplateList" :vlue="item.id" >{{item.name}}</option>
           </select>
       </form> 
-      <form  class="floatleft">
-          <select class="floatleft diagnostic-top-two border">
+      <form  class="floatleft" style="display: none">
+          <select class="floatleft diagnostic-top-two border" >
               <option>125%</option>
               <option>100%</option>
               <option>75%</option>
           </select>
       </form> 
-      <form  class="floatleft">
+      <form  class="floatleft" style="display: none">
           <select class="floatleft diagnostic-top-three border">
               <option>字体大小</option>
               <option>颜色</option>
@@ -80,41 +78,38 @@
             <div class="material-modify2  floatleft"></div>
             <div class="material-delete2  floatleft"></div>
           </div>
-          <div class="dictionary_search scroll-flow" v-show="dictionarymy"> 
-              <dictionaryMy/>
+          <div class="dictionary_search scroll-flow" v-show="dictionarymy">
+              <dictionaryMy :bindingData="(loadData.publicTree)"/>
             </div> 
           <div class="dictionary_search scroll-flow" v-show="dictionarycommon">
-              <dictionaryCommon/>
+              <dictionaryMy />
           </div>
       </div>
       <div  class="diagnostic-right-iptmesssage">
         <p  class="floatleft">初诊医生</p>
         <form  class="floatleft">
             <select class="radius  iptmesssage-size  iptmesssage-input">
-              <option>李小龙</option>
-              <option>胡夏</option>
+                <option v-for="(item,index) in loadData.primaryDoctorList" :vlue="item.id" >{{item.name}}</option>
+
             </select>
         </form>
         <p  class="floatleft  diagnostic-right-coltwo">复诊医生</p>
         <form  class="floatleft">
             <select class="radius  iptmesssage-size  iptmesssage-input">
-              <option>黎明</option>
-              <option>小燕子</option>
+                <option v-for="(item,index) in loadData.reviewDoctorList" :vlue="item.id" >{{item.name}}</option>
             </select>
         </form>
         <div class="clear"></div>
         <p  class="floatleft">审核医生</p>
         <form  class="floatleft">
             <select class="radius  iptmesssage-size  iptmesssage-input">
-              <option>李小龙</option>
-              <option>胡夏</option>
+                <option v-for="(item,index) in loadData.attendingDoctorList" :vlue="item.id" >{{item.name}}</option>
             </select>
         </form>
         <p  class="floatleft  diagnostic-right-coltwo">诊断符合</p>
         <form  class="floatleft ">
             <select class="radius  iptmesssage-size  iptmesssage-input">
-              <option>符合</option>
-              <option>不符合</option>
+                <option v-for="(item,index) in loadData.diagnoseAccordList" :vlue="item.id" >{{item.name}}</option>
             </select>
         </form>
         <div class="clear"></div>
@@ -123,8 +118,7 @@
         <p  class="floatleft yang">是否阳性</p>
         <form  class="floatleft">
             <select class="radius  diagnostic-right-colone">
-              <option>是</option>
-              <option>否</option>
+                <option v-for="(item,index) in loadData.whetherPositiveList" :vlue="item.id" >{{item.name}}</option>
             </select>
         </form>
         <p  class="floatleft iptmesssage-p-long">诊断关键词</p>
@@ -139,9 +133,9 @@
         <input type="text" class="radius  iptmesssage-long iptmesssage-input">
       </div>
       <div class="diagnostic-right-a">
-        <a class="floatleft " data-toggle="modal" data-target="#modalmaterials">取材信息</a>
-        <a class="floatleft " data-toggle="modal" data-target="#modalsection">切片信息</a>
-        <a class="floatleft " data-toggle="modal" data-target="#modaltechnical">技术医嘱</a>
+        <a class="floatleft " @click="showMaterials">取材信息</a>
+        <a class="floatleft " @click="showSection">切片信息</a>
+        <a class="floatleft " @click="showTechnical">技术医嘱</a>
         <a class="floatleft " href="#">特检医嘱</a>
         <a class="floatleft rightnone" href="#">诊断意见</a>
         <a class="floatleft" data-toggle="modal" data-target="#modalfrozen">冰冻报告</a>
@@ -161,13 +155,13 @@
         <modalfrozen />
        </div>
        <div class="modal fade" id="modaltechnical" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <modaltechnical/>
+        <modaltechnical  ref="modaltechnical"/>
        </div>
        <div class="modal fade" id="modalmaterials" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <modalmaterials/>
+        <modalmaterials ref="modalmaterials"/>
        </div>
         <div class="modal fade" id="modalsection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <modalsection/>
+        <modalsection ref="modalsection"/>
        </div>
       <!-- <div class="printmodal" v-show="printmodal">
         
@@ -538,10 +532,10 @@ import DictionaryCommon from "components/dictionaryCommon";
   export default {
     data() {
       return {
+          loadData: {},
        printmodal:true,
        dictionarymy:true,
        dictionarycommon:false
-       
       }
     },
     components:{
@@ -555,6 +549,14 @@ import DictionaryCommon from "components/dictionaryCommon";
             "dictionaryMy":DictionaryMy,
             "dictionaryCommon":DictionaryCommon
         },
+      created(){
+          this.load();
+
+          $('#modalsection').on('show.bs.modal', function () {
+              // 执行一些动作...
+              alert(1);
+          });
+      },
     methods:{
       dictionaryCommon:function(){
         this.dictionarycommon=true;
@@ -567,7 +569,31 @@ import DictionaryCommon from "components/dictionaryCommon";
         this.dictionarymy=true;
         $(".mydictionary2").addClass('dictionary-active');
         $(".uaualdictionary").removeClass('dictionary-active');
-      }
+      }, async load () {
+            const response = await
+                fetch('/diagnose/load', {
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({})
+                });
+            const json = await response.text();
+            const data = JSON.parse(json);
+            this.loadData = data;
+        },showSection(){
+            $("#modalsection").modal('show');
+            let modalsection = this.$refs.modalsection;
+            modalsection.loadData();
+        },showMaterials(){
+            $("#modalmaterials").modal('show');
+            let modalmaterials = this.$refs.modalmaterials;
+            modalmaterials.loadData();
+        },showTechnical(){
+            $("#modaltechnical").modal('show');
+            let modaltechnical = this.$refs.modaltechnical;
+            modaltechnical.loadData(3);
+        }
     }
   };
 </script>

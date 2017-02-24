@@ -73,7 +73,7 @@
                     <p class="floatleft p-one">{{$t('medicalmessage.marital_status')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup null" v-model="bindData.patient.maritalStatusId">
-                            <option v-for="item in initialData.maritalStatusList" :value="item.id">
+                            <option v-for="item in initialData.maritalStatusList" :value="item.maritalStatusId">
                                 {{item.name}}
                             </option>
                         </select>
@@ -81,7 +81,7 @@
                     <p class="floatleft  p-two">{{$t('medicalmessage.professional')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup null" v-model="bindData.patient.professionId">
-                            <option v-for="item in initialData.professionList" :value="item.id">
+                            <option v-for="item in initialData.professionList" :value="item.professionId">
                                 {{item.name}}
                             </option>
                         </select>
@@ -204,7 +204,7 @@
                     <p class="floatleft p-three">{{$t('medicalmessage.draw_materials_doctor')}}</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup null sampleDoctorId" v-model="bindData.sampleDoctorId">
-                            <option v-for="item in initialData.sampleDoctorList" :value="item.id">
+                            <option v-for="item in initialData.sampleDoctorList" :value="item.sampleDoctorId">
                                 {{item.name}}
                             </option>
                         </select>
