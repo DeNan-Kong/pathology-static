@@ -2,7 +2,9 @@
     <div> 
         <div  class="right-inner">    
         <div class="right-top">
-           <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two stylevtn"  v-bind:style="{background:getOrderStatusColor(index)}">{{item.name}}
+            <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"
+                    v-bind:style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(item.id)">
+                {{item.name}}
             </button>
             <el-checkbox-group v-model="checkList">
                         <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
@@ -14,20 +16,21 @@
             <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
             <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
              <form  class="floatleft ">
-                <select class="grop-search-sel  radium">
-                    <option v-for="item in searchTableData.selectTimeList">{{item.name}}</option>
+                 <select class="grop-search-sel  radium" v-model="selectTimeType" @change="selectTimeTypeChange">
+                     <option v-for="item in searchTableData.selectTimeList" :value="item.id">{{item.name}}</option>
                 </select>
             </form>
         </div>
         <div class="big-search">
-            <input type="text" class="floatleft big-search-input" id="app">
+            <input type="text" class="floatleft big-search-input" id="app" v-model="searchPathologyNo.typePathologyNo">
             <img src="../assets/images/search.png.png" class="big-search-img">
             <form  class="floatleft ">
-                <select class="big-search-sel  ">
-                    <option v-for="item in searchTableData.selectNoList">{{item.name}}</option>  
+                <select class="big-search-sel" v-model="searchPathologyNo.selectedPathologyType">
+                    <option v-for="item in searchTableData.selectNoList" :value="item.id">{{item.name}}</option>
                 </select>
             </form>
-            <button  class="select-search-btn floatleft" @click="find">{{$t('searchtable.extract')}}</button>
+            <button class="select-search-btn floatleft" @click="getOrderListClick">{{$t('searchtable.extract')}}
+            </button>
         </div>
         <div class="clear"></div>
         <div class="table-show">
@@ -203,9 +206,6 @@
 </div>
 </template>
 <style>
-.stylevtn{
-    border:1px solid #20eedd;
-}
 .relateimgon{
     display: block;
     width: 26px;
@@ -710,7 +710,11 @@ table .pictable{
                 searchTableData: {},
                 bmobCheckList: [],
                 tabledatas: {},
-                statusColors:["#4d7cbe","#6bc664","#5acdce","#d99165","#e975c1","#dc5b5b","dfd06d","#b0bec5","dfd06d","#b0bec5","dfd06d","#b0bec5","dfd06d","#b0bec5"]
+                statusColors: ["#4d7cbe", "#6bc664", "#5acdce", "#d99165", "#e975c1", "#dc5b5b", "dfd06d", "#b0bec5", "dfd06d", "#b0bec5", "dfd06d", "#b0bec5", "dfd06d", "#b0bec5"],
+                searchConditionType: "byTime",
+                selectTimeType: 4,
+                selectedStatus: -1,
+                searchPathologyNo: {typePathologyNo: null, selectedPathologyType: -1}
             }
         },
         components: {
@@ -745,7 +749,6 @@ table .pictable{
                 const data = JSON.parse(json);
                 this.relateListDatas = data;
             },
-
             async searchByTime () {
                 const response = await fetch('/register/query-time', {
                     method: 'POST',
@@ -754,11 +757,44 @@ table .pictable{
                         "Content-type": "application/json; charset=UTF-8"
                     },
                     body: JSON.stringify({
-                        selectTimeType: '4',
+                        selectTimeType: this.selectTimeType
                     })
                 });
                 const json = await response.text();
                 const data = JSON.parse(json);
+
+                this.$errHandle(data);
+                this.tabledatas = data;
+            },
+            async searchByStatus() {
+                const response = await fetch('/register/query-status', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        selectedStatus: this.selectedStatus
+                    })
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+
+                this.$errHandle(data);
+                this.tabledatas = data;
+            },
+            async searchByPathologyNo() {
+                const response = await fetch('/register/query-no', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.searchPathologyNo)
+                });
+                const json = await response.text();
+                const data = JSON.parse(json);
+
                 this.$errHandle(data);
                 this.tabledatas = data;
             },
@@ -778,7 +814,14 @@ table .pictable{
             },
             async search()
             {
-                this.searchByTime();
+                if (this.searchConditionType == "byTime") {
+                    this.searchByTime();
+                } else if (this.searchConditionType == "byStatus") {
+                    this.searchByStatus();
+                } else if (this.searchConditionType == "byPathologyNo") {
+                    this.searchByPathologyNo();
+                }
+
             },
             toggle: function () {
                 $(".bmobbox").animate({marginLeft: "538px"}, 100).fadeToggle();
@@ -802,7 +845,8 @@ table .pictable{
                 this.$emit('orderStatusClick',id)
                 console.log(id)
             },
-            getOrderStatusColor:function(index){
+            getOrderStatusColor:function(index)
+            {
                 return this.statusColors[index];
             },
             cancle: function () {
@@ -823,9 +867,6 @@ table .pictable{
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                 }
             },
-            find: function () {
-
-            },
             showrelate:function(e){
                 var vvv=$(e.target).attr('id');
                 this.listshow=!(this.listshow);
@@ -841,8 +882,7 @@ table .pictable{
             },
             modalSelect:function(id){
                 // var id=$(e.target).attr('id');
-               this.$emit('modalSelect',id)
-               console.log(id) 
+               this.$emit('modalSelect',id) 
            },
             method: function () {
                 this.tableshow();
@@ -853,7 +893,19 @@ table .pictable{
             },
             mounted () {
                 this.searchTableData();
-            },
+            }, async selectTimeTypeChange()
+            {
+                // alert(this.selectTimeType);
+                this.searchConditionType = "byTime";
+                this.search();
+            }, async orderStatusClick(status){
+                this.searchConditionType = "byStatus";
+                this.selectedStatus = status;
+                this.search();
+            }, async getOrderListClick() {
+                this.searchConditionType = "byPathologyNo";
+                this.search();
+            }
         }
     };
 </script>
