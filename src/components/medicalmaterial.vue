@@ -187,13 +187,14 @@
   </div>
   <div  class="material-bottom">
       <div  class="material-button">
-          <button  class="left-button-two  material-button-one"> {{$t('medicalmaterial.take_doctor_advice')}}</button>
-          <button  class="left-button-two">{{$t('medicalmaterial.check_template')}}</button> 
+          <!-- <button  class="left-button-two  material-button-one"> {{$t('medicalmaterial.take_doctor_advice')}}</button> -->
+          <button  class="left-button-two material-button-one">{{$t('medicalmaterial.check_template')}}</button> 
           <button  class="left-button-two">{{$t('medicalmaterial.frozen_slices')}}</button>
           <button  class="left-button-five">{{$t('medicalmaterial.check_material')}}</button>
           <button  class="left-button-two">{{$t('medicalmaterial.temporary_storage')}}</button>
+          <button  class="left-button-two">{{$t('medicalmaterial.save')}}</button>
           <button  class="left-button-five">{{$t('medicalmaterial.print')}}</button>
-          <button  class="left-button-two">{{$t('medicalmaterial.save')}}</button>    
+              
         </div>
         <div  class="picture-img" v-on:click="newproject"></div> 
         <div  class="refresh-img"></div>        
@@ -339,7 +340,7 @@
   width: 1052px;
 }
 .material-button-one{
-  margin-left: 470px;
+  margin-left: 495px;
 }
 .material-button{
   margin-top: 510px;
@@ -349,6 +350,7 @@
   background: #428bca;
   color:#fff;
   border-radius: 3px;
+  margin-right: 10px;
 }
 .material-content{
     width: 730px;

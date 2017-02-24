@@ -42,11 +42,13 @@
                   <el-table-column
                     prop="address"
                     label="切片条码号"
+                    show-overflow-tooltip
                     width="100">
                     <template scope="scope">{{ scope.row.date }}</template>
                     </el-table-column>
                   <el-table-column
                     label="切片说明"
+                    show-overflow-tooltip
                     width="96">
                     <template scope="scope">{{ scope.row.date }}</template>
                   </el-table-column>
@@ -58,17 +60,20 @@
                   <el-table-column
                     prop="address"
                     label="不良因素"
+                    show-overflow-tooltip
                     width="80">
                     <template scope="scope">{{ scope.row.date }}</template>
                   </el-table-column>
                   <el-table-column
                     label="评级人"
+                    show-overflow-tooltip
                     width="112">
                     <template scope="scope">{{ scope.row.date }}</template>
                   </el-table-column>
                   <el-table-column
                     prop="name"
                     label="备注"
+                    show-overflow-tooltip
                     width="66">
                   </el-table-column>
                   <el-table-column

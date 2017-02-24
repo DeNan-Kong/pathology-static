@@ -1,6 +1,6 @@
 <template>
     <div>   
-    <div class="modal-dialog modal-technical">
+    <div class="modal-dialog modal-frozen">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="close" data-dismiss="modal" aria-hidden="true">&times;</div>
@@ -27,52 +27,61 @@
                     <el-table-column
                       prop="name"
                       label="接收时间"
-                      width="127">
+                      show-overflow-tooltip
+                      width="120">
                     </el-table-column>
                     <el-table-column
                       prop="address"
                       label="报告日期"
-                       width="127">
+                      show-overflow-tooltip
+                       width="120">
                     </el-table-column>
                     <el-table-column
                       prop="doctor"
                       label="报告医生"
+                      show-overflow-tooltip
                       width="84">
                     </el-table-column>
                     <el-table-column
                       prop="n"
                       label="审核医生"
+                      show-overflow-tooltip
                       width="84">
                     </el-table-column>
                     <el-table-column
                       prop="a"
                       label="冰冻符合"
+                      show-overflow-tooltip
                        width="84">
                     </el-table-column>
                     <el-table-column
                       prop="ad"
                       label="审核状态"
+                      show-overflow-tooltip
                        width="71">
                     </el-table-column>
                     <el-table-column
                       prop="da"
                       label="打印状态"
+                      show-overflow-tooltip
                       width="71">
                     </el-table-column>
                     <el-table-column
                       prop="me"
                       label="制片用时"
+                      show-overflow-tooltip
                       width="84">
                     </el-table-column>
                     <el-table-column
                       prop="ress"
                       label="报告用时"
+                      show-overflow-tooltip
                        width="84">
                     </el-table-column>
                   </el-table>
                 </div>
                 <div class="frozen-content" style="border:none">冰冻结果：</div>
-                <textarea class="el-table__body-wrapper" style="height:176px;"></textarea>
+                <textarea class="el-table__body-wrapper" style="height:156px;"></textarea>
             </div>
 
         </div><!-- /.modal-content -->
@@ -80,13 +89,13 @@
     </div>
 </template>
 <style>
-.modal-technical .modal-content{
+.modal-frozen .modal-content{
     margin-top: 30%;
     margin-left: -232px;
-    width:828px;
+    width:928px;
     height: 426px;
 } 
-/*.modal-frozen .modal-header{
+.modal-frozen .modal-header{
     width: 927px;
 }
 .modal-frozen .modal-title{
@@ -105,7 +114,7 @@
     border: 1px solid #d9d9d9;
     border-radius: 3px;
     overflow: auto;
-}*/
+}
 </style>
 <script>
     export default{
