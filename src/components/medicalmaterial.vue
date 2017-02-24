@@ -2,97 +2,113 @@
   <div  class="material-main">
   <div class="material-content">
     <div class="material-top">
-        <form  class="material-select-one floatleft material-margin">
-            <select class="radius common">
+      <div class="material-row-one">
+        <p style="width:100px; padding-left:7px;">任务来源</p>
+        <p style="width:86px;">材块号</p>
+        <p style="width:96px;">取材部位</p>
+        <p style="width:56px;">材块数</p>
+        <p style="width:66px;">单位</p>
+        <p style="width:114px;">取材医生</p>
+        <p style="width:136px;">取材日期</p>
+        <button class="material-top-add radius material-top-btn floatleft" @click="addMaterialsTable">{{$t('medicalmaterial.add')}}</button>
+      </div>
+      <div class="material-row-two">
+        <form  class="material-select-one floatleft" style="width:90px;">
+            <select class="radius common" style="width:70px;" v-model="materialsContent.taskSource">
               <option v-for="item in allMaterialData.taskSourceList">{{item.name}}
               </option>
             </select>
         </form>
-         <form  class="floatleft">
-            <select class="radius common material-top-input">
+         <form  class="floatleft" style="width:83px;">
+            <select class="radius common material-top-input" v-model="materialsContent.materialsNum">
               <option v-for="item in allMaterialData.materialNoList">{{
                 item.name
               }}
               </option>
             </select>
         </form>
-        <form  class="material-top-two floatleft">
-            <select class="radius common material-top-two">
+        <form  class="material-top-two floatleft" style="width:78px;">
+            <select class="radius common material-top-two" v-model="materialsContent.materialsSite">
               <option v-for="item in materialInitialData.nodeList">{{
                 item.name
               }}</option>
             </select>
         </form>
-        <input type="text"  class="material-top-ipttwo floatleft  radius common">
-        <form  class="material-top-three floatleft ">
-            <select class="threeradius common">
+        <input type="text"  class="material-top-ipttwo floatleft  radius common" v-model="materialsContent.materialsCount">
+        <form  class="material-top-three floatleft" style="width:65px;">
+            <select class="threeradius common" v-model="materialsContent.materialsUnit">
               <option v-for="item in allMaterialData.quantityUnitList">{{item.name}}</option>
             </select>
         </form> 
-        <form  class="material-top-four floatleft ">
-            <select class="radius common">
+        <form  class="floatleft">
+            <select class="radius common material-top-four" v-model="materialsContent.materialsDoctor">
               <option v-for="item in allMaterialData.sampleDoctorList">{{item.name}}</option>
             </select>
         </form>
         <div class="material-top-date">
           <calendar/>
         </div>
-        <button class="material-top-add radius  material-top-btn">{{$t('medicalmaterial.add')}}</button>
-        <button class="material-top-del radius  material-top-btn">{{$t('medicalmaterial.deletebtn')}}</button>
+        <button class="material-top-del radius material-top-btn" style="margin-top:6px;line-height:26px;" @click="deleteTable">{{$t('medicalmaterial.deletebtn')}}</button>
+      </div>
     </div>
     <div class="material-middle">
-        <el-table  
+        <el-table 
+        :data="materialsTable" 
         border
-        style="width: 100%" height="272">
+        row-key
+        style="width: 100%" 
+        height="272"
+         @selection-change="handleSelectionChange">
         <el-table-column
           type="selection"
-          width="50">
+          width="40"
+          >
         </el-table-column>
         <el-table-column
           label="任务来源"
-          width="100" >
+          width="90" >
           <template scope="scope">
-            <span style="margin-left: 10px">{{scope.row.clevel }}</span>
+            <span style="margin-left: 10px">{{scope.row.taskSource}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="材块号"
-          width="86">
+          width="84">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+            <span style="margin-left: 10px">{{ scope.row.materialsNum}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="取材部位"
-          width="100">
+          width="120">
           <template scope="scope">
-            <span style="margin-left: 10px">{{scope.row.clevel}}</span>
+            <span style="margin-left: 10px">{{scope.row.materialsSite}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="材块数"
-          width="86">
+          width="76">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+            <span style="margin-left: 10px">{{ scope.row.materialsCount}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="单位"
           width="76">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+            <span style="margin-left: 10px">{{ scope.row.materialsUnit}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="取材医生"
           width="98">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+            <span style="margin-left: 10px">{{ scope.row.materialsDoctor }}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="取材日期"
-          width="98">
+          width="120">
           <template scope="scope">
             <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
           </template>
@@ -124,13 +140,13 @@
       <div class="clear"></div>
       <div class="informationtwo">
         <p class="floatleft informationtwo-p">{{$t('medicalmaterial.eye_findings')}}</p>
-        <form  class="floatleft ">
+       <!--  <form  class="floatleft ">
             <select class="radius  informationtwo-sel informationtwo-sel-one">
               <option></option>
               
             </select>
         </form>
-        <button class="informationtwo-button">B</button>
+        <button class="informationtwo-button">B</button> -->
         <p class="floatleft chooseinput">{{$t('medicalmaterial.channel_select')}}</p>
         <form  class="floatleft  ">
             <select class="radius informationtwo-sel-two informationtwo-sel">
@@ -147,9 +163,9 @@
     <div  class="commondictionary  dictionary" @click="commonDictionary">
       {{$t('medicalmaterial.commondictionary')}}
     </div>
-    <div  class="checkdictionary  dictionary" @click="checkDictionary">
+    <!-- <div  class="checkdictionary  dictionary" @click="checkDictionary">
       {{$t('medicalmaterial.checkdictionary')}}
-    </div>
+    </div> -->
     <div  class="material-middle-right">
         <div   class="dictionary-input">
           <img src="../assets/images/search.png.png"  class="floatleft">
@@ -342,8 +358,21 @@
     color:#333333;
 }
 .material-top{
-  height: 42px;
+  height: 70px;
   border-top: 1px solid #5cbdde;
+}
+.material-row-one,.material-row-two{
+  height: 30px;
+  line-height: 40px;
+  padding-left: 10px;
+}
+.material-row-one p{
+  display: block;
+  height:24px;
+  float: left; 
+}
+.material-row-two{
+  margin-top: -6px;
 }
 .radius{
   border-radius:3px;
@@ -357,20 +386,14 @@
   width: 54px; 
 }
 .material-top-input{
-  width: 40px; 
-  margin-left: 22px;  
+  width: 56px;   
 }
 .material-top-two{
-  width:116px;
-  margin-left: 6px;
-  width: 68px;
-}
-.material-margin{
-  margin-left: 16px;
+  width: 80px;
 }
 .material-top-ipttwo{
   margin-left: 25px;
-  width: 44px;
+  width: 52px;
   border:1px solid #ccc;
   border-right: none;
   border-top-left-radius: 3px;
@@ -385,9 +408,7 @@
   border-bottom-right-radius: 3px;
 }
 .material-top-four{
-  margin-left: 18px;
-  width:65px;
-  margin-right: 10px;
+  width:75px;
 }
 .material-top-date{
   margin-top: 8px;
@@ -399,10 +420,11 @@
   color:#fff;
 }
 .material-top-add{
-  margin-left: 16px;
+  margin-top: 6px;
+  line-height: 24px;
 }
 .material-top-del{
-  margin-left: 16px;
+  margin-left: 20px;
 }
 .material-middle{
   width: 714px;
@@ -459,7 +481,7 @@
 .chooseinput{
   display: block;  
   height: 24px;
-  margin-left: 298px;
+  margin-left: 407px;
 }
 .informationtwo-btn{
   width: 82px;
@@ -499,7 +521,19 @@ textarea{
                 mydictionary:true,
                 commondictionary:false,
                 checkdictionary:false,
-                value1: [],       
+                value1: [],
+                materialsContent:{
+                  "taskSource":null,
+                  "materialsNum":null,
+                  "materialsSite":null,
+                  "materialsCount":null,
+                  "materialsUnit":null,
+                  "materialsDoctor":null,
+                  "materialsDate":null
+                },
+                materialsTable:[],
+                multipleSelection:[],
+                checkedRow:[]
             }
     },
       // props: ['materialInitialData','get'],
@@ -530,6 +564,16 @@ textarea{
                 self.allMaterialData=data;
                 self.materialInitialData = data.materialPartsList;
                 self.mydictionaryData=data.materialPartsList.nodeList;
+            },
+            addMaterialsTable:function(){
+              let item ={};
+              for(let p in this.materialsContent)
+              {
+                item[p]=this.materialsContent[p];
+              }
+                   this.materialsTable.push(item);
+
+
             },
           myDictionary:function(){
             this.commondictionary=false;
@@ -568,6 +612,33 @@ textarea{
           newproject:function(){
 
           },
+      //     handleSelectionChange() {
+      //   this.multipleSelection = index;
+      //   console.log(this.multipleSelection.length)
+      //   console.log(check);
+      //   console.log(index, row);
+      // },
+      handleSelectionChange:function(val) {
+        this.multipleSelection = val;
+        
+      },
+      deleteTable:function(){
+       for(var i=0;i<this.materialsTable.length;i++){
+        for(var j=0;j<this.multipleSelection.length;j++){
+          if(this.materialsTable[i]=this.multipleSelection[j]){
+            this.materialsTable.splice(i,1);
+            var list=[];
+            for(var z=0;z<this.materialsTable.length;z++){
+              list[z]=this.materialsTable[z]
+            }
+            this.materialsTable=list
+            // this.multipleSelection.splice(j,1);
+             console.log(list)
+          }
+        }
+       }
+      }
+
         // mounted(){
         //     this.loadMaterialData();
         // }

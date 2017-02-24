@@ -384,8 +384,10 @@
     margin-right: 5px;
     margin-left: 5px;
 }
+
+
 .table-show{
-    width:100%;
+    width:812px;
     min-width:235px;
     height: 420px;
     margin-top: 15px;
@@ -393,6 +395,11 @@
     /*/*overflow-y: auto;*/
     overflow:hidden;
 }
+/*@media screen and (max-width:1820px){
+    .table-show{
+    width:412px;
+    }
+}*/
 #middle-right{
     margin-top: -650px;
     margin-left:1066px;
@@ -599,6 +606,9 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
   text-align: center;
   padding: 0px;
 } 
+#middle-right .el-table__body-wrapper{
+    height: 387px !important;
+}
 .el-table__body-wrapper::-webkit-scrollbar-track{
     border-radius: 10px;
 } 

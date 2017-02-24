@@ -2,12 +2,13 @@
     <div id="error">
         <div class="error_pic"></div>
         <div class="error_code">
-            <p>错误代码：1d046d95-9193-4eac-aed3-d28ffbaada64</p>
-            <p>错误种类代码：1.2.156.123907.10001.500.10001</p>
-            <p>系统授权失败-无权访问指定的工作站</p>
-        </div>
-        <div class="error_back">
+            <p class="code">错误代码：1d046d95-9193-4eac-aed3-d28ffbaada64<br>
+            错误种类代码：1.2.156.123907.10001.500.10001<br>
+            系统授权失败-无权访问指定的工作站</p>
             
+        </div>
+        <div class="error_img">
+             <p class="error_font"></p>
         </div>
         <button>带我回家</button>
     </div>
@@ -16,33 +17,38 @@
 #error{
   width:100%;
   height: 100%;
-  min-height: 700px;
   min-width: 1340px;
+  min-height: 700px;
   background: #fff;
   position: absolute;
-  bottom: 0px;
 }
 .error_pic{
   width: 640px;
-  height: 484px;
+  height: 385px;
   position: absolute;
   left: 50%;
   margin-left: -320px;
-  bottom:25%;
-  background: url('../assets/images/notfound-ch.png');
+  top:10%;
+  background:url('../assets/images/error.png')no-repeat -52px -3px;
 }
-.error_code p{
+.error_code,.error_img{
     display: block;
     width:506px;
-    height: 22px;
+    height: 70px;
     font-size: 20px;
     position: absolute;
-
-}
-.error_code{
+    left:50%;
+    margin-left: -253px;
+    top:65.71%; 
     color:#275883;
-    position: absolute;
-    bottom: 25%;
+}
+.error_img{
+    top:81%;
+}
+.error_font{
+    width: 370px;
+    height: 30px;
+    background:url('../assets/images/error.png')no-repeat -52px -400px;
 }
 #error button{
   color:#fff;
@@ -53,7 +59,7 @@
   position: absolute;
   left: 50%;
   margin-left: -38px;
-  bottom: 13.14%;
+  top: 87.43%;
 
 }
 </style>

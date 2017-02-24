@@ -51,7 +51,7 @@
                                                 </li>
                                                 <li><a href="#">Level 2</a>
                                                 </li>
-                                                <li><a href="#">Level 2</a>
+                                                <li><a href="#">Level 2</a>                                    
                                                 </li>
                                             </ul>
                                         </li>
@@ -79,9 +79,10 @@
             return {
 
             }
-        }, methods: {
+        }, 
+        methods: {
             async logout() {
-                const response = await fetch('/index/logout', {
+                const response = await fetch('/index/', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {

@@ -64,6 +64,12 @@ a:hover{
     z-index: 0;
     transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
 }
+.el-checkbox__input {
+    outline: 0;
+    line-height: 8px;
+    vertical-align: middle;
+    margin-top: 5px;
+}
 .scroll-flow::-webkit-scrollbar-track{
     background-color: #fff;
 } 

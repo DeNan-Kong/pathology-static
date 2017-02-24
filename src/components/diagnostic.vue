@@ -40,11 +40,11 @@
     </div>
     <div class="diagnostic-message-text">
       <p>肉眼检查</p>
-      <textarea></textarea>
+      <textarea class="scroll-flow"></textarea>
       <p>镜下所见</p>
-      <textarea></textarea>
+      <textarea class="scroll-flow"></textarea>
       <p>病理诊断</p>
-      <textarea></textarea>
+      <textarea class="scroll-flow"></textarea>
     </div>
     <div  class="diagnostic-message-bottom">
       <div class="diagnostic-one floatleft">

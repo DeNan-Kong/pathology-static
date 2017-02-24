@@ -9,11 +9,12 @@
                 </div>
                 <div class="case-message">
                     <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a
-                            class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)</a><a
-                            class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a><a
-                            class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p
-                            class="close" @click="closebtn"></p></a><br>
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a>
+                        <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)</a>
+                        <a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                        <p class="close" @click="closebtn"></p>
+                    </a><br>
                     </div>
                     <medicalmessage ref="medicalMessage" v-on:orderSaved="orderSaved"/>
                 </div>

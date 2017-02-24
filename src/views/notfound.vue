@@ -1,7 +1,7 @@
 <template>
   <div id="notfound">
     <div class="notfound-pic"></div>
-    <div><button>返回首页</button></div>
+    <div><button>返回上一页</button></div>
   </div>
 </template>
 <style type="text/css">
@@ -12,7 +12,6 @@
   min-width: 1340px;
   background: #fff;
   position: absolute;
-  bottom: 0px;
 }
 .notfound-pic{
   width: 640px;
@@ -25,7 +24,7 @@
 }
 #notfound button{
   color:#fff;
-  width:76px;
+  width:82px;
   height: 34px;
   border-radius: 3px;
   background: #428bca;
@@ -49,9 +48,9 @@
     computed: mapState([
       'message'
     ]),
-    mounted: function () {
-      this.$store.commit('MESSAGE', '404 Not Found！');
-    },
-    components: {cTitle}
+    // mounted: function () {
+    //   this.$store.commit('MESSAGE', '404 Not Found！');
+    // },
+    components: {cTitle},
   }
 </script>
