@@ -3,7 +3,7 @@
         <div  class="right-inner">    
         <div class="right-top">
             <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"
-                    :style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(index)" :class="{statusColor: isStatusColor}">
+                    :style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(item.id)" :class="{statusColor: isStatusColor}">
                 {{item.name}}
             </button>
             <el-checkbox-group v-model="checkList">

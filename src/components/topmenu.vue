@@ -82,7 +82,7 @@
         }, 
         methods: {
             async logout() {
-                const response = await fetch('/index/', {
+                const response = await fetch('/index/logout', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
