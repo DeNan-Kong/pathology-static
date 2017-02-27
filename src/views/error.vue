@@ -10,7 +10,7 @@
         <div class="error_img">
              <p class="error_font"></p>
         </div>
-        <button>带我回家</button>
+        <button @click="back">带我回家</button>
     </div>
 </template>
 <style type="text/css">
@@ -75,6 +75,12 @@
             error : function () {
                 // `this` points to the vm instance
                 return this.$store.state.error
+            }
+        },
+        methods: {
+            back(){
+                debugger;
+                this.$router.back();
             }
         },
         mounted () {

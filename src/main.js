@@ -18,6 +18,7 @@ import validatorAttributes  from './assets/strings/locale/zh-cn/validator-attrib
 import labelMessages  from './assets/strings/locale/zh-cn/label-messages.js';
 import VueI18n  from 'vue-i18n';
 import ErrorHandle  from './common/error-handle';
+import LoginValidatHandle  from './common/login-validate-handle';
 
 //import bootstrap from 'bootstrap';
 
@@ -31,6 +32,7 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(ErrorHandle);
+Vue.use(LoginValidatHandle);
 
 // ready translated locales
 Vue.config.lang = 'cn';
