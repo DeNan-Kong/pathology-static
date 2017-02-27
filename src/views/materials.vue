@@ -11,13 +11,13 @@
                 <div class="case-tabs">
                     <a  class="active medicalInformation"  v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>    
                 </div>
-                <medicalmessage/>
+                <medicalmessage ref="medicalMessage" v-on:orderSaved="orderSaved"/>
             </div>
             <div  class="tabs-materials">
                 <div class="case-tabs">
                     <a  class="active medicalInformation"  v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a class="medicalMaterials"  v-on:click="medicalMaterials">{{$t('register.draw_materials_message')}}</a><a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)</a><a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
-                <medicalmaterial/>
+                <medicalmaterial ref="medicalmaterial"/>
             </div>
             <div  class="tabs-img">
                 <div class="case-tabs">
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div  id="middle-right">
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method" v-on:modalSelect="showMaterialsModal" />
+            <searchtable :tableshow="method" v-on:orderItemClick="orderItemClick" ref="searchtable"/>
     </div>
      </div>
  </div>
@@ -312,7 +312,16 @@ import {mapState} from 'vuex';
                 }
                 if(id==6){
                 $('#filllist').modal({keyboard: false})
-                } 
+                }
+            }, async orderItemClick(orderId) {
+                var medicalMessage = this.$refs.medicalMessage;
+                medicalMessage.loadOrder(orderId);
+
+                var medicalmaterial = this.$refs.medicalmaterial;
+                medicalmaterial.setOrderId(orderId);
+            }, async orderSaved(){
+                var searchtable = this.$refs.searchtable;
+                searchtable.search();
             }
     }   
 }

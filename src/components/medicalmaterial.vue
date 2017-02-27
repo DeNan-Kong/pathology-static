@@ -15,13 +15,13 @@
       <div class="material-row-two">
         <form  class="material-select-one floatleft" style="width:90px;">
             <select class="radius common" style="width:70px;" v-model="materialsContent.taskSource">
-              <option v-for="item in allMaterialData.taskSourceList">{{item.name}}
+                <option v-for="item in allMaterialData.taskSourceList" :value="item">{{item.name}}
               </option>
             </select>
         </form>
          <form  class="floatleft" style="width:83px;">
             <select class="radius common material-top-input" v-model="materialsContent.materialsNum">
-              <option v-for="item in allMaterialData.materialNoList">{{
+                <option v-for="item in allMaterialData.materialNoList" :value="item">{{
                 item.name
               }}
               </option>
@@ -29,7 +29,7 @@
         </form>
         <form  class="material-top-two floatleft" style="width:78px;">
             <select class="radius common material-top-two" v-model="materialsContent.materialsSite">
-              <option v-for="item in materialInitialData.nodeList">{{
+                <option v-for="item in materialInitialData.nodeList" :value="item">{{
                 item.name
               }}</option>
             </select>
@@ -37,28 +37,29 @@
         <input type="text"  class="material-top-ipttwo floatleft  radius common" v-model="materialsContent.materialsCount">
         <form  class="material-top-three floatleft" style="width:65px;">
             <select class="threeradius common" v-model="materialsContent.materialsUnit">
-              <option v-for="item in allMaterialData.quantityUnitList">{{item.name}}</option>
+                <option v-for="item in allMaterialData.quantityUnitList" :value="item">{{item.name}}</option>
             </select>
         </form> 
         <form  class="floatleft">
             <select class="radius common material-top-four" v-model="materialsContent.materialsDoctor">
-              <option v-for="item in allMaterialData.sampleDoctorList">{{item.name}}</option>
+                <option v-for="item in allMaterialData.sampleDoctorList" :value="item">{{item.name}}</option>
             </select>
         </form>
         <div class="material-top-date">
-          <calendar/>
+            <calendar :date="materialsContent.materialsDate" v-on:change="materialsDateChange"/>
         </div>
         <button class="material-top-del radius material-top-btn" style="margin-top:6px;line-height:26px;" @click="deleteTable">{{$t('medicalmaterial.deletebtn')}}</button>
       </div>
     </div>
     <div class="material-middle">
-        <el-table 
-        :data="materialsTable" 
-        border
-        row-key
-        style="width: 100%" 
-        height="272"
-         @selection-change="handleSelectionChange">
+        <el-table
+                :data="materialsTable"
+                border
+                row-key
+                style="width: 100%"
+                height="272"
+                @selection-change="handleSelectionChange"
+        >
         <el-table-column
           type="selection"
           width="40"
@@ -68,21 +69,21 @@
           label="任务来源"
           width="90" >
           <template scope="scope">
-            <span style="margin-left: 10px">{{scope.row.taskSource}}</span>
+              <span style="margin-left: 10px">{{scope.row.taskSource.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="材块号"
           width="84">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.materialsNum}}</span>
+              <span style="margin-left: 10px">{{ scope.row.materialsNum.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="取材部位"
           width="120">
           <template scope="scope">
-            <span style="margin-left: 10px">{{scope.row.materialsSite}}</span>
+              <span style="margin-left: 10px">{{scope.row.materialsSite.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -96,21 +97,21 @@
           label="单位"
           width="76">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.materialsUnit}}</span>
+              <span style="margin-left: 10px">{{ scope.row.materialsUnit.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="取材医生"
           width="98">
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.materialsDoctor }}</span>
+              <span style="margin-left: 10px">{{ scope.row.materialsDoctor.name }}</span>
           </template>
         </el-table-column>
         <el-table-column
-          label="取材日期"
-          width="120">
+                label="取材日期"
+                width="120" show-overflow-tooltip>
           <template scope="scope">
-            <span style="margin-left: 10px">{{ scope.row.clevel }}</span>
+              <span style="margin-left: 10px">{{ scope.row.materialsDateString }}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -120,20 +121,24 @@
         <p class="floatleft information-la">{{$t('medicalmaterial.wax_block_num')}}666</p><p class="floatleft information-cai">{{$t('medicalmaterial.wood_block_num')}}777</p>
         <p class="floatleft information-biao">{{$t('medicalmaterial.specimen_handling')}}</p>
         <form  class="floatleft">
-            <select class="radius  information-sel-one  information-sel">
-              <option v-for="item in allMaterialData.specimenHandleList"></option>
+            <select class="radius  information-sel-one  information-sel" v-model="bindData.specimenHandleId">
+                <option v-for="item in allMaterialData.specimenHandleList" :value="item.specimenHandleId">
+                    {{item.name}}
+                </option>
             </select>
         </form> 
         <p class="floatleft">{{$t('medicalmaterial.location')}}</p>
         <form  class="floatleft">
-            <select class="radius  information-sel information-sel-two">
-              <option v-for="item in allMaterialData.saveLocationList"></option>
+            <select class="radius  information-sel information-sel-two" v-model="bindData.savaLocationId">
+                <option v-for="item in allMaterialData.saveLocationList" :value="item.saveLocationId">
+                    {{item.name}}
+                </option>
             </select>
         </form> 
         <p class="floatleft">{{$t('medicalmaterial.recorder')}}</p>
         <form  class="floatleft">
-            <select class="radius  information-sel">
-              <option v-for="item in allMaterialData.noterList">{{item.name}}</option>
+            <select class="radius  information-sel" v-model="bindData.noterId">
+                <option v-for="item in allMaterialData.noterList" :value="item.userId">{{item.fullName}}</option>
             </select>
         </form> 
       </div>
@@ -149,12 +154,14 @@
         <button class="informationtwo-button">B</button> -->
         <p class="floatleft chooseinput">{{$t('medicalmaterial.channel_select')}}</p>
         <form  class="floatleft  ">
-            <select class="radius informationtwo-sel-two informationtwo-sel">
-              <option v-for="item in allMaterialData.passageWayList"></option>
+            <select class="radius informationtwo-sel-two informationtwo-sel" v-model="bindData.passageWayId">
+                <option v-for="item in allMaterialData.passageWayList" :value="item.passageWayId">
+                    {{item.name}}
+                </option>
             </select>
         </form>
-        <button class=" radius  informationtwo-btn">{{$t('medicalmaterial.label_printing')}}</button>
-        <textarea></textarea>
+          <button class="radius sinformationtwo-btn">{{$t('medicalmaterial.label_printing')}}</button>
+          <textarea v-model="bindData.grossFinding"></textarea>
       </div>  
     </div>
     <div  class="mydictionary dictionary dictionary-active"  @click="myDictionary">
@@ -193,7 +200,7 @@
           <button  class="left-button-five">{{$t('medicalmaterial.check_material')}}</button>
           <button  class="left-button-two">{{$t('medicalmaterial.temporary_storage')}}</button>
           <button  class="left-button-five">{{$t('medicalmaterial.print')}}</button>
-          <button  class="left-button-two">{{$t('medicalmaterial.save')}}</button>    
+          <button class="left-button-two" @click="save">{{$t('medicalmaterial.save')}}</button>
         </div>
         <div  class="picture-img" v-on:click="newproject"></div> 
         <div  class="refresh-img"></div>        
@@ -533,7 +540,16 @@ textarea{
                 },
                 materialsTable:[],
                 multipleSelection:[],
-                checkedRow:[]
+          bindData: {
+              orderId: null,
+              specimenHandleId: null,
+              savaLocationId: null,
+              noterId: null,
+              passageWayId: null,
+              grossFinding: "",
+              materialDetailList: []
+          },
+          checkedRow: []
             }
     },
       // props: ['materialInitialData','get'],
@@ -564,25 +580,30 @@ textarea{
                 self.allMaterialData=data;
                 self.materialInitialData = data.materialPartsList;
                 self.mydictionaryData=data.materialPartsList.nodeList;
-            },
-            addMaterialsTable:function(){
-              let item ={};
+
+          }, addMaterialsTable: function () {
+                let item = {};
+                let mergedItem = Object.assign(item, this.materialsContent);
+                mergedItem.isSelected = false;
+                /*
               for(let p in this.materialsContent)
               {
                 item[p]=this.materialsContent[p];
-              }
-                   this.materialsTable.push(item);
+                 }*/
+                if (mergedItem.materialsDate != null) {
+                    let materialsDate = new XDate(mergedItem.materialsDate);
+                    mergedItem.materialsDateString = materialsDate.toString("yyyy-MM-dd");
+                }
 
-
+                this.materialsTable.push(mergedItem);
+            }, myDictionary: function () {
+                this.commondictionary = false;
+                this.mydictionary = true;
+                this.checkdictionary = false;
+                $(".mydictionary").addClass('dictionary-active');
+                $(".mydictionary").siblings().removeClass('dictionary-active');
             },
-          myDictionary:function(){
-            this.commondictionary=false;
-            this.mydictionary=true;
-            this.checkdictionary=false;
-            $(".mydictionary").addClass('dictionary-active');
-            $(".mydictionary").siblings().removeClass('dictionary-active');
-          },
-          commonDictionary:function(){
+            commonDictionary: function () {
             this.commondictionary=true;
             this.mydictionary=false;
             this.checkdictionary=false;
@@ -599,45 +620,79 @@ textarea{
           },
           refund:function(){
 
-          },
-          print:function(){
+          }, print: function () {
 
-          },
-          save:function(){
+            }, async save(){
+                // 验证选择了病例
+                if (this.bindData.orderId == null) {
+                    this.$message({
+                        message: this.$t("medicalmaterial.require_order_id"),
+                        type: 'info',
+                        duration: 2000
+                    });
+                    return;
+                }
+                // 获取绑定的取材信息列表
+                for (let i = 0; i < this.materialsTable.length; i++) {
+                    let item = materialsTable[i];
+                    let materialDetail = {};
+                    materialDetail.taskSourceId = item.taskSource.id;
+                    materialDetail.materialNo = item.materialsNum;
+                    materialDetail.materialNoId = item.materialsNum;
 
-          },
-          newsave:function(){
+                    this, bindData.materialDetailList.push(materialDetail);
+
+
+
+                }
+
+
+
+                const response = await
+                    fetch('/material/save', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify(this.bindData)
+                    });
+
+                const resultJson = await response.text();
+                const resultObject = JSON.parse(resultJson);
+                // 异常处理
+                if (this.$errHandle(resultObject)) {
+                    return;
+                }
+
+            }, newsave: function () {
 
           },
           newproject:function(){
 
-          },
-      //     handleSelectionChange() {
-      //   this.multipleSelection = index;
-      //   console.log(this.multipleSelection.length)
-      //   console.log(check);
-      //   console.log(index, row);
-      // },
-      handleSelectionChange:function(val) {
-        this.multipleSelection = val;
-        
-      },
-      deleteTable:function(){
-       for(var i=0;i<this.materialsTable.length;i++){
-        for(var j=0;j<this.multipleSelection.length;j++){
-          if(this.materialsTable[i]=this.multipleSelection[j]){
-            this.materialsTable.splice(i,1);
-            var list=[];
-            for(var z=0;z<this.materialsTable.length;z++){
-              list[z]=this.materialsTable[z]
-            }
-            this.materialsTable=list
-            // this.multipleSelection.splice(j,1);
-             console.log(list)
+          }, handleSelectionChange: function (items) {
+                for (let i = 0; i < items.length; i++) {
+                    let item = items[i];
+                    item.isSelected = true;
+                }
+
+            }, deleteTable: function () {
+                // 保留不删除的项目
+                var newItems = [];
+
+                for (let i = 0; i < this.materialsTable.length; i++) {
+                    let item = this.materialsTable[i];
+                    if (item.isSelected == false) {
+                        newItems.push(item);
+                    }
           }
-        }
-       }
-      }
+
+                this.materialsTable = newItems;
+            }, materialsDateChange: function (date) {
+                this.materialsContent.materialsDate = date;
+            }, setOrderId(orderId){
+                this.bindData.orderId = orderId;
+            }
 
         // mounted(){
         //     this.loadMaterialData();
