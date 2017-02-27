@@ -121,7 +121,7 @@
     </div>
     <div class="material-information">
       <div class="informationone">
-        <p class="floatleft information-la">{{$t('medicalmaterial.wax_block_num')}}666</p><p class="floatleft information-cai">{{$t('medicalmaterial.wood_block_num')}}777</p>
+        <p class="floatleft information-la">{{$t('medicalmaterial.wax_block_num')}}{{lakuaiSum}}</p><p class="floatleft information-cai">{{$t('medicalmaterial.wood_block_num')}}{{caikuaiSum}}</p>
         <p class="floatleft information-biao">{{$t('medicalmaterial.specimen_handling')}}</p>
         <form  class="floatleft">
             <select class="radius  information-sel-one  information-sel" v-model="bindData.specimenHandleId">
@@ -532,6 +532,8 @@ textarea{
                 commondictionary:false,
                 checkdictionary:false,
                 value1: [],
+                caikuaiSum:0,
+                lakuaiSum:0,
                 materialsContent:{
                   "taskSource":null,
                   "materialsNum":null,
@@ -588,10 +590,7 @@ textarea{
                 let item = {};
                 let mergedItem = Object.assign(item, this.materialsContent);
                 mergedItem.isSelected = false;
-<<<<<<< HEAD
 
-=======
->>>>>>> f63e580b207c550e9f4628ffe11462832bc4ec8b
                 /*
               for(let p in this.materialsContent)
               {
@@ -603,13 +602,8 @@ textarea{
                 }
 
                 this.materialsTable.push(mergedItem);
-<<<<<<< HEAD
-                // console.log(this.materialsTable.taskSource.name)
-            }, 
-            myDictionary: function () {
-=======
+
             }, myDictionary: function () {
->>>>>>> f63e580b207c550e9f4628ffe11462832bc4ec8b
                 this.commondictionary = false;
                 this.mydictionary = true;
                 this.checkdictionary = false;
@@ -625,17 +619,10 @@ textarea{
           },
           refund:function(){
 
-<<<<<<< HEAD
-          },
-          print: function () {
 
-            }, 
-        async save(){
-=======
           }, print: function () {
 
             }, async save(){
->>>>>>> f63e580b207c550e9f4628ffe11462832bc4ec8b
                 // 验证选择了病例
                 if (this.bindData.orderId == null) {
                     this.$message({
