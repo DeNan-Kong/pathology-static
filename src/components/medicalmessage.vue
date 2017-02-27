@@ -521,12 +521,10 @@
                 }, rejected => { 
                     if($(".pathologyNo").val()==""){
                     this.isPathologyNoError=true;
-                    console.log($(".pathologyNo").val())
                     }
                     if($(".pathologyName").val()==""){
                     this.isNameError=true
                     }
-
                 });
                 if (this.errors.any() == false) {
                     const response = await fetch('/register/save', {

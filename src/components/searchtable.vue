@@ -249,6 +249,7 @@
     width:527px;
     height: 60px;
     margin-top: 120px;
+    margin-left: -30px;
     border-top: 1px  solid #e5e5e5;
 }
 .bmobbox-bottom button{
@@ -343,7 +344,7 @@
     height:660px;
     position:absolute;
     z-index: 9;
-    margin-top: -650px;
+    margin-top: -640px;
     margin-left: -538px !important;
     background: #fff;
     box-shadow: -3px 3px 5px rgba(0,0,0,0.15);
