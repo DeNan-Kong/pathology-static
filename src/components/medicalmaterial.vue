@@ -178,11 +178,11 @@
           <materiallist :mydictionaryData="(mydictionaryData)"/>
         </div>
         <div class="commondictionary-search scroll-flow" v-show="commondictionary">
-          <commondictionary/>
+          <commondictionary :commondictionaryData="(commondictionaryData)"/>
         </div>
-        <div class="checkdictionary-search scroll-flow" v-show="checkdictionary">
+        <!-- <div class="checkdictionary-search scroll-flow" v-show="checkdictionary">
           <checkdictionary/>
-        </div>
+        </div> -->
     </div>
   </div>
   <div  class="material-bottom">
@@ -525,11 +525,11 @@ textarea{
                 checkdictionary:false,
                 value1: [],
                 materialsContent:{
-                  "taskSource":null,
-                  "materialsNum":null,
+                  "taskSource":"常规",
+                  "materialsNum":1,
                   "materialsSite":null,
-                  "materialsCount":null,
-                  "materialsUnit":null,
+                  "materialsCount":1,
+                  "materialsUnit":"块",
                   "materialsDoctor":null,
                   "materialsDate":null
                 },
@@ -565,7 +565,8 @@ textarea{
                 const data = JSON.parse(json);
                 self.allMaterialData=data;
                 self.materialInitialData = data.materialPartsList;
-                self.mydictionaryData=data.materialPartsList.nodeList;
+                self.mydictionaryData=data.zangqisPrivate;
+                self.commondictionaryData=data.zangqisPublic;
             },
             addMaterialsTable:function(){
               let item ={};
@@ -629,12 +630,13 @@ textarea{
         for(var j=0;j<this.multipleSelection.length;j++){
           if(this.materialsTable[i]=this.multipleSelection[j]){
             this.materialsTable.splice(i,1);
+            this.multipleSelection.splice(j,1);
             var list=[];
             for(var z=0;z<this.materialsTable.length;z++){
               list[z]=this.materialsTable[z]
             }
             this.materialsTable=list
-            // this.multipleSelection.splice(j,1);
+            
              console.log(list)
           }
         }

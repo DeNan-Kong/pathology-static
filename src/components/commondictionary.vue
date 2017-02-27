@@ -1,31 +1,23 @@
 <template>
 <div>
-  <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+  <el-tree :data="commondictionaryData" :props="defaultProps" ></el-tree>
 </div>
 </template>
 <script>
   export default {
-    data() {
+   
+       data() {
       return {
-        data: [{
-          label: '通用',
-          children: [{
-            label: '二级 1-1',
-            children: [{
-              label: '三级 1-1-1'
-            }]
-          }]
-        }],
         defaultProps: {
-          children: 'children',
-          label: 'label'
+          children: 'nodeList',
+          label: 'name'
         }
-      };
-    },
-    methods: {
-      handleNodeClick(data) {
-       
-      }
+      
     }
+  },
+  created(){
+    console.log(this.commondictionaryData)
+  },
+   props: ['commondictionaryData'], 
   };
 </script>
