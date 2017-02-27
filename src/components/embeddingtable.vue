@@ -2,77 +2,88 @@
   <el-table
     :data="tableData"
     border
-     style="width:100%;min-width:1340px;"
+     style="width:1880px;position:relative"
     height="520">
     <el-table-column
       type="selection"
-      style="width:3%">
+      :row-class-name='pppppp'
+      >
     </el-table-column>
     <el-table-column
       label="病理号"
-      style="width:6%">
+      show-overflow-tooltip
+      style="width:6.88%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="任务来源"
-      style="width:6%">
+      show-overflow-tooltip
+      style="width:8.49%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="材块号"
-      style="width:4%">
+      show-overflow-tooltip
+      style="width:6.18%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="姓名"
-      style="width:5%">
+      show-overflow-tooltip
+      style="width:7.41%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="性别"
-      style="width:3%">
+      show-overflow-tooltip
+      style="width:4.32%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="年龄"
-      style="width:3%">
+      show-overflow-tooltip
+      style="width:4.32%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="取材部位"
-      style="width:5%">
+      show-overflow-tooltip
+      style="width:7.72%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="材块数"
-      style="width:3%">
+      show-overflow-tooltip
+      style="width:4.02%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="取材医生"
-      style="width:7%">
+      show-overflow-tooltip
+      style="width:7.1%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="取材日期"
+      show-overflow-tooltip
       style="width:7%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
@@ -80,6 +91,7 @@
     </el-table-column>
     <el-table-column
       label="材块核对"
+      show-overflow-tooltip
       style="width:6%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
@@ -87,6 +99,7 @@
     </el-table-column>
     <el-table-column
       label="打印状态"
+      show-overflow-tooltip
       style="width:6%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
@@ -94,6 +107,7 @@
     </el-table-column>
     <el-table-column
       label="制片状态"
+      show-overflow-tooltip
       style="width:6%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
@@ -101,6 +115,7 @@
     </el-table-column>
     <el-table-column
       label="核对时间"
+      show-overflow-tooltip
       style="width:7%">
       <template scope="scope">
         <span>{{ scope.row.date }}</span>
@@ -108,7 +123,11 @@
     </el-table-column>
   </el-table>
 </template>
-
+<style>
+ .el-table .pppppp{
+  width:3.86%;
+}
+</style>
 <script>
   export default {
     data() {
