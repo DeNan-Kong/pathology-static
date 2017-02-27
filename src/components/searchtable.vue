@@ -588,14 +588,18 @@ input[type='checkbox'] .checkbox-one{
 .right-bottom{
     width:230px;
     height:110px;
+    margin-top: 20px;
 }
+/*.right-bottom a:first-child{
+    margin-top: 10px;
+}*/
 .right-bottom a{
     display:block;
     float:left;
     width:110px;
     height: 24px;
-    margin-top: 10px;
     margin-left:5px;
+    margin-top: 3px;
     text-decoration:underline;
 }
 .activecolor{
