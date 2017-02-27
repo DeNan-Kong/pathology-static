@@ -107,7 +107,7 @@ export default{
         checkdictionary:"检查模板",
         take_doctor_advice:"补取医嘱",
         check_template:"检查模板",
-        frozen_slices:"冰冻切块",
+        frozen_slices:"冰冻报告",
         check_material:"材料核对",
         temporary_storage:"暂存",
         print:"打印",

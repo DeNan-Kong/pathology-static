@@ -31,6 +31,7 @@
                     <el-table-column
                       prop="address"
                       label="取材部位"
+                      show-overflow-tooltip
                        width="164">
                     </el-table-column>
                     <el-table-column
@@ -46,11 +47,13 @@
                     <el-table-column
                       prop="a"
                       label="取材医生"
+                      show-overflow-tooltip
                        width="90">
                     </el-table-column>
                     <el-table-column
                       prop="ad"
                       label="取材日期"
+                      show-overflow-tooltip
                        width="100">
                     </el-table-column>
                     <el-table-column
@@ -93,7 +96,15 @@
     export default{
         data(){
             return{
-             
+               materialsTable:{
+                "taskSource":null,
+                "materialsNum":null,
+                "materialsSite":null,
+                "materialsCount":null,
+                "materialsUnit":null,
+                "materialsDoctor":null
+
+               }
             }
         },
         components:{

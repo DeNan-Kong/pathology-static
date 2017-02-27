@@ -3,7 +3,7 @@
         <div  class="right-inner">    
         <div class="right-top">
             <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"
-                    v-bind:style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(item.id)">
+                    :style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(index)" :class="{statusColor: isStatusColor}">
                 {{item.name}}
             </button>
             <el-checkbox-group v-model="checkList">
@@ -12,8 +12,8 @@
         </div>
         <br>
         <div class="grop-search ">
-            <button class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs" ></div></button>
-            <button  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</button>
+            <div class="grop-search-line grop-search-line1 floatleft  grop-search-lines"  v-on:click="toggle"><div class="grop-search-img2 grop-search-img  grop-search-imgs"></div></div>
+            <div  class="grop-search-btn grop-search-btn1 floatleft  grop-search-btns" v-on:click="toggle">{{$t('searchtable.combination_query')}}</div>
             <p  class="floatleft">{{$t('searchtable.inspection_time')}}</p>
              <form  class="floatleft ">
                  <select class="grop-search-sel  radium" v-model="selectTimeType" @change="selectTimeTypeChange">
@@ -65,7 +65,7 @@
                                 </el-tooltip>
                             </td>
                             <td  class="statustable"><span v-if="item.isFrozen"> 冰</span></td>
-                            <td class="pathology-table" v-bind:style="{background:getOrderStatusColor(item.orderStatus-1)}">{{item.pathologyNo}}</td>
+                            <td class="pathology-table pathology-color" v-bind:style="{background:getOrderStatusColor(item.orderStatus-1)}">{{item.pathologyNo}}</td>
                             <td class="name-table"><div class="textoverflow nameover">{{item.patientName}}</div></td>
                             <td class="sex-table">{{item.sexName}}</td>
                             <td class="age-table">{{item.age}}</td>
@@ -387,19 +387,39 @@
 
 
 .table-show{
-    width:812px;
-    min-width:235px;
-    height: 420px;
+    width:306px;
+    height: 421px;
     margin-top: 15px;
     border:1px solid #ccc;
-    /*/*overflow-y: auto;*/
-    overflow:hidden;
+    overflow-x:hidden;
+
 }
-/*@media screen and (max-width:1820px){
+@media screen and (min-width:1442px){
     .table-show{
-    width:412px;
+    width:350px;
     }
-}*/
+}
+@media screen and (min-width:1565px){
+    .table-show{
+    width:470px;
+    }
+}
+
+@media screen and (min-width:1684px){
+    .table-show{
+    width:584px;
+    }
+}
+@media screen and (min-width:1823px){
+    .table-show{
+    width:700px;
+    }
+}
+@media screen and (min-width:1920px){
+    .table-show{
+    width:812px;
+    }
+}
 #middle-right{
     margin-top: -650px;
     margin-left:1066px;
@@ -568,14 +588,18 @@ input[type='checkbox'] .checkbox-one{
 .right-bottom{
     width:230px;
     height:110px;
+    margin-top: 20px;
 }
+/*.right-bottom a:first-child{
+    margin-top: 10px;
+}*/
 .right-bottom a{
     display:block;
     float:left;
     width:110px;
     height: 24px;
-    margin-top: 10px;
     margin-left:5px;
+    margin-top: 3px;
     text-decoration:underline;
 }
 .activecolor{
@@ -607,7 +631,8 @@ body #relatetable .el-table .cell,.el-table__header-wrapper{
   padding: 0px;
 } 
 #middle-right .el-table__body-wrapper{
-    height: 387px !important;
+    height: 386px !important;
+    overflow-x:hidden 
 }
 .el-table__body-wrapper::-webkit-scrollbar-track{
     border-radius: 10px;
@@ -689,6 +714,13 @@ table .pictable{
 #middle-right table td:nth-child(2),#middle-right table th:nth-child(2){
     border-left:none;
 }
+.pathology-color{
+    color:#fff;
+}
+.statusColor{
+    border:1px solid #20eedd;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.5) inset,-3px -3px 0px rgba(0,0,0,0.5) inset;
+}
 </style>
 <script>
     import {mapState} from 'vuex';
@@ -704,6 +736,7 @@ table .pictable{
     export default{
         data() {
             return {
+                isStatusColor:false,
                 listshow:false,
                 checkList: [],
                 relateListDatas: {},
@@ -841,10 +874,6 @@ table .pictable{
                     $(".grop-search-btns").addClass('grop-search-btn1').removeClass('grop-search-btn2')
                 }
             },
-            orderStatusClick: function (id) {
-                this.$emit('orderStatusClick',id)
-                console.log(id)
-            },
             getOrderStatusColor:function(index)
             {
                 return this.statusColors[index];
@@ -898,10 +927,12 @@ table .pictable{
                 // alert(this.selectTimeType);
                 this.searchConditionType = "byTime";
                 this.search();
-            }, async orderStatusClick(status){
+            },
+             async orderStatusClick(status,index){
                 this.searchConditionType = "byStatus";
                 this.selectedStatus = status;
                 this.search();
+                // this.isStatusColor=!this.isStatusColor;
             }, async getOrderListClick() {
                 this.searchConditionType = "byPathologyNo";
                 this.search();

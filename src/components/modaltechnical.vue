@@ -18,12 +18,14 @@
                     <el-table-column
                       prop="date"
                       label="医嘱号"
-                      width="78">
+                      show-overflow-tooltip
+                      width="88">
                     </el-table-column>
                     <el-table-column
                       prop="name"
                       label="类型"
-                      width="92">
+                      show-overflow-tooltip
+                      width="82">
                     </el-table-column>
                     <el-table-column
                       prop="address"
@@ -38,11 +40,13 @@
                     <el-table-column
                       prop="n"
                       label="申请医生"
+                      show-overflow-tooltip
                       width="86">
                     </el-table-column>
                     <el-table-column
                       prop="a"
                       label="申请日期"
+                      show-overflow-tooltip
                        width="92">
                     </el-table-column>
                     <el-table-column
@@ -53,11 +57,13 @@
                     <el-table-column
                       prop="da"
                       label="医嘱说明"
+                      show-overflow-tooltip
                       width="84">
                     </el-table-column>
                     <el-table-column
                       prop="me"
                       label="执行人"
+                      show-overflow-tooltip
                       width="76">
                     </el-table-column>
                   </el-table>

@@ -25,7 +25,7 @@
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
                             <input v-validate="'required'" name="pathologyNo"
-                                   class="p-margin radium" type="text" v-model="bindData.pathologyNo" :disabled="bindData.orderId!=null">
+                                   class="p-margin radium pathologyNo" :class="{errorBorder: isPathologyNoError}" type="text" v-model="bindData.pathologyNo" :disabled="bindData.orderId!=null" v-on:focus="disappearError">
                         </el-tooltip>
                     </div>
                     <p class="floatleft p-two">{{$t('medicalmessage.application_number')}}</p>
@@ -39,9 +39,9 @@
             <div class="case-name">
                 <div class="name-num-one">
                     <p class="p-one floatleft">{{$t('medicalmessage.name')}}</p>
-                    <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft" :value="errors.has('firstName')">
-                    <input v-validate="'required'" name="firstName" type="text" class="floatleft p-margin radium null"
-                    v-model="bindData.patient.patientName">
+                    <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft" :value="errors.has('firstName')" >
+                    <input v-validate="'required'" name="firstName" type="text" class="floatleft p-margin radium null pathologyName"
+                    v-model="bindData.patient.patientName" :class="{errorBorder: isNameError}" v-on:focus="disappear">
                     </el-tooltip>
                     <p class="floatleft p-two">{{$t('medicalmessage.sex')}}</p>
                     <form class="floatleft ">
@@ -73,7 +73,7 @@
                     <p class="floatleft p-one">{{$t('medicalmessage.marital_status')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup null" v-model="bindData.patient.maritalStatusId">
-                            <option v-for="item in initialData.maritalStatusList" :value="item.maritalStatusId">
+                            <option v-for="item in initialData.maritalStatusList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -81,7 +81,7 @@
                     <p class="floatleft  p-two">{{$t('medicalmessage.professional')}}</p>
                     <form class="floatleft ">
                         <select class="p-margin radium-sup null" v-model="bindData.patient.professionId">
-                            <option v-for="item in initialData.professionList" :value="item.professionId">
+                            <option v-for="item in initialData.professionList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -204,7 +204,7 @@
                     <p class="floatleft p-three">{{$t('medicalmessage.draw_materials_doctor')}}</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup null sampleDoctorId" v-model="bindData.sampleDoctorId">
-                            <option v-for="item in initialData.sampleDoctorList" :value="item.sampleDoctorId">
+                            <option v-for="item in initialData.sampleDoctorList" :value="item.id">
                                 {{item.name}}
                             </option>
                         </select>
@@ -233,7 +233,7 @@
             <div  class="left-button">
                 <button  class="left-button-two"  @click="refund">{{$t('medicalmessage.clear')}}</button>
                 <button class="left-button-two" @click="print">{{$t('medicalmessage.print')}}</button>
-                <button  class="left-button-two" @click="save(false)">{{$t('medicalmessage.save')}}</button>
+                <button  class="left-button-two" @click="save">{{$t('medicalmessage.save')}}</button>
                 <button  class="left-button-five" @click="newsave">{{$t('medicalmessage.save_and_create')}}</button>
                 <button class="left-button-two" @click="createOrder">{{$t('medicalmessage.create')}}</button>
             </div>
@@ -440,6 +440,9 @@
     top:3px;
     color:#fff;
 }
+.errorBorder{
+    border:1px solid red;
+}
 </style>
 <script>
     import TopMenu from 'components/topmenu';
@@ -453,7 +456,9 @@
         data(){
             return {
                 initialData:{},
-                bindData:{}
+                bindData:{},
+                isPathologyNoError:false,
+                isNameError:false
             }
         },
         components: {
@@ -477,7 +482,8 @@
                 const json = await response.text();
                 const data = JSON.parse(json);
                 self.initialData = data;
-            }, async createOrder(){
+            }, 
+            async createOrder(){
                 const response = await fetch('/register/create-order', {
                     method: 'POST',
                     credentials: 'include',
@@ -499,13 +505,23 @@
                 // this.errors.clear('firstName');
                 return false;
             }, async newsave(){
-                this.save(true);
+                await this.save();
+                this.createOrder();
             }, refund: function () {
                 $(".null").val('');
-            }, async save(isCreate){
+            },
+             async save(){
                 this.$validator.validateAll().then(success => {
                 }).then(failing => {
-                }, rejected => {
+                }, rejected => { 
+                    if($(".pathologyNo").val()==""){
+                    this.isPathologyNoError=true;
+                    console.log($(".pathologyNo").val())
+                    }
+                    if($(".pathologyName").val()==""){
+                    this.isNameError=true
+                    }
+
                 });
                 if (this.errors.any() == false) {
                     const response = await fetch('/register/save', {
@@ -523,19 +539,11 @@
                     if (this.$errHandle(resultObject)) {
                         return;
                     }
-
+                    // 重新加载 Order
+                    this.loadOrder(resultObject.orderId);
 
                     // 保存事件
                     this.$emit("orderSaved");
-
-                    // 创建新
-                    if (isCreate == true) {
-                        this.createOrder();
-                    } else {
-                        // 重新加载 Order
-                        this.loadOrder(resultObject.orderId);
-                    }
-
                 }
             }, print: function () {
                 console.log("print");
@@ -547,6 +555,12 @@
             },
             receiveDateChange: function (date) {
                 this.bindData.receiveDate = date;
+            },
+            disappear:function(){
+                this.isNameError=false;
+            },
+            disappearError:function(){
+                this.isPathologyNoError=false;
             },
             lmpChange: function (date) {
                 this.bindData.lmp = date;

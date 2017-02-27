@@ -85,7 +85,6 @@
                         </el-table-column>
                     </el-table>
                 </div>
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
