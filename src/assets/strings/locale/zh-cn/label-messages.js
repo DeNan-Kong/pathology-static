@@ -111,6 +111,7 @@ export default{
         check_material:"材料核对",
         temporary_storage:"暂存",
         print:"打印",
-        save:"保存"
+        save:"保存",
+        require_order_id:"请选择一个病例"
     }
 }

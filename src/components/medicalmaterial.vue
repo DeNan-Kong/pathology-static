@@ -83,7 +83,8 @@
           label="取材部位"
           width="120">
           <template scope="scope">
-              <span style="margin-left: 10px">{{scope.row.materialsSite}}</span>
+
+              <span style="margin-left: 10px">{{scope.row.materialsSite.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -104,13 +105,15 @@
           label="取材医生"
           width="98">
           <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.materialsDoctor}}</span>
+
+              <span style="margin-left: 10px">{{ scope.row.materialsDoctor.name }}</span>
           </template>
         </el-table-column>
         <el-table-column
                 label="取材日期"
                 width="120" show-overflow-tooltip>
           <template scope="scope">
+
               <span style="margin-left: 10px">{{ scope.row.materialsDateString}}</span>
           </template>
         </el-table-column>
@@ -585,7 +588,10 @@ textarea{
                 let item = {};
                 let mergedItem = Object.assign(item, this.materialsContent);
                 mergedItem.isSelected = false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f63e580b207c550e9f4628ffe11462832bc4ec8b
                 /*
               for(let p in this.materialsContent)
               {
@@ -597,9 +603,13 @@ textarea{
                 }
 
                 this.materialsTable.push(mergedItem);
+<<<<<<< HEAD
                 // console.log(this.materialsTable.taskSource.name)
             }, 
             myDictionary: function () {
+=======
+            }, myDictionary: function () {
+>>>>>>> f63e580b207c550e9f4628ffe11462832bc4ec8b
                 this.commondictionary = false;
                 this.mydictionary = true;
                 this.checkdictionary = false;
@@ -615,11 +625,17 @@ textarea{
           },
           refund:function(){
 
+<<<<<<< HEAD
           },
           print: function () {
 
             }, 
         async save(){
+=======
+          }, print: function () {
+
+            }, async save(){
+>>>>>>> f63e580b207c550e9f4628ffe11462832bc4ec8b
                 // 验证选择了病例
                 if (this.bindData.orderId == null) {
                     this.$message({

@@ -7,6 +7,13 @@ export default{
             if (data.error) {
                 this.$store.commit('error',data.error)
                 this.$router.push("/error");
+
+                return true;
+            }
+
+            // 如果有错误跳转到错误页面
+            if (data.authorityFailed) {
+                this.$router.push("/login");
                 return true;
             }
         }
