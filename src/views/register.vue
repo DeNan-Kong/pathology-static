@@ -213,7 +213,7 @@
             "searchtable": SearchTable,
             "calendar": Calendar,
             "medicalmessage": Medicalmessage,
-            "topmessage": Topmessage
+            "topmessage": Topmessage,
             "authorityValidation":AuthorityValidation
         },
         methods: {
