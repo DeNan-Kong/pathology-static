@@ -1,6 +1,8 @@
 <template>
     <div class="all">
-        <div id="register">
+        <authorityValidation v-on:authorityValidationCompleted="authorityValidationCompleted" />
+
+        <div id="register" v-if="authorityResult">
             <top-menu/>
             <div id="middle-left">
                 <topmessage />
@@ -187,6 +189,7 @@
 </style>
 <script>
     import TopMenu from 'components/topmenu';
+    import AuthorityValidation from 'components/authorityvalidation';
     import SearchTable from 'components/searchtable';
     import $ from "jQuery"
     import Calendar from 'components/calendar';
@@ -200,15 +203,18 @@
                     disabledDate(time) {
                         return time.getTime() < Date.now() - 8.64e7;
                     }
-                }
+                },
+                authorityResult:false //登录成功
             }
         },
         components: {
+
             "top-menu": TopMenu,
             "searchtable": SearchTable,
             "calendar": Calendar,
             "medicalmessage": Medicalmessage,
             "topmessage": Topmessage
+            "authorityValidation":AuthorityValidation
         },
         methods: {
             medicalInformation: function () {
@@ -383,10 +389,13 @@
             async orderSaved(){
                 var searchtable = this.$refs.searchtable;
                 searchtable.search();
+            },   authorityValidationCompleted(authorityResult){
+                this.authorityResult = authorityResult;
             }
         },created(){ // 生命周期 created,获取数据
             this.first()
         },mounted(){
+
         }
     }
 </script>

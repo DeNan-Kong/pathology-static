@@ -482,6 +482,16 @@
                 const json = await response.text();
                 const data = JSON.parse(json);
                 self.initialData = data;
+
+                // 异常处理
+                if (this.$errHandle(data)) {
+                    return;
+                }
+
+                // 登录及权限验证
+                if (this.$loginValidateHandle(data)) {
+                    return;
+                }
             }, 
             async createOrder(){
                 const response = await fetch('/register/create-order', {

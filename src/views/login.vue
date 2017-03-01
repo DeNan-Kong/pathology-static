@@ -254,6 +254,17 @@
 
                     // 登录成功
                     if (resultObject.loginResult == true) {
+                        // 验证权限
+                        if (resultObject.requiredAction) { // 无登录工作站权限
+
+                            this.$message({
+                                message: this.$t("login.action_failure"),
+                                type: 'error',
+                                duration: 2000
+                            });
+                        }
+
+                        // 跳转到工作站
                         switch (resultObject.workstationId) {
                             case 1:
                                 this.$router.push("/register");
@@ -268,7 +279,6 @@
                                 this.$router.push("/diagnose");
                                 break;
                         }
-
                     }
                     else {
                         this.$message({
