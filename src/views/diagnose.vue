@@ -3,10 +3,7 @@
         <div id="diagnostic">
             <top-menu/>
             <div id="middle-left">
-                <div class="middle-message">
-                    <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                    <p>冰冻&nbsp;&nbsp;常规</p>
-                </div>
+                <topmessage/>
                 <div class="case-message">
                     <div class="case-tabs">
                         <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}
@@ -267,6 +264,7 @@
     import Cytology from 'components/cytology';
     import Login from 'components/login';
     import Searchtabletwo from 'components/searchtabletwo';
+    import Topmessage from 'components/topmessage';
     export default{
         data(){
             return {
@@ -293,7 +291,8 @@
             "advice": Advice,
             "cytology": Cytology,
             "login": Login,
-            "searchtabletwo":Searchtabletwo
+            "searchtabletwo":Searchtabletwo,
+            "topmessage":Topmessage
         },
         methods: {
             medicalInformation: function () {

@@ -15,9 +15,6 @@
       
     }
   },
-  created(){
-    console.log(this.commondictionaryData)
-  },
    props: ['commondictionaryData'], 
   };
 </script>

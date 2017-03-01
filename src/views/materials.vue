@@ -3,10 +3,7 @@
     <div id="materials">
         <top-menu/>
         <div  id="middle-left">
-            <div class="middle-message">
-                <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                <p>冰冻&nbsp;&nbsp;常规</p>
-            </div>
+            <topmessage />
             <div class="case-message">
                 <div class="case-tabs">
                     <a  class="active medicalInformation"  v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>    
@@ -142,6 +139,7 @@ import {mapState} from 'vuex';
     import Calendar from 'components/calendar';
     import Medicalmessage from 'components/medicalmessage';
     import Medicalmaterial from 'components/medicalmaterial';
+    import Topmessage from 'components/topmessage';
     export default{
         data(){
             return{
@@ -166,6 +164,7 @@ import {mapState} from 'vuex';
             "calendar":Calendar,
             "medicalmessage":Medicalmessage,
             "medicalmaterial":Medicalmaterial,
+            "topmessage":Topmessage
         },
         methods:{
             medicalInformation:function(){
@@ -314,6 +313,7 @@ import {mapState} from 'vuex';
                 $('#filllist').modal({keyboard: false})
                 }
             }, async orderItemClick(orderId) {
+
                 var medicalMessage = this.$refs.medicalMessage;
                 medicalMessage.loadOrder(orderId);
 

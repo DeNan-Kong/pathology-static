@@ -3,10 +3,7 @@
         <div id="register">
             <top-menu/>
             <div id="middle-left">
-                <div class="middle-message">
-                    <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                    <p>冰冻&nbsp;&nbsp;常规</p>
-                </div>
+                <topmessage />
                 <div class="case-message">
                     <div class="case-tabs">
                         <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a>
@@ -194,6 +191,7 @@
     import $ from "jQuery"
     import Calendar from 'components/calendar';
     import Medicalmessage from 'components/medicalmessage';
+    import Topmessage from 'components/topmessage';
     export default{
         data(){
             return {
@@ -210,9 +208,9 @@
             "searchtable": SearchTable,
             "calendar": Calendar,
             "medicalmessage": Medicalmessage,
+            "topmessage": Topmessage
         },
         methods: {
-
             medicalInformation: function () {
                 $(".medicalInformation").addClass("active");
                 $(".medicalInformation").siblings().removeClass("active");

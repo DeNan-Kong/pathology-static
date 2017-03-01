@@ -35,6 +35,12 @@ a:hover{
     font-size: 14px; 
 }
 /*重写element ui table*/
+.el-table::after, .el-table::before{
+    z-index:0;
+}
+.el-table-column--selection .cell{
+    padding-left: 11px;
+}
 .el-table td, .el-table th.is-leaf{
      border-bottom:1px solid #d9d9d9; 
 }

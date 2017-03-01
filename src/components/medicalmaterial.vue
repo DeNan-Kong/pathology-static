@@ -1,5 +1,5 @@
  <template>
-  <div  class="material-main">
+  <div class="material-main">
   <div class="material-content">
     <div class="material-top">
       <div class="material-row-one">
@@ -14,34 +14,35 @@
       </div>
       <div class="material-row-two">
         <form  class="material-select-one floatleft" style="width:90px;">
-            <select class="radius common" style="width:70px;" v-model="materialsContent.taskSource">
+            <select class="radius common taskSource" style="width:70px;" v-model="materialsContent.taskSource">
                 <option v-for="item in allMaterialData.taskSourceList" :value="item">{{item.name}}
-              </option>
-            </select>
+                </option>
+              </select>
         </form>
          <form  class="floatleft" style="width:83px;">
             <select class="radius common material-top-input" v-model="materialsContent.materialsNum">
-                <option v-for="item in allMaterialData.materialNoList" :value="item">{{
+              <option v-for="item in allMaterialData.materialNoList" :value="item"
+              >{{
                 item.name
               }}
               </option>
             </select>
         </form>
-        <form  class="material-top-two floatleft" style="width:78px;">
+        <form  class="material-top-two floatleft" style="width:104px;">
             <select class="radius common material-top-two" v-model="materialsContent.materialsSite">
                 <option v-for="item in materialInitialData.nodeList" :value="item">{{
                 item.name
               }}</option>
             </select>
         </form>
-        <input type="text"  class="material-top-ipttwo floatleft  radius common" v-model="materialsContent.materialsCount">
+          <input type="text"  class="material-top-ipttwo floatleft radius common materialsCount" v-model="materialsContent.materialsCount"  v-validate="'required'" name="materialsCount" :class="{errorBorder: ismaterialsCountError}" @focus="disappearCountError">
         <form  class="material-top-three floatleft" style="width:65px;">
             <select class="threeradius common" v-model="materialsContent.materialsUnit">
                 <option v-for="item in allMaterialData.quantityUnitList" :value="item">{{item.name}}</option>
             </select>
         </form> 
         <form  class="floatleft">
-            <select class="radius common material-top-four" v-model="materialsContent.materialsDoctor">
+            <select class="radius common material-top-four sampleDoctor" v-validate="'required'"  v-model="materialsContent.materialsDoctor" name="sampleDoctor" :class="{errorBorder: ismaterialsDoctorError}" @focus="disappearDoctorError">
                 <option v-for="item in allMaterialData.sampleDoctorList" :value="item">{{item.name}}</option>
             </select>
         </form>
@@ -59,6 +60,8 @@
                 style="width: 100%"
                 height="272"
                 @selection-change="handleSelectionChange"
+                highlight-current-row
+                @current-change="handleCurrentChange"
         >
         <el-table-column
           type="selection"
@@ -67,6 +70,7 @@
         </el-table-column>
         <el-table-column
           label="任务来源"
+          show-overflow-tooltip
           width="90" >
           <template scope="scope">
               <span style="margin-left: 10px">{{scope.row.taskSource.name}}</span>
@@ -74,21 +78,23 @@
         </el-table-column>
         <el-table-column
           label="材块号"
-          width="84">
+          show-overflow-tooltip
+          width="82">
           <template scope="scope">
               <span style="margin-left: 10px">{{ scope.row.materialsNum.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="取材部位"
-          width="120">
+          show-overflow-tooltip
+          width="112">
           <template scope="scope">
-
               <span style="margin-left: 10px">{{scope.row.materialsSite.name}}</span>
           </template>
         </el-table-column>
         <el-table-column
           label="材块数"
+          show-overflow-tooltip
           width="76">
           <template scope="scope">
             <span style="margin-left: 10px">{{ scope.row.materialsCount}}</span>
@@ -96,6 +102,7 @@
         </el-table-column>
         <el-table-column
           label="单位"
+          show-overflow-tooltip
           width="76">
           <template scope="scope">
               <span style="margin-left: 10px">{{ scope.row.materialsUnit.name}}</span>
@@ -103,17 +110,17 @@
         </el-table-column>
         <el-table-column
           label="取材医生"
+          show-overflow-tooltip
           width="98">
           <template scope="scope">
-
               <span style="margin-left: 10px">{{ scope.row.materialsDoctor.name }}</span>
           </template>
         </el-table-column>
         <el-table-column
-                label="取材日期"
-                width="120" show-overflow-tooltip>
+          label="取材日期"
+          width="130"
+          show-overflow-tooltip>
           <template scope="scope">
-
               <span style="margin-left: 10px">{{ scope.row.materialsDateString}}</span>
           </template>
         </el-table-column>
@@ -132,7 +139,7 @@
         </form> 
         <p class="floatleft">{{$t('medicalmaterial.location')}}</p>
         <form  class="floatleft">
-            <select class="radius  information-sel information-sel-two" v-model="bindData.savaLocationId">
+            <select class="radius  information-sel information-sel-two" v-model="bindData.saveLocationId">
                 <option v-for="item in allMaterialData.saveLocationList" :value="item.saveLocationId">
                     {{item.name}}
                 </option>
@@ -148,13 +155,6 @@
       <div class="clear"></div>
       <div class="informationtwo">
         <p class="floatleft informationtwo-p">{{$t('medicalmaterial.eye_findings')}}</p>
-       <!--  <form  class="floatleft ">
-            <select class="radius  informationtwo-sel informationtwo-sel-one">
-              <option></option>
-              
-            </select>
-        </form>
-        <button class="informationtwo-button">B</button> -->
         <p class="floatleft chooseinput">{{$t('medicalmaterial.channel_select')}}</p>
         <form  class="floatleft  ">
             <select class="radius informationtwo-sel-two informationtwo-sel" v-model="bindData.passageWayId">
@@ -163,8 +163,8 @@
                 </option>
             </select>
         </form>
-          <button class="radius sinformationtwo-btn">{{$t('medicalmaterial.label_printing')}}</button>
-          <textarea v-model="bindData.grossFinding"></textarea>
+          <button class="radius informationtwo-btn">{{$t('medicalmaterial.label_printing')}}</button>
+          <textarea v-model="bindData.grossFinding" ></textarea>
       </div>  
     </div>
     <div  class="mydictionary dictionary dictionary-active"  @click="myDictionary">
@@ -188,7 +188,7 @@
           <materiallist :mydictionaryData="(mydictionaryData)"/>
         </div>
         <div class="commondictionary-search scroll-flow" v-show="commondictionary">
-          <commondictionary/>
+          <commondictionary :commondictionaryData="(commondictionaryData)"/>
         </div>
         <div class="checkdictionary-search scroll-flow" v-show="checkdictionary">
           <checkdictionary/>
@@ -197,20 +197,31 @@
   </div>
   <div  class="material-bottom">
       <div  class="material-button">
-          <button  class="left-button-two  material-button-one"> {{$t('medicalmaterial.take_doctor_advice')}}</button>
-          <button  class="left-button-two">{{$t('medicalmaterial.check_template')}}</button> 
-          <button  class="left-button-two">{{$t('medicalmaterial.frozen_slices')}}</button>
-          <button  class="left-button-five">{{$t('medicalmaterial.check_material')}}</button>
+          <button  class="left-button-two  material-button-one">{{$t('medicalmaterial.check_template')}}</button> 
+          <button  class="left-button-two" @click="modalFrozenShow">{{$t('medicalmaterial.frozen_slices')}}</button>
+          <button  class="left-button-five" @click="modalCheckShow">{{$t('medicalmaterial.check_material')}}</button>
           <button  class="left-button-two">{{$t('medicalmaterial.temporary_storage')}}</button>
-          <button  class="left-button-five">{{$t('medicalmaterial.print')}}</button>
           <button class="left-button-two" @click="save">{{$t('medicalmaterial.save')}}</button>
-        </div>
+          <button  class="left-button-five" @click="print">{{$t('medicalmaterial.print')}}</button> 
+      </div>
         <div  class="picture-img" v-on:click="newproject"></div> 
         <div  class="refresh-img"></div>        
+  </div>
+  <div>
+    <div class="modal fade" id="modalFrozen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <modalfrozen/>
     </div>
+    <div class="modal fade" id="modalCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <modalmaterialscheck/>
+    </div>
+  </div>
   </div>
 </template>
 <style>
+
+.el-tooltip, .el-tooltip__rel{
+  display:block;
+}
 .menus-img{
    background: url('../assets/images/materials.png')  -10px -20px no-repeat;
    width:10px;
@@ -349,7 +360,7 @@
   width: 1052px;
 }
 .material-button-one{
-  margin-left: 470px;
+  margin-left: 480px;
 }
 .material-button{
   margin-top: 510px;
@@ -359,6 +370,7 @@
   background: #428bca;
   color:#fff;
   border-radius: 3px;
+  margin-right: 12px;
 }
 .material-content{
     width: 730px;
@@ -402,10 +414,8 @@
   width: 80px;
 }
 .material-top-ipttwo{
-  margin-left: 25px;
   width: 52px;
   border:1px solid #ccc;
-  border-right: none;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -413,7 +423,8 @@
   width: 35px;
 }
 .threeradius{
-  margin-left:-1px;
+
+  border-left:none;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -475,9 +486,10 @@
   width:82px;
   height:24px;
   margin-top: 2px;
+  border: 1px solid #ccc;
 }
 .information-sel-one,.information-sel-two{
-    margin-right: 23px;
+    margin-right: 30px;
 }
 .informationtwo-p{
   display: block;
@@ -487,6 +499,7 @@
   width: 82px;
   height: 24px;
   margin-top: 2px;
+  border:1px solid #ccc;
 }
 .chooseinput{
   display: block;  
@@ -502,16 +515,20 @@
   margin-left: 2px;
   color:#fff;
 }
-textarea{
-  width: 730px;
+.material-main textarea{
+  width: 715px;
   height: 125px;
   border: 1px solid #ccc;
   border-radius: 3px;
   overflow: auto;
   resize:none;
+  float:right;
 }
 .el-tree{
   border:none;
+}
+.errorBorder{
+    border:1px solid red;
 }
 </style>
 <script>
@@ -521,6 +538,8 @@ textarea{
   import Materiallist from 'components/materiallist';
   import Commondictionary from 'components/commondictionary';
   import Checkdictionary from 'components/checkdictionary';
+  import Modalfrozen from "components/modalfrozen";
+  import Modalmaterialscheck from "components/modalmaterialscheck";
   export default {
      data() {
       return {
@@ -531,24 +550,27 @@ textarea{
                 mydictionary:true,
                 commondictionary:false,
                 checkdictionary:false,
+                ismaterialsCountError:false,
+                ismaterialsDoctorError:false,
+                isgrossFindingError:false,
                 value1: [],
                 caikuaiSum:0,
                 lakuaiSum:0,
                 materialsContent:{
-                  "taskSource":null,
-                  "materialsNum":null,
-                  "materialsSite":null,
-                  "materialsCount":null,
-                  "materialsUnit":null,
+                  "taskSource":"常规",
+                  "materialsNum":1,
+                  "materialsSite":"",
+                  "materialsCount":1,
+                  "materialsUnit":"块",
                   "materialsDoctor":null,
-                  "materialsDate":null
+                  "materialsDate":""
                 },
                 materialsTable:[],
                 multipleSelection:[],
           bindData: {
               orderId: null,
               specimenHandleId: null,
-              savaLocationId: null,
+              saveLocationId: null,
               noterId: null,
               passageWayId: null,
               grossFinding: "",
@@ -563,47 +585,65 @@ textarea{
            "medicalmessage":Medicalmessage, 
            "materiallist":Materiallist,
            "commondictionary":Commondictionary,
-           "checkdictionary":Checkdictionary
+           "checkdictionary":Checkdictionary,
+           "modalfrozen":Modalfrozen,
+           "modalmaterialscheck":Modalmaterialscheck
         },
         created(){ // 生命周期 created,获取数据
           this.loadMaterialData();
         },
         methods:{
           async loadMaterialData () {
-                const self=this;
-                const response = await fetch('/material/load',{ 
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8" 
-                    }, 
-                    body: JSON.stringify({ 
-                    })
-                });
-                const json = await response.text();
-                const data = JSON.parse(json);
-                self.allMaterialData=data;
-                self.materialInitialData = data.materialPartsList;
-                self.mydictionaryData=data.materialPartsList.nodeList;
+            const self=this;
+            const response = await fetch('/material/load',{ 
+                method: 'POST',
+                credentials: 'include',
+                headers: { 
+                    "Content-type": "application/json; charset=UTF-8" 
+                }, 
+                body: JSON.stringify({ 
+                })
+            });
+            const json = await response.text();
+            const data = JSON.parse(json);
+            self.allMaterialData=data;
+            self.materialInitialData = data.materialPartsList;
+            self.mydictionaryData=data.zangqisPrivate;
+            self.commondictionaryData=data.zangqisPublic.nodeList;
+            self.materialsContent.taskSource = data.taskSourceList[0];
+            // console.log(self.materialsContent.taskSource)
+            self.materialsContent.materialsNum = data.materialNoList[0];
+            self.materialsContent.materialsUnit = data.quantityUnitList[0];
 
-          }, addMaterialsTable: function () {
-                let item = {};
+          }, 
+          addMaterialsTable: function () {
+            this.$validator.validateAll().then(success => {
+              let item = {};
                 let mergedItem = Object.assign(item, this.materialsContent);
                 mergedItem.isSelected = false;
 
-                /*
-              for(let p in this.materialsContent)
-              {
-                item[p]=this.materialsContent[p];
-                 }*/
                 if (mergedItem.materialsDate != null) {
                     let materialsDate = new XDate(mergedItem.materialsDate);
                     mergedItem.materialsDateString = materialsDate.toString("yyyy-MM-dd");
                 }
-
                 this.materialsTable.push(mergedItem);
-
-            }, myDictionary: function () {
+                this.lakuaiSum=this.materialsTable.length;//蜡块数
+                var sum=0;
+                for(var i=0;i<this.materialsTable.length;i++){
+                  sum+=parseInt(this.materialsTable[i].materialsCount);
+                  this.caikuaiSum=sum//材块数
+                }
+                }).then(failing => { 
+                }, rejected => { 
+                  if($(".materialsCount").val()==""){
+                  this.ismaterialsCountError=true
+                }
+                if($(".sampleDoctor").val()==null||$(".sampleDoctor").val()==""){
+                  this.ismaterialsDoctorError=true
+                }    
+              });    
+            }, 
+            myDictionary: function () {
                 this.commondictionary = false;
                 this.mydictionary = true;
                 this.checkdictionary = false;
@@ -611,44 +651,61 @@ textarea{
                 $(".mydictionary").siblings().removeClass('dictionary-active');
             },
             commonDictionary: function () {
-            this.commondictionary=true;
-            this.mydictionary=false;
-            this.checkdictionary=false;
-            $(".commondictionary").addClass('dictionary-active');
-            $(".commondictionary").siblings().removeClass('dictionary-active');
-          },
-          refund:function(){
+              this.commondictionary=true;
+              this.mydictionary=false;
+              this.checkdictionary=false;
+              $(".commondictionary").addClass('dictionary-active');
+              $(".commondictionary").siblings().removeClass('dictionary-active');
+            },
+            disappearCountError:function(){
+               this.ismaterialsCountError=false
+            },
+            disappearDoctorError:function(){
+               this.ismaterialsDoctorError=false
+            },
+            modalFrozenShow:function(){
+              $('#modalFrozen').modal({keyboard: false})
+            },
+            modalCheckShow:function(){
+              $('#modalCheck').modal({keyboard: false})
+            },
+            refund:function(){
 
 
-          }, print: function () {
-
-            }, async save(){
-                // 验证选择了病例
-                if (this.bindData.orderId == null) {
-                    this.$message({
-                        message: this.$t("medicalmaterial.require_order_id"),
-                        type: 'info',
-                        duration: 2000
-                    });
-                    return;
-                }
-                // 获取绑定的取材信息列表
-                for (let i = 0; i < this.materialsTable.length; i++) {
-                    let item = materialsTable[i];
-                    let materialDetail = {};
-                    materialDetail.taskSourceId = item.taskSource.id;
-                    materialDetail.materialNo = item.materialsNum;
-                    materialDetail.materialNoId = item.materialsNum;
-
-                    this, bindData.materialDetailList.push(materialDetail);
-
-
-
-                }
-
-
-
-                const response = await
+            }, 
+            async print() {
+            
+  
+            },
+            async save(){
+              // 验证选择了病例
+              if (this.bindData.orderId == null) {
+                  this.$message({
+                      message: this.$t("medicalmaterial.require_order_id"),
+                      type: 'info',
+                      duration: 2000
+                  });
+                  return;
+              }
+              this.bindData.materialDetailList=[];
+              // 获取绑定的取材信息列表
+              for (let i = 0; i < this.materialsTable.length; i++) {
+                  let item = this.materialsTable[i];
+                  let materialDetail = {};
+                  materialDetail.taskSourceId = item.taskSource.id;
+                  materialDetail.materialNoId = item.materialsNum.materialNoId;
+                  if(item.materialsSite.id!=null){
+                  materialDetail.materialPartsId = item.materialsSite.id;
+                    }
+                  materialDetail.materialQuantity = item.materialsCount;
+                  materialDetail.quantityUnitId = item.materialsUnit.quantityUnitId;
+                  materialDetail.sampleDoctorId = item.materialsDoctor.sampleDoctorId;
+                  materialDetail.sample_date = item.materialsDateString;
+                  this.bindData.materialDetailList.push(materialDetail);
+              }
+            var s = JSON.stringify(this.bindData);
+            console.log(s);
+            const response = await
                     fetch('/material/save', {
                         method: 'POST',
                         credentials: 'include',
@@ -657,7 +714,7 @@ textarea{
                         },
                         body: JSON.stringify(this.bindData)
                     });
-
+                    console.log(this.bindData)
                 const resultJson = await response.text();
                 const resultObject = JSON.parse(resultJson);
                 // 异常处理
@@ -665,33 +722,134 @@ textarea{
                     return;
                 }
 
-            }, newsave: function () {
+            }, 
+            newsave: function () {
 
           },
           newproject:function(){
 
-          }, handleSelectionChange: function (items) {
-                for (let i = 0; i < items.length; i++) {
-                    let item = items[i];
-                    item.isSelected = true;
-                }
-
-            }, deleteTable: function () {
+          },
+          handleSelectionChange: function (items) {
+              for (let i = 0; i < items.length; i++) {
+                  let item = items[i];
+                  item.isSelected = true;
+              }
+            }, 
+            deleteTable: function () {
                 // 保留不删除的项目
                 var newItems = [];
-
                 for (let i = 0; i < this.materialsTable.length; i++) {
                     let item = this.materialsTable[i];
                     if (item.isSelected == false) {
                         newItems.push(item);
                     }
-          }
-
+                  }
                 this.materialsTable = newItems;
-            }, materialsDateChange: function (date) {
+                console.log(JSON.stringify(this.materialsTable))
+                this.lakuaiSum=this.materialsTable.length;//蜡块数
+                var sum=0;
+                for(var i=0;i<this.materialsTable.length;i++){
+                  sum+=parseInt(this.materialsTable[i].materialsCount);
+                }
+                 this.caikuaiSum=sum//材块数
+            },
+             materialsDateChange: function (date) {
                 this.materialsContent.materialsDate = date;
-            }, setOrderId(orderId){
+            },
+            handleCurrentChange(val) {
+            this.currentRow = val;
+            }, 
+            async setOrderId(orderId){
                 this.bindData.orderId = orderId;
+                console.log(this.bindData.orderId)
+                const response = await fetch('/material/loadData',{ 
+                  method: 'POST',
+                  credentials: 'include',
+                  headers: { 
+                    "Content-type": "application/json; charset=UTF-8" 
+                  }, 
+                  body: JSON.stringify({ "orderId":orderId
+                  })
+              });  
+              const json = await response.text();
+              const data = JSON.parse(json);
+              this.bindData.grossFinding=data.materialsInfo.grossFinding;
+              this.bindData.passageWayId=data.materialsInfo.passageWayId;
+               this.bindData.noterId=data.materialsInfo.noterId;
+              this.bindData.saveLocationId=data.materialsInfo.saveLocationId;
+              this.bindData.specimenHandleId=data.materialsInfo.specimenHandleId;
+
+           
+              // console.log(JSON.stringify(this.allMaterialData));
+              // console.log(data.materialsInfo.materialDetailList[0].taskSourceId);
+
+         
+              for(let j=0;j<data.materialsInfo.materialDetailList.length;j++)
+              {
+                let bindItem = {taskSource:null,materialsNum:null,materialsSite:null,materialsUnit:null,materialsDoctor:null,materialsCount:null,materialsDate:null};
+                 let dataSourceItem = data.materialsInfo.materialDetailList[j];
+                 for(let i=0;i<this.allMaterialData.taskSourceList.length;i++)
+                 {
+
+                    let dictItem =  this.allMaterialData.taskSourceList[i];
+                    if(dataSourceItem.taskSourceId==dictItem.taskSourceId)
+                    {
+                      
+                        bindItem.taskSource = dictItem;
+                        break;
+                    }
+                 } 
+                 for(let i=0;i<this.allMaterialData.materialNoList.length;i++)
+                 {
+                    let dictItem =  this.allMaterialData.materialNoList[i];
+                    if(dataSourceItem.materialNoId==dictItem.materialNoId)
+                    {
+                      
+                        bindItem.materialsNum = dictItem;
+                        break;
+                    }
+                 } 
+                 for(let i=0;i<this.allMaterialData.materialPartsList.nodeList.length;i++)
+                 {
+                    let dictItem =  this.allMaterialData.materialPartsList.nodeList[i];
+                    if(dataSourceItem.materialPartsId==dictItem.id)
+                    {
+                      
+                        bindItem.materialsSite = dictItem;
+                        break;
+                    }
+                 } 
+                for(let i=0;i<this.allMaterialData.quantityUnitList.length;i++)
+                 {
+                    let dictItem =  this.allMaterialData.quantityUnitList[i];
+                    if(dataSourceItem.quantityUnitId==dictItem.quantityUnitId)
+                    {
+                      
+                        bindItem.materialsUnit = dictItem;
+                        break;
+                    }
+                 }
+
+                 for(let i=0;i<this.allMaterialData.sampleDoctorList.length;i++)
+                 {
+                    let dictItem =  this.allMaterialData.sampleDoctorList[i];
+                    if(dataSourceItem.sampleDoctorId==dictItem.sampleDoctorId)
+                    {
+                      
+                        bindItem.materialsDoctor = dictItem;
+                        break;
+                    }
+                 }
+                  bindItem.materialsCount=data.materialsInfo.materialDetailList[j].materialQuantity;
+                  bindItem.materialsDateString=data.materialsInfo.materialDetailList[j].sampleDate
+                this.materialsTable.push(bindItem);
+                 this.lakuaiSum=this.materialsTable.length;//蜡块数
+                var sum=0;
+                for(var i=0;i<this.materialsTable.length;i++){
+                  sum+=parseInt(this.materialsTable[i].materialsCount);
+                  this.caikuaiSum=sum//材块数
+                }
+              }
             }
 
         // mounted(){

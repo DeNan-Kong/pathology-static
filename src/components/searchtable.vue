@@ -722,6 +722,9 @@ table .pictable{
     border:1px solid #20eedd;
     box-shadow: 3px 3px 0px rgba(0,0,0,0.5) inset,-3px -3px 0px rgba(0,0,0,0.5) inset;
 }
+.red{
+    background: red
+}
 </style>
 <script>
     import {mapState} from 'vuex';
@@ -909,6 +912,7 @@ table .pictable{
             },
             showContent: function (orderId) {
                 this.$emit("orderItemClick", orderId);
+                $("tr:eq(orderId)").toggleClass('red');
             },
             modalSelect:function(id){
                 // var id=$(e.target).attr('id');
