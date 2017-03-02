@@ -22,7 +22,6 @@
       </form> 
   </div>
   <div class="diagnostic-middle scroll-flow">
-    
     <div  class="diagnostic-middle-top">
       <p class="diagnostic-middle-font ">辽宁中医药大学附属医院</p>
       <p class="diagnostic-middle-font">病理检查报告单</p>
@@ -144,9 +143,17 @@
       <div  class="diagnostic-right-bottom">
         <div class="checkpic-one checkpic floatleft"></div><div  class="checkpic-two checkpic floatleft"></div>
         <div class="checkpic-thr checkpic floatleft"></div><div  class="checkpic-four checkpic floatleft"></div>
-        <div class="checkpic-five checkpic floatleft"></div><div  class="checkpic-six checkpic floatleft"></div>
+         
+        <div class="checkpic-five checkpic floatleft"></div>
+        <el-tooltip class="item" effect="dark" content="打印" placement="top">
+        <div  class="checkpic-six checkpic floatleft"></div>
+        </el-tooltip>
+         <el-tooltip class="item" effect="dark" content="打印" placement="top">
         <div class="checkpic-sev checkpic floatleft"></div>
-        <div  class="checkpic-eig checkpic floatleft" data-toggle="modal" data-target="#printmodal"></div>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="打印" placement="top">
+        <button  class="checkpic-eig checkpic floatleft" data-toggle="modal" data-target="#printmodal"></button>
+        </el-tooltip>
       </div>
        <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <printmodal />
@@ -171,6 +178,12 @@
 </div>
 </template>
 <style>
+.box{
+  width:24px;
+}
+ .top {
+      text-align: center;
+    }
 .index{
   position: relative;
   color:#333;
@@ -189,7 +202,7 @@
 }
 .diagnostic-top-one{
   width:110px;  
-  margin-left: 169px;   
+  margin-left: 339px;   
 }
 .diagnostic-top-two{
   width:66px;

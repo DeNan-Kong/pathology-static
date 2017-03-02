@@ -392,8 +392,8 @@
     height: 421px;
     margin-top: 15px;
     border:1px solid #ccc;
-    overflow-x:hidden;
-
+    overflow-x: hidden;
+     
 }
 @media screen and (min-width:1442px){
     .table-show{
@@ -588,7 +588,7 @@ input[type='checkbox'] .checkbox-one{
 }
 .right-bottom{
     width:230px;
-    height:110px;
+    height:90px;
     margin-top: 20px;
 }
 /*.right-bottom a:first-child{

@@ -78,13 +78,14 @@ a:hover{
     margin-top: 5px;
 }
 .scroll-flow::-webkit-scrollbar-track{
-    background-color: #fff;
+    border-radius: 10px;
 } 
 .scroll-flow::-webkit-scrollbar{
-    width: 8px;
-    height: 12px;
+    width: 7px;
+    height: 6px;
 }
 .scroll-flow::-webkit-scrollbar-thumb{
+     width: 10px;
     background-color: #eee;
 }
 button{

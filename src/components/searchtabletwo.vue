@@ -1,6 +1,6 @@
 <template>
     <div> 
-        <div  class="right-inner">    
+        <div  class="right-inner right-inner-two">    
             <div class="right-top">
                <button v-for="(item,index) in searchTableData.orderStatusList" class="rightbtntwo right-top-two"  v-bind:style="{background:getOrderStatusColor(index)}" @click="orderStatusClick(item.id)">{{item.name}}
                 </button>
@@ -106,6 +106,11 @@
 </div>
 </template>
 <style>
+.right-inner-two .table-show{
+ height: 330px;
+ overflow-x:hidden;
+overflow-y:hidden;
+}
 .tabtwotable{
     height: 330px;
     margin-top: 0px;
