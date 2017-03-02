@@ -3,16 +3,14 @@
         <div id="register" >
             <top-menu/>
             <div id="middle-left">
-                <topmessage />
-                <div class="case-tabs">
-                    <a class="medicalInformation" :class="{active: medicalMessage}" @click="medicalInformation">{{$t('register.medical_information')}}
-                    </a>
-                    <a class="medicalImage" :class="{active: medicalImg}" @click="medicalImage">{{$t('register.medical_img')}}(10)
-                    </a>
-                    <a class="medicalPay" :class="{active: medicalPay}" @click="medicalCharge">{{$t('register.medical_pay')}}
-                    </a>
-                    <a class="medicalCheck register_check closebtnchange" @click="medicalCheck">
-                    <p class="close" @click="closebtn"></p>
+                <topmessage ref="topmessage"/>
+                <div class="case-message">
+                    <div class="case-tabs">
+                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a>
+                        <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)</a>
+                        <a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a>
+                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                        <p class="close" @click="closebtn"></p>
                     </a><br>
                 </div>
                 <div class="case-message" v-show="medicalMessage">    
@@ -218,6 +216,9 @@
             async orderItemClick(orderId) {
                 var medicalMessage = this.$refs.medicalMessage;
                 medicalMessage.loadOrder(orderId);
+
+                var topmessage = this.$refs.topmessage;
+                topmessage.showPatientInformation(orderId);
             },
             async orderSaved(){
                 var searchtable = this.$refs.searchtable;
