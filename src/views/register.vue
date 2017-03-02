@@ -5,7 +5,7 @@
         <div id="register" >
             <top-menu/>
             <div id="middle-left">
-                <topmessage />
+                <topmessage ref="topmessage"/>
                 <div class="case-message">
                     <div class="case-tabs">
                         <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a>
@@ -382,9 +382,11 @@
                 } 
             },
             async orderItemClick(orderId) {
-
                 var medicalMessage = this.$refs.medicalMessage;
                 medicalMessage.loadOrder(orderId);
+
+                var topmessage = this.$refs.topmessage;
+                topmessage.showPatientInformation(orderId);
             },
             async orderSaved(){
                 var searchtable = this.$refs.searchtable;
