@@ -3,26 +3,28 @@
         <div id="register" >
             <top-menu/>
             <div id="middle-left">
-                <topmessage ref="topmessage"/>
-                <div class="case-message">
-                    <div class="case-tabs">
-                        <a class="active  medicalInformation" v-on:click="medicalInformation">{{$t('register.medical_information')}}</a>
-                        <a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)</a>
-                        <a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a>
-                        <a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck">
+                <topmessage ref="topmessage" />
+                <div class="case-tabs">
+                    <a class="medicalInformation" :class="{active: medicalMessage}" @click="medicalInformation">{{$t('register.medical_information')}}
+                    </a>
+                    <a class="medicalImage" :class="{active: medicalImg}" @click="medicalImage">{{$t('register.medical_img')}}(10)
+                    </a>
+                    <a class="medicalPay" :class="{active: medicalPay}" @click="medicalCharge">{{$t('register.medical_pay')}}
+                    </a>
+                    <a class="medicalCheck register_check closebtnchange" @click="medicalCheck">
                         <p class="close" @click="closebtn"></p>
                     </a><br>
                 </div>
-                <div class="case-message" v-show="medicalMessage">    
+                <div class="case-message" v-show="medicalMessage">
                     <medicalmessage ref="medicalMessage" v-on:orderSaved="orderSaved"/>
                 </div>
-                <div class="tabs-img" v-show="medicalImg">    
+                <div class="tabs-img" v-show="medicalImg">
                     123
                 </div>
-                <div class="tabs-pay" v-show="medicalPay">    
+                <div class="tabs-pay" v-show="medicalPay">
                     456
                 </div>
-                <div class="tabs-check">    
+                <div class="tabs-check">
                     <div class="tabscheck">789</div>
                 </div>
             </div>
@@ -211,7 +213,7 @@
                 }
                 if(id==6){
                 $('#filllist').modal({keyboard: false})
-                } 
+                }
             },
             async orderItemClick(orderId) {
                 var medicalMessage = this.$refs.medicalMessage;
