@@ -124,18 +124,18 @@
             return{
                 aa:10,
                 pickerOptions0: {
-               disabledDate(time) {
-                 return time.getTime() < Date.now() - 8.64e7;
-                 this.state={
-            
-                lists:[],//初始白名单为空
-                };
+                disabledDate(time) {
+                    return time.getTime() < Date.now() - 8.64e7;
+                    this.state={
+
+                    lists:[],//初始白名单为空
+                }
             }
         }
     }
         },
         created(){ // 生命周期 created,获取数据
-         
+
         },
         components:{
             "top-menu":TopMenu,
@@ -144,7 +144,7 @@
             "filmmaking":Filmmaking,
             "embedding":Embedding,
             "medicalsection":Medicalsection,
-            "advice":Advice,
+            "advice":Advice
         },
         methods:{
             filmmaking:function(){
@@ -191,6 +191,6 @@
                 $('.tabs-embedding').css('display','none');
                 $('.tabs-filmmaking').css('display','none');
             },
-    }   
+    }
 }
 </script>

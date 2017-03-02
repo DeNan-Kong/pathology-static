@@ -7,8 +7,7 @@
                  <p class="floatleft top-p-three">任务来源:</p>
                  <form  class="floatleft top-form">
                     <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
+                        <option v-for="item in initialData.taskSourceList" :value="item.id"> {{item.name}}</option>
                     </select>
                 </form>
                 <input type="radio" checked name="filmmakingdate" class="floatleft filmmakingradio"><p class="floatleft top-p-two radioleft">24小时</p>
@@ -22,20 +21,18 @@
                 <calendar/>
                  <form  class="floatleft top-p-four">
                     <select class="radius common ">
-                      <option>未打印</option>
-                      <option>已打印</option>
+                        <option v-for="item in initialData.printStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
                     </select>
                 </form>
                  <form  class="floatleft top-p-four">
                     <select class="radius common ">
-                      <option>未核对</option>
-                      <option>已核对</option>
+                        <option v-for="item in initialData.productionStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
                     </select>
                 </form>
                 <button class="floatleft top-btn" @click="shuju">查询</button>
             </div>
             <div class="filmmaking-table">
-                <filmmakingtable/>
+                <filmmakingtable :productionList="productionList" />
                 <!-- <table class="table">
                     <thead>
                     <tr>
@@ -97,21 +94,20 @@
                 <p class="floatleft top-p-seven textright">任务来源:</p>
                <form  class="floatleft top-p-four">
                     <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
+                        <option v-for="item in initialData.taskSourceList" :value="item.id"> {{item.name}}</option>                          
                     </select>
                 </form>
                 <p class="floatleft top-p-four  textright">制片时间:</p>
                 <calendar/>
                 <p class="floatleft top-p-three textright">制片人:</p>
-               <form  class="floatleft top-p-four">
+                <form  class="floatleft top-p-four">
                     <select class="radius common ">
                       <option>免疫组化</option>
                       <option>二</option>
                     </select>
                 </form>
                 <p class="floatleft top-p-four  textright">制片说明:</p>
-               <form  class="floatleft top-p-three">
+                <form  class="floatleft top-p-three">
                     <select class="radius common ">
                       <option>免疫组化</option>
                       <option>二</option>
@@ -135,7 +131,7 @@
                 <button class="floatright filmmaking-bottom-btn">玻片核对</button>
                 <button class="floatright filmmaking-bottom-btn">HE染色</button>
                 <button class="floatright filmmaking-bottom-btn">标签打印</button>
-                 <p class="floatright"><a href="#">当前制片数：4</a></p>
+                 <p class="floatright"><a href="#">当前制片数：{{productionList.length}}</a></p>
             </div>
         </div>
     </div>
@@ -298,7 +294,8 @@ import $ from "jQuery"
     export default{
         data(){
             return{
-               
+                initialData:{},
+                productionList:[]
             }
         },
         props: [],
@@ -307,9 +304,44 @@ import $ from "jQuery"
            "filmmakingtable":Filmmakingtable
         },
         created(){ // 生命周期 created,获取数据
-          this.filmmaking()
+            this.filmmaking();
+            this.loadData();
+            this.listData();
         },
         methods:{
+            async listData(){
+                const self = this;
+                const response = await
+                        fetch('/production/productionlist', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {
+                                "Content-type": "application/json; charset=UTF-8"
+                            },
+                            body: JSON.stringify([])
+                        });
+                const json = await response.text();
+                const data = JSON.parse(json);
+                self.productionList = data;
+
+                console.log("filmmaking");
+            },
+            async loadData(){
+                const self = this;
+                const response = await
+                fetch('/production/load', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify([])
+                });
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+                self.initialData = data;
+            },
             checkall:function(){
                 if($(".checkall").hasClass("selectbox")){
                     $(".checkall").removeClass("selectbox").addClass("noselectbox");
@@ -320,19 +352,19 @@ import $ from "jQuery"
             shuju:function(){
                 var _self = this;
                 $.ajax({
-                            type: 'POST',
-                            url: '/api/hello',
-                            data:{
-                                id:0
-                            },
-                            success:function(data) {
-                                var len=data.length;
-                                console.log(data)
-                               var obj=JSON.parse(data);
-                                _self.list=obj.slice(0,len-1)
-                                console.log( _self.list)
-                            }
-                        });
+                    type: 'POST',
+                    url: '/api/hello',
+                    data:{
+                        id:0
+                    },
+                    success:function(data) {
+                        var len=data.length;
+                        console.log(data)
+                       var obj=JSON.parse(data);
+                        _self.list=obj.slice(0,len-1)
+                        console.log( _self.list)
+                    }
+                });
             },
             filmmaking:function(){
                 var xhr = new XMLHttpRequest()
