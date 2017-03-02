@@ -293,8 +293,8 @@ import Calendar from 'components/calendar';
             handleSelectionChange(val) {
             this.multipleSelection = val;
             },
-         handleCurrentChange(val) {
-        this.currentRow = val;
+            handleCurrentChange(val) {
+            this.currentRow = val;
             }
         }
     }

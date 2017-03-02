@@ -323,8 +323,6 @@ import $ from "jQuery"
                 const json = await response.text();
                 const data = JSON.parse(json);
                 self.productionList = data;
-
-                console.log("filmmaking");
             },
             async loadData(){
                 const self = this;

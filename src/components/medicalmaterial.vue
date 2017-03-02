@@ -814,7 +814,6 @@
                     let dictItem =  this.allMaterialData.materialPartsList.nodeList[i];
                     if(dataSourceItem.materialPartsId==dictItem.id)
                     {
-                      
                         bindItem.materialsSite = dictItem;
                         break;
                     }
@@ -824,7 +823,6 @@
                     let dictItem =  this.allMaterialData.quantityUnitList[i];
                     if(dataSourceItem.quantityUnitId==dictItem.quantityUnitId)
                     {
-                      
                         bindItem.materialsUnit = dictItem;
                         break;
                     }

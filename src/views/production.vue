@@ -4,41 +4,22 @@
         <top-menu/>
         <div  id="filmmaking-main">
            <div class="filmmaking-main">
-                <div class="tabs-embedding">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
-                    </div>
-                    <!-- <embedding :item="(lists)" :get-datas="fetchData" /> -->
+                <div class="case-tabss">
+                    <a class="embedding" :class="{filmmakingactive: embedding}" @click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
+                    <a class="section" :class="{filmmakingactive: medicalSection}" @click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
+                    <a class="advice" :class="{filmmakingactive: advice}" @click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
+                    <a class="filmmaking" :class="{filmmakingactive: filmmaking}" @click="fetchFilmmarkingData">{{$t('register.production_list')}}(5)</a><br>
+                </div>
+                <div class="tabs-embedding" v-show="embedding" >
                     <embedding />
                 </div>
-                <div class="tabs-section">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
-                    </div>
+                <div class="tabs-section" v-show="medicalSection">    
                     <medicalsection />
                 </div>
-                <div class="tabs-advice">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
-                    </div>
+                <div class="tabs-advice" v-show="advice">    
                     <advice/>
                 </div>
-                <div class="tabs-filmmaking">
-                    <div class="case-tabss">
-                        <a class="embedding filmmakingactive" v-on:click="fetchData">{{$t('register.embedding_list')}}(<span>3</span>)</a>
-                        <a class="section"  v-on:click="fetchSectionData">{{$t('register.slice_list')}}(<span>5</span>)</a>
-                        <a class="advice" v-on:click="fetchAdviceData">{{$t('register.advice_list')}}(10)</a>
-                        <a class="filmmaking" v-on:click="filmmaking">{{$t('register.production_list')}}(5)</a><br>
-                    </div>
+                <div class="tabs-filmmaking" v-show="filmmaking">
                     <filmmaking/>
                 </div>
            </div>    
@@ -55,9 +36,6 @@
     margin:6px 7px;
     height:660px;
     background:#fff;    
-}
-.tabs-pay,.tabs-img,.tabs-check,.tabs-materials{
-    display:none;
 }
 .left-bottom .picture-img:hover{
     background: url('../assets/images/register.png')  -32px -35px no-repeat;
@@ -99,16 +77,12 @@
     width:100%;
     height: 660px;
 }
-.tabs-section,.tabs-advice,.tabs-filmmaking{
-    display: none;
-}
 #cytology .medicalcytology{
     width: 74px;
 }
 #cytology .cytologyimg{
     width: 66px;
 }
-
 </style>
 <script>
     import TopMenu from 'components/topmenu';
@@ -122,17 +96,19 @@
     export default{
         data(){
             return{
-                aa:10,
+                embedding:true,
+                medicalSection:false,
+                advice:false,
+                filmmaking:false,
                 pickerOptions0: {
                 disabledDate(time) {
                     return time.getTime() < Date.now() - 8.64e7;
                     this.state={
-
                     lists:[],//初始白名单为空
+                        }
+                    }
                 }
             }
-        }
-    }
         },
         created(){ // 生命周期 created,获取数据
 
@@ -147,50 +123,30 @@
             "advice":Advice
         },
         methods:{
-            filmmaking:function(){
-                $(".filmmaking").addClass("filmmakingactive");
-                $(".filmmaking").siblings().removeClass("filmmakingactive");
-                $('.tabs-filmmaking').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-embedding').css('display','none');
+            fetchData:function(){
+                this.embedding=true;
+                this.medicalSection=false;
+                this.advice=false;
+                this.filmmaking=false;
             },
             fetchSectionData:function(){
-                $(".section").addClass("filmmakingactive");
-                $(".section").siblings().removeClass("filmmakingactive");
-                $('.tabs-section').css('display','block');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-            },
-            fetchData:function(){
-                $(".embedding").addClass("filmmakingactive");
-                $(".embedding").siblings().removeClass("filmmakingactive");
-                $('.tabs-embedding').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-advice').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
-            },
-            method:function(){
-                $('.register_check').css('display','block');
-                $(".medicalCheck").addClass("closebtnchange").removeClass("closebtn");
-                $(".medicalCheck").siblings().removeClass("active");
-                $('.tabs-check').css('display','block');
-                $('.tabs-pay').css('display','none');
-                $('.case-message').css('display','none');
-                $('.tabs-img').css('display','none');
-                $(".tabs-materials").css('display','none');
-                $(".aaaa").css('display','none');
-
+                this.embedding=false;
+                this.medicalSection=true;
+                this.advice=false;
+                this.filmmaking=false;
             },
             fetchAdviceData:function(){
-                $(".advice").addClass("filmmakingactive");
-                $(".advice").siblings().removeClass("filmmakingactive");
-                $('.tabs-advice').css('display','block');
-                $('.tabs-section').css('display','none');
-                $('.tabs-embedding').css('display','none');
-                $('.tabs-filmmaking').css('display','none');
+                this.embedding=false;
+                this.medicalSection=false;
+                this.advice=true;
+                this.filmmaking=false;
             },
+            fetchFilmmarkingData:function(){
+                this.embedding=false;
+                this.medicalSection=false;
+                this.advice=false;
+                this.filmmaking=true;
+            },            
+        }
     }
-}
 </script>

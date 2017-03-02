@@ -3,11 +3,11 @@
         <div class="embedding-contains">
             <div class="embedding-top">
                <p class="floatleft embedding-bingnum">病理号:</p>
-               <input type="text"  class="floatleft radius common embedding-six" maxlength="20">
+               <input type="text" class="floatleft radius common embedding-six" maxlength="20">
                <p class="floatleft embedding-five">取材医生:</p>
                <form  class="floatleft embedding-six textleft">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.sampleDoctorList" :value="item.sampleDoctorId"> {{item.name}}</option>
+                    <select class="radius common">
+                        <option v-for="item in initialData.sampleDoctorList" :value="item.sampleDoctorId">{{item.name}}</option>
                    </select>
                 </form>
                     <input type="radio" checked name="time" class="floatleft radio " >
@@ -23,13 +23,13 @@
                 <a href="" class="floatleft embedding-four">脱钙(0)</a>
                 <a href="" class="floatleft embedding-four">冰冻(0)</a>
                 <form  class="floatleft embedding-five">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.printStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
+                    <select class="radius common">
+                        <option v-for="item in initialData.printStatusList" :value="item.sampleDoctorId">{{item.name}}</option>
                     </select>
                 </form>
                 <form  class="floatleft embedding-five">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.productionStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
+                    <select class="radius common">
+                        <option v-for="item in initialData.productionStatusList" :value="item.sampleDoctorId">{{item.name}}</option>
                     </select>
                 </form>
                 <button class="floatleft embedding-three">查询</button>
@@ -39,47 +39,6 @@
             </div>
             <div class="embedding-table" id="s">
                 <embeddingtable :embeddingList="embeddingList" />
-                 <!-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="table-three"><p class="noselectbox tablecheck checkall embeddingcheckall" id="0" @click="embeddingcheckall"></p></th>
-                            <th  class="table-eight">病理号</th>
-                            <th class="table-six">任务来源</th>
-                            <th class="table-six">材块号</th>
-                            <th  class="table-five">姓名</th>
-                            <th  class="table-three">性别</th>
-                            <th  class="table-three">年龄</th>
-                            <th  class="table-five">取材部位</th>
-                            <th  class="table-five">材块数</th>
-                            <th  class="table-seven">取材医生</th>
-                            <th  class="table-five">取材日期</th>
-                            <th  class="table-five">材块核对</th>
-                            <th  class="table-five">打印状态</th>
-                            <th  class="table-five">制片状态</th>
-                            <th  class="table-seven">核对时间</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-em">
-                        <tr v-for="it in item">
-                            <td><p  class='noselectbox tablecheck checkall first checkone' 
-                                @click="embeddingcheck" :id="item.id"></p></td>
-                            <td>{{it.patient.patientId}}</td>
-                            <td>{{it.patient.task}}</td>
-                            <td>{{it.patient.cainum}}</td>
-                            <td>{{it.patient.cainum}}</td>
-                            <td>{{it.patient.sex}}</td>
-                            <td>{{it.patient.age}}</td>
-                            <td>{{it.patient.position}}</td>
-                            <td>{{it.patient.kuainum}}</td>
-                            <td>{{it.patient.doctor}}</td>
-                            <td>{{it.patient.date}}</td>
-                            <td>{{it.patient.check}}</td>
-                            <td>{{it.patient.statu}}</td>
-                            <td>{{it.patient.zhistatus}}</td>
-                            <td>{{it.patient.checktime}}</td>
-                        </tr>
-                    </tbody>
-                </table> -->
             </div>
             <div class="embedding-bottom">
                 <p class="floatleft embedding-bottom-p">当前待包埋数：4</p>
@@ -215,14 +174,12 @@ import Embeddingtable from 'components/embeddingtable';
 import Vue from 'vue';
     export default{
         data(){
-           
             return{
                 items: null,
                 apiURL:"/api/hello",
                 initialData: {},
                 embeddingList:[]
             }
-
         },
         components:{
            "calendar":Calendar,
@@ -235,7 +192,7 @@ import Vue from 'vue';
         },
         watch: {  // 观测变化,可以是值也可以是方法
              
-            },
+        },
         methods:{
             async listData(){
                 const self = this;
@@ -252,6 +209,7 @@ import Vue from 'vue';
                 response.text();
                 const data = JSON.parse(json);
                 self.embeddingList = data;
+                console.log(self.embeddingList)
                 },
             async loadData(){
                 const response = await

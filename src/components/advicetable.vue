@@ -2,116 +2,132 @@
   <el-table
     :data="tableData"
     border
-    height="520">
+    height="520"
+    highlight-current-row>
     <el-table-column
       type="selection"
-      width="55">
+      min-width="45">
     </el-table-column>
     <el-table-column
       label="病理号"
-      width="150"
+      show-overflow-tooltip
+      min-width="112"
       fixed>
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="姓名"
-      width="150"
+      show-overflow-tooltip
+      min-width="68"
       fixed>
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="医嘱类型"
-      width="150">
+      show-overflow-tooltip
+      min-width="80">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="住院号"
-      width="150">
+      show-overflow-tooltip
+      min-width="112">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="门诊号"
-      width="180">
+      show-overflow-tooltip
+      min-width="110">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="材块号"
-      width="120">
+      show-overflow-tooltip
+      min-width="80">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="切片数"
-      width="120">
+      show-overflow-tooltip
+      min-width="60">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="标记物"
-      width="150">
+      show-overflow-tooltip
+      min-width="60">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="申请医生"
-      width="150">
+      show-overflow-tooltip
+      min-width="75">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="申请日期"
-      width="180">
+      show-overflow-tooltip
+      min-width="90">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="收费情况"
-      width="150">
+      show-overflow-tooltip
+      min-width="72">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="收费时间"
-      width="180">
+      show-overflow-tooltip
+      min-width="126">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="医嘱状态"
-      width="150">
+      show-overflow-tooltip
+      min-width="76">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="执行人"
-      width="150">
+      show-overflow-tooltip
+      min-width="70">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="执行时间"
-      width="180">
+      show-overflow-tooltip
+      min-width="80">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span>{{ scope.row.date }}</span>
       </template>
     </el-table-column>
   </el-table>

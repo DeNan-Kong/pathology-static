@@ -35,6 +35,13 @@ a:hover{
     font-size: 14px; 
 }
 /*重写element ui table*/
+.el-table__fixed, .el-table__fixed-right {
+    box-shadow: 1px 0 1px #d3d4d6;
+}
+.el-table .cell, .el-table th>div{
+    padding:0px;
+    text-align: center;
+}
 .el-table::after, .el-table::before{
     z-index:0;
 }
@@ -287,7 +294,9 @@ hr{
     margin-right: 0px;
     margin-left: 0px;;
 }
-
+.el-table-column--selection .cell{
+    padding: 0px !important;
+}
 .form-horizontal .col-sm-8{
     padding-left: 10px;
     padding-right: 0px;
