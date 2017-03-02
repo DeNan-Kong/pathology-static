@@ -3,21 +3,18 @@
     <div id="materials">
         <top-menu/>
         <div  id="middle-left">
-            <div class="middle-message">
-                <span>当前病人：测试</span><span>病理号：20070305</span><span>男</span><span>65岁</span><span>住院号：20073154</span><span>送检科室：放射科</span><span>标本名称：大体</span>
-                <p>冰冻&nbsp;&nbsp;常规</p>
-            </div>
+            <topmessage />
             <div class="case-message">
                 <div class="case-tabs">
                     <a  class="active medicalInformation"  v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a class="medicalMaterials"  v-on:click="medicalMaterials">取材信息</a><a class="medicalImage" v-on:click="medicalImage">图像(10)</a><a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>    
                 </div>
-                <medicalmessage/>
+                <medicalmessage ref="medicalMessage" v-on:orderSaved="orderSaved"/>
             </div>
             <div  class="tabs-materials">
                 <div class="case-tabs">
                     <a  class="active medicalInformation"  v-on:click="medicalInformation">{{$t('register.medical_information')}}</a><a class="medicalMaterials"  v-on:click="medicalMaterials">{{$t('register.draw_materials_message')}}</a><a class="medicalImage" v-on:click="medicalImage">{{$t('register.medical_img')}}(10)</a><a class="medicalPay" v-on:click="medicalPay">{{$t('register.medical_pay')}}</a><a class="medicalCheck register_check closebtnchange" v-on:click="medicalCheck"><p class="close" @click="closebtn"></p></a><br>
                 </div>
-                <medicalmaterial/>
+                <medicalmaterial ref="medicalmaterial"/>
             </div>
             <div  class="tabs-img">
                 <div class="case-tabs">
@@ -39,7 +36,7 @@
             </div>
         </div>
         <div  id="middle-right">
-        <searchtable :item="(lists)" :get-datas="fetchData" :tableshow="method" v-on:modalSelect="showMaterialsModal" />
+            <searchtable :tableshow="method" v-on:orderItemClick="orderItemClick" ref="searchtable"/>
     </div>
      </div>
  </div>
@@ -142,6 +139,7 @@ import {mapState} from 'vuex';
     import Calendar from 'components/calendar';
     import Medicalmessage from 'components/medicalmessage';
     import Medicalmaterial from 'components/medicalmaterial';
+    import Topmessage from 'components/topmessage';
     export default{
         data(){
             return{
@@ -166,6 +164,7 @@ import {mapState} from 'vuex';
             "calendar":Calendar,
             "medicalmessage":Medicalmessage,
             "medicalmaterial":Medicalmaterial,
+            "topmessage":Topmessage
         },
         methods:{
             medicalInformation:function(){
@@ -312,7 +311,17 @@ import {mapState} from 'vuex';
                 }
                 if(id==6){
                 $('#filllist').modal({keyboard: false})
-                } 
+                }
+            }, async orderItemClick(orderId) {
+
+                var medicalMessage = this.$refs.medicalMessage;
+                medicalMessage.loadOrder(orderId);
+
+                var medicalmaterial = this.$refs.medicalmaterial;
+                medicalmaterial.setOrderId(orderId);
+            }, async orderSaved(){
+                var searchtable = this.$refs.searchtable;
+                searchtable.search();
             }
     }   
 }

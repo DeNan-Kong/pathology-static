@@ -3,6 +3,8 @@
  <div class="floatleft p-margin www">
     <el-date-picker
             v-model="innerDate"
+            :editable="editable"
+            :clearable="clearable"
             type="date">
     </el-date-picker>
   </div>
@@ -32,7 +34,9 @@ body .embedding-contains .p-margin{
   export default {
       data: function () {
           return {
-              innerDate: this.date
+              innerDate: this.date,
+              editable:false,
+              clearable:false
           };
       },
       props: ['date'],
@@ -46,6 +50,9 @@ body .embedding-contains .p-margin{
               //xxcanghai 小小沧海 博客园
               this.$emit("change",val);//③组件内对innerDate变更后向外部发送事件通知
           }
+      },
+      methods:{
+
       }
   };
 </script>
