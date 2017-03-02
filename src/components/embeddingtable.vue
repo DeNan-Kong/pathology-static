@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="tableData"
+    :data="embeddingList"
     border
      style="width:1880px;position:relative"
     height="520">
@@ -14,7 +14,7 @@
       show-overflow-tooltip
       style="width:6.88%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.pathologyNo }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -22,7 +22,7 @@
       show-overflow-tooltip
       style="width:8.49%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.taskSourceId }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -30,7 +30,7 @@
       show-overflow-tooltip
       style="width:6.18%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.materialNo }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -38,7 +38,7 @@
       show-overflow-tooltip
       style="width:7.41%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.patientName }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -46,7 +46,7 @@
       show-overflow-tooltip
       style="width:4.32%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.sex }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -54,7 +54,7 @@
       show-overflow-tooltip
       style="width:4.32%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.age }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -62,7 +62,7 @@
       show-overflow-tooltip
       style="width:7.72%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.materialPartsId }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -70,7 +70,7 @@
       show-overflow-tooltip
       style="width:4.02%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.materialQuantity }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -78,7 +78,7 @@
       show-overflow-tooltip
       style="width:7.1%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.sampleDoctorId }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -86,7 +86,7 @@
       show-overflow-tooltip
       style="width:7%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.sampleDoctorId }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -94,7 +94,7 @@
       show-overflow-tooltip
       style="width:6%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.materialCheckerId }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -102,7 +102,7 @@
       show-overflow-tooltip
       style="width:6%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.printStatus }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -110,7 +110,7 @@
       show-overflow-tooltip
       style="width:6%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.productionStatus }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -118,7 +118,7 @@
       show-overflow-tooltip
       style="width:7%">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.materialCheckDate }}</span>
       </template>
     </el-table-column>
   </el-table>
@@ -132,72 +132,19 @@
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
       }
     },
+    props:['embeddingList'],
+      created(){ // 生命周期 created,获取数据
+          console.log("hello")
+          },
     methods: {
-      handleEdit(index, row) {
+        handleEdit(index, row) {
         console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
-      }
+        },
+        handleDelete(index, row) {
+          console.log(index, row);
+        },
     }
   }
 </script>

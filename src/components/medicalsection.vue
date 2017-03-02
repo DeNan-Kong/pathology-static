@@ -15,7 +15,7 @@
           
       </div>
       <div class="section-table">
-        <sectiontable/>
+        <sectiontable  :sectionList="(sectionList)" />
         <!-- <table class="table">
            <thead>
               <tr>
@@ -141,7 +141,8 @@ import Sectiontable from 'components/sectiontable';
   export default {
     data() {
       return {
-          lists:null
+          lists:null,
+          sectionList:[]
       }
     },
     props: [],
@@ -150,9 +151,26 @@ import Sectiontable from 'components/sectiontable';
           "sectiontable":Sectiontable
     },
     created(){ // 生命周期 created,获取数据
-        this.fetchSectionData()
+        this.fetchSectionData(),
+        this.listData()
     },
     methods:{
+        async listData(){
+            const self = this;
+            const response = await
+            fetch('/production/sectionlist', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify([])
+            });
+            const json = await
+            response.text();
+            const data = JSON.parse(json);
+            self.sectionList = data;
+        },
       sectioncheck:function(e){
         var checkid=$(e.target).attr("id");
         console.log(checkid)
@@ -179,9 +197,8 @@ import Sectiontable from 'components/sectiontable';
                 self.list = JSON.parse(xhr.responseText);
       }
       xhr.send()
-    },    
-      
-      
+    },
+
     }
   };
 </script>

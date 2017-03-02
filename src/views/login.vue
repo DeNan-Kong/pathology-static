@@ -254,21 +254,7 @@
 
                     // 登录成功
                     if (resultObject.loginResult == true) {
-                        switch (resultObject.workstationId) {
-                            case 1:
-                                this.$router.push("/register");
-                                break;
-                            case 2:
-                                this.$router.push("/materials");
-                                break;
-                            case 3:
-                                this.$router.push("/production");
-                                break;
-                            case 4:
-                                this.$router.push("/diagnose");
-                                break;
-                        }
-
+                        this.$router.push("/register");
                     }
                     else {
                         this.$message({

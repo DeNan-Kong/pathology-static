@@ -3,7 +3,8 @@
         <div class="case-content">
             <div class="case-num">
                 <div class="case-num-one">
-                    <p class="floatleft p-one">{{$t('medicalmessage.his_identification_code')}}</p><input type="text" class="floatleft input-his radium" v-model="bindData.inputss">
+                    <p class="floatleft p-one">{{$t('medicalmessage.his_identification_code')}}</p>
+                    <input type="text" class="floatleft input-his radium" v-model="bindData.inputss" maxlength="15">
                     <form class="floatleft">
                         <select class="sel-his null" v-model="bindData.id">
                             <option v-for="item in initialData.hisCodeList"   :value="item.id"> 
@@ -13,9 +14,9 @@
                     </form>
                     <button class="floatleft but-his">{{$t('medicalmessage.extract')}}</button>
                     <p class="floatleft p-three">{{$t('medicalmessage.patient_id')}}</p>
-                    <input type="text" class="floatleft input-id radium" v-model="bindData.patient.patientUid">
+                    <input type="text" class="floatleft input-id radium" v-model="bindData.patient.patientUid" maxlength="11">
                     <p class="floatleft p-mark p-four">{{$t('medicalmessage.frozen_logo')}}</p>
-                    <input type="text" class="floatleft radium input-mark null" v-model="bindData.frozenNo">
+                    <input type="text" class="floatleft radium input-mark null" v-model="bindData.frozenNo" maxlength="11">
                     <button class="arrow"></button>
                 </div>
                 <br>
@@ -24,16 +25,16 @@
                     <div class="floatleft">
                         <el-tooltip :manual="true" :content="errors.first('pathologyNo')" placement="right" effect="light"
                                     :value="errors.has('pathologyNo')">
-                            <input v-validate="'required'" name="pathologyNo"
+                            <input v-validate="'required'" name="pathologyNo" maxlength="11"
                                    class="p-margin radium pathologyNo" :class="{errorBorder: isPathologyNoError}" type="text" v-model="bindData.pathologyNo" :disabled="bindData.orderId!=null" v-on:focus="disappearError">
                         </el-tooltip>
                     </div>
                     <p class="floatleft p-two">{{$t('medicalmessage.application_number')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.applicationNo">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.applicationNo" maxlength="20">
                     <p class="floatleft  p-three">{{$t('medicalmessage.outpatient_service_no')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patientNo">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patientNo" >
                     <p class="floatleft p-four">{{$t('medicalmessage.hospitalized_no')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.inhospitalId">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.inhospitalId" maxlength="20">
                 </div>
             </div>
             <div class="case-name">
@@ -41,7 +42,7 @@
                     <p class="p-one floatleft">{{$t('medicalmessage.name')}}</p>
                     <el-tooltip :manual="true" :content="errors.first('firstName')" placement="right" effect="light" class="floatleft" :value="errors.has('firstName')" >
                     <input v-validate="'required'" name="firstName" type="text" class="floatleft p-margin radium null pathologyName"
-                    v-model="bindData.patient.patientName" :class="{errorBorder: isNameError}" v-on:focus="disappear">
+                    v-model="bindData.patient.patientName" :class="{errorBorder: isNameError}" v-on:focus="disappear" maxlength="8">
                     </el-tooltip>
                     <p class="floatleft p-two">{{$t('medicalmessage.sex')}}</p>
                     <form class="floatleft ">
@@ -52,7 +53,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-three">{{$t('medicalmessage.age')}}</p>
-                    <input type="text" class="floatleft input-age radium null" v-model="bindData.patientAge">
+                    <input type="text" class="floatleft input-age radium null" v-model="bindData.patientAge" maxlength="3">
                     <form class="floatleft">
                         <select class="sel-sup radium-sup null" v-model="bindData.patient.ageUnit">
                             <option v-for="item in initialData.ageUnitList" :value="item.id">
@@ -87,13 +88,13 @@
                         </select>
                     </form>
                     <p class="floatleft  p-three">{{$t('medicalmessage.phone_number')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patient.phone">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patient.phone" maxlength="15">
                     <p class="floatleft p-four">{{$t('medicalmessage.Id_number')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patient.idCard">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.patient.idCard" maxlength="18">
                 </div>
                 <div class="name-num-three">
                     <p class="floatleft p-one">{{$t('medicalmessage.Contact_information')}}</p>
-                    <input type="text" class="floatleft p-big radium null">
+                    <input type="text" class="floatleft p-big radium null" maxlength="50">
                     <p class="floatleft p-three">{{$t('medicalmessage.last_menstrual_period')}}</p>
                     <div class="null">
                         <calendar :date="bindData.lmp"  v-on:change="lmpChange"/>
@@ -140,9 +141,9 @@
                 </div>
                 <div class="hospital-num-two hospital-num">
                     <p class="floatleft p-one">{{$t('medicalmessage.ward')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.ward">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.ward" maxlength="5">
                     <p class="floatleft p-two">{{$t('medicalmessage.bed_no')}}</p>
-                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.sickbedNo">
+                    <input type="text" class="floatleft p-margin radium null" v-model="bindData.sickbedNo" maxlength="5">
                     <p class="floatleft p-three">{{$t('medicalmessage.specimen_type')}}</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup null" v-model="bindData.specimenTypeId">
@@ -200,7 +201,7 @@
                         </select>
                     </form>
                     <p class="floatleft p-two">{{$t('medicalmessage.charge')}}</p>
-                    <input type="text" class="floatleft p-margin  radium charge" v-model="bindData.charge">
+                    <input type="text" class="floatleft p-margin  radium charge" v-model="bindData.charge" maxlength="8">
                     <p class="floatleft p-three">{{$t('medicalmessage.draw_materials_doctor')}}</p>
                     <form class="floatleft">
                         <select class="p-margin radium-sup null sampleDoctorId" v-model="bindData.sampleDoctorId">
@@ -221,13 +222,13 @@
                     </form> 
                     <p  class="floatleft p-four">{{$t('medicalmessage.operation_phone')}}</p>
                     <input type="text" class="floatleft p-margin radium null"
-                     v-model="bindData.operatingRoomPhone">
+                     v-model="bindData.operatingRoomPhone" maxlength="15">
                 </div>
                 <div class="hospital-num-six">
                     <p class="floatleft p-one">{{$t('medicalmessage.history_abstract')}}</p>
-                    <textarea class="floatleft ill-abstract radium null" v-model="bindData.medicalHistory"></textarea>
+                    <textarea class="floatleft ill-abstract radium null" v-model="bindData.medicalHistory" maxlength="500"></textarea>
                     <p class="floatleft p-one">{{$t('medicalmessage.operative_findings')}}</p>
-                    <textarea type="text" class="floatleft ill-see radium null" v-model="bindData.operativeFindings"></textarea>
+                    <textarea type="text" class="floatleft ill-see radium null" v-model="bindData.operativeFindings" maxlength="5005"></textarea>
                 </div>
             </div>
             <div  class="left-button">

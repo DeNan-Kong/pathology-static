@@ -1,8 +1,8 @@
 <template>
     <div class="all">
-        <authorityValidation v-on:authorityValidationCompleted="authorityValidationCompleted" />
 
-        <div id="register" v-if="authorityResult">
+
+        <div id="register" >
             <top-menu/>
             <div id="middle-left">
                 <div class="middle-message">

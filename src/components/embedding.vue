@@ -3,15 +3,14 @@
         <div class="embedding-contains">
             <div class="embedding-top">
                <p class="floatleft embedding-bingnum">病理号:</p>
-               <input type="text"  class="floatleft radius common embedding-six">
+               <input type="text"  class="floatleft radius common embedding-six" maxlength="20">
                <p class="floatleft embedding-five">取材医生:</p>
                <form  class="floatleft embedding-six textleft">
                     <select class="radius common ">
-                        <option>欧阳娜娜</option>
-                        <option>二</option>
-                    </select>
+                        <option v-for="item in initialData.sampleDoctorList" :value="item.sampleDoctorId"> {{item.name}}</option>
+                   </select>
                 </form>
-                    <input type="radio" checked name="time" class="floatleft radio ">
+                    <input type="radio" checked name="time" class="floatleft radio " >
                     <p class="floatleft embedding-four radioleft">24小时</p>
                     <input type="radio" name="time" class="floatleft radio ">
                     <p class="floatleft embedding-five radioleft">取材日期:</p>
@@ -25,14 +24,12 @@
                 <a href="" class="floatleft embedding-four">冰冻(0)</a>
                 <form  class="floatleft embedding-five">
                     <select class="radius common ">
-                       <option>未打印</option>
-                       <option>已打印</option>
+                        <option v-for="item in initialData.printStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
                     </select>
                 </form>
                 <form  class="floatleft embedding-five">
                     <select class="radius common ">
-                      <option>未包埋</option>
-                      <option>已包埋</option>
+                        <option v-for="item in initialData.productionStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
                     </select>
                 </form>
                 <button class="floatleft embedding-three">查询</button>
@@ -41,7 +38,7 @@
                 </div> 
             </div>
             <div class="embedding-table" id="s">
-                <embeddingtable/>
+                <embeddingtable :embeddingList="embeddingList" />
                  <!-- <table class="table">
                     <thead>
                         <tr>
@@ -87,7 +84,8 @@
             <div class="embedding-bottom">
                 <p class="floatleft embedding-bottom-p">当前待包埋数：4</p>
                 <p class="floatleft embedding-bottom-two embedding-bottom-p">材块数：4</p>
-                <div class="floatleft embedding-bottom-div"><p class="floatleft">提前</p><input type="text" class="floatleft embedding-bottom-text"><p class="floatleft">天确定</p></div>
+                <div class="floatleft embedding-bottom-div"><p class="floatleft">提前</p>
+                    <input type="text" class="floatleft embedding-bottom-text" maxlength="2"><p class="floatleft">天确定</p></div>
                 <button class="floatleft">材块核对</button>
                 <button class="floatleft">标签打印</button>
                 <button class="floatleft">包埋确认</button>
@@ -220,21 +218,56 @@ import Vue from 'vue';
            
             return{
                 items: null,
-                apiURL:"/api/hello"
+                apiURL:"/api/hello",
+                initialData: {},
+                embeddingList:[]
             }
+
         },
-        props: [],
         components:{
            "calendar":Calendar,
-           "embeddingtable":Embeddingtable 
+           "embeddingtable":Embeddingtable
         },
         created(){ // 生命周期 created,获取数据
-          this.fetchData()
+            this.fetchData();
+            this.loadData();
+            this.listData();
         },
         watch: {  // 观测变化,可以是值也可以是方法
              
             },
         methods:{
+            async listData(){
+                const self = this;
+                const response = await
+                fetch('/production/embeddinglist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify([])
+                });
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+                self.embeddingList = data;
+                },
+            async loadData(){
+                const response = await
+                fetch('/production/load', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify([])
+                });
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+                this.initialData = data;
+            },
             fetchData:function(){
                 var items=null;
                 var xhr = new XMLHttpRequest()
@@ -242,41 +275,27 @@ import Vue from 'vue';
                 xhr.open('POST', this.apiURL)
                 xhr.onload = function () {
                 self.item = JSON.parse(xhr.responseText);
-        }
-        xhr.send()
-    },
-    embeddingcheck:function(e){
-        var checkid=$(e.target).attr("id");
-        if($("#"+checkid).hasClass('selectbox')){
-        $("#"+checkid).removeClass("selectbox").addClass("noselectbox");
-        }else{
-        $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
-            }
-       },
-    embeddingcheckall:function(){
-        if($('.embeddingcheckall').hasClass('selectbox')){
-            $(".embeddingcheckall").removeClass("selectbox").addClass("noselectbox");
-            $(".checkone").removeClass("selectbox").addClass("noselectbox");
-            }else{
-            $(".embeddingcheckall").removeClass("noselectbox").addClass("selectbox");
-            $(".checkone").addClass("selectbox").removeClass("noselectbox"); 
                 }
-        }    
-       }
-    //  async fetchData(){
-    // const response = await fetch('/api/hello');
-    //             if(response.ok){
-    //                 console.log("__________________");
-    //                 this.content = await response.text();
-    //                 var self=this;
-    //                 console.log(this.content);
-                  
-    //                self.commits=JSON.parse(this.content);
+                xhr.send()
+            },
+            embeddingcheck:function(e){
+                var checkid=$(e.target).attr("id");
+                if($("#"+checkid).hasClass('selectbox')){
+                $("#"+checkid).removeClass("selectbox").addClass("noselectbox");
+                }else{
+                $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
+                    }
+            },
+            embeddingcheckall:function(){
+                if($('.embeddingcheckall').hasClass('selectbox')){
+                    $(".embeddingcheckall").removeClass("selectbox").addClass("noselectbox");
+                    $(".checkone").removeClass("selectbox").addClass("noselectbox");
+                    }else{
+                    $(".embeddingcheckall").removeClass("noselectbox").addClass("selectbox");
+                    $(".checkone").addClass("selectbox").removeClass("noselectbox");
+                    }
+            }
+        }
 
-    //                 console.log(self.commits.length);
-    //                 console.log(self.commits[0].applicationid)
-    //             }
-    //         }
-
-};
+    };
 </script>

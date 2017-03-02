@@ -114,14 +114,14 @@
                     </select>
                 </form> 
                 <p  class="floatleft  age">{{$t('medicalmessage.age')}}</p>
-                <input  type="text"  class="bmobboxage floatleft">
+                <input  type="text"  class="bmobboxage floatleft" maxlength="3">
                 <form  class="floatleft">
                     <select class="floatleft selectage">
                         <option></option>
                     </select>
                 </form> 
                 <p  class="floatleft  agezhi">{{$t('searchtable.to')}}</p>
-                <input  type="text"  class="bmobboxage  floatleft">
+                <input  type="text"  class="bmobboxage  floatleft" maxlength="3">
                 <form  class="floatleft">
                     <select class="floatleft selectage">
                         <option></option>
