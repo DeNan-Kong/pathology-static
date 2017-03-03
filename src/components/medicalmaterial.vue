@@ -30,20 +30,23 @@
         </form>
         <form  class="material-top-two floatleft" style="width:104px;">
             <select class="radius common material-top-two" v-model="materialsContent.materialsSite">
-                <option v-for="item in materialInitialData.nodeList" :value="item">{{
+              <option v-for="item in materialInitialData.nodeList" :value="item">{{
                 item.name
-              }}</option>
+              }}
+              </option>
             </select>
         </form>
           <input type="text"  class="material-top-ipttwo floatleft radius common materialsCount" v-model="materialsContent.materialsCount"  v-validate="'required'" name="materialsCount" :class="{errorBorder: ismaterialsCountError}" @focus="disappearCountError">
         <form  class="material-top-three floatleft" style="width:65px;">
             <select class="threeradius common" v-model="materialsContent.materialsUnit">
-                <option v-for="item in allMaterialData.quantityUnitList" :value="item">{{item.name}}</option>
+                <option v-for="item in allMaterialData.quantityUnitList" :value="item">{{item.name}}
+                </option>
             </select>
         </form> 
         <form  class="floatleft">
             <select class="radius common material-top-four sampleDoctor" v-validate="'required'"  v-model="materialsContent.materialsDoctor" name="sampleDoctor" :class="{errorBorder: ismaterialsDoctorError}" @focus="disappearDoctorError">
-                <option v-for="item in allMaterialData.sampleDoctorList" :value="item">{{item.name}}</option>
+                <option v-for="item in allMaterialData.sampleDoctorList" :value="item">{{item.name}}
+                </option>
             </select>
         </form>
         <div class="material-top-date">
@@ -704,7 +707,6 @@
                   this.bindData.materialDetailList.push(materialDetail);
               }
             var s = JSON.stringify(this.bindData);
-            console.log(s);
             const response = await
                     fetch('/material/save', {
                         method: 'POST',

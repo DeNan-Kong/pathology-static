@@ -3,52 +3,17 @@
    <div class="embedding-contains">
       <div class="section-top">
           <p class="floatleft embedding-four textcenter">病理号:</p>
-          <input type="text"  class="floatleft radius common embedding-six">
-          <input type="radio" checked name="time" class="floatleft radio"><p class="floatleft section-three section-top-p textcenter">24小时</p>
-          <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four textcenter">取材日期:</p>
-          <calendar/>
-          <input type="radio" name="time" class="floatleft radio"><p class="floatleft section-four textcenter">时间范围:</p>
-          <calendar/>
+          <input type="text"  class="floatleft radius common embedding-six" v-model="selectData.patientNo">
+          <input type="radio" name="sectiontime" class="floatleft radio hours24"><p class="floatleft section-three section-top-p textcenter" >24小时</p>
+          <input type="radio" name="sectiontime" class="floatleft radio"><p class="floatleft section-four textcenter">时间范围:</p>
+          <calendar :date="selectData.scopeDateStart" v-on:change="sectionStartDate"/>
           <p class="floatleft  embeddingzhi textcenter">至</p>
-          <calendar/>
-          <button class="floatleft section-top-btn">查询</button>
-          
+          <calendar :date="selectData.scopeDateEnd" v-on:change="sectionEndDate"/>
+          <button class="floatleft section-top-btn" @click="sectionTableShow">查询</button>    
       </div>
       <div class="section-table">
-        <sectiontable  :sectionList="(sectionList)" />
-        <!-- <table class="table">
-           <thead>
-              <tr>
-                  <th class="table-three"><p class="noselectbox tablecheck checkall sectioncheckall" @click="sectioncheckall"></p></th>
-                  <th  class="table-eight">病理号</th>
-                  <th class="table-six">任务来源</th>
-                  <th class="table-six">材块号</th>
-                  <th  class="table-five">姓名</th>
-                  <th  class="table-three">性别</th>
-                  <th  class="table-three">年龄</th>
-                  <th  class="table-five">包埋操作员</th>
-                  <th  class="table-five">包埋日期</th>
-                  <th  class="table-five">制片状态</th>
-                  <th  class="table-seven">切片数</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="l in list">
-                  <td><p  class='noselectbox tablecheck  first sectionone' @click="sectioncheck"></p></td>
-                  <td>{{l.patient.patientId}}</td>
-                  <td>{{l.patient.task}}</td>
-                  <td>{{l.patient.cainum}}</td>
-                  <td>{{l.patient.name}}</td>
-                  <td>{{l.patient.sex}}</td>
-                  <td>{{l.patient.age}}</td>
-                  <td>{{l.patient.check}}</td>
-                  <td>{{l.patient.date}}</td>
-                  <td>{{l.patient.statu}}</td>
-                  <td>{{l.patient.cainum}}</td>
-              </tr>
-            </tbody>
-        </table>  -->   
-        </div>
+        <sectiontable :sectionList="(sectionList)" />  
+      </div>
         <div class="section-bottom">
           <p class="floatleft section-bottom-one">当前待切片数:12</p>
           <p class="floatleft section-bottom-two">提前</p><input type="text" class="floatleft section-bottom-input"><p class="floatleft">天确定</p>
@@ -142,7 +107,13 @@ import Sectiontable from 'components/sectiontable';
     data() {
       return {
           lists:null,
-          sectionList:[]
+          sectionList:[],
+          selectData:{
+            patientNo:null,
+            hours24: true,
+            scopeDateStart:null,
+            scopeDateEnd:null
+          }
       }
     },
     props: [],
@@ -164,21 +135,44 @@ import Sectiontable from 'components/sectiontable';
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 },
-                body: JSON.stringify([])
+                body: JSON.stringify()
             });
             const json = await
             response.text();
             const data = JSON.parse(json);
             self.sectionList = data;
         },
-      sectioncheck:function(e){
-        var checkid=$(e.target).attr("id");
-        console.log(checkid)
-        if($("#"+checkid).hasClass('selectbox')){
-        $("#"+checkid).removeClass("selectbox").addClass("noselectbox");
-        }else{
-        $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
-            }
+        async sectionTableShow(){
+           if($('.hours24').is(':checked')){
+             this.selectData.hours24=true
+           }else{
+            this.selectData.hours24=false
+           }
+            
+            const self = this;
+            const response = await
+            fetch('/production/sectionlist', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify(this.selectData)
+            });
+            console.log(JSON.stringify(this.selectData))
+            const json = await
+            response.text();
+            const data = JSON.parse(json);
+            self.sectionList = data;
+        },
+        sectioncheck:function(e){
+          var checkid=$(e.target).attr("id");
+          console.log(checkid)
+          if($("#"+checkid).hasClass('selectbox')){
+          $("#"+checkid).removeClass("selectbox").addClass("noselectbox");
+          }else{
+          $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
+              }
        },
       sectioncheckall:function(){
         if($('.sectioncheckall').hasClass('selectbox')){
@@ -198,6 +192,18 @@ import Sectiontable from 'components/sectiontable';
       }
       xhr.send()
     },
+    sectionStartDate:function(date){
+      if (date != null) {
+          let sectionStartDate = new XDate(date);
+          this.selectData.scopeDateStart = sectionStartDate.toString("yyyy-MM-dd");
+        }
+    },
+    sectionEndDate:function(date){
+      if (date != null) {
+          let sectionEndDate = new XDate(date);
+           this.selectData.scopeDateEnd = sectionEndDate.toString("yyyy-MM-dd");
+        }
+    }
 
     }
   };
