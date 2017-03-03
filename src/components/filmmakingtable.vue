@@ -7,7 +7,7 @@
     @selection-change="handleSelectionChange">
     <el-table-column
       type="selection"
-      min-width="40">
+      width="55">
     </el-table-column>
     <el-table-column
       label="病理号"
@@ -23,7 +23,7 @@
       show-overflow-tooltip
       min-width="75">
       <template scope="scope">
-        <span>{{ scope.row.taskSourceId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.taskSource }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -55,7 +55,7 @@
       show-overflow-tooltip
       min-width="46">
       <template scope="scope">
-        <span>{{ scope.row.sex }}</span>
+        <span style="margin-left: 10px">{{ scope.row.sexName }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -72,6 +72,7 @@
       min-width="60">
       <template scope="scope">
         <span>{{ scope.row.proposerId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.proposer }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -79,7 +80,7 @@
       show-overflow-tooltip
       min-width="72">
       <template scope="scope">
-        <span>{{ scope.row.chargeTypeId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.chargeType }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -95,7 +96,7 @@
       show-overflow-tooltip
       min-width="66">
       <template scope="scope">
-        <span>{{ scope.row.producerId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.producer }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -111,7 +112,7 @@
       show-overflow-tooltip
       min-width="75">
       <template scope="scope">
-        <span>{{ scope.row.productionStatus }}</span>
+        <span>{{ scope.row.productionStatusName }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -119,7 +120,7 @@
       show-overflow-tooltip
       min-width="75">
       <template scope="scope">
-        <span>{{ scope.row.printStatus }}</span>
+        <span>{{ scope.row.printStatusName }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -127,7 +128,7 @@
       show-overflow-tooltip
       min-width="75">
       <template scope="scope">
-        <span>{{ scope.row.slideCheckerId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.slideChecker }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -143,7 +144,7 @@
       show-overflow-tooltip
       min-width="100">
       <template scope="scope">
-        <span>{{ scope.row.slideCheckDate }}</span>
+        <span style="margin-left: 10px">{{ scope.row.rate }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -151,7 +152,7 @@
       show-overflow-tooltip
       min-width="100">
       <template scope="scope">
-        <span>{{ scope.row.rateOperatorId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.rateOperator }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -159,7 +160,7 @@
       show-overflow-tooltip
       min-width="90">
       <template scope="scope">
-        <span>{{ scope.row.dyeOperatorId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.dyeOperator }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -175,7 +176,7 @@
       show-overflow-tooltip
       min-width="90">
       <template scope="scope">
-        <span>{{ scope.row.sampleDoctorId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.sampleDoctor }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -183,7 +184,7 @@
       show-overflow-tooltip
       min-width="90">
       <template scope="scope">
-        <span>{{ scope.row.embeddingOperatorId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.embeddingOperator }}</span>
       </template>
     </el-table-column>
   </el-table>

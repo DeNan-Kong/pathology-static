@@ -23,7 +23,7 @@
       show-overflow-tooltip
       min-width="180">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.taskSourceId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.taskSource }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -47,7 +47,7 @@
       show-overflow-tooltip
       min-width="90">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.sex }}</span>
+        <span style="margin-left: 10px">{{ scope.row.sexName }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -63,7 +63,7 @@
       show-overflow-tooltip
       min-width="138">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.embeddingOperatorId }}</span>
+        <span style="margin-left: 10px">{{ scope.row.embeddingOperator }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -79,7 +79,7 @@
       show-overflow-tooltip
       min-width="100">
       <template scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.productionStatus }}</span>
+        <span style="margin-left: 10px">{{ scope.row.productionStatusName }}</span>
       </template>
     </el-table-column>
     <el-table-column

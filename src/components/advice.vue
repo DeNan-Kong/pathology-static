@@ -202,7 +202,7 @@ import Advicetable from 'components/advicetable';
         lists:null
       }
     },
-    props: [],
+    props: ['initialData'],
     components:{
             "calendar":Calendar,
             "advicetable":Advicetable
@@ -219,7 +219,7 @@ import Advicetable from 'components/advicetable';
         xhr.onload = function () {
         self.nums=JSON.parse(xhr.responseText);
       }
-      xhr.send(send)
+      xhr.send(send);
     }
     }
   };

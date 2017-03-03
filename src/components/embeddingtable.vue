@@ -25,7 +25,7 @@
       show-overflow-tooltip
       min-width="106">
       <template scope="scope">
-        <span>{{ scope.row.taskSourceId }}</span>
+        <span>{{ scope.row.taskSource }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -50,7 +50,7 @@
       min-width="60"
       >
       <template scope="scope">
-        <span>{{ scope.row.sex }}</span>
+        <span>{{ scope.row.sexName }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -67,7 +67,7 @@
       show-overflow-tooltip
       min-width="100">
       <template scope="scope">
-        <span>{{ scope.row.materialPartsId }}</span>
+        <span>{{ scope.row.materialParts }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -83,7 +83,7 @@
       show-overflow-tooltip
       min-width="80">
       <template scope="scope">
-        <span>{{ scope.row.sampleDoctorId }}</span>
+        <span>{{ scope.row.sampleDoctor }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -91,7 +91,7 @@
       show-overflow-tooltip
       min-width="102">
       <template scope="scope">
-        <span>{{ scope.row.sampleDoctorId }}</span>
+        <span>{{ scope.row.sampleDoctorDate }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -99,7 +99,7 @@
       show-overflow-tooltip
       min-width="80">
       <template scope="scope">
-        <span>{{ scope.row.materialCheckerId }}</span>
+        <span>{{ scope.row.materialChecker }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -107,15 +107,15 @@
       show-overflow-tooltip
        min-width="80">
       <template scope="scope">
-        <span>{{ scope.row.printStatus }}</span>
+        <span>{{ scope.row.printStatusName }}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="制片状态"
       show-overflow-tooltip
       min-width="80">
-      <template scope="scope">
-        <span>{{ scope.row.productionStatus }}</span>
+      <template scope="scope" >
+        <span>{{ scope.row.productionStatusName }}</span>
       </template>
     </el-table-column>
     <el-table-column

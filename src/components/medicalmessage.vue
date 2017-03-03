@@ -36,7 +36,7 @@
                     <p class="floatleft p-four">{{$t('medicalmessage.hospitalized_no')}}</p>
                     <input type="text" class="floatleft p-margin radium null" v-model="bindData.inhospitalId" maxlength="20">
                 </div>
-            </div>
+
             <div class="case-name">
                 <div class="name-num-one">
                     <p class="p-one floatleft">{{$t('medicalmessage.name')}}</p>

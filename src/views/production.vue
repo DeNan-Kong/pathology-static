@@ -11,16 +11,16 @@
                     <a class="filmmaking" :class="{filmmakingactive: filmmaking}" @click="fetchFilmmarkingData">{{$t('register.production_list')}}(5)</a><br>
                 </div>
                 <div class="tabs-embedding" v-show="embedding" >
-                    <embedding />
+                    <embedding :initialData="initialData" />
                 </div>
                 <div class="tabs-section" v-show="medicalSection">    
-                    <medicalsection />
+                    <medicalsection :initialData="initialData" />
                 </div>
                 <div class="tabs-advice" v-show="advice">    
-                    <advice/>
+                    <advice :initialData="initialData"/>
                 </div>
                 <div class="tabs-filmmaking" v-show="filmmaking">
-                    <filmmaking/>
+                    <filmmaking :initialData="initialData" />
                 </div>
            </div>    
         </div>
@@ -107,11 +107,13 @@
                     lists:[],//初始白名单为空
                         }
                     }
-                }
+                },
+                initialData:{},
+
             }
         },
         created(){ // 生命周期 created,获取数据
-
+            this.loadData();
         },
         components:{
             "top-menu":TopMenu,
@@ -123,6 +125,22 @@
             "advice":Advice
         },
         methods:{
+            async loadData(){
+                const response = await
+                        fetch('/production/load', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {
+                                "Content-type": "application/json; charset=UTF-8"
+                            },
+                            body: JSON.stringify([])
+                        });
+                const json = await
+                        response.text();
+                const data = JSON.parse(json);
+                this.initialData = data;
+//                console.log(json);
+            },
             fetchData:function(){
                 this.embedding=true;
                 this.medicalSection=false;

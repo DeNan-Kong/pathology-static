@@ -44,124 +44,124 @@
                     @selection-change="selectionChange"
                     @current-change="handleCurrentChange">
                     <el-table-column
-                      type="selection"
-                      min-width="48"
-                      >
+                            type="selection"
+                            min-width="48"
+                    >
                     </el-table-column>
                     <el-table-column
-                      label="病理号"
-                      show-overflow-tooltip
-                      min-width="112"
-                      >
-                      <template scope="scope">
-                        <span>{{ scope.row.pathologyNo }}</span>
-                      </template>
+                            label="病理号"
+                            show-overflow-tooltip
+                            min-width="112"
+                    >
+                        <template scope="scope">
+                            <span>{{ scope.row.pathologyNo }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="任务来源"
-                      show-overflow-tooltip
-                      min-width="106">
-                      <template scope="scope">
-                        <span>{{ scope.row.taskSourceId }}</span>
-                      </template>
+                            label="任务来源"
+                            show-overflow-tooltip
+                            min-width="106">
+                        <template scope="scope">
+                            <span>{{ scope.row.taskSource }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="材块号"
-                      show-overflow-tooltip
-                      min-width="92">
-                      <template scope="scope">
-                        <span>{{ scope.row.materialNo }}</span>
-                      </template>
+                            label="材块号"
+                            show-overflow-tooltip
+                            min-width="92">
+                        <template scope="scope">
+                            <span>{{ scope.row.materialNo }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="姓名"
-                      show-overflow-tooltip
-                      min-width="84">
-                      <template scope="scope">
-                        <span>{{ scope.row.patientName }}</span>
-                      </template>
+                            label="姓名"
+                            show-overflow-tooltip
+                            min-width="84">
+                        <template scope="scope">
+                            <span>{{ scope.row.patientName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="性别"
-                      show-overflow-tooltip
-                      min-width="60"
-                      >
-                      <template scope="scope">
-                        <span>{{ scope.row.sex }}</span>
-                      </template>
+                            label="性别"
+                            show-overflow-tooltip
+                            min-width="60"
+                    >
+                        <template scope="scope">
+                            <span>{{ scope.row.sexName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="年龄"
-                      show-overflow-tooltip
-                      min-width="60"
-                      >
-                      <template scope="scope">
-                        <span>{{ scope.row.age }}</span>
-                      </template>
+                            label="年龄"
+                            show-overflow-tooltip
+                            min-width="60"
+                    >
+                        <template scope="scope">
+                            <span>{{ scope.row.age }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="取材部位"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.materialPartsId }}</span>
-                      </template>
+                            label="取材部位"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span>{{ scope.row.materialParts }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="材块数"
-                      show-overflow-tooltip
-                      min-width="56">
-                      <template scope="scope">
-                        <span>{{ scope.row.materialQuantity }}</span>
-                      </template>
+                            label="材块数"
+                            show-overflow-tooltip
+                            min-width="56">
+                        <template scope="scope">
+                            <span>{{ scope.row.materialQuantity }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="取材医生"
-                      show-overflow-tooltip
-                      min-width="80">
-                      <template scope="scope">
-                        <span>{{ scope.row.sampleDoctorId }}</span>
-                      </template>
+                            label="取材医生"
+                            show-overflow-tooltip
+                            min-width="80">
+                        <template scope="scope">
+                            <span>{{ scope.row.sampleDoctor }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="取材日期"
-                      show-overflow-tooltip
-                      min-width="102">
-                      <template scope="scope">
-                        <span>{{ scope.row.sampleDoctorId }}</span>
-                      </template>
+                            label="取材日期"
+                            show-overflow-tooltip
+                            min-width="102">
+                        <template scope="scope">
+                            <span>{{ scope.row.sampleDoctorDate }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="材块核对"
-                      show-overflow-tooltip
-                      min-width="80">
-                      <template scope="scope">
-                        <span>{{ scope.row.materialCheckerId }}</span>
-                      </template>
+                            label="材块核对"
+                            show-overflow-tooltip
+                            min-width="80">
+                        <template scope="scope">
+                            <span>{{ scope.row.materialChecker }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="打印状态"
-                      show-overflow-tooltip
-                       min-width="80">
-                      <template scope="scope">
-                        <span>{{ scope.row.printStatus }}</span>
-                      </template>
+                            label="打印状态"
+                            show-overflow-tooltip
+                            min-width="80">
+                        <template scope="scope">
+                            <span>{{ scope.row.printStatusName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="制片状态"
-                      show-overflow-tooltip
-                      min-width="80">
-                      <template scope="scope">
-                        <span>{{ scope.row.productionStatus }}</span>
-                      </template>
+                            label="制片状态"
+                            show-overflow-tooltip
+                            min-width="80">
+                        <template scope="scope" >
+                            <span>{{ scope.row.productionStatusName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="核对时间"
-                      show-overflow-tooltip
-                      min-width="110">
-                      <template scope="scope">
-                        <span>{{ scope.row.materialCheckDate }}</span>
-                      </template>
+                            label="核对时间"
+                            show-overflow-tooltip
+                            min-width="110">
+                        <template scope="scope">
+                            <span>{{ scope.row.materialCheckDate }}</span>
+                        </template>
                     </el-table-column>
                   </el-table>
                <!--  <embeddingtable :embeddingList="embeddingList" v-on:selectionChange="HandelcurrentChange"/> -->
@@ -309,13 +309,22 @@ import Vue from 'vue';
                 embeddingNum:0,
                 blockNum:0,
                 embeddingSearchData:{
-                    patientNo: "",
-                    sampleDoctorId: 1,
+                    patientNo: null,
+                    sampleDoctorId: null,
                     hours24: true,
                     scopeDateStart: null,
                     scopeDateEnd: null,
                     printStatus: 1,
-                    productionStatus:1 
+                    productionStatus:1
+                },
+                defaultSearchData:{
+                    patientNo: null,
+                    sampleDoctorId: null,
+                    hours24: false,
+                    scopeDateStart: null,
+                    scopeDateEnd: null,
+                    printStatus: -1,
+                    productionStatus:-1
                 },
                 embeddingCheckData:{
                     aheadDay:null,
@@ -413,7 +422,7 @@ import Vue from 'vue';
                     this.embeddingSearchData.hours24=false
                }
                 const response = await
-                fetch('/production/sectionlist', {
+                fetch('/production/queryembedding', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -422,10 +431,9 @@ import Vue from 'vue';
                     body: JSON.stringify(this.embeddingSearchData)
                 });
                 console.log(JSON.stringify(this.embeddingSearchData))
-                const json = await
-                response.text();
+                const json = await  response.text();
                 const data = JSON.parse(json);
-                // this.initialData = data;
+                this.embeddingList = data;
             },
             async embeddingDefaultSearch(){
                 if($('.embeddingHours').is(':checked')){
@@ -434,21 +442,21 @@ import Vue from 'vue';
                     this.embeddingSearchData.hours24=false
                }
                 const response = await
-                fetch('/production/sectionlist', {
+                fetch('/production/queryembedding', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
-                    body: JSON.stringify(this.embeddingSearchData)
+                    body: JSON.stringify(this.defaultSearchData)
                 });
-                console.log(JSON.stringify(this.embeddingSearchData))
-                const json = await
-                response.text();
+                const json = await response.text();
                 const data = JSON.parse(json);
+                this.embeddingList = data;
+                console.log(JSON.stringify(this.embeddingSearchData));
                 },
             selectionChange:function(val){
-                console.log(val[0].materialDetailId)
+//                console.log(val[0].materialDetailId)
                 for (let i = 0; i < this.embeddingList.length; i++) {
                     let item = this.embeddingList[i];
                     item.isSelected = false;
@@ -472,9 +480,9 @@ import Vue from 'vue';
                   for(let i=0;i<newItems.length;i++){
                     this.embeddingCheckData.idList.push(newItems[i].materialDetailId)
                   }
-                  // console.log(JSON.stringify(this.embeddingCheckData.idList))
+                   console.log(JSON.stringify(this.embeddingCheckData.idList))
                    const response = await
-                    fetch('/production/sectionlist', {
+                    fetch('/production/materialchecke', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -483,10 +491,10 @@ import Vue from 'vue';
                     body: JSON.stringify(this.embeddingCheckData)
                 });
                     console.log(JSON.stringify(this.embeddingCheckData))
-                    const json = await
-                    response.text();
-                    const data = JSON.parse(json);
-                    //this.embeddingList = data;               
+//                    const json = await
+//                    response.text();
+//                    const data = JSON.parse(json);
+//                    this.embeddingList = data;
                 },
             async embeddingConfirm(){
                     var newItems = [];
@@ -501,7 +509,7 @@ import Vue from 'vue';
                     this.embeddingConfirmData.idList.push(newItems[i].materialDetailId)
                   }
                    const response = await
-                    fetch('/production/sectionlist', {
+                    fetch('/production/embeddingsure', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {

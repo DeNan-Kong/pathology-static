@@ -14,7 +14,7 @@
       min-width="112"
       fixed>
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -23,7 +23,7 @@
       min-width="68"
       fixed>
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -31,7 +31,7 @@
       show-overflow-tooltip
       min-width="80">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -39,7 +39,7 @@
       show-overflow-tooltip
       min-width="112">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -47,7 +47,7 @@
       show-overflow-tooltip
       min-width="110">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -55,7 +55,7 @@
       show-overflow-tooltip
       min-width="80">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -63,7 +63,7 @@
       show-overflow-tooltip
       min-width="60">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -71,7 +71,7 @@
       show-overflow-tooltip
       min-width="60">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -79,7 +79,7 @@
       show-overflow-tooltip
       min-width="75">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -87,7 +87,7 @@
       show-overflow-tooltip
       min-width="90">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -95,7 +95,7 @@
       show-overflow-tooltip
       min-width="72">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -103,7 +103,7 @@
       show-overflow-tooltip
       min-width="126">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -111,7 +111,7 @@
       show-overflow-tooltip
       min-width="76">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -119,7 +119,7 @@
       show-overflow-tooltip
       min-width="70">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -127,7 +127,7 @@
       show-overflow-tooltip
       min-width="80">
       <template scope="scope">
-        <span>{{ scope.row.date }}</span>
+        <span>{{ scope.row.name }}</span>
       </template>
     </el-table-column>
   </el-table>

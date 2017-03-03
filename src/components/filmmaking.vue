@@ -39,185 +39,186 @@
                     highlight-current-row
                     @selection-change="filmmakingChange">
                     <el-table-column
-                      type="selection"
-                      min-width="40">
+                            type="selection"
+                            width="55">
                     </el-table-column>
                     <el-table-column
-                      label="病理号"
-                      show-overflow-tooltip
-                      fixed
-                     min-width="102">
-                      <template scope="scope">
-                        <span>{{ scope.row.pathologyNo }}</span>
-                      </template>
+                            label="病理号"
+                            show-overflow-tooltip
+                            fixed
+                            min-width="102">
+                        <template scope="scope">
+                            <span>{{ scope.row.pathologyNo }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="任务来源"
-                      show-overflow-tooltip
-                      min-width="75">
-                      <template scope="scope">
-                        <span>{{ scope.row.taskSourceId }}</span>
-                      </template>
+                            label="任务来源"
+                            show-overflow-tooltip
+                            min-width="75">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.taskSource }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="制片子号"
-                      show-overflow-tooltip
-                      min-width="76">
-                      <template scope="scope">
-                        <span>{{ scope.row.materialNo }}</span>
-                      </template>
+                            label="制片子号"
+                            show-overflow-tooltip
+                            min-width="76">
+                        <template scope="scope">
+                            <span>{{ scope.row.materialNo }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="制片说明"
-                      show-overflow-tooltip
-                      min-width="80">
-                      <template scope="scope">
-                        <span>{{ scope.row.productionExplain }}</span>
-                      </template>
+                            label="制片说明"
+                            show-overflow-tooltip
+                            min-width="80">
+                        <template scope="scope">
+                            <span>{{ scope.row.productionExplain }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="姓名"
-                      show-overflow-tooltip
-                      min-width="60">
-                      <template scope="scope">
-                        <span>{{ scope.row.patientName }}</span>
-                      </template>
+                            label="姓名"
+                            show-overflow-tooltip
+                            min-width="60">
+                        <template scope="scope">
+                            <span>{{ scope.row.patientName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="性别"
-                      show-overflow-tooltip
-                      min-width="46">
-                      <template scope="scope">
-                        <span>{{ scope.row.sex }}</span>
-                      </template>
+                            label="性别"
+                            show-overflow-tooltip
+                            min-width="46">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.sexName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="年龄"
-                      show-overflow-tooltip
-                      min-width="46">
-                      <template scope="scope">
-                        <span>{{ scope.row.age }}</span>
-                      </template>
+                            label="年龄"
+                            show-overflow-tooltip
+                            min-width="46">
+                        <template scope="scope">
+                            <span>{{ scope.row.age }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="申请人"
-                      show-overflow-tooltip
-                      min-width="60">
-                      <template scope="scope">
-                        <span>{{ scope.row.proposerId }}</span>
-                      </template>
+                            label="申请人"
+                            show-overflow-tooltip
+                            min-width="60">
+                        <template scope="scope">
+                            <span>{{ scope.row.proposerId }}</span>
+                            <span style="margin-left: 10px">{{ scope.row.proposer }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="收费情况"
-                      show-overflow-tooltip
-                      min-width="72">
-                      <template scope="scope">
-                        <span>{{ scope.row.chargeTypeId }}</span>
-                      </template>
+                            label="收费情况"
+                            show-overflow-tooltip
+                            min-width="72">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.chargeType }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="收费时间"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.chargeDate }}</span>
-                      </template>
+                            label="收费时间"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span>{{ scope.row.chargeDate }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="制片人"
-                      show-overflow-tooltip
-                      min-width="66">
-                      <template scope="scope">
-                        <span>{{ scope.row.producerId }}</span>
-                      </template>
+                            label="制片人"
+                            show-overflow-tooltip
+                            min-width="66">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.producer }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="制片时间"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.productionDate }}</span>
-                      </template>
+                            label="制片时间"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span>{{ scope.row.productionDate }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="制片状态"
-                      show-overflow-tooltip
-                      min-width="75">
-                      <template scope="scope">
-                        <span>{{ scope.row.productionStatus }}</span>
-                      </template>
+                            label="制片状态"
+                            show-overflow-tooltip
+                            min-width="75">
+                        <template scope="scope">
+                            <span>{{ scope.row.productionStatusName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="打印状态"
-                      show-overflow-tooltip
-                      min-width="75">
-                      <template scope="scope">
-                        <span>{{ scope.row.printStatus }}</span>
-                      </template>
+                            label="打印状态"
+                            show-overflow-tooltip
+                            min-width="75">
+                        <template scope="scope">
+                            <span>{{ scope.row.printStatusName }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="玻片核对"
-                      show-overflow-tooltip
-                      min-width="75">
-                      <template scope="scope">
-                        <span>{{ scope.row.slideCheckerId }}</span>
-                      </template>
+                            label="玻片核对"
+                            show-overflow-tooltip
+                            min-width="75">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.slideChecker }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="核对时间"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.slideCheckDate }}</span>
-                      </template>
+                            label="核对时间"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span>{{ scope.row.slideCheckDate }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="切片评级"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.slideCheckDate }}</span>
-                      </template>
+                            label="切片评级"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.rate }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="评级人"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.rateOperatorId }}</span>
-                      </template>
+                            label="评级人"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.rateOperator }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="染色人"
-                      show-overflow-tooltip
-                      min-width="90">
-                      <template scope="scope">
-                        <span>{{ scope.row.dyeOperatorId }}</span>
-                      </template>
+                            label="染色人"
+                            show-overflow-tooltip
+                            min-width="90">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.dyeOperator }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="染色时间"
-                      show-overflow-tooltip
-                      min-width="100">
-                      <template scope="scope">
-                        <span>{{ scope.row.dyeDate }}</span>
-                      </template>
+                            label="染色时间"
+                            show-overflow-tooltip
+                            min-width="100">
+                        <template scope="scope">
+                            <span>{{ scope.row.dyeDate }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="取材医生"
-                      show-overflow-tooltip
-                      min-width="90">
-                      <template scope="scope">
-                        <span>{{ scope.row.sampleDoctorId }}</span>
-                      </template>
+                            label="取材医生"
+                            show-overflow-tooltip
+                            min-width="90">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.sampleDoctor }}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
-                      label="包埋人"
-                      show-overflow-tooltip
-                      min-width="90">
-                      <template scope="scope">
-                        <span>{{ scope.row.embeddingOperatorId }}</span>
-                      </template>
+                            label="包埋人"
+                            show-overflow-tooltip
+                            min-width="90">
+                        <template scope="scope">
+                            <span style="margin-left: 10px">{{ scope.row.embeddingOperator }}</span>
+                        </template>
                     </el-table-column>
                   </el-table>
                 <!-- <filmmakingtable :productionList="productionList" /> -->
@@ -259,7 +260,7 @@
             <div class="clear"></div>
             <div class="filmmaking-bottom">
                 <button class="floatright filmmaking-bottom-btnlong filmmaking-bottom-btn">移交表单打印</button>
-                <button class="floatright filmmaking-bottom-btn" 
+                <button class="floatright filmmaking-bottom-btn"
                 @click="glassCheck">玻片核对</button>
                 <button class="floatright filmmaking-bottom-btn" @click="dyeingHE">HE染色</button>
                 <button class="floatright filmmaking-bottom-btn">标签打印</button>
@@ -277,7 +278,7 @@
     height: 660px;
 }
 .filmmaking-contains{
-    margin: 10 auto;
+    margin: 10px auto;
     height: 620px;
 } 
 .filmmaking-top{
@@ -429,21 +430,21 @@ import $ from "jQuery";
                 initialData:{},
                 productionList:[],
                 filmmakingSearchData:{
-                    patientNo: "",
-                    taskSourceId: 1,
+                    patientNo: null,
+                    taskSourceId: null,
                     hours24: true,
                     scopeDateStart:null,
                     scopeDateEnd:null,
-                    printStatus: 1,
-                    productionStatus:1 
+                    printStatus: -1,
+                    productionStatus:-1
                 },
                 filmmakingBtnData:{
                     taskSourceId: 1,
-                    productionDate: "",
+                    productionDate: null,
                     producerId: 1,
                     productionExplainId:1,
                     materialIDX: 1,
-                    pathologyNo: ""
+                    pathologyNo: null
                 },
                 selectId:[],
                 deleteId:[],
@@ -493,7 +494,7 @@ import $ from "jQuery";
                }else{
                     this.filmmakingSearchData.hours24=false
                }
-                const response = await fetch('/production/sectionlist', {
+                const response = await fetch('/production/queryproduction', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -505,7 +506,7 @@ import $ from "jQuery";
                 const json = await
                 response.text();
                 const data = JSON.parse(json);
-                //this.productionList = data;
+                this.productionList = data;
             },
             filmmakingStartDate:function(date){
                 if (date != null) {
@@ -536,7 +537,7 @@ import $ from "jQuery";
                 }
             },
             async filmmakingAdd(){
-                const response = await fetch('/production/sectionlist', {
+                const response = await fetch('/production/addproduction', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -563,7 +564,7 @@ import $ from "jQuery";
                     this.selectId.push(newItems[i].materialDetailId)
                   }
                    const response = await
-                    fetch('/production/sectionlist', {
+                    fetch('/production/dye', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -585,7 +586,7 @@ import $ from "jQuery";
                   for(let i=0;i<newItems.length;i++){
                     this.deleteId.push(newItems[i].materialDetailId)
                   }
-                   const response = await fetch('/production/sectionlist', {
+                   const response = await fetch('/production/deleteproduction', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -611,7 +612,7 @@ import $ from "jQuery";
                   for(let i=0;i<newItems.length;i++){
                     this.glassCheckId.push(newItems[i].materialDetailId)
                   }
-                   const response = await fetch('/production/sectionlist', {
+                   const response = await fetch('/production/slidechecke', {
                         method: 'POST',
                         credentials: 'include',
                         headers: {
@@ -619,7 +620,7 @@ import $ from "jQuery";
                         },
                         body: JSON.stringify(this.glassCheckId)
                 });
-                 console.log(JSON.stringify(this.glassCheckId)) 
+                 console.log(JSON.stringify(this.glassCheckId))
             }
         }
     }

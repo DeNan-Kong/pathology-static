@@ -19,92 +19,92 @@
           height="520"
           @selection-change="sectionChange"
           highlight-current-row>
-          <el-table-column
-            type="selection"
-            min-width="35">
-          </el-table-column>
-          <el-table-column
-            label="病理号"
-            fixed
-            show-overflow-tooltip
-            min-width="127">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.pathologyNo }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="任务来源"
-            show-overflow-tooltip
-            min-width="180">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.taskSourceId }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="材块号"
-            show-overflow-tooltip
-            min-width="112">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.materialNo }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="姓名"
-            show-overflow-tooltip
-            min-width="120">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.patientName }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="性别"
-            show-overflow-tooltip
-            min-width="90">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.sex }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="年龄"
-            show-overflow-tooltip
-            min-width="90">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.age }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="包埋操作员"
-            show-overflow-tooltip
-            min-width="138">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.embeddingOperatorId }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="包埋日期"
-            show-overflow-tooltip
-            min-width="170">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.embeddingDate }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="制片状态"
-            show-overflow-tooltip
-            min-width="100">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.productionStatus }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="切片数"
-            show-overflow-tooltip
-            min-width="120">
-            <template scope="scope">
-              <span style="margin-left: 10px">{{ scope.row.sectionQuantity}}</span>
-            </template>
-          </el-table-column>
-        </el-table> 
+            <el-table-column
+                    type="selection"
+                    min-width="35">
+            </el-table-column>
+            <el-table-column
+                    label="病理号"
+                    fixed
+                    show-overflow-tooltip
+                    min-width="127">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.pathologyNo }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="任务来源"
+                    show-overflow-tooltip
+                    min-width="180">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.taskSource }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="材块号"
+                    show-overflow-tooltip
+                    min-width="112">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.materialNo }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="姓名"
+                    show-overflow-tooltip
+                    min-width="120">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.patientName }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="性别"
+                    show-overflow-tooltip
+                    min-width="90">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.sexName }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="年龄"
+                    show-overflow-tooltip
+                    min-width="90">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.age }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="包埋操作员"
+                    show-overflow-tooltip
+                    min-width="138">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.embeddingOperator }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="包埋日期"
+                    show-overflow-tooltip
+                    min-width="170">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.embeddingDate }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="制片状态"
+                    show-overflow-tooltip
+                    min-width="100">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.productionStatusName }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="切片数"
+                    show-overflow-tooltip
+                    min-width="120">
+                <template scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.sectionQuantity }}</span>
+                </template>
+            </el-table-column>
+        </el-table>
       </div>
         <div class="section-bottom">
           <p class="floatleft section-bottom-one">当前待切片数:{{nowSectionNum}}</p>
@@ -218,10 +218,12 @@ import Sectiontable from 'components/sectiontable';
           "sectiontable":Sectiontable
     },
     created(){ // 生命周期 created,获取数据
+
         this.listData()
     },
     methods:{
         async listData(){
+            const self = this;
             const response = await
             fetch('/production/sectionlist', {
                 method: 'POST',
@@ -245,10 +247,9 @@ import Sectiontable from 'components/sectiontable';
            }else{
             this.selectData.hours24=false
            }
-            
-            const self = this;
+
             const response = await
-            fetch('/production/sectionlist', {
+            fetch('/production/querysection', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -260,7 +261,9 @@ import Sectiontable from 'components/sectiontable';
             const json = await
             response.text();
             const data = JSON.parse(json);
-            self.sectionList = data;
+            this.sectionList = data;
+            console.log(json)
+
         },
         sectioncheck:function(e){
           var checkid=$(e.target).attr("id");
@@ -309,12 +312,12 @@ import Sectiontable from 'components/sectiontable';
               if (!item.isSelected==false) {
                   newItems.push(item)
               }
-            } 
+            }
           this.sectionConfirmData.idList=[]
             for(let i=0;i<newItems.length;i++){
               this.sectionConfirmData.idList.push(newItems[i].materialDetailId)
             }
-          const response = await fetch('/production/sectionlist',{
+          const response = await fetch('/production/sectionsure',{
               method: 'POST',
               credentials: 'include',
               headers: {
