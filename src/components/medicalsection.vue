@@ -12,12 +12,104 @@
           <button class="floatleft section-top-btn" @click="sectionTableShow">查询</button>    
       </div>
       <div class="section-table">
-        <sectiontable :sectionList="(sectionList)"/>  
+        <!-- <sectiontable :sectionList="(sectionList)"/>  -->
+        <el-table
+          :data="sectionList"
+          border
+          height="520"
+          @selection-change="sectionChange"
+          highlight-current-row>
+          <el-table-column
+            type="selection"
+            min-width="35">
+          </el-table-column>
+          <el-table-column
+            label="病理号"
+            fixed
+            show-overflow-tooltip
+            min-width="127">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.pathologyNo }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="任务来源"
+            show-overflow-tooltip
+            min-width="180">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.taskSourceId }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="材块号"
+            show-overflow-tooltip
+            min-width="112">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.materialNo }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="姓名"
+            show-overflow-tooltip
+            min-width="120">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.patientName }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="性别"
+            show-overflow-tooltip
+            min-width="90">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.sex }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="年龄"
+            show-overflow-tooltip
+            min-width="90">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.age }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="包埋操作员"
+            show-overflow-tooltip
+            min-width="138">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.embeddingOperatorId }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="包埋日期"
+            show-overflow-tooltip
+            min-width="170">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.embeddingDate }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="制片状态"
+            show-overflow-tooltip
+            min-width="100">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.productionStatus }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="切片数"
+            show-overflow-tooltip
+            min-width="120">
+            <template scope="scope">
+              <span style="margin-left: 10px">{{ scope.row.sectionQuantity}}</span>
+            </template>
+          </el-table-column>
+        </el-table> 
       </div>
         <div class="section-bottom">
-          <p class="floatleft section-bottom-one">当前待切片数:12</p>
-          <p class="floatleft section-bottom-two">提前</p><input type="text" class="floatleft section-bottom-input"><p class="floatleft">天确定</p>
-          <button class="floatleft section-bottom-btn">切片确认</button>
+          <p class="floatleft section-bottom-one">当前待切片数:{{nowSectionNum}}</p>
+          <p class="floatleft section-bottom-two">提前</p><input type="text" class="floatleft section-bottom-input" v-model="sectionConfirmData.aheadDay"><p class="floatleft">天确定</p>
+          <button class="floatleft section-bottom-btn" @click="sectionConfirm">切片确认</button>
         </div>
       </div>
    </div>
@@ -107,11 +199,16 @@ import Sectiontable from 'components/sectiontable';
       return {
           lists:null,
           sectionList:[],
+          nowSectionNum:0,
           selectData:{
             patientNo:null,
             hours24: true,
             scopeDateStart:null,
             scopeDateEnd:null
+          },
+          sectionConfirmData:{
+            aheadDay:null,
+            idList:[]
           }
       }
     },
@@ -126,7 +223,6 @@ import Sectiontable from 'components/sectiontable';
     },
     methods:{
         async listData(){
-            const self = this;
             const response = await
             fetch('/production/sectionlist', {
                 method: 'POST',
@@ -139,7 +235,10 @@ import Sectiontable from 'components/sectiontable';
             const json = await
             response.text();
             const data = JSON.parse(json);
-            self.sectionList = data;
+            this.sectionList = data;
+            for(var i=0;i<this.sectionList.length;i++){
+              this.nowSectionNum+=this.sectionList[i].sectionQuantity
+            }
         },
         async sectionTableShow(){
            if($('.hours24').is(':checked')){
@@ -202,6 +301,43 @@ import Sectiontable from 'components/sectiontable';
           let sectionEndDate = new XDate(date);
            this.selectData.scopeDateEnd = sectionEndDate.toString("yyyy-MM-dd");
         }
+    },
+    sectionChange:function(val){
+        for (let i = 0; i < this.sectionList.length; i++) {
+          let item = this.sectionList[i];
+          item.isSelected = false;
+        }
+        for (let i = 0; i < val.length; i++) {
+          let newItem=val[i];
+          newItem.isSelected=true;
+        }
+    },
+    async sectionConfirm(){
+      var newItems = [];
+      for (let i = 0; i < this.sectionList.length; i++) {
+          let item = this.sectionList[i];
+          if (!item.isSelected==false) {
+              newItems.push(item)
+          }
+        } 
+        this.sectionConfirmData.idList=[]
+        for(let i=0;i<newItems.length;i++){
+          this.sectionConfirmData.idList.push(newItems[i].materialDetailId)
+        }
+         const response = await
+          fetch('/production/sectionlist', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          },
+          body: JSON.stringify(this.sectionConfirmData)
+      });
+          console.log(JSON.stringify(this.sectionConfirmData))
+          const json = await  response.text();
+          const data = JSON.parse(json);
+          this.sectionList = data;
+
     }
 
     }

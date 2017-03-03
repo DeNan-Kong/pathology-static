@@ -174,7 +174,7 @@
                 </div>
                 <button class="floatleft" @click="blockCheck">材块核对</button>
                 <button class="floatleft">标签打印</button>
-                <button class="floatleft">包埋确认</button>
+                <button class="floatleft" @click="embeddingConfirm">包埋确认</button>
                 <button class="floatleft">移交打印表</button>
             </div>
         </div>
@@ -318,7 +318,7 @@ import Vue from 'vue';
                     productionStatus:1 
                 },
                 embeddingCheckData:{
-                    aheadDay:0,
+                    aheadDay:null,
                     idList:[]
                 },
                 multipleSelection:[]
@@ -337,15 +337,8 @@ import Vue from 'vue';
              
         },
         methods:{
-            handleEdit(index, row) {
-        console.log(index, row);
-        },
-      handleDelete(index, row) {
-          console.log(index, row);
-        },
-      handleCurrentChange(val) {
-        this.currentRow = val;
-      
+        handleCurrentChange(val) {
+            this.currentRow = val;
       },
             async listData(){
                 const response = await
@@ -501,6 +494,32 @@ import Vue from 'vue';
                     response.text();
                     const data = JSON.parse(json);
                     //                
+                },
+                async embeddingConfirm(){
+                    var newItems = [];
+                for (let i = 0; i < this.embeddingList.length; i++) {
+                    let item = this.embeddingList[i];
+                    if (!item.isSelected==false) {
+                        newItems.push(item)
+                    }
+                  } 
+                  this.embeddingCheckData.idList=[]
+                  for(let i=0;i<newItems.length;i++){
+                    this.embeddingCheckData.idList.push(newItems[i].materialDetailId)
+                  }
+                   const response = await
+                    fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.embeddingCheckData)
+                });
+                    console.log(JSON.stringify(this.embeddingCheckData))
+                    const json = await
+                    response.text();
+                    const data = JSON.parse(json);
                 }
             }
     };
