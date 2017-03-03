@@ -4,7 +4,7 @@
       <div class="section-top">
           <p class="floatleft embedding-four textcenter">病理号:</p>
           <input type="text"  class="floatleft radius common embedding-six" v-model="selectData.patientNo">
-          <input type="radio" name="sectiontime" class="floatleft radio hours24"><p class="floatleft section-three section-top-p textcenter" >24小时</p>
+          <input type="radio" checked name="sectiontime" class="floatleft radio hours24"><p class="floatleft section-three section-top-p textcenter">24小时</p>
           <input type="radio" name="sectiontime" class="floatleft radio"><p class="floatleft section-four textcenter">时间范围:</p>
           <calendar :date="selectData.scopeDateStart" v-on:change="sectionStartDate"/>
           <p class="floatleft  embeddingzhi textcenter">至</p>
@@ -12,7 +12,7 @@
           <button class="floatleft section-top-btn" @click="sectionTableShow">查询</button>    
       </div>
       <div class="section-table">
-        <sectiontable :sectionList="(sectionList)" />  
+        <sectiontable :sectionList="(sectionList)"/>  
       </div>
         <div class="section-bottom">
           <p class="floatleft section-bottom-one">当前待切片数:12</p>
@@ -102,7 +102,6 @@ thead{
 import $ from "jQuery"
 import Calendar from 'components/calendar';
 import Sectiontable from 'components/sectiontable';
-
   export default {
     data() {
       return {

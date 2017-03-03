@@ -3,98 +3,42 @@
         <div class="filmmaking-contains">
             <div class="filmmaking-top">
                 <p class="floatleft top-p-one">病理号:</p>
-                <input type="text"  class="floatleft top-ipt radius common"> 
+                <input type="text" class="floatleft top-ipt radius common" v-model="filmmakingSearchData.patientNo"> 
                  <p class="floatleft top-p-three">任务来源:</p>
                  <form  class="floatleft top-form">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.taskSourceList" :value="item.id"> {{item.name}}</option>
+                    <select class="radius common" v-model="filmmakingSearchData.taskSourceId">
+                        <option v-for="item in initialData.taskSourceList" :value="item.id">{{item.name}}</option>
                     </select>
                 </form>
-                <input type="radio" checked name="filmmakingdate" class="floatleft filmmakingradio"><p class="floatleft top-p-two radioleft">24小时</p>
+                <input type="radio" checked name="filmmakingdate" class="floatleft filmmakingradio filmmakingHours">
+                <p class="floatleft top-p-two radioleft">24小时</p>
                 <input type="radio" class="floatleft filmmakingradio" name="filmmakingdate">
                 <p class="floatleft top-p-form radioleft">制片时间:</p>
-                <calendar/>
-                <input type="radio" class="floatleft filmmakingradio" name="filmmakingdate">
-                <p class="floatleft top-p-form radioleft">时间范围:</p>
-                <calendar/>
+                <calendar :date="filmmakingSearchData.scopeDateStart" v-on:change="filmmakingStartDate"/>
                 <p class="floatleft top-p-six">至</p>
-                <calendar/>
+                <calendar :date="filmmakingSearchData.scopeDateStart" v-on:change="filmmakingEndDate"/>
                  <form  class="floatleft top-p-four">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.printStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
+                    <select class="radius common" v-model="filmmakingSearchData.printStatus">
+                        <option v-for="item in initialData.printStatusList" :value="item.id"> {{item.name}}
+                        </option>
                     </select>
                 </form>
                  <form  class="floatleft top-p-four">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.productionStatusList" :value="item.sampleDoctorId"> {{item.name}}</option>
+                    <select class="radius common" v-model="filmmakingSearchData.productionStatus">
+                        <option v-for="item in initialData.productionStatusList" :value="item.id"> {{item.name}}
+                        </option>
                     </select>
                 </form>
-                <button class="floatleft top-btn" @click="shuju">查询</button>
+                <button class="floatleft top-btn" @click="filmmakingSearch">查询</button>
             </div>
             <div class="filmmaking-table">
                 <filmmakingtable :productionList="productionList" />
-                <!-- <table class="table">
-                    <thead>
-                    <tr>
-                        <th class="table-three "><p class="noselectbox tablecheck checkall" @click="checkall"></p></th>
-                        <th  class="table-eight">病理号</th>
-                        <th class="table-six">任务来源</th>
-                        <th class="table-five">制片子号</th>
-                        <th  class="table-five">制片说明</th>
-                        <th  class="table-five">姓名</th>
-                        <th  class="table-three">性别</th>
-                        <th  class="table-three">年龄</th>
-                        <th  class="table-five">申请人</th>
-                        <th  class="table-three">收费情况</th>
-                        <th  class="table-five">收费时间</th>
-                        <th  class="table-five">制片人</th>
-                        <th  class="table-seven">制片时间</th>
-                        <th  class="table-five">制片状态</th>
-                        <th  class="table-five">打印状态</th>
-                        <th  class="table-five">玻片核对</th>
-                        <th  class="table-seven">核对时间</th>
-                        <th  class="table-three">切片评级</th>
-                        <th  class="table-five">评级人</th>
-                        <th  class="table-five">染色人</th>
-                        <th  class="table-five">染色时间</th>
-                        <th  class="table-five">取材医生</th>
-                        <th  class="table-five">包埋人</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="data in datas">
-                        <td><p  class='noselectbox tablecheck checkall first'></p></td>
-                        <td>{{data.patient.patientId}}</td>
-                        <td>{{data.patient.task}}</td>
-                        <td>{{data.patient.cainum}}</td>
-                        <td>{{data.patient.cainum}}</td>
-                        <td>{{data.patient.name}}</td>
-                        <td>{{data.patient.sex}}</td>
-                        <td>{{data.patient.age}}</td>
-                        <td>{{data.patient.name}}</td>
-                        <td>{{data.patient.position}}</td>
-                        <td>{{data.patient.kuainum}}</td>
-                        <td>{{data.patient.doctor}}</td>
-                        <td>{{data.patient.date}}</td>
-                        <td>{{data.patient.check}}</td>
-                        <td>{{data.patient.statu}}</td>
-                        <td>{{data.patient.zhistatus}}</td>
-                        <td>{{data.patient.checktime}}</td>
-                        <td>{{data.patient.date}}</td>
-                        <td>{{data.patient.check}}</td>
-                        <td>{{data.patient.statu}}</td>
-                        <td>{{data.patient.zhistatus}}</td>
-                        <td>{{data.patient.checktime}}</td>
-                        <td>{{data.patient.name}}</td>
-                    </tr>
-                </tbody>
-                </table> -->
             </div>
             <div class="filmmaking-adddelete">
                 <p class="floatleft top-p-seven textright">任务来源:</p>
                <form  class="floatleft top-p-four">
                     <select class="radius common ">
-                        <option v-for="item in initialData.taskSourceList" :value="item.id"> {{item.name}}</option>                          
+                        <option v-for="item in initialData.taskSourceList" :value="item.id"> {{item.name}}</option>                     
                     </select>
                 </form>
                 <p class="floatleft top-p-four  textright">制片时间:</p>
@@ -290,12 +234,21 @@ body .filmmaking-table .table{
 <script>
 import Calendar from 'components/calendar';
 import Filmmakingtable from 'components/filmmakingtable';
-import $ from "jQuery"
+import $ from "jQuery";
     export default{
         data(){
             return{
                 initialData:{},
-                productionList:[]
+                productionList:[],
+                filmmakingSearchData:{
+                    patientNo: "",
+                    taskSourceId: 1,
+                    hours24: true,
+                    scopeDateStart:null,
+                    scopeDateEnd:null,
+                    printStatus: 1,
+                    productionStatus:1 
+                }
             }
         },
         props: [],
@@ -347,23 +300,6 @@ import $ from "jQuery"
                     $(".checkall").removeClass("noselectbox").addClass("selectbox"); 
                     }   
             },
-            shuju:function(){
-                var _self = this;
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/hello',
-                    data:{
-                        id:0
-                    },
-                    success:function(data) {
-                        var len=data.length;
-                        console.log(data)
-                       var obj=JSON.parse(data);
-                        _self.list=obj.slice(0,len-1)
-                        console.log( _self.list)
-                    }
-                });
-            },
             filmmaking:function(){
                 var xhr = new XMLHttpRequest()
                 var self = this 
@@ -372,6 +308,38 @@ import $ from "jQuery"
                 self.datas=JSON.parse(xhr.responseText);
               }
               xhr.send()
+            },
+            async filmmakingSearch(){
+                if($('.filmmakingHours').is(':checked')){
+                    this.filmmakingSearchData.hours24=true
+               }else{
+                    this.filmmakingSearchData.hours24=false
+               }
+                const response = await
+                fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.filmmakingSearchData)
+                });
+                console.log(JSON.stringify(this.filmmakingSearchData))
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+            },
+            filmmakingStartDate:function(date){
+                if (date != null) {
+                let filmmakingStartDate = new XDate(date);
+                this.filmmakingSearchData.scopeDateStart = filmmakingStartDate.toString("yyyy-MM-dd");
+                }
+            },
+            filmmakingEndDate:function(date){
+                if (date != null) {
+                let filmmakingEndDate = new XDate(date);
+                this.filmmakingSearchData.scopeDateEnd = filmmakingEndDate.toString("yyyy-MM-dd");
+                }
             },
         }
     }

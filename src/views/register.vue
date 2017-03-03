@@ -101,6 +101,9 @@
     background: #fff;
     margin-left: 7px;
 }
+.tabs-check{
+    display: none;
+}
 </style>
 <script>
     import TopMenu from 'components/topmenu';
@@ -218,7 +221,6 @@
             async orderItemClick(orderId) {
                 var medicalMessage = this.$refs.medicalMessage;
                 medicalMessage.loadOrder(orderId);
-
                 var topmessage = this.$refs.topmessage;
                 topmessage.showPatientInformation(orderId);
             },

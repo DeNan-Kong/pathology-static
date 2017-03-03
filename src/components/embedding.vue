@@ -3,37 +3,35 @@
         <div class="embedding-contains">
             <div class="embedding-top">
                <p class="floatleft embedding-bingnum">病理号:</p>
-               <input type="text" class="floatleft radius common embedding-six" maxlength="20">
+               <input type="text" class="floatleft radius common embedding-six" maxlength="20" v-model="embeddingSearchData.patientNo">
                <p class="floatleft embedding-five">取材医生:</p>
                <form  class="floatleft embedding-six textleft">
-                    <select class="radius common">
+                    <select class="radius common" v-model="embeddingSearchData.sampleDoctorId">
                         <option v-for="item in initialData.sampleDoctorList" :value="item.sampleDoctorId">{{item.name}}</option>
                    </select>
                 </form>
-                    <input type="radio" checked name="time" class="floatleft radio " >
+                    <input type="radio" checked name="embeddingTime" class="floatleft radio embeddingHours">
                     <p class="floatleft embedding-four radioleft">24小时</p>
-                    <input type="radio" name="time" class="floatleft radio ">
-                    <p class="floatleft embedding-five radioleft">取材日期:</p>
-                    <calendar/>
-                    <input type="radio" name="time" class="floatleft radio">
+                    <input type="radio" name="embeddingtime" class="floatleft radio">
                     <p class="floatleft embedding-five radioleft">时间范围:</p>
-                    <calendar/>
+                    <calendar :date="embeddingSearchData.scopeDateStart" v-on:change="embeddingStartDate"/>
                     <p class="floatleft embeddingzhi">至</p>
-                    <calendar/>
+                    <calendar :date="embeddingSearchData.scopeDateEnd" v-on:change="embeddingEndDate"/>
                 <a href="" class="floatleft embedding-four">脱钙(0)</a>
                 <a href="" class="floatleft embedding-four">冰冻(0)</a>
                 <form  class="floatleft embedding-five">
-                    <select class="radius common">
-                        <option v-for="item in initialData.printStatusList" :value="item.sampleDoctorId">{{item.name}}</option>
+                    <select class="radius common" v-model="embeddingSearchData.printStatus">
+                        <option v-for="item in initialData.printStatusList" :value="item.id">{{item.name}}</option>
                     </select>
                 </form>
                 <form  class="floatleft embedding-five">
-                    <select class="radius common">
-                        <option v-for="item in initialData.productionStatusList" :value="item.sampleDoctorId">{{item.name}}</option>
+                    <select class="radius common" v-model="embeddingSearchData.productionStatus">
+                        <option v-for="item in initialData.productionStatusList" 
+                        :value="item.id">{{item.name}}</option>
                     </select>
                 </form>
-                <button class="floatleft embedding-three">查询</button>
-                <button class="floatleft embedding-three">默认</button>
+                <button class="floatleft embedding-three" @click="embeddingSearch">查询</button>
+                <button class="floatleft embedding-three" @click="embeddingDefaultSearch">默认</button>
                 <div>   
                 </div> 
             </div>
@@ -44,7 +42,8 @@
                 <p class="floatleft embedding-bottom-p">当前待包埋数：4</p>
                 <p class="floatleft embedding-bottom-two embedding-bottom-p">材块数：4</p>
                 <div class="floatleft embedding-bottom-div"><p class="floatleft">提前</p>
-                    <input type="text" class="floatleft embedding-bottom-text" maxlength="2"><p class="floatleft">天确定</p></div>
+                    <input type="text" class="floatleft embedding-bottom-text" maxlength="2"><p class="floatleft">天确定</p>
+                </div>
                 <button class="floatleft">材块核对</button>
                 <button class="floatleft">标签打印</button>
                 <button class="floatleft">包埋确认</button>
@@ -178,7 +177,16 @@ import Vue from 'vue';
                 items: null,
                 apiURL:"/api/hello",
                 initialData: {},
-                embeddingList:[]
+                embeddingList:[],
+                embeddingSearchData:{
+                    patientNo: "",
+                    sampleDoctorId: 1,
+                    hours24: true,
+                    scopeDateStart: null,
+                    scopeDateEnd: null,
+                    printStatus: 1,
+                    productionStatus:1 
+                    }
             }
         },
         components:{
@@ -209,7 +217,6 @@ import Vue from 'vue';
                 response.text();
                 const data = JSON.parse(json);
                 self.embeddingList = data;
-                console.log(self.embeddingList)
                 },
             async loadData(){
                 const response = await
@@ -252,6 +259,59 @@ import Vue from 'vue';
                     $(".embeddingcheckall").removeClass("noselectbox").addClass("selectbox");
                     $(".checkone").addClass("selectbox").removeClass("noselectbox");
                     }
+            },
+            embeddingStartDate:function(date){
+                if (date != null) {
+                let embeddingStartDate = new XDate(date);
+                this.embeddingSearchData.scopeDateStart = embeddingStartDate.toString("yyyy-MM-dd");
+                }
+            },
+            embeddingEndDate:function(date){
+                if (date != null) {
+                let embeddingEndDate = new XDate(date);
+                this.embeddingSearchData.scopeDateEnd = embeddingEndDate.toString("yyyy-MM-dd");
+                }
+            },
+            async embeddingSearch(){
+            if($('.embeddingHours').is(':checked')){
+                this.embeddingSearchData.hours24=true
+           }else{
+                this.embeddingSearchData.hours24=false
+           }
+            const response = await
+            fetch('/production/sectionlist', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify(this.embeddingSearchData)
+            });
+            console.log(JSON.stringify(this.embeddingSearchData))
+            const json = await
+            response.text();
+            const data = JSON.parse(json);
+            // this.initialData = data;
+            },
+            async embeddingDefaultSearch(){
+                if($('.embeddingHours').is(':checked')){
+                this.embeddingSearchData.hours24=true
+           }else{
+                this.embeddingSearchData.hours24=false
+           }
+            const response = await
+            fetch('/production/sectionlist', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify(this.embeddingSearchData)
+            });
+            console.log(JSON.stringify(this.embeddingSearchData))
+            const json = await
+            response.text();
+            const data = JSON.parse(json);
             }
         }
 
