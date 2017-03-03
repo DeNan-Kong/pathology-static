@@ -321,6 +321,10 @@ import Vue from 'vue';
                     aheadDay:null,
                     idList:[]
                 },
+                embeddingConfirmData:{
+                    aheadDay:null,
+                    idList:[]
+                },
                 multipleSelection:[]
             }
         },
@@ -482,7 +486,7 @@ import Vue from 'vue';
                     const json = await
                     response.text();
                     const data = JSON.parse(json);
-                    //                
+                    //this.embeddingList = data;               
                 },
             async embeddingConfirm(){
                     var newItems = [];
@@ -492,9 +496,9 @@ import Vue from 'vue';
                         newItems.push(item)
                     }
                   } 
-                  this.embeddingCheckData.idList=[]
+                  this.embeddingConfirmData.idList=[]
                   for(let i=0;i<newItems.length;i++){
-                    this.embeddingCheckData.idList.push(newItems[i].materialDetailId)
+                    this.embeddingConfirmData.idList.push(newItems[i].materialDetailId)
                   }
                    const response = await
                     fetch('/production/sectionlist', {
@@ -503,12 +507,13 @@ import Vue from 'vue';
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
-                    body: JSON.stringify(this.embeddingCheckData)
+                    body: JSON.stringify(this.embeddingConfirmData)
                 });
-                    console.log(JSON.stringify(this.embeddingCheckData))
+                    console.log(JSON.stringify(this.embeddingConfirmData))
                     const json = await
                     response.text();
                     const data = JSON.parse(json);
+                    //this.embeddingList = data;
                 }
             }
     };

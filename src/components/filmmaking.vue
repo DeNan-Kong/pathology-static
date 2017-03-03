@@ -259,7 +259,8 @@
             <div class="clear"></div>
             <div class="filmmaking-bottom">
                 <button class="floatright filmmaking-bottom-btnlong filmmaking-bottom-btn">移交表单打印</button>
-                <button class="floatright filmmaking-bottom-btn" @click="glassCheck">玻片核对</button>
+                <button class="floatright filmmaking-bottom-btn" 
+                @click="glassCheck">玻片核对</button>
                 <button class="floatright filmmaking-bottom-btn" @click="dyeingHE">HE染色</button>
                 <button class="floatright filmmaking-bottom-btn">标签打印</button>
                  <p class="floatright"><a href="#">当前制片数：{{productionList.length}}</a></p>
@@ -445,7 +446,8 @@ import $ from "jQuery";
                     pathologyNo: ""
                 },
                 selectId:[],
-                deleteId:[]
+                deleteId:[],
+                glassCheckId:[]
             }
         },
         components:{
@@ -484,7 +486,6 @@ import $ from "jQuery";
                 response.text();
                 const data = JSON.parse(json);
                 this.initialData = data;
-                console.log(JSON.stringify(this.initialData))
             },
             async filmmakingSearch(){
                 if($('.filmmakingHours').is(':checked')){
@@ -584,8 +585,7 @@ import $ from "jQuery";
                   for(let i=0;i<newItems.length;i++){
                     this.deleteId.push(newItems[i].materialDetailId)
                   }
-                   const response = await
-                    fetch('/production/sectionlist', {
+                   const response = await fetch('/production/sectionlist', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -599,6 +599,7 @@ import $ from "jQuery";
                     //this.productionList = data;
             },
             async glassCheck(){
+                console.log("mmmm")
                var newItems = [];
                 for (let i = 0; i < this.productionList.length; i++) {
                     let item = this.productionList[i];
@@ -606,20 +607,19 @@ import $ from "jQuery";
                         newItems.push(item)
                     }
                   } 
-                  this.selectId=[]
+                  this.glassCheckId=[];
                   for(let i=0;i<newItems.length;i++){
-                    this.selectId.push(newItems[i].materialDetailId)
+                    this.glassCheckId.push(newItems[i].materialDetailId)
                   }
-                   const response = await
-                    fetch('/production/sectionlist', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify(this.selectId)
+                   const response = await fetch('/production/sectionlist', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify(this.glassCheckId)
                 });
-                 //console.log(JSON.stringify(this.selectId)) 
+                 console.log(JSON.stringify(this.glassCheckId)) 
             }
         }
     }
