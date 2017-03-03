@@ -35,16 +35,144 @@
                 <div>   
                 </div> 
             </div>
-            <div class="embedding-table" id="s">
-                <embeddingtable :embeddingList="embeddingList" />
+            <div class="embedding-table">
+                <el-table
+                    :data="embeddingList"
+                    border
+                    height="520"
+                    highlight-current-row
+                    @selection-change="selectionChange"
+                    @current-change="handleCurrentChange">
+                    <el-table-column
+                      type="selection"
+                      min-width="48"
+                      >
+                    </el-table-column>
+                    <el-table-column
+                      label="病理号"
+                      show-overflow-tooltip
+                      min-width="112"
+                      >
+                      <template scope="scope">
+                        <span>{{ scope.row.pathologyNo }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="任务来源"
+                      show-overflow-tooltip
+                      min-width="106">
+                      <template scope="scope">
+                        <span>{{ scope.row.taskSourceId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="材块号"
+                      show-overflow-tooltip
+                      min-width="92">
+                      <template scope="scope">
+                        <span>{{ scope.row.materialNo }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="姓名"
+                      show-overflow-tooltip
+                      min-width="84">
+                      <template scope="scope">
+                        <span>{{ scope.row.patientName }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="性别"
+                      show-overflow-tooltip
+                      min-width="60"
+                      >
+                      <template scope="scope">
+                        <span>{{ scope.row.sex }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="年龄"
+                      show-overflow-tooltip
+                      min-width="60"
+                      >
+                      <template scope="scope">
+                        <span>{{ scope.row.age }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="取材部位"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.materialPartsId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="材块数"
+                      show-overflow-tooltip
+                      min-width="56">
+                      <template scope="scope">
+                        <span>{{ scope.row.materialQuantity }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="取材医生"
+                      show-overflow-tooltip
+                      min-width="80">
+                      <template scope="scope">
+                        <span>{{ scope.row.sampleDoctorId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="取材日期"
+                      show-overflow-tooltip
+                      min-width="102">
+                      <template scope="scope">
+                        <span>{{ scope.row.sampleDoctorId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="材块核对"
+                      show-overflow-tooltip
+                      min-width="80">
+                      <template scope="scope">
+                        <span>{{ scope.row.materialCheckerId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="打印状态"
+                      show-overflow-tooltip
+                       min-width="80">
+                      <template scope="scope">
+                        <span>{{ scope.row.printStatus }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="制片状态"
+                      show-overflow-tooltip
+                      min-width="80">
+                      <template scope="scope">
+                        <span>{{ scope.row.productionStatus }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="核对时间"
+                      show-overflow-tooltip
+                      min-width="110">
+                      <template scope="scope">
+                        <span>{{ scope.row.materialCheckDate }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+               <!--  <embeddingtable :embeddingList="embeddingList" v-on:selectionChange="HandelcurrentChange"/> -->
             </div>
             <div class="embedding-bottom">
-                <p class="floatleft embedding-bottom-p">当前待包埋数：4</p>
-                <p class="floatleft embedding-bottom-two embedding-bottom-p">材块数：4</p>
+                <p class="floatleft embedding-bottom-p">当前待包埋数：{{embeddingNum}}</p>
+                <p class="floatleft embedding-bottom-two embedding-bottom-p">材块数：{{blockNum}}</p>
                 <div class="floatleft embedding-bottom-div"><p class="floatleft">提前</p>
-                    <input type="text" class="floatleft embedding-bottom-text" maxlength="2"><p class="floatleft">天确定</p>
+                    <input type="text" class="floatleft embedding-bottom-text" maxlength="2" v-model="embeddingCheckData.aheadDay"><p class="floatleft">天确定</p>
                 </div>
-                <button class="floatleft">材块核对</button>
+                <button class="floatleft" @click="blockCheck">材块核对</button>
                 <button class="floatleft">标签打印</button>
                 <button class="floatleft">包埋确认</button>
                 <button class="floatleft">移交打印表</button>
@@ -178,6 +306,8 @@ import Vue from 'vue';
                 apiURL:"/api/hello",
                 initialData: {},
                 embeddingList:[],
+                embeddingNum:0,
+                blockNum:0,
                 embeddingSearchData:{
                     patientNo: "",
                     sampleDoctorId: 1,
@@ -186,7 +316,12 @@ import Vue from 'vue';
                     scopeDateEnd: null,
                     printStatus: 1,
                     productionStatus:1 
-                    }
+                },
+                embeddingCheckData:{
+                    aheadDay:0,
+                    idList:[]
+                },
+                multipleSelection:[]
             }
         },
         components:{
@@ -202,8 +337,17 @@ import Vue from 'vue';
              
         },
         methods:{
+            handleEdit(index, row) {
+        console.log(index, row);
+        },
+      handleDelete(index, row) {
+          console.log(index, row);
+        },
+      handleCurrentChange(val) {
+        this.currentRow = val;
+      
+      },
             async listData(){
-                const self = this;
                 const response = await
                 fetch('/production/embeddinglist', {
                     method: 'POST',
@@ -211,13 +355,17 @@ import Vue from 'vue';
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
-                    body: JSON.stringify([])
+                    body: JSON.stringify()
                 });
                 const json = await
                 response.text();
                 const data = JSON.parse(json);
-                self.embeddingList = data;
-                },
+                this.embeddingList = data;
+                this.embeddingNum=this.embeddingList.length;
+                for(let i=0;i<this.embeddingList.length;i++){
+                    this.blockNum+=this.embeddingList[i].materialQuantity;
+                }                
+            },
             async loadData(){
                 const response = await
                 fetch('/production/load', {
@@ -273,47 +421,87 @@ import Vue from 'vue';
                 }
             },
             async embeddingSearch(){
-            if($('.embeddingHours').is(':checked')){
-                this.embeddingSearchData.hours24=true
-           }else{
-                this.embeddingSearchData.hours24=false
-           }
-            const response = await
-            fetch('/production/sectionlist', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                },
-                body: JSON.stringify(this.embeddingSearchData)
-            });
-            console.log(JSON.stringify(this.embeddingSearchData))
-            const json = await
-            response.text();
-            const data = JSON.parse(json);
-            // this.initialData = data;
+                if($('.embeddingHours').is(':checked')){
+                    this.embeddingSearchData.hours24=true
+               }else{
+                    this.embeddingSearchData.hours24=false
+               }
+                const response = await
+                fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.embeddingSearchData)
+                });
+                console.log(JSON.stringify(this.embeddingSearchData))
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+                // this.initialData = data;
             },
             async embeddingDefaultSearch(){
                 if($('.embeddingHours').is(':checked')){
-                this.embeddingSearchData.hours24=true
-           }else{
-                this.embeddingSearchData.hours24=false
-           }
-            const response = await
-            fetch('/production/sectionlist', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    this.embeddingSearchData.hours24=true
+               }else{
+                    this.embeddingSearchData.hours24=false
+               }
+                const response = await
+                fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.embeddingSearchData)
+                });
+                console.log(JSON.stringify(this.embeddingSearchData))
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
                 },
-                body: JSON.stringify(this.embeddingSearchData)
-            });
-            console.log(JSON.stringify(this.embeddingSearchData))
-            const json = await
-            response.text();
-            const data = JSON.parse(json);
+            selectionChange:function(val){
+                console.log(val[0].materialDetailId)
+                for (let i = 0; i < this.embeddingList.length; i++) {
+                    let item = this.embeddingList[i];
+                    item.isSelected = false;
+                }
+                for (let i = 0; i < val.length; i++) {
+                  let newItem=val[i];
+                  newItem.isSelected=true;
+                }
+            },
+            async blockCheck(){
+                var newItems = [];
+                for (let i = 0; i < this.embeddingList.length; i++) {
+                    let item = this.embeddingList[i];
+                    if (!item.isSelected==false) {
+                        newItems.push(item)
+                    }
+                  } 
+                  // console.log(newItems.length)
+                  // console.log(JSON.stringify(newItems))
+                  this.embeddingCheckData.idList=[]
+                  for(let i=0;i<newItems.length;i++){
+                    this.embeddingCheckData.idList.push(newItems[i].materialDetailId)
+                  }
+                  // console.log(JSON.stringify(this.embeddingCheckData.idList))
+                   const response = await
+                    fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.embeddingCheckData)
+                });
+                    console.log(JSON.stringify(this.embeddingCheckData))
+                    const json = await
+                    response.text();
+                    const data = JSON.parse(json);
+                    //                
+                }
             }
-        }
-
     };
 </script>

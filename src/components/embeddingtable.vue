@@ -4,6 +4,7 @@
     border
     height="520"
     highlight-current-row
+    @selection-change="selectionChange"
     @current-change="handleCurrentChange">
     <el-table-column
       type="selection"
@@ -139,15 +140,19 @@
       created(){ // 生命周期 created,获取数据
           },
     methods: {
-        handleEdit(index, row) {
+      handleEdit(index, row) {
         console.log(index, row);
         },
-        handleDelete(index, row) {
+      handleDelete(index, row) {
           console.log(index, row);
         },
-        handleCurrentChange(val) {
+      handleCurrentChange(val) {
         this.currentRow = val;
-      }
+      
+      },
+      selectionChange:function(items) { 
+        this.$emit('selectionChange',items) 
+      },
     }
   }
 </script>

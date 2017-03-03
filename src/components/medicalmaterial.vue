@@ -732,6 +732,7 @@
 
           },
           handleSelectionChange: function (items) {
+            console.log(items)
               for (let i = 0; i < items.length; i++) {
                   let item = items[i];
                   item.isSelected = true;
