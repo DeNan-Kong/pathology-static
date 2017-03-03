@@ -732,7 +732,6 @@
 
           },
           handleSelectionChange: function (items) {
-            console.log(items)
               for (let i = 0; i < items.length; i++) {
                   let item = items[i];
                   item.isSelected = true;
@@ -748,7 +747,6 @@
                     }
                   }
                 this.materialsTable = newItems;
-                console.log(JSON.stringify(this.materialsTable))
                 this.lakuaiSum=this.materialsTable.length;//蜡块数
                 var sum=0;
                 for(var i=0;i<this.materialsTable.length;i++){

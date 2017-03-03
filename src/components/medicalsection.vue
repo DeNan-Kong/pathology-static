@@ -218,7 +218,6 @@ import Sectiontable from 'components/sectiontable';
           "sectiontable":Sectiontable
     },
     created(){ // 生命周期 created,获取数据
-        this.fetchSectionData(),
         this.listData()
     },
     methods:{
@@ -271,75 +270,63 @@ import Sectiontable from 'components/sectiontable';
           }else{
           $("#"+checkid).addClass("selectbox").removeClass("noselectbox");
               }
-       },
-      sectioncheckall:function(){
-        if($('.sectioncheckall').hasClass('selectbox')){
+        },
+        sectioncheckall:function(){
+          if($('.sectioncheckall').hasClass('selectbox')){
             $(".sectioncheckall").removeClass("selectbox").addClass("noselectbox");
             $(".sectionone").removeClass("selectbox").addClass("noselectbox");
             }else{
             $(".sectioncheckall").removeClass("noselectbox").addClass("selectbox");
             $(".sectionone").addClass("selectbox").removeClass("noselectbox");
-                }
-        },
-        fetchSectionData:function(){
-                var xhr = new XMLHttpRequest()
-                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.list = JSON.parse(xhr.responseText);
-      }
-      xhr.send()
-    },
-    sectionStartDate:function(date){
-      if (date != null) {
-          let sectionStartDate = new XDate(date);
-          this.selectData.scopeDateStart = sectionStartDate.toString("yyyy-MM-dd");
-        }
-    },
-    sectionEndDate:function(date){
-      if (date != null) {
-          let sectionEndDate = new XDate(date);
-           this.selectData.scopeDateEnd = sectionEndDate.toString("yyyy-MM-dd");
-        }
-    },
-    sectionChange:function(val){
-        for (let i = 0; i < this.sectionList.length; i++) {
-          let item = this.sectionList[i];
-          item.isSelected = false;
-        }
-        for (let i = 0; i < val.length; i++) {
-          let newItem=val[i];
-          newItem.isSelected=true;
-        }
-    },
-    async sectionConfirm(){
-      var newItems = [];
-      for (let i = 0; i < this.sectionList.length; i++) {
-          let item = this.sectionList[i];
-          if (!item.isSelected==false) {
-              newItems.push(item)
           }
-        } 
-        this.sectionConfirmData.idList=[]
-        for(let i=0;i<newItems.length;i++){
-          this.sectionConfirmData.idList.push(newItems[i].materialDetailId)
+        },
+        sectionStartDate:function(date){
+          if (date != null) {
+              let sectionStartDate = new XDate(date);
+              this.selectData.scopeDateStart = sectionStartDate.toString("yyyy-MM-dd");
+            }
+        },
+        sectionEndDate:function(date){
+          if (date != null) {
+              let sectionEndDate = new XDate(date);
+               this.selectData.scopeDateEnd = sectionEndDate.toString("yyyy-MM-dd");
+            }
+        },
+        sectionChange:function(val){
+            for (let i = 0; i < this.sectionList.length; i++) {
+              let item = this.sectionList[i];
+              item.isSelected = false;
+            }
+            for (let i = 0; i < val.length; i++) {
+              let newItem=val[i];
+              newItem.isSelected=true;
+            }
+        },
+        async sectionConfirm(){
+          var newItems = [];
+          for (let i = 0; i < this.sectionList.length; i++) {
+              let item = this.sectionList[i];
+              if (!item.isSelected==false) {
+                  newItems.push(item)
+              }
+            } 
+          this.sectionConfirmData.idList=[]
+            for(let i=0;i<newItems.length;i++){
+              this.sectionConfirmData.idList.push(newItems[i].materialDetailId)
+            }
+          const response = await fetch('/production/sectionlist',{
+              method: 'POST',
+              credentials: 'include',
+              headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+              },
+              body: JSON.stringify(this.sectionConfirmData)
+          });
+              console.log(JSON.stringify(this.sectionConfirmData))
+              const json = await  response.text();
+              const data = JSON.parse(json);
+              this.sectionList = data;
+          }
         }
-         const response = await
-          fetch('/production/sectionlist', {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-              "Content-type": "application/json; charset=UTF-8"
-          },
-          body: JSON.stringify(this.sectionConfirmData)
-      });
-          console.log(JSON.stringify(this.sectionConfirmData))
-          const json = await  response.text();
-          const data = JSON.parse(json);
-          this.sectionList = data;
-
-    }
-
-    }
   };
 </script>

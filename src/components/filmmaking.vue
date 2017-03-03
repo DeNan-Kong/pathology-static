@@ -32,48 +32,235 @@
                 <button class="floatleft top-btn" @click="filmmakingSearch">查询</button>
             </div>
             <div class="filmmaking-table">
-                <filmmakingtable :productionList="productionList" />
+                <el-table
+                    :data="productionList"
+                    border
+                    height="492"
+                    highlight-current-row
+                    @selection-change="filmmakingChange">
+                    <el-table-column
+                      type="selection"
+                      min-width="40">
+                    </el-table-column>
+                    <el-table-column
+                      label="病理号"
+                      show-overflow-tooltip
+                      fixed
+                     min-width="102">
+                      <template scope="scope">
+                        <span>{{ scope.row.pathologyNo }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="任务来源"
+                      show-overflow-tooltip
+                      min-width="75">
+                      <template scope="scope">
+                        <span>{{ scope.row.taskSourceId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="制片子号"
+                      show-overflow-tooltip
+                      min-width="76">
+                      <template scope="scope">
+                        <span>{{ scope.row.materialNo }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="制片说明"
+                      show-overflow-tooltip
+                      min-width="80">
+                      <template scope="scope">
+                        <span>{{ scope.row.productionExplain }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="姓名"
+                      show-overflow-tooltip
+                      min-width="60">
+                      <template scope="scope">
+                        <span>{{ scope.row.patientName }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="性别"
+                      show-overflow-tooltip
+                      min-width="46">
+                      <template scope="scope">
+                        <span>{{ scope.row.sex }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="年龄"
+                      show-overflow-tooltip
+                      min-width="46">
+                      <template scope="scope">
+                        <span>{{ scope.row.age }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="申请人"
+                      show-overflow-tooltip
+                      min-width="60">
+                      <template scope="scope">
+                        <span>{{ scope.row.proposerId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="收费情况"
+                      show-overflow-tooltip
+                      min-width="72">
+                      <template scope="scope">
+                        <span>{{ scope.row.chargeTypeId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="收费时间"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.chargeDate }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="制片人"
+                      show-overflow-tooltip
+                      min-width="66">
+                      <template scope="scope">
+                        <span>{{ scope.row.producerId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="制片时间"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.productionDate }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="制片状态"
+                      show-overflow-tooltip
+                      min-width="75">
+                      <template scope="scope">
+                        <span>{{ scope.row.productionStatus }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="打印状态"
+                      show-overflow-tooltip
+                      min-width="75">
+                      <template scope="scope">
+                        <span>{{ scope.row.printStatus }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="玻片核对"
+                      show-overflow-tooltip
+                      min-width="75">
+                      <template scope="scope">
+                        <span>{{ scope.row.slideCheckerId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="核对时间"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.slideCheckDate }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="切片评级"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.slideCheckDate }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="评级人"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.rateOperatorId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="染色人"
+                      show-overflow-tooltip
+                      min-width="90">
+                      <template scope="scope">
+                        <span>{{ scope.row.dyeOperatorId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="染色时间"
+                      show-overflow-tooltip
+                      min-width="100">
+                      <template scope="scope">
+                        <span>{{ scope.row.dyeDate }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="取材医生"
+                      show-overflow-tooltip
+                      min-width="90">
+                      <template scope="scope">
+                        <span>{{ scope.row.sampleDoctorId }}</span>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="包埋人"
+                      show-overflow-tooltip
+                      min-width="90">
+                      <template scope="scope">
+                        <span>{{ scope.row.embeddingOperatorId }}</span>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                <!-- <filmmakingtable :productionList="productionList" /> -->
             </div>
             <div class="filmmaking-adddelete">
                 <p class="floatleft top-p-seven textright">任务来源:</p>
                <form  class="floatleft top-p-four">
-                    <select class="radius common ">
-                        <option v-for="item in initialData.taskSourceList" :value="item.id"> {{item.name}}</option>                     
+                    <select class="radius common" v-model="filmmakingBtnData.taskSourceId">
+                        <option v-for="item in initialData.taskSourceList" :value="item.taskSourceId"> {{item.name}}
+                        </option>                     
                     </select>
                 </form>
-                <p class="floatleft top-p-four  textright">制片时间:</p>
-                <calendar/>
+                <p class="floatleft top-p-four textright">制片时间:</p>
+                <calendar :date="filmmakingBtnData.productionDate" v-on:change="productionDate"/>
                 <p class="floatleft top-p-three textright">制片人:</p>
                 <form  class="floatleft top-p-four">
-                    <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
+                    <select class="radius common" v-model="filmmakingBtnData.producerId">
+                      <option v-for="item in initialData.producerList" :value="item.sampleDoctorId">{{item.name}}</option>
                     </select>
                 </form>
-                <p class="floatleft top-p-four  textright">制片说明:</p>
+                <p class="floatleft top-p-four textright">制片说明:</p>
                 <form  class="floatleft top-p-three">
-                    <select class="radius common ">
-                      <option>免疫组化</option>
-                      <option>二</option>
+                    <select class="radius common" v-model="filmmakingBtnData.productionExplainId">
+                      <option v-for="item in initialData.productionExplainList" :value="item.productionExplainId">{{item.name}}</option>
                     </select>
                 </form>
                 <p class="floatleft top-p-three  textright">序号:</p> 
                 <form  class="floatleft top-p-four">
-                    <select class="radius">
-                      <option>免疫组化</option>
-                      <option>二</option>
+                    <select class="radius" v-model="filmmakingBtnData.materialIDX">
+                      <option v-for="item in initialData.materialNoList" :value="item.materialNoId">{{item.name}}</option>
                     </select>
                 </form> 
-               <p class="floatleft top-p-three textright">病理号:</p>
-               <input type="text"  class="floatleft top-ipt radius common">
-                <button class="floatright add-btn ">添加</button>
-                <button class="floatright delete-btn">删除</button>
+               <p class="floatleft top-p-three textright" >病理号:</p>
+               <input type="text" class="floatleft top-ipt radius common" v-model="filmmakingBtnData.pathologyNo">
+               <button class="floatright delete-btn" @click="filmmakingDelete">删除</button>
+               <button class="floatright add-btn" @click="filmmakingAdd">添加</button>
+                
             </div>
             <div class="clear"></div>
             <div class="filmmaking-bottom">
                 <button class="floatright filmmaking-bottom-btnlong filmmaking-bottom-btn">移交表单打印</button>
-                <button class="floatright filmmaking-bottom-btn">玻片核对</button>
-                <button class="floatright filmmaking-bottom-btn">HE染色</button>
+                <button class="floatright filmmaking-bottom-btn" @click="glassCheck">玻片核对</button>
+                <button class="floatright filmmaking-bottom-btn" @click="dyeingHE">HE染色</button>
                 <button class="floatright filmmaking-bottom-btn">标签打印</button>
                  <p class="floatright"><a href="#">当前制片数：{{productionList.length}}</a></p>
             </div>
@@ -248,39 +435,44 @@ import $ from "jQuery";
                     scopeDateEnd:null,
                     printStatus: 1,
                     productionStatus:1 
-                }
+                },
+                filmmakingBtnData:{
+                    taskSourceId: 1,
+                    productionDate: "",
+                    producerId: 1,
+                    productionExplainId:1,
+                    materialIDX: 1,
+                    pathologyNo: ""
+                },
+                selectId:[],
+                deleteId:[]
             }
         },
-        props: [],
         components:{
            "calendar":Calendar,
            "filmmakingtable":Filmmakingtable
         },
         created(){ // 生命周期 created,获取数据
-            this.filmmaking();
             this.loadData();
             this.listData();
         },
         methods:{
             async listData(){
-                const self = this;
                 const response = await
-                        fetch('/production/productionlist', {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: {
-                                "Content-type": "application/json; charset=UTF-8"
-                            },
-                            body: JSON.stringify([])
-                        });
+                    fetch('/production/productionlist', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        },
+                        body: JSON.stringify([])
+                    });
                 const json = await response.text();
                 const data = JSON.parse(json);
-                self.productionList = data;
+                this.productionList = data;
             },
             async loadData(){
-                const self = this;
-                const response = await
-                fetch('/production/load', {
+                const response = await fetch('/production/load', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -291,23 +483,8 @@ import $ from "jQuery";
                 const json = await
                 response.text();
                 const data = JSON.parse(json);
-                self.initialData = data;
-            },
-            checkall:function(){
-                if($(".checkall").hasClass("selectbox")){
-                    $(".checkall").removeClass("selectbox").addClass("noselectbox");
-                    }else{
-                    $(".checkall").removeClass("noselectbox").addClass("selectbox"); 
-                    }   
-            },
-            filmmaking:function(){
-                var xhr = new XMLHttpRequest()
-                var self = this 
-                xhr.open('POST', '/api/hello')
-                xhr.onload = function () {
-                self.datas=JSON.parse(xhr.responseText);
-              }
-              xhr.send()
+                this.initialData = data;
+                console.log(JSON.stringify(this.initialData))
             },
             async filmmakingSearch(){
                 if($('.filmmakingHours').is(':checked')){
@@ -315,8 +492,7 @@ import $ from "jQuery";
                }else{
                     this.filmmakingSearchData.hours24=false
                }
-                const response = await
-                fetch('/production/sectionlist', {
+                const response = await fetch('/production/sectionlist', {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
@@ -328,6 +504,7 @@ import $ from "jQuery";
                 const json = await
                 response.text();
                 const data = JSON.parse(json);
+                //this.productionList = data;
             },
             filmmakingStartDate:function(date){
                 if (date != null) {
@@ -341,6 +518,109 @@ import $ from "jQuery";
                 this.filmmakingSearchData.scopeDateEnd = filmmakingEndDate.toString("yyyy-MM-dd");
                 }
             },
+            filmmakingChange(val) {
+                for (let i = 0; i < this.productionList.length; i++) {
+                    let item = this.productionList[i];
+                    item.isSelected = false;
+                }
+                for (let i = 0; i < val.length; i++) {
+                  let newItem=val[i];
+                  newItem.isSelected=true;
+                }
+            },
+            productionDate:function(date){
+                if (date != null) {
+                let productionDate = new XDate(date);
+                this.filmmakingBtnData.productionDate = productionDate.toString("yyyy-MM-dd");
+                }
+            },
+            async filmmakingAdd(){
+                const response = await fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.filmmakingBtnData)
+                });
+                console.log(JSON.stringify(this.filmmakingBtnData))
+                const json = await
+                response.text();
+                const data = JSON.parse(json);
+                //this.productionList = data;
+            },
+            async dyeingHE(){
+                var newItems = [];
+                for (let i = 0; i < this.productionList.length; i++) {
+                    let item = this.productionList[i];
+                    if (!item.isSelected==false) {
+                        newItems.push(item)
+                    }
+                  } 
+                  this.selectId=[]
+                  for(let i=0;i<newItems.length;i++){
+                    this.selectId.push(newItems[i].materialDetailId)
+                  }
+                   const response = await
+                    fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.selectId)
+                });
+                    console.log(JSON.stringify(this.selectId))
+            },
+            async filmmakingDelete(){
+                var newItems = [];
+                for (let i = 0; i < this.productionList.length; i++) {
+                    let item = this.productionList[i];
+                    if (!item.isSelected==false) {
+                        newItems.push(item)
+                    }
+                  } 
+                  this.deleteId=[]
+                  for(let i=0;i<newItems.length;i++){
+                    this.deleteId.push(newItems[i].materialDetailId)
+                  }
+                   const response = await
+                    fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.deleteId)
+                });
+                    console.log(JSON.stringify(this.deleteId))
+                    const json = await  response.text();
+                    const data = JSON.parse(json);
+                    //this.productionList = data;
+            },
+            async glassCheck(){
+               var newItems = [];
+                for (let i = 0; i < this.productionList.length; i++) {
+                    let item = this.productionList[i];
+                    if (!item.isSelected==false) {
+                        newItems.push(item)
+                    }
+                  } 
+                  this.selectId=[]
+                  for(let i=0;i<newItems.length;i++){
+                    this.selectId.push(newItems[i].materialDetailId)
+                  }
+                   const response = await
+                    fetch('/production/sectionlist', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(this.selectId)
+                });
+                 //console.log(JSON.stringify(this.selectId)) 
+            }
         }
     }
 </script>

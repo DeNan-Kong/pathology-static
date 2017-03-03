@@ -7,7 +7,7 @@
                 {{item.name}}
             </button>
             <el-checkbox-group v-model="checkList">
-                        <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
+                <el-checkbox :label="$t('searchtable.all_library')"></el-checkbox>
             </el-checkbox-group>
         </div>
         <br>
@@ -26,7 +26,8 @@
             <img src="../assets/images/search.png.png" class="big-search-img">
             <form  class="floatleft ">
                 <select class="big-search-sel" v-model="searchPathologyNo.selectedPathologyType">
-                    <option v-for="item in searchTableData.selectNoList" :value="item.id">{{item.name}}</option>
+                    <option v-for="item in searchTableData.selectNoList" :value="item.id">{{item.name}}
+                    </option>
                 </select>
             </form>
             <button class="select-search-btn floatleft" @click="getOrderListClick">{{$t('searchtable.extract')}}
@@ -57,32 +58,31 @@
                 <table style="table-layout:fixed">
                     <tbody>
                     <tr v-for="item in tabledatas" @click="showContent(item.orderId)">
-                            <td class="pictable">
-                                <el-tooltip class="item"  content="相关诊断" placement="top">
-                                    <el-tag>
-                                        <div class="relateimgon relateclick" @click="showrelate" :id="item.patientId"></span></div>
-                                    </el-tag>
-                                </el-tooltip>
-                            </td>
-                            <td  class="statustable"><span v-if="item.isFrozen"> 冰</span></td>
-                            <td class="pathology-table pathology-color" v-bind:style="{background:getOrderStatusColor(item.orderStatus-1)}">{{item.pathologyNo}}</td>
-                            <td class="name-table"><div class="textoverflow nameover">{{item.patientName}}</div></td>
-                            <td class="sex-table">{{item.sexName}}</td>
-                            <td class="age-table">{{item.age}}</td>
-                            <td class="hospitalized-table"><div class="textoverflow hospitalized-over">{{item.inhospitalId}}</div></td>
-                            <td class="unit-table">{{item.inspectName}}</td>
-                            <td class="department-table">{{item.departmentName}}</td>
-                            <td class="sample-table">{{item.specimenName}}</td>
-                        </tr>
+                        <td class="pictable">
+                            <el-tooltip class="item"  content="相关诊断" placement="top">
+                                <el-tag>
+                                    <div class="relateimgon relateclick" @click="showrelate" :id="item.patientId"></span></div>
+                                </el-tag>
+                            </el-tooltip>
+                        </td>
+                        <td  class="statustable"><span v-if="item.isFrozen"> 冰</span></td>
+                        <td class="pathology-table pathology-color" v-bind:style="{background:getOrderStatusColor(item.orderStatus-1)}">{{item.pathologyNo}}</td>
+                        <td class="name-table"><div class="textoverflow nameover">{{item.patientName}}</div></td>
+                        <td class="sex-table">{{item.sexName}}</td>
+                        <td class="age-table">{{item.age}}</td>
+                        <td class="hospitalized-table"><div class="textoverflow hospitalized-over">{{item.inhospitalId}}</div></td>
+                        <td class="unit-table">{{item.inspectName}}</td>
+                        <td class="department-table">{{item.departmentName}}</td>
+                        <td class="sample-table">{{item.specimenName}}</td>
+                    </tr>
                     </tbody>
                 </table>
-                </div>
-            </div>
-            <div class="right-bottom">
-                <a class="activecolor"  v-for="item in searchTableData.aList" @click="modalSelect(item.id)">{{item.name}}</a>
             </div>
         </div>
-    
+        <div class="right-bottom">
+            <a class="activecolor"  v-for="item in searchTableData.aList" @click="modalSelect(item.id)">{{item.name}}</a>
+        </div>
+    </div>
     <div class="bmobbox">
         <div class="bmobbox-top" >
             <p>{{$t('searchtable.combination_query')}}</p>
@@ -177,9 +177,6 @@
                 <button class="bmobbox-btntwo">{{$t('searchtable.cancel')}}</button>
             </div>
         </div>
-        <!-- <div class="relatelist">
-            <relatetable :relationshow="method" :relationdate="(relateListDatas)"/>
-        </div> -->
     </div>
     <div class="relatelist" v-if="listshow">
         <relatetable :relationshow="method" :relationdate="(relateListDatas)" />
@@ -591,9 +588,6 @@ input[type='checkbox'] .checkbox-one{
     height:90px;
     margin-top: 20px;
 }
-/*.right-bottom a:first-child{
-    margin-top: 10px;
-}*/
 .right-bottom a{
     display:block;
     float:left;
@@ -915,7 +909,6 @@ table .pictable{
                 $("tr:eq(orderId)").toggleClass('red');
             },
             modalSelect:function(id){
-                // var id=$(e.target).attr('id');
                this.$emit('modalSelect',id) 
            },
             method: function () {
@@ -929,7 +922,6 @@ table .pictable{
                 this.searchTableData();
             }, async selectTimeTypeChange()
             {
-                // alert(this.selectTimeType);
                 this.searchConditionType = "byTime";
                 this.search();
             },

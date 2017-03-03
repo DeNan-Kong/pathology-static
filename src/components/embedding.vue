@@ -329,7 +329,6 @@ import Vue from 'vue';
            "embeddingtable":Embeddingtable
         },
         created(){ // 生命周期 created,获取数据
-            this.fetchData();
             this.loadData();
             this.listData();
         },
@@ -337,9 +336,9 @@ import Vue from 'vue';
              
         },
         methods:{
-        handleCurrentChange(val) {
-            this.currentRow = val;
-      },
+            handleCurrentChange(val) {
+                this.currentRow = val;
+            },
             async listData(){
                 const response = await
                 fetch('/production/embeddinglist', {
@@ -373,16 +372,6 @@ import Vue from 'vue';
                 response.text();
                 const data = JSON.parse(json);
                 this.initialData = data;
-            },
-            fetchData:function(){
-                var items=null;
-                var xhr = new XMLHttpRequest()
-                var self = this  // 下面的 onload事件中 this 不再指向实例,所以要变量存一下
-                xhr.open('POST', this.apiURL)
-                xhr.onload = function () {
-                self.item = JSON.parse(xhr.responseText);
-                }
-                xhr.send()
             },
             embeddingcheck:function(e){
                 var checkid=$(e.target).attr("id");
@@ -495,7 +484,7 @@ import Vue from 'vue';
                     const data = JSON.parse(json);
                     //                
                 },
-                async embeddingConfirm(){
+            async embeddingConfirm(){
                     var newItems = [];
                 for (let i = 0; i < this.embeddingList.length; i++) {
                     let item = this.embeddingList[i];
